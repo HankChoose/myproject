@@ -59,7 +59,8 @@ def Register(request):
         # return JsonResponse(combined_dataok)
 
         try:
-            user = User.objects.create_user(email=email, password=password)
+            # user = User.objects.create_user(email=email, password=password)
+            user = User(email="hankchenv@gmail.com", password="1234")
             user.save()
             # If the save is successful, return a success response.
             return HttpResponse("User created successfully")
