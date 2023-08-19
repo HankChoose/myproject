@@ -25,7 +25,13 @@ const AuthTabs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = { email, password };
+    //const userData = { email, password };
+
+    const userData = {
+      email: 'choose_last@163.com',
+      password: '1234',
+      // 添加要发送给Django的数据
+    };
   
   const dataToSend = {
     key1: 'value1',
