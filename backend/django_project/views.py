@@ -45,11 +45,13 @@ class CreateUserView(APIView):
 def Register(request):
     if request.method == 'POST':
 
-        data1 = json.loads(request.body)
-        key1 = data1['key1']
-        key2 = data1['key2']
+        data = json.loads(request.body)
+        email = data['email']
+        password = data['password']
 
         '''
+        key1 = data1['key1']
+        key2 = data1['key2']
         email1 = data1['email']
         password1 = data1['password']
         data2 = json.loads(request.body.decode('utf-8'))
@@ -59,7 +61,8 @@ def Register(request):
                      'email2': data2['email'], 'password2': data2['password']}
         data1json = {'data1': data1, 'email1': email1, 'password1': password1}
         '''
-        data1json = {'data1': data1, 'key1': key1, 'key2': key2}
+        datajson = {'data': data, 'email': email, 'password': password}
+        # data1json = {'data1': data1, 'key1': key1, 'key2': key2}
         # comnined_data_info = {'message': f'Successful register'}
         comnined_data = {'data1json': data1json}
         return JsonResponse(comnined_data)
