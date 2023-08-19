@@ -59,7 +59,7 @@ def Register(request):
 
         try:
             user = User(email=email, password=password)
-            # user.save()
+            user.save()
             # If the save is successful, return a success response.
             return HttpResponse("User created successfully")
         except Exception as e:
