@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import User
 from .serializers import UserSerializer
-
+from django.http import HttpResponseServerError
 import json
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -57,8 +57,16 @@ def Register(request):
         combined_datano = {'datano ': datano}
         # return JsonResponse(combined_dataok)
 
-        user = User(email=email, password=password)
-        user.save()
+        try:
+            user = User(email=email, password=password)
+            user.save()
+            # If the save is successful, return a success response.
+            return HttpResponse("User created successfully")
+        except Exception as e:
+            # Log the error for debugging purposes.
+            print(f"Error creating user: {str(e)}")
+            # Return an error response, such as a 500 Internal Server Error.
+            return HttpResponseServerError("Internal Server Error")
 
         if user:
             return JsonResponse(combined_dataok)
