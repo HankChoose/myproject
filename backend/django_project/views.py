@@ -1,22 +1,18 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import User
-
-from .serializers import UserSerializer
+# from .models import User
+from django.contrib.auth.models import User
 from django.http import HttpResponseServerError
-import json
-from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.http import HttpResponse
 from django.db import connection
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import User
 from django.conf import settings
 
-from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from .serializers import UserSerializer
 import json
 
 
@@ -60,7 +56,8 @@ def Register(request):
 
         try:
             # user = User.objects.create_user(email=email, password=password)
-            user = User(email="hankchenv@gmail.com", password="1234")
+            user = User.objects.create(
+                username='hankchenv@gmail.com', password='1234')
             user.save()
             # If the save is successful, return a success response.
             return HttpResponse("User created successfully")
