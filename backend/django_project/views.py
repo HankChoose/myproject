@@ -64,7 +64,7 @@ def Register(request):
         datajson = {'data': data, 'email': email, 'password': password}
         # data1json = {'data1': data1, 'key1': key1, 'key2': key2}
         # comnined_data_info = {'message': f'Successful register'}
-        comnined_data = {'data1json': data1json}
+        comnined_data = {'data1json': datajson}
         return JsonResponse(comnined_data)
 
         '''
