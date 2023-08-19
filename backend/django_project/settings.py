@@ -106,7 +106,7 @@ DATABASES = {
         'NAME': 'mydb',
         'USER': 'myuser',
         'PASSWORD': 'mypw',
-        'PASSWORD': 'myrootpw',
+        # 'PASSWORD': 'myrootpw',
         # Docker Compose中MySQL服务的主机名
         'HOST': 'myproject-mysql',
         'PORT': '3306',  # MySQL默认端口
