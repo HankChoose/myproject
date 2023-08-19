@@ -104,7 +104,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mydb',
-        'USER': 'root',
+        'USER': 'myuser',
         'PASSWORD': 'mypw',
         'PASSWORD': 'myrootpw',
         # Docker Compose中MySQL服务的主机名
