@@ -20,7 +20,6 @@ RUN pip install --upgrade pip
 RUN pip install mysqlclient
 RUN pip install django-cors-headers
 RUN pip install djangorestframework
-RUN pip install MySQL-python
 #RUN pip install default-mysql-client
 RUN pip3 install markdown2
 #RUN pip install django-sslserver
