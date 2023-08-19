@@ -55,16 +55,15 @@ def Register(request):
 
         combined_dataok = {'dataok ': dataok, 'datajson': datajson}
         combined_datano = {'datano ': datano}
-        return JsonResponse(combined_dataok)
-        '''
-        #user = User(email=email, password=password)
-        #user.save()
+        # return JsonResponse(combined_dataok)
+
+        user = User(email=email, password=password)
+        user.save()
 
         if user:
             return JsonResponse(combined_dataok)
         else:
             return JsonResponse(combined_datano)
-        '''
 
 
 def index(request):
