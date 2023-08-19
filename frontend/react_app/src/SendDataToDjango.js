@@ -20,7 +20,7 @@ class MyComponent extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.sendDataToDjango}>Send Data to Django</button>
+        <button onClick={this.SendDataToDjango}>Send Data to Django</button>
       </div>
     );
   }
