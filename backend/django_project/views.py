@@ -2,6 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import User
+from django.contrib.auth.models import User
+
 from .serializers import UserSerializer
 from django.http import HttpResponseServerError
 import json
@@ -58,7 +60,7 @@ def Register(request):
         # return JsonResponse(combined_dataok)
 
         try:
-            user = User(email=email, password=password)
+            user = User.objects.create_user(email=email, password=password)
             user.save()
             # If the save is successful, return a success response.
             return HttpResponse("User created successfully")
