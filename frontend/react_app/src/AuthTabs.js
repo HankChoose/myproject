@@ -46,7 +46,7 @@ const AuthTabs = () => {
         body: JSON.stringify(userData),
       });
       */
-      const response = await axios.post('/send-data/', dataToSend);
+      const response = await axios.post('/send-data/', userData);
       
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
