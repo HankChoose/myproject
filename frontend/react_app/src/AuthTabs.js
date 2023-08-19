@@ -49,9 +49,11 @@ const AuthTabs = () => {
       const response = await axios.post('/send-data/', dataToSend);
       
       //const response = await axios.post(`/api/${action}/`, userData);
-      console.log('Response:',response.data.message);
+      //console.log('Response:',response.data.message);
+      console.log('Response from Django:', response.data);
     } catch (error) {
-      console.error(error);
+      //console.error(error);
+      onsole.error('Error sending data to Django:', error);
     }
   };
 
