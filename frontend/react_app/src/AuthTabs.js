@@ -53,7 +53,7 @@ const AuthTabs = () => {
       console.log('Response from Django:', response.data);
     } catch (error) {
       //console.error(error);
-      onsole.error('Error sending data to Django:', error);
+      console.error('Error sending data to Django:', error);
     }
   };
 
