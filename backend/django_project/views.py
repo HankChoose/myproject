@@ -57,7 +57,8 @@ def Register(request):
         try:
             # user = User.objects.create_user(email=email, password=password)
             user = User.objects.create(
-                username='hankchenv@gmail.com', password='1234')
+                # username='hankchenv@gmail.com', password='1234')
+                email=email, password=password)
             user.save()
             # If the save is successful, return a success response.
             return HttpResponse("User created successfully")
