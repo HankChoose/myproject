@@ -49,33 +49,19 @@ def Register(request):
         email = data['email']
         password = data['password']
 
-        '''
-        key1 = data1['key1']
-        key2 = data1['key2']
-        email1 = data1['email']
-        password1 = data1['password']
-        data2 = json.loads(request.body.decode('utf-8'))
-        email2 = data2['email']
-        password2 = data2['password']
-        data2json = {'data2': data2,
-                     'email2': data2['email'], 'password2': data2['password']}
-        data1json = {'data1': data1, 'email1': email1, 'password1': password1}
-        '''
         datajson = {'data': data, 'email': email, 'password': password}
-        # data1json = {'data1': data1, 'key1': key1, 'key2': key2}
-        # comnined_data_info = {'message': f'Successful register'}
-        comnined_data = {'data1json': datajson}
-        return JsonResponse(comnined_data)
+        dataok = {'message': f'Successful register', 'status': 'success'}
+        datano = {'message': f'Invalid register', 'status': 'error'}
 
-        '''
+        combined_dataok = {'dataok ': dataok, 'datajson': datajson}
+        combined_datano = {'datano ': datano}
         user = User(email=email, password=password)
-        ser.save()
+        user.save()
 
         if user:
-            return JsonResponse({'message': f'Successful register', 'status': 'success'})
+            return JsonResponse(combined_dataok)
         else:
-            return JsonResponse({'message': f'Invalid register', 'status': 'error'})
-        '''
+            return JsonResponse(combined_datano)
 
 
 def index(request):
