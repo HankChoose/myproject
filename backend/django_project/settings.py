@@ -44,6 +44,14 @@ INSTALLED_APPS = [
     'django_project',
     'encyclopedia',
     'corsheaders',
+    'rest_framework',
+    'djoser',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',  # 如果你想使用Google登录
+    'allauth.socialaccount.providers.github',
+    'django.contrib.sites',  # 如果使用django-allauth
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,6 +59,40 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+SITE_ID = 1
+
+# 基本设定
+
+# 指定要使用的登录方法(用户名、电子邮件地址两者之一)
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+# 要求用户注册时必须填写email
+ACCOUNT_EMAIL_REQUIRED = True
+
+# 如果ACCOUNT_EMAIL_VERIFICATION = 'mandatory' ，用户必须通过邮箱验证后才能登陆 如果你不需要邮箱验证，只需要设置 ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# 设置登录和注册成功后重定向的页面，默认是 "/accounts/profile/"
+LOGIN_REDIRECT_URL = '/accounts/profile/'
+
+AUTHENTICATION_BACKENDS = (
+    # django admin所使用的用户登录与django-allauth无关
+    'django.contrib.auth.backends.ModelBackend',
+
+    # allauth 身份验证
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+# 邮箱设定
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'zhiyouyuea@gmail.com'  # 你的163账号和授权码
+EMAIL_HOST_PASSWORD = 'chy123hank$A'
+EMAIL_USE_TLS = True  # 这里必须是 True，否则发送不成功
+EMAIL_FROM = 'zhiyouyuea@gmail.com'  # 发送人 你的 163账号
+
+# 默认显示的发送人，（邮箱地址必须与发送人一致），不设置的话django默认使用的webmaster@localhost
+DEFAULT_FROM_EMAIL = 'zhiyouyuea@gmail.com'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

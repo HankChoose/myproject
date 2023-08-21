@@ -53,7 +53,13 @@ const AuthTabs = () => {
         body: JSON.stringify(userData),
       });
       */
-      const response = await axios.post('/send-data/', userData);
+     // 设置CSRF令牌作为请求头
+      const config = {
+        headers: {
+          'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+        },
+      };
+      const response = await axios.post('/send-data/', userData, config);
       
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);

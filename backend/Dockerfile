@@ -18,10 +18,12 @@ RUN pip install django-debug-toolbar==3.2.2
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install --upgrade pip
 RUN pip install mysqlclient
+RUN pip3 install markdown2
 RUN pip install django-cors-headers
 RUN pip install djangorestframework
-#RUN pip install default-mysql-client
-RUN pip3 install markdown2
+RUN pip install djoser
+RUN pip install django-allauth
+
 #RUN pip install django-sslserver
 #RUN apt-get update && apt-get install -y nginx
 
