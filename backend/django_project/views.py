@@ -1,3 +1,5 @@
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -86,3 +88,8 @@ def index(request):
     static_url = settings.STATIC_URL
     '''
     return render(request, 'index.html')
+
+
+@login_required
+def profile(request):
+    return render(request, 'profile.html')
