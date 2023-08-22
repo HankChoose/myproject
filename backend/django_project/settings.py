@@ -62,18 +62,6 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-# 基本设定
-
-# 指定要使用的登录方法(用户名、电子邮件地址两者之一)
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-# 要求用户注册时必须填写email
-ACCOUNT_EMAIL_REQUIRED = True
-
-# 如果ACCOUNT_EMAIL_VERIFICATION = 'mandatory' ，用户必须通过邮箱验证后才能登陆 如果你不需要邮箱验证，只需要设置 ACCOUNT_EMAIL_VERIFICATION = 'none'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-
-# 设置登录和注册成功后重定向的页面，默认是 "/accounts/profile/"
-LOGIN_REDIRECT_URL = '/accounts/profile/'
 
 AUTHENTICATION_BACKENDS = (
     # django admin所使用的用户登录与django-allauth无关
@@ -83,7 +71,13 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-# 邮箱设定
+AUTHENTICATION_CLASSES = (
+    ...
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+# 配置邮件发送
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'zhiyouyuea@gmail.com'  # 你的163账号和授权码
@@ -94,55 +88,63 @@ EMAIL_FROM = 'zhiyouyuea@gmail.com'  # 发送人 你的 163账号
 # 默认显示的发送人，（邮箱地址必须与发送人一致），不设置的话django默认使用的webmaster@localhost
 DEFAULT_FROM_EMAIL = 'zhiyouyuea@gmail.com'
 
+# 在这里设置您的登录和注册视图，以便它们指向您的React页面
+LOGIN_URL = 'your-login-url' # 替换为您的登录页面URL
+LOGOUT_URL = 'your-logout-url' # 替换为您的注销URL
+# 设置登录和注册成功后重定向的页面，默认是 "/accounts/profile/"
+LOGIN_REDIRECT_URL = '/accounts/profile/'
+
 ####################################ACCOUNT
 
+# 指定要使用的登录方法(用户名、电子邮件地址两者之一)'username_email'，'email'
+#ACCOUNT_AUTHENTICATION_METHOD ="username" | "email" | "username_email" 
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 # 要求用户注册时必须填写email
-ACCOUNT_EMAIL_REQUIRED = True 
-# 注册中邮件验证方法: "强制(mandatory)"、 "可选(optional)" 或 "否(none)" 之一
-(注册成功后，会发送一封验证邮件，用户必须验证邮箱后，才能登陆)
-ACCOUNT_EMAIL_VERIFICATION (="optional") 
-# 作用于第三方账号的注册
-SOCIALACCOUNT_EMAIL_VERIFICATION = 'optional' / 'mandatory' / 'none'
-# 邮件发送后的冷却时间(以秒为单位)
-ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN (=180) 
-# 邮箱确认邮件的截止日期(天数)
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS (=3) 
+ACCOUNT_EMAIL_REQUIRED = True
 
-# 指定要使用的登录方法(用户名、电子邮件地址或两者之一)
-ACCOUNT_AUTHENTICATION_METHOD (="username" | "email" | "username_email") 
+# 如果ACCOUNT_EMAIL_VERIFICATION = 'mandatory' ，用户必须通过邮箱验证后才能登陆 如果你不需要邮箱验证，只需要设置 
+# 作用于第三方账号的注册
+#ACCOUNT_EMAIL_VERIFICATION = 'none'
+#SOCIALACCOUNT_EMAIL_VERIFICATION = 'optional' / 'mandatory' / 'none'
+#ACCOUNT_EMAIL_VERIFICATION ="optional" 
+
+# 如ACCOUNT_EMAIL_VERIFICATION = 'mandatory' 
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # 强制邮箱验证
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_UNIQUE_EMAIL_CONFIRMATION = True
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = LOGIN_URL
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = LOGIN_REDIRECT_URL
+
+# 邮件发送后的冷却时间(以秒为单位
+ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN =360 
+# 邮箱确认邮件的截止日期(天数
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =3 
+
 # 登录尝试失败的次数
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT (=5) 
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT =5 
 # 从上次失败的登录尝试，用户被禁止尝试登录的持续时间
-ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT (=300) 
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT =300 
 # 更改为True，用户一旦确认他们的电子邮件地址，就会自动登录
-ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION (=False) 
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION =False 
 
 # 更改或设置密码后是否自动退出
-ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE (=False) 
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE =False 
 # 更改为True，用户将在重置密码后自动登录
-ACCOUNT_LOGIN_ON_PASSWORD_RESET (=False) 
+ACCOUNT_LOGIN_ON_PASSWORD_RESET =False 
 # 控制会话的生命周期，可选项还有: "False" 和 "True"
-ACCOUNT_SESSION_REMEMBER (=None) 
+ACCOUNT_SESSION_REMEMBER =None 
 
 # 用户注册时是否需要输入邮箱两遍
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE (=False) 
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE =False 
 # 用户注册时是否需要用户输入两遍密码
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE (=True) 
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE =True 
 # 用户不能使用的用户名列表
-ACCOUNT_USERNAME_BLACKLIST (=[]) 
-# 加强电子邮件地址的唯一性
-ACCOUNT_UNIQUE_EMAIL (=True) 
+ACCOUNT_USERNAME_BLACKLIST =[] 
 # 用户名允许的最小长度的整数
-ACCOUNT_USERNAME_MIN_LENGTH (=1) 
-# 使用从社交账号提供者检索的字段(如用户名、邮件)来绕过注册表单
-SOCIALACCOUNT_AUTO_SIGNUP (=True) 
+ACCOUNT_USERNAME_MIN_LENGTH =1 
+# 使用从社交账号提供者检索的字段(如用户名、邮件来绕过注册表单
+SOCIALACCOUNT_AUTO_SIGNUP =True 
 
-# 设置登录后跳转链接
-LOGIN_REDIRECT_URL (="/") 
-# 设置退出登录后跳转链接
-ACCOUNT_LOGOUT_REDIRECT_URL (="/")
-# 用户登出是否需要确认确认(True表示直接退出，不用确认；False表示需要确认)
-ACCOUNT_LOGOUT_ON_GET (=True)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
