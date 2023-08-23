@@ -78,7 +78,7 @@ AUTHENTICATION_CLASSES = (
 # 配置邮件发送OK
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
+EMAIL_PORT = 25
 EMAIL_HOST_USER = 'zhiyouyuea@gmail.com'  # 你的163账号和授权码
 EMAIL_HOST_PASSWORD = 'chy123hank$A'
 EMAIL_USE_TLS = True  # 这里必须是 True，否则发送不成功
