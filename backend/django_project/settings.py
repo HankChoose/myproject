@@ -75,7 +75,7 @@ AUTHENTICATION_CLASSES = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-# 配置邮件发送
+# 配置邮件发送OK
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
