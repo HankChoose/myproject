@@ -76,7 +76,7 @@ AUTHENTICATION_CLASSES = (
 )
 
 # 配置邮件发送
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'zhiyouyuea@gmail.com'  # 你的163账号和授权码
