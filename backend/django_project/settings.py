@@ -71,14 +71,14 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-AUTHENTICATION_CLASSES = (
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
+# AUTHENTICATION_CLASSES = (
+# 'allauth.account.auth_backends.AuthenticationBackend',
+# )
 
 # 配置邮件发送OK
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 25
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'zhiyouyuea@gmail.com'  # 你的163账号和授权码
 EMAIL_HOST_PASSWORD = 'chy123hank$A'
 EMAIL_USE_TLS = True  # 这里必须是 True，否则发送不成功
@@ -108,7 +108,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_EMAIL_VERIFICATION ="optional"
 
 # 如ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # 强制邮箱验证
+# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # 强制邮箱验证
+ACCOUNT_EMAIL_VERIFICATION = "optional"
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_UNIQUE_EMAIL_CONFIRMATION = True
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = LOGIN_URL
