@@ -99,7 +99,7 @@ def profile(request):
 def send_test_email(request):
     subject = 'This is a test email'
     message = 'Hello, this is a test email sent from Django Allauth.'
-    from_email = 'zhiyouyuear@gmail.com'  # 发件人邮箱地址
+    from_email = 'zhiyouyueservice@gmail.comm'  # 发件人邮箱地址
     recipient_list = ['hankchenv@gmail.com']  # 收件人邮箱地址
 
     send_mail(subject, message, from_email, recipient_list)
