@@ -183,7 +183,7 @@ TEMPLATES = [
 
 # 配置 allauth 使用的模板
 ACCOUNT_SIGNUP_TEMPLATE = 'account/signup.html'
-ACCOUNT_LOGIN_TEMPLATE = 'account/login.html'
+# ACCOUNT_LOGIN_TEMPLATE = 'account/login.html'
 
 WSGI_APPLICATION = 'django_project.wsgi.application'
 
