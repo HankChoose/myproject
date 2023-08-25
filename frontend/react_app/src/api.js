@@ -30,7 +30,7 @@ const login = async (email, password) => {
   try {
   
     //const response = await axios.post(`${BASE_URL}login/`, {
-    const response = await axiosInstance.post('/accounts/login/', {
+    const response = await axios.post('/accounts/login/', {
         email: email,
         password: password,
     });
@@ -45,7 +45,7 @@ const signup = async (userData) => {
 
   try {
     //const response = await axios.post(`${BASE_URL}register/`, userData);
-    const response = await axiosInstance.post('/send-data/', userData);
+    const response = await axios.post('/send-data/', userData);
     return response.data;
   } catch (error) {
     throw error;
