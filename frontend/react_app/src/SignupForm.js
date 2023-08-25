@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
 
 function SignupForm() {
   const [formData, setFormData] = useState({
@@ -21,7 +23,15 @@ function SignupForm() {
     e.preventDefault();
     
     try {
-      const response = await axios.post('/accounts/signup/', formData);
+
+      // 设置CSRF令牌作为请求头
+      const config = {
+        headers: {
+          'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+          //'Referer': 'https://zhiyouyuea.com'
+        },
+      };
+      const response = await axios.post('/accounts/signup/', formData, config);
       // 处理成功注册的情况，可以跳转到登录页面或者执行其他操作
       console.log('注册成功', response.data);
     } catch (error) {
