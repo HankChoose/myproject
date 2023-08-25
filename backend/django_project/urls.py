@@ -23,16 +23,9 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('accounts/signup/', views.register_user, name='register_user'),
+    path('accounts/signup/', SignupView.as_view(), name='account_signup'),
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
-
-    path('custom-login/', TemplateView.as_view(template_name='account/login.html'),
-         name='custom_login'),  # 您的自定义登录页面
-    path('custom-signup/', TemplateView.as_view(template_name='account/signup.html'),
-         name='custom_signup'),  # 您的自定义注册页面
-    # path('accounts/profile/', views.profile_view, name='account_profile'),
-
     path('accounts/profile/', views.profile, name="profile"),
     # path("", views.index, name="index"),
     path('encyclopedia/', include("encyclopedia.urls")),

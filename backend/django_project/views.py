@@ -106,13 +106,3 @@ def send_test_email(request):
     send_mail(subject, message, from_email, recipient_list)
 
     return HttpResponse('Test email sent successfully!')
-
-
-@csrf_exempt  # 仅用于演示，实际上需要更安全的方式来处理CSRF
-def register_user(request):
-    if request.method == 'POST':
-        # 创建一个SignupView实例并处理POST请求
-        signup_view = SignupView.as_view()
-        response = signup_view(request)
-        return JsonResponse({'message': 'User registered successfully'})
-    return JsonResponse({'message': 'Invalid request method'}, status=400)
