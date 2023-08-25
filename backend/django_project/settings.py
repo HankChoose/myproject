@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-pug#t6-2ups3a1ujjn17a&p!y=ac2d-8*1g2w)ox-vcem$dn=u
 DEBUG = True
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['zhiyouyuea.com']
+ALLOWED_HOSTS = ['zhiyouyuea.com', '15.156.132.176']
 
 # Set the secure proxy header
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
