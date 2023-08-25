@@ -19,11 +19,12 @@ from django.urls import include, path
 from . import views
 from allauth.account.views import SignupView, LoginView, LogoutView
 from django.views.generic import TemplateView
-
+from allauth.account.views import csrf_token
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('accounts/csrf/', csrf_token, name='get_csrf_token'),
     path('accounts/signup/', SignupView.as_view(), name='account_signup'),
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
