@@ -2,7 +2,9 @@ import axios from 'axios';
 import BASE_URL from './api-config'; // 导入之前定义的基本URL
 import Cookies from 'js-cookie';
 
-const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
+//const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
+const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
 const login = async (username, password) => {
 
   try {
@@ -35,7 +37,7 @@ const signup = async (userData) => {
       },
     };
     //const response = await axios.post(`${BASE_URL}register/`, userData);
-    const response = await axios.post('/accounts/signup/', userData);
+    const response = await axios.post('/accounts/signup/', userData,config);
     return response.data;
   } catch (error) {
     throw error;
