@@ -35,7 +35,7 @@ const signup = async (userData) => {
       },
     };
     //const response = await axios.post(`${BASE_URL}register/`, userData);
-    const response = await axios.post('/send-data/', userData,config);
+    const response = await axios.post('/accounts/signup/', userData,config);
     return response.data;
   } catch (error) {
     throw error;
