@@ -10,6 +10,7 @@ const login = async (username, password) => {
     // 设置CSRF令牌作为请求头
     const config = {
       headers: {
+        'Content-Type': 'application/json',
         'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
       },
     };
@@ -31,6 +32,7 @@ const signup = async (userData) => {
     // 设置CSRF令牌作为请求头
     const config = {
       headers: {
+        'Content-Type': 'application/json',
         'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
       },
     };
