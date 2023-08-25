@@ -13,7 +13,7 @@ const login = async (email, password) => {
     axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
 
     //const response = await axios.post(`${BASE_URL}login/`, {
-    const response = await instance.post('/accounts/login/', {
+    const response = await axios.post('/accounts/login/', {
         email: email,
         password: password,
     });
@@ -30,7 +30,7 @@ const signup = async (userData) => {
   axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
   try {
     //const response = await axios.post(`${BASE_URL}register/`, userData);
-    const response = await instance.postpost('/accounts/signup/', userData);
+    const response = await axios.post('/accounts/signup/', userData);
     return response.data;
   } catch (error) {
     throw error;
