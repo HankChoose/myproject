@@ -2,28 +2,37 @@ import axios from 'axios';
 import BASE_URL from './api-config'; // 导入之前定义的基本URL
 import Cookies from 'js-cookie';
 
-const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
+// 获取CSRF令牌的函数（假设你已经定义了getCookie函数）
+function getCSRFToken() {
+  const csrfCookieName = 'csrftoken'; // 你的CSRF令牌Cookie的名称
+  const cookies = document.cookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith(csrfCookieName + '=')) {
+          return cookie.substring(csrfCookieName.length + 1);
+      }
+  }
+  return null;
+}
 
-// 获取CSRF令牌
-axios.get('/accounts/csrf/').then((response) => {
-  csrfToken = response.data.csrfToken;
+// 创建一个Axios实例，设置CSRF令牌在请求头中
+const axiosInstance = axios.create({
+  headers: {
+      'X-CSRFToken': getCSRFToken(),
+      // 这里可以添加其他请求头，根据需要
+  },
 });
 
-const config = {
-  headers: {
-    'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-  },
-};
 
 const login = async (email, password) => {
 
   try {
   
     //const response = await axios.post(`${BASE_URL}login/`, {
-    const response = await axios.post('/accounts/login/', {
+    const response = await axiosInstance.post('/accounts/login/', {
         email: email,
         password: password,
-    },config);
+    });
     return response.data;
   } catch (error) {
     throw error;
@@ -32,12 +41,10 @@ const login = async (email, password) => {
 
 // 注册请求
 const signup = async (userData) => {
- 
-  // 设置 Axios 的默认请求头
-  axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+
   try {
     //const response = await axios.post(`${BASE_URL}register/`, userData);
-    const response = await axios.post('/accounts/signup/', userData,config);
+    const response = await axiosInstance.post('/accounts/signup/', userData);
     return response.data;
   } catch (error) {
     throw error;
