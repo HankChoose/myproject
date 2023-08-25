@@ -26,7 +26,7 @@ const AuthTabs = () => {
 
   //const userData = { email, password };
   const userData= {
-    username: "hank",
+    username: "hank3",
     email: email,
     password1: password,
     password2: password,
