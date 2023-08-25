@@ -72,6 +72,13 @@ REST_FRAMEWORK = {
     ]
 }
 
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+    'http://15.156.132.176:3000',
+)
+
+CORS_ALLOW_CREDENTIALS = True
+
 
 AUTHENTICATION_BACKENDS = (
     # django admin所使用的用户登录与django-allauth无关
