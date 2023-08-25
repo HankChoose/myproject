@@ -26,6 +26,16 @@ const AuthTabs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userData = { email, password };
+
+
+  const handleRegister = async () => {
+    try {
+      const data = await register(userData);
+      console.log('注册成功', data);
+    } catch (error) {
+      console.error('注册失败', error);
+    }
+  };
   /*  
     const userData = {
       email: 'choose_last@163.com',
@@ -53,13 +63,13 @@ const AuthTabs = () => {
         body: JSON.stringify(userData),
       });
       */
-     // 设置CSRF令牌作为请求头
+      // 设置CSRF令牌作为请求头
       const config = {
         headers: {
           'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
         },
       };
-      const response = await axios.post('/send-data/', userData, config);
+      const response = await axios.post('/accounts/login/', userData, config);
       
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
@@ -88,7 +98,7 @@ const AuthTabs = () => {
             <Form.Control type={showPassword ? 'text' : 'password'} placeholder="Password" value={password} onChange={handlePasswordChange} required />
             <Form.Check type="checkbox" label="Show Password" onChange={handleShowPasswordToggle} />
           </Form.Group>
-          <Button as="input" type="submit" value="Submit" />{''}
+          <button onClick={handleRegister}>注册</button>
         </Form>
        
     </>
