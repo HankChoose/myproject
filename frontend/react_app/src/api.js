@@ -5,15 +5,15 @@ import Cookies from 'js-cookie';
 const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
 const login = async (username, password) => {
   try {
-    
-    // 设置CSRF令牌作为请求头
-     const config = {
-        headers: {
-          'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-        },
-      };
+
+    const axiosInstance = axios.create({
+      headers: {
+        'X-CSRFToken': csrfToken, // 添加CSRF令牌到请求头部
+      },
+    });
+ 
     //const response = await axios.post(`${BASE_URL}login/`, {
-    const response = await axios.post('/accounts/login/', {
+    const response = axiosInstance.post('/accounts/login/', {
         username: username,
         password: password,
     }, config);
