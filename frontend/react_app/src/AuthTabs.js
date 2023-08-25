@@ -33,6 +33,7 @@ const AuthTabs = () => {
       email: 'hankchenv@gmail.com', // 电子邮件
       password1: 'chy123hank$A', // 密码
       password2: 'chy123hank$A', // 确认密码
+      csrfmiddlewaretoken:'gqpJHqRqYqUaEbepPxqhNzLKbL2RL9PSczu7GG1ZTRpzoeDjc3UXnGQlYMfrJ012'
       // 其他注册相关信息
     };
   /*  
