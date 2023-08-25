@@ -22,6 +22,7 @@ const login = async (email, password) => {
     const config = {
       headers: {
         'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+        'Content-Type': 'application/json',
       },
     };
     
