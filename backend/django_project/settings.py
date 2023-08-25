@@ -62,6 +62,16 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+# rest_framework authentications and permissions
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSS': [
+        'rest_framework.authentication.TokenAuthentication'
+    ]
+}
+
 
 AUTHENTICATION_BACKENDS = (
     # django admin所使用的用户登录与django-allauth无关
