@@ -5,10 +5,10 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const AuthTabs = () => {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('hank');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
+  const [password, setPassword] = useState('chy123hank$A');
+  const [password2, setPassword2] = useState('chy123hank$A');
   const [showPassword, setShowPassword] = useState(false);
   const [action, setAction] = useState('login');
   const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
