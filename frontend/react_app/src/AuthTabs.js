@@ -27,7 +27,14 @@ const AuthTabs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = { email,username, password,password2 };
+    //const userData = { email,username, password,password2 };
+    const userData = {
+      username: 'hank1', // 用户名
+      email: 'hankchenv@gmail.com', // 电子邮件
+      password1: 'chy123chyA', // 密码
+      password2: 'chy123chyA', // 确认密码
+      // 其他注册相关信息
+    };
   /*  
     const userData = {
       email: 'choose_last@163.com',
@@ -62,7 +69,7 @@ const AuthTabs = () => {
           'Content-Type': 'application/json',
         },
       };
-      const response = await axios.post('/accounts/signup/', { email,username, password,password2 }, config);
+      const response = await axios.post('/accounts/signup/', userData, config);
       
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
