@@ -42,19 +42,16 @@ const AuthTabs = () => {
       </ButtonGroup>
    
       <h2>User {action}</h2>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="loginEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" value={email} onChange={handleEmailChange} required />
-          </Form.Group>
-          <Form.Group controlId="loginPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type={showPassword ? 'text' : 'password'} placeholder="Password" value={password} onChange={handlePasswordChange} required />
-            <Form.Check type="checkbox" label="Show Password" onChange={handleShowPasswordToggle} />
-          </Form.Group>
-          <button onClick={handleRegister}>注册</button>
-        </Form>
-       
+        <Form.Group controlId="loginEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" value={email} onChange={handleEmailChange} required />
+        </Form.Group>
+        <Form.Group controlId="loginPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type={showPassword ? 'text' : 'password'} placeholder="Password" value={password} onChange={handlePasswordChange} required />
+          <Form.Check type="checkbox" label="Show Password" onChange={handleShowPasswordToggle} />
+        </Form.Group>
+        <button onClick={handleRegister}>注册</button>
     </>
    
   );
