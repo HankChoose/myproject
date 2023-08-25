@@ -14,21 +14,17 @@ function getCSRFToken() {
   }
   return null;
 }
-
-// 创建一个Axios实例，设置CSRF令牌在请求头中
-const axiosInstance = axios.create({
-  headers: {
-    'Content-Type': 'application/json',
-    'X-CSRFToken': getCSRFToken(),
-    // 这里可以添加其他请求头，根据需要
-  },
-});
-
+const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
 
 const login = async (email, password) => {
 
   try {
-  
+    const config = {
+      headers: {
+        'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+      },
+    };
+    
     //const response = await axios.post(`${BASE_URL}login/`, {
     const response = await axios.post('/accounts/login/', {
         email: email,
@@ -44,8 +40,13 @@ const login = async (email, password) => {
 const signup = async (userData) => {
 
   try {
+    const config = {
+      headers: {
+        'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+      },
+    };
     //const response = await axios.post(`${BASE_URL}register/`, userData);
-    const response = await axios.post('/send-data/', userData);
+    const response = await axios.post('/send-data/', userData,config);
     return response.data;
   } catch (error) {
     throw error;
