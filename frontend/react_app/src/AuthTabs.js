@@ -66,6 +66,7 @@ const AuthTabs = () => {
       const config = {
         headers: {
           'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+          'Referer': 'https://zhiyouyuea.com'
         },
       };
       const response = await axios.post('/accounts/signup/', userData, config);
