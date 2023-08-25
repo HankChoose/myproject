@@ -5,8 +5,10 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const AuthTabs = () => {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [action, setAction] = useState('login');
   const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
@@ -25,7 +27,7 @@ const AuthTabs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = { email, password };
+    const userData = { username,email, password,password2 };
   /*  
     const userData = {
       email: 'choose_last@163.com',
