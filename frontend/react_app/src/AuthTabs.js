@@ -24,11 +24,7 @@ const AuthTabs = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const userData = { email, password };
-
-
+  
   const handleRegister = async () => {
     try {
       const data = await signup(userData);
@@ -37,50 +33,7 @@ const AuthTabs = () => {
       console.error('注册失败', error);
     }
   };
-  /*  
-    const userData = {
-      email: 'choose_last@163.com',
-      password: '1234',
-      // 添加要发送给Django的数据
-    };
   
-  const dataToSend = {
-    key1: 'value1',
-    key2: 'value2',
-    // 添加要发送给Django的数据
-  };
-  */
-
-    try {
-
-      //const response = await axios.post('/send-data/',  { email, password } , {
-      /*
-      const response = await axios.post('/send-data/',  userData , {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          //'X-CSRFToken': csrfToken,
-        },
-        body: JSON.stringify(userData),
-      });
-      */
-      // 设置CSRF令牌作为请求头
-      const config = {
-        headers: {
-          'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-        },
-      };
-      const response = await axios.post('/accounts/login/', userData, config);
-      
-      //const response = await axios.post(`/api/${action}/`, userData);
-      //console.log('Response:',response.data.message);
-      console.log('Response from Django:', response.data);
-    } catch (error) {
-      //console.error(error);
-      console.error('Error sending data to Django:', error);
-    }
-  };
-
   return (
     <>
       <ButtonGroup size="lg" className="mb-2">
