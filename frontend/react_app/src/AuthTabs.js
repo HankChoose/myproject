@@ -29,10 +29,10 @@ const AuthTabs = () => {
     e.preventDefault();
     //const userData = { email,username, password,password2 };
     const userData = {
-      username: 'hank1', // 用户名
+      username: 'hank2', // 用户名
       email: 'hankchenv@gmail.com', // 电子邮件
-      password1: 'chy123chyA', // 密码
-      password2: 'chy123chyA', // 确认密码
+      password1: 'chy123hank$A', // 密码
+      password2: 'chy123hank$A', // 确认密码
       // 其他注册相关信息
     };
   /*  
