@@ -24,7 +24,7 @@ const AuthTabs = () => {
     setShowPassword(!showPassword);
   };
 
-  
+  const userData = { email, password };
   const handleRegister = async () => {
     try {
       const data = await signup(userData);
