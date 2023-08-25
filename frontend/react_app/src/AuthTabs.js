@@ -31,6 +31,15 @@ const AuthTabs = () => {
     password1: password,
     password2: password,
   };
+  const handleLogin = async () => {
+    try {
+      const data = await login("hank", password);
+      console.log('登录成功', data);
+    } catch (error) {
+      console.error('登录失败', error);
+    }
+  };
+
   const handleRegister = async () => {
     try {
       const data = await signup(userData);
@@ -58,6 +67,7 @@ const AuthTabs = () => {
           <Form.Check type="checkbox" label="Show Password" onChange={handleShowPasswordToggle} />
         </Form.Group>
         <button onClick={handleRegister}>注册</button>
+        <button onClick={handleLogin}>Login</button>
     </>
    
   );

@@ -2,9 +2,7 @@ import axios from 'axios';
 import BASE_URL from './api-config'; // 导入之前定义的基本URL
 import Cookies from 'js-cookie';
 
-//const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
-const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
+const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
 const login = async (username, password) => {
 
   try {
