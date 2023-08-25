@@ -4,13 +4,13 @@ import Cookies from 'js-cookie';
 
 const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
 const login = async (username, password) => {
-const axiosInstance = axios.create({
-  headers: {
-    'X-CSRFToken': csrfToken, // 添加CSRF令牌到请求头部
-  },
-});
-  try {
 
+  try {
+    const axiosInstance = axios.create({
+      headers: {
+        'X-CSRFToken': csrfToken, // 添加CSRF令牌到请求头部
+      },
+    });
     //const response = await axios.post(`${BASE_URL}login/`, {
     const response = axiosInstance.post('/accounts/login/', {
         username: username,
@@ -25,6 +25,11 @@ const axiosInstance = axios.create({
 // 注册请求
 const signup = async (userData) => {
   try {
+    const axiosInstance = axios.create({
+      headers: {
+        'X-CSRFToken': csrfToken, // 添加CSRF令牌到请求头部
+      },
+    });
     //const response = await axios.post(`${BASE_URL}register/`, userData);
     const response = axiosInstance.post('/accounts/signup/', userData, config);
     return response.data;
