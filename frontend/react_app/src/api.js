@@ -18,8 +18,9 @@ function getCSRFToken() {
 // 创建一个Axios实例，设置CSRF令牌在请求头中
 const axiosInstance = axios.create({
   headers: {
-      'X-CSRFToken': getCSRFToken(),
-      // 这里可以添加其他请求头，根据需要
+    'Content-Type': 'application/json',
+    'X-CSRFToken': getCSRFToken(),
+    // 这里可以添加其他请求头，根据需要
   },
 });
 
