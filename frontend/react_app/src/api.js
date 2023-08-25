@@ -20,7 +20,7 @@ const login = async (username, password) => {
     const response = await axios.post('/accounts/login/', {
         username: username,
         password: password,
-    };
+    });
     return response.data;
   } catch (error) {
     throw error;
@@ -30,8 +30,7 @@ const login = async (username, password) => {
 // 注册请求
 const signup = async (userData) => {
   try {
-    const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
-    
+  
     //const response = await axios.post(`${BASE_URL}register/`, userData);
     const response = await axios.post('/accounts/signup/', userData);
     return response.data;
