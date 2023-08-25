@@ -108,7 +108,7 @@ def send_test_email(request):
     return HttpResponse('Test email sent successfully!')
 
 
-@csrf_exempt  # 仅用于演示，实际上需要更安全的方式来处理CSRF
+# @csrf_exempt  # 仅用于演示，实际上需要更安全的方式来处理CSRF
 def register_user(request):
     if request.method == 'POST':
         # 创建一个SignupView实例并处理POST请求
