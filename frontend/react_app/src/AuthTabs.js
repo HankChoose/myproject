@@ -61,7 +61,7 @@ const AuthTabs = () => {
           'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
         },
       };
-      const response = await axios.post('/accounts/signup/', userData, config);
+      const response = await axios.post('/accounts/signup/', { username,email, password,password2 }, config);
       
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
