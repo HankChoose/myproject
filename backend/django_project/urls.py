@@ -38,6 +38,6 @@ urlpatterns = [
     # path("", views.index, name="index"),
     path('encyclopedia/', include("encyclopedia.urls")),
     # path('register', views.CreateUserView, name="CreateUserView"),
-    # path('send-data/', views.Register, name='Register'),
+    path('send-data/', views.Register, name='Register'),
     # path('send_test_email/', views.send_test_email, name='send_test_email'),
 ]
