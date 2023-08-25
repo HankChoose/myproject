@@ -4,9 +4,15 @@ import Cookies from 'js-cookie';
 import instance from './axios-instance'; // 导入上面配置的Axios实例
 
 
+ // 获取存储在 JavaScript 变量中的 CSRF 令牌
+ const csrfToken = "{{ csrf_token }}";
+
 const login = async (email, password) => {
 
   try {
+   
+    // 设置 Axios 的默认请求头
+    axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
 
     //const response = await axios.post(`${BASE_URL}login/`, {
     const response = await instance.post('/accounts/login/', {
@@ -21,6 +27,9 @@ const login = async (email, password) => {
 
 // 注册请求
 const signup = async (userData) => {
+ 
+  // 设置 Axios 的默认请求头
+  axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
   try {
     //const response = await axios.post(`${BASE_URL}register/`, userData);
     const response = await instance.postpost('/accounts/signup/', userData);
