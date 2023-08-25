@@ -167,7 +167,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         # 'DIRS': [os.path.join(BASE_DIR, 'frontend', 'build')],
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # 您自己的模板文件夹路径
+        # 'DIRS': [os.path.join(BASE_DIR, 'templates')],  # 您自己的模板文件夹路径
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -181,7 +181,7 @@ TEMPLATES = [
 ]
 
 # 配置 allauth 使用的模板
-ACCOUNT_SIGNUP_TEMPLATE = 'account/signup.html'
+# ACCOUNT_SIGNUP_TEMPLATE = 'account/signup.html'
 # ACCOUNT_LOGIN_TEMPLATE = 'account/login.html'
 
 WSGI_APPLICATION = 'django_project.wsgi.application'
