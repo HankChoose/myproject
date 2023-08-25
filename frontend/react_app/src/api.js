@@ -1,8 +1,6 @@
 import axios from 'axios';
 import BASE_URL from './api-config'; // 导入之前定义的基本URL
 import Cookies from 'js-cookie';
-import instance from './axios-instance'; // 导入上面配置的Axios实例
-
 
  // 获取存储在 JavaScript 变量中的 CSRF 令牌
  const csrfToken = "{{ csrf_token }}";
