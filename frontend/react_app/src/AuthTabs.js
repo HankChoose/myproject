@@ -33,7 +33,7 @@ const AuthTabs = () => {
   };
   const handleLogin = async () => {
     try {
-      const data = await login("hank", password);
+      const data = await login("hankchenv@gmail.com", password);
       console.log('登录成功', data);
     } catch (error) {
       console.error('登录失败', error);

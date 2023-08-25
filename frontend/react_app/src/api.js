@@ -1,24 +1,16 @@
 import axios from 'axios';
 import BASE_URL from './api-config'; // 导入之前定义的基本URL
 import Cookies from 'js-cookie';
+import instance from './axios-instance'; // 导入上面配置的Axios实例
 
-//const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
 
-const csrfToken = document.cookie
-  .split('; ')
-  .find(cookie => cookie.startsWith('csrftoken='))
-  .split('=')[1];
-
-// 设置CSRF令牌到请求头部
-axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
-
-const login = async (username, password) => {
+const login = async (email, password) => {
 
   try {
-    
+
     //const response = await axios.post(`${BASE_URL}login/`, {
-    const response = await axios.post('/accounts/login/', {
-        username: username,
+    const response = await instance.post('/accounts/login/', {
+        email: email,
         password: password,
     });
     return response.data;
@@ -30,9 +22,8 @@ const login = async (username, password) => {
 // 注册请求
 const signup = async (userData) => {
   try {
-  
     //const response = await axios.post(`${BASE_URL}register/`, userData);
-    const response = await axios.post('/accounts/signup/', userData);
+    const response = await instance.postpost('/accounts/signup/', userData);
     return response.data;
   } catch (error) {
     throw error;
