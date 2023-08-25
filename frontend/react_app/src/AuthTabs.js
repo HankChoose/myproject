@@ -27,7 +27,7 @@ const AuthTabs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = { username,email, password,password2 };
+    const userData = { email,username, password,password2 };
   /*  
     const userData = {
       email: 'choose_last@163.com',
@@ -62,7 +62,7 @@ const AuthTabs = () => {
           'Content-Type': 'application/json',
         },
       };
-      const response = await axios.post('/accounts/signup/', { username,email, password,password2 }, config);
+      const response = await axios.post('/accounts/signup/', { email,username, password,password2 }, config);
       
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
