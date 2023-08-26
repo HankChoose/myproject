@@ -30,10 +30,10 @@ const AuthTabs = () => {
     //const userData = { email,username, password,password2 };
     
     const userData = {
-      username: 'exampleUser',
-      email: 'user@example.com',
-      password1: 'yourPassword',
-      password2: 'yourPassword',
+      username: 'hank1',
+      email: 'hankchenv@gmail.com',
+      password1: 'chy123hank$A',
+      password2: 'chy123hank$A',
     };
 
     try {
@@ -49,7 +49,7 @@ const AuthTabs = () => {
         body: JSON.stringify(userData),
       });
       */
-      const response = await axios.post('/accounts/signup/', userData, {
+      const response = await axios.post('/api/signup/', userData, {
         headers: {
           'X-CSRFToken': csrfToken,
         },
