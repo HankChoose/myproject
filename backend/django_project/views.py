@@ -1,3 +1,4 @@
+from allauth.account.forms import SignupForm
 from django.core.mail import send_mail
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
@@ -106,3 +107,17 @@ def send_test_email(request):
     send_mail(subject, message, from_email, recipient_list)
 
     return HttpResponse('Test email sent successfully!')
+
+# views.py
+
+
+class CustomSignupView(APIView):
+    def post(self, request, *args, **kwargs):
+        # 创建一个自定义的用户注册表单
+        form = SignupForm(request.data)
+        if form.is_valid():
+            # 注册用户
+            user = form.save(request)
+            return Response({"message": "User registered successfully"}, status=status.HTTP_201_CREATED)
+        else:
+            return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)

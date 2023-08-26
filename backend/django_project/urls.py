@@ -20,6 +20,7 @@ from . import views
 from allauth.account.views import SignupView, LoginView, LogoutView
 from django.views.generic import TemplateView
 from django.conf.urls import url
+from .views import CustomSignupView
 
 urlpatterns = [
 
@@ -29,6 +30,7 @@ urlpatterns = [
     path('accounts/signup/', SignupView.as_view(), name='account_signup'),
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
+    path('api/signup/', CustomSignupView.as_view(), name='api_signup'),
     # url(r'^accounts/signup/',
     # 'mainapp.signup_views.signup_view', name='account_signup'),
     # url(r'^accounts/', include('allauth.urls')),

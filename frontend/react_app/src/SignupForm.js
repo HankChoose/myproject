@@ -33,7 +33,7 @@ function SignupForm() {
 
     try {
       // 发送 POST 请求到 Django Allauth 的注册 API 端点
-      const response = await axios.post('/accounts/signup/', {
+      const response = await axios.post('/api/signup/', {
         username: 'hank',
         email: 'hankchenv@gmail.com',
         password1: 'chy123hank$A',
