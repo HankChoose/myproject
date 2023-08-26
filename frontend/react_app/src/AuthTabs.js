@@ -49,7 +49,7 @@ const AuthTabs = () => {
         body: JSON.stringify(userData),
       });
       */
-      const response = await axios.post('/accounts/logout/', userData, {
+      const response = await axios.post('https://zhiyouyuea.com/accounts/signup/', userData, {
         headers: {
           'X-CSRFToken': csrfToken,
         },
