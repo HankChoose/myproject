@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from . import views
-from allauth.account.views import SignupView, LoginView, LogoutView, PasswordChangeView
+from allauth.account.views import SignupView, LoginView, LogoutView
 from django.views.generic import TemplateView
 
 urlpatterns = [
@@ -26,8 +26,6 @@ urlpatterns = [
     path('accounts/signup/', SignupView.as_view(), name='account_signup'),
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
-    path('password/change/', PasswordChangeView.as_view(),
-         name='account_password_change'),
     path('accounts/profile/', views.profile, name="profile"),
     # path("", views.index, name="index"),
     path('encyclopedia/', include("encyclopedia.urls")),
