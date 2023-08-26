@@ -1,77 +1,88 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Cookies from 'js-cookie';
-const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
 
 function SignupForm() {
-  const [formData, setFormData] = useState({
+  // 设置状态以保存用户输入的数据
+  const [userData, setUserData] = useState({
     username: '',
     email: '',
     password1: '',
     password2: '',
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  // 处理输入字段的变化
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserData({ ...userData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    try {
+  // 处理注册表单提交
+  const handleRegistration = async (event) => {
+    event.preventDefault();
 
-      // 设置CSRF令牌作为请求头
-      const config = {
-        headers: {
-          'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-          //'Referer': 'https://zhiyouyuea.com'
-        },
-      };
-      const response = await axios.post('/accounts/signup/', formData, config);
-      // 处理成功注册的情况，可以跳转到登录页面或者执行其他操作
-      console.log('注册成功', response.data);
+    try {
+      // 发送 POST 请求到 Django Allauth 的注册 API 端点
+      const response = await axios.post('https://zhiyouyuea.com/accounts/signup/', userData);
+
+      console.log('SignupForm successful:', response.data);
+      // 处理成功注册的逻辑，例如重定向到登录页面
     } catch (error) {
-      // 处理注册失败的情况
-      console.error('注册失败', error.response.data);
+      console.error('SignupForm failed:', error.response.data);
+      // 处理注册失败的逻辑，例如显示错误消息
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="username"
-        value={formData.username}
-        onChange={handleChange}
-        placeholder="用户名"
-      />
-      <input
-        type="email"
-        name="email"
-        value={formData.email}
-        onChange={handleChange}
-        placeholder="电子邮件"
-      />
-      <input
-        type="password"
-        name="password1"
-        value={formData.password1}
-        onChange={handleChange}
-        placeholder="密码"
-      />
-      <input
-        type="password"
-        name="password2"
-        value={formData.password2}
-        onChange={handleChange}
-        placeholder="确认密码"
-      />
-      <button type="submit">注册</button>
-    </form>
+    <div>
+      <h2>SignupForm Form</h2>
+      <form onSubmit={handleRegistration}>
+        <div>
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={userData.username}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={userData.email}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password1">Password:</label>
+          <input
+            type="password"
+            id="password1"
+            name="password1"
+            value={userData.password1}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password2">Confirm Password:</label>
+          <input
+            type="password"
+            id="password2"
+            name="password2"
+            value={userData.password2}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <button type="submit">Register</button>
+      </form>
+    </div>
   );
 }
 

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'encyclopedia',
     'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken',
     'djoser',
     'allauth',
     'allauth.account',
@@ -78,10 +79,10 @@ AUTHENTICATION_BACKENDS = (
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'zhiyouyueservice@gmail.com'  # 你的163账号和授权码
+EMAIL_HOST_USER = 'zhiyouyueservice@gmail.com'  # 你的gmail账号和授权码
 EMAIL_HOST_PASSWORD = 'chy123hank$A'
 EMAIL_USE_TLS = True  # 这里必须是 True，否则发送不成功
-EMAIL_FROM = 'zhiyouyueservice@gmail.com'  # 发送人 你的 163账号
+EMAIL_FROM = 'zhiyouyueservice@gmail.com'  # 发送人 你的 gmail账号
 
 # 默认显示的发送人，（邮箱地址必须与发送人一致），不设置的话django默认使用的webmaster@localhost
 DEFAULT_FROM_EMAIL = 'zhiyouyueservice@gmail.com'
