@@ -22,12 +22,12 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", views.index, name="index"),
     path('accounts/', include('allauth.urls')),
     path('accounts/signup/', SignupView.as_view(), name='account_signup'),
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
     path('accounts/profile/', views.profile, name="profile"),
-    # path("", views.index, name="index"),
     path('encyclopedia/', include("encyclopedia.urls")),
     # path('register', views.CreateUserView, name="CreateUserView"),
     path('send-data/', views.Register, name='Register'),
