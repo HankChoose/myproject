@@ -5,10 +5,10 @@ import Cookies from 'js-cookie';
 function SignupForm() {
   // 设置状态以保存用户输入的数据
   const [userData, setUserData] = useState({
-    username: '',
-    email: '',
-    password1: '',
-    password2: '',
+    username: 'hank',
+    email: 'hankchenv@gmail.com',
+    password1: 'chy123hank$A',
+    password2: 'chy123hank$A',
   });
 
   const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
