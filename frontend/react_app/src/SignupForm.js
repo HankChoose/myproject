@@ -22,7 +22,7 @@ function SignupForm() {
 
     try {
       // 发送 POST 请求到 Django Allauth 的注册 API 端点
-      const response = await axios.post('https://zhiyouyuea.com/accounts/signup/', userData);
+      const response = await axios.post('/accounts/signup/', userData);
 
       console.log('SignupForm successful:', response.data);
       // 处理成功注册的逻辑，例如重定向到登录页面
