@@ -28,27 +28,13 @@ const AuthTabs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     //const userData = { email,username, password,password2 };
+    
     const userData = {
-      username: 'hank2', // 用户名
-      email: 'hankchenv@gmail.com', // 电子邮件
-      password1: 'chy123hank$A', // 密码
-      password2: 'chy123hank$A', // 确认密码
-      csrfmiddlewaretoken:'gqpJHqRqYqUaEbepPxqhNzLKbL2RL9PSczu7GG1ZTRpzoeDjc3UXnGQlYMfrJ012'
-      // 其他注册相关信息
+      username: 'exampleUser',
+      email: 'user@example.com',
+      password1: 'yourPassword',
+      password2: 'yourPassword',
     };
-  /*  
-    const userData = {
-      email: 'choose_last@163.com',
-      password: '1234',
-      // 添加要发送给Django的数据
-    };
-  
-  const dataToSend = {
-    key1: 'value1',
-    key2: 'value2',
-    // 添加要发送给Django的数据
-  };
-  */
 
     try {
 
@@ -63,15 +49,11 @@ const AuthTabs = () => {
         body: JSON.stringify(userData),
       });
       */
-      // 设置CSRF令牌作为请求头
-      const config = {
+      const response = await axios.post('/accounts/signup/', userData, {
         headers: {
-          'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-          'Referer': 'https://zhiyouyuea.com'
+          'X-CSRFToken': csrfToken,
         },
-      };
-      const response = await axios.post('/accounts/signup/', userData, config);
-      
+      })
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
       console.log('Response from Django:', response.data);
