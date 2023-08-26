@@ -156,9 +156,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://zhiyouyuea.com",
-]
+# CORS_ALLOWED_ORIGINS = [
+# "https://zhiyouyuea.com",
+# ]
+
+# CORS_ORIGIN_WHITELIST = [
+# "https://zhiyouyuea.com/react/:3000",  # 添加你的 React 前端的域名和端口
+# ]
 
 ROOT_URLCONF = 'django_project.urls'
 
