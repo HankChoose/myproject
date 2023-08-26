@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 function SignupForm() {
   // 设置状态以保存用户输入的数据
@@ -9,6 +10,8 @@ function SignupForm() {
     password1: '',
     password2: '',
   });
+
+  const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
 
   // 处理输入字段的变化
   const handleInputChange = (event) => {
@@ -22,7 +25,11 @@ function SignupForm() {
 
     try {
       // 发送 POST 请求到 Django Allauth 的注册 API 端点
-      const response = await axios.post('/accounts/signup/', userData);
+      const response = await axios.post('/accounts/signup/', userData, {
+        headers: {
+          'X-CSRFToken': csrfToken,
+        },
+      })
 
       console.log('SignupForm successful:', response.data);
       // 处理成功注册的逻辑，例如重定向到登录页面
