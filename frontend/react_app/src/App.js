@@ -7,7 +7,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 //import Col from 'react-bootstrap/Col';
 
 import './MyComponent.css';
-import SignupForm from './SignupForm';
+import AuthTabs from './AuthTabs';
 function App() {
   //const imageUrl = 'https://example.com/path/to/your/image.jpg';
   //const imageUrl = './images/self/logohead.png';
@@ -30,7 +30,7 @@ function App() {
         </Row>
         <Row className="content-row">
           <Col sm={6}>
-          <SignupForm />
+          <AuthTabs />
           </Col>
         </Row>
         <Row>
