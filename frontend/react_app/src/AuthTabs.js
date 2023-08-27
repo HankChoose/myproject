@@ -37,7 +37,7 @@ const AuthTabs = () => {
     };
 
     const [data, setData] = useState(null); // 用于存储响应数据
-    const [error, setError] = useState(null); // 用于存储错误信息
+    const [error1, setError] = useState(null); // 用于存储错误信息
 
     try {
 
@@ -60,11 +60,17 @@ const AuthTabs = () => {
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
       console.log('Response from Django:', response.data);
-      setData(response); // 更新数据状态
+      if (!response.ok) {
+        throw new Error('请求失败'); // 处理非200状态码的情况
+      }
+      const responseData = await response.json();
+      setData(responseData); // 更新数据状态
+      setError(null); // 清除错误状态
     } catch (error) {
       //console.error(error);
       console.error('Error sending data to Django:', error);
       setError(error.message); // 捕获错误并存储错误消息
+      setData(null); // 清除数据状态
     }
   };
 
@@ -89,8 +95,8 @@ const AuthTabs = () => {
           <Button as="input" type="submit" value="Submit" />{''}
         </Form>
         <div>
-          {error ? (
-            <p>发生错误: {error}</p>
+          {error1 ? (
+            <p>发生错误: {error1}</p>
           ) : (
             <div>
               {data ? (
