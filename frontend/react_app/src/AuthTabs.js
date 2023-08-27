@@ -61,7 +61,7 @@ const AuthTabs = () => {
       //console.log('Response:',response.data.message);
       console.log('Response from Django:', response.data);
       //const responseData = await response.json();
-      setData(response.data); // 更新数据状态
+      setResponse(response.data); // 更新数据状态
       setError(null); // 清除错误状态
     } catch (error) {
       //console.error(error);
