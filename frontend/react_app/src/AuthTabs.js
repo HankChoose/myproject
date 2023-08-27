@@ -91,21 +91,7 @@ const AuthTabs = () => {
           </Form.Group>
           <Button as="input" type="submit" value="Submit" />{''}
         </Form>
-        <div>
-          {response && (
-            <div>
-              <h2>成功响应：</h2>
-              <pre>{JSON.stringify(response, null, 2)}</pre>
-            </div>
-          )}
-
-          {error && (
-            <div>
-              <h2>错误：</h2>
-              <pre>{JSON.stringify(error, null, 2)}</pre>
-            </div>
-          )}
-        </div>
+       
        
     </>
    
