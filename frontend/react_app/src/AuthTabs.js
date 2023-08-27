@@ -36,6 +36,9 @@ const AuthTabs = () => {
       password2: 'chy123hank$A',
     };
 
+    const [data, setData] = useState(null); // 用于存储响应数据
+    const [error, setError] = useState(null); // 用于存储错误信息
+
     try {
 
       //const response = await axios.post('/send-data/',  { email, password } , {
@@ -57,9 +60,11 @@ const AuthTabs = () => {
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
       console.log('Response from Django:', response.data);
+      setData(response); // 更新数据状态
     } catch (error) {
       //console.error(error);
       console.error('Error sending data to Django:', error);
+      setError(error.message); // 捕获错误并存储错误消息
     }
   };
 
@@ -83,6 +88,22 @@ const AuthTabs = () => {
           </Form.Group>
           <Button as="input" type="submit" value="Submit" />{''}
         </Form>
+        <div>
+          {error ? (
+            <p>发生错误: {error}</p>
+          ) : (
+            <div>
+              {data ? (
+                <div>
+                  {/* 根据响应数据渲染页面 */}
+                  <p>响应数据: {JSON.stringify(data)}</p>
+                </div>
+              ) : (
+                <p>正在加载数据...</p>
+              )}
+            </div>
+          )}
+        </div>
        
     </>
    
