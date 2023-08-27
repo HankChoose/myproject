@@ -4,6 +4,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+
 const AuthTabs = () => {
   const [username, setUsername] = useState('hank');
   const [email, setEmail] = useState('');
@@ -12,6 +13,9 @@ const AuthTabs = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [action, setAction] = useState('login');
   const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
+
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -36,8 +40,7 @@ const AuthTabs = () => {
       password2: 'chy123hank$A',
     };
 
-    const [response, setResponse] = useState(null);
-    const [error, setError] = useState(null);
+   
 
     try {
 
@@ -91,7 +94,21 @@ const AuthTabs = () => {
           </Form.Group>
           <Button as="input" type="submit" value="Submit" />{''}
         </Form>
-       
+        <div>
+          {response && (
+            <div>
+              <h2>成功响应：</h2>
+              <pre>{JSON.stringify(response, null, 2)}</pre>
+            </div>
+          )}
+
+          {error && (
+            <div>
+              <h2>错误：</h2>
+              <pre>{JSON.stringify(error, null, 2)}</pre>
+            </div>
+          )}
+        </div>
        
     </>
    
