@@ -70,7 +70,7 @@ const AuthTabs = () => {
       //console.error(error);
       console.error('Error sending data to Django:', error);
       setError(error.response ? error.response.data : error.message);
-      setData(null); // 清除数据状态
+      setResponse(null); // 清除数据状态
     }
   };
 
