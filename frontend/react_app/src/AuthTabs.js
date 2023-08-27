@@ -36,8 +36,8 @@ const AuthTabs = () => {
       password2: 'chy123hank$A',
     };
 
-    const [data, setData] = useState(null); // 用于存储响应数据
-    const [error1, setError] = useState(null); // 用于存储错误信息
+    const [response, setResponse] = useState(null);
+    const [error, setError] = useState(null);
 
     try {
 
@@ -60,16 +60,13 @@ const AuthTabs = () => {
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
       console.log('Response from Django:', response.data);
-      if (!response.ok) {
-        throw new Error('请求失败'); // 处理非200状态码的情况
-      }
-      const responseData = await response.json();
-      setData(responseData); // 更新数据状态
+      //const responseData = await response.json();
+      setData(response.data); // 更新数据状态
       setError(null); // 清除错误状态
     } catch (error) {
       //console.error(error);
       console.error('Error sending data to Django:', error);
-      setError(error.message); // 捕获错误并存储错误消息
+      setError(error.response ? error.response.data : error.message);
       setData(null); // 清除数据状态
     }
   };
@@ -95,18 +92,17 @@ const AuthTabs = () => {
           <Button as="input" type="submit" value="Submit" />{''}
         </Form>
         <div>
-          {error1 ? (
-            <p>发生错误: {error1}</p>
-          ) : (
+          {response && (
             <div>
-              {data ? (
-                <div>
-                  {/* 根据响应数据渲染页面 */}
-                  <p>响应数据: {JSON.stringify(data)}</p>
-                </div>
-              ) : (
-                <p>正在加载数据...</p>
-              )}
+              <h2>成功响应：</h2>
+              <pre>{JSON.stringify(response, null, 2)}</pre>
+            </div>
+          )}
+
+          {error && (
+            <div>
+              <h2>错误：</h2>
+              <pre>{JSON.stringify(error, null, 2)}</pre>
             </div>
           )}
         </div>
