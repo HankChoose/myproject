@@ -1,47 +1,36 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Image from 'react-bootstrap/Image';
-import { Container, Row, Col } from 'react-bootstrap';
-//import Container from 'react-bootstrap/Container';
-//import Row from 'react-bootstrap/Row';
-//import Col from 'react-bootstrap/Col';
+import React, { Component } from 'react';
+import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
 
-import './MyComponent.css';
-import AuthTabs from './AuthTabs';
-function App() {
-  //const imageUrl = 'https://example.com/path/to/your/image.jpg';
-  //const imageUrl = './images/self/logohead.png';
-  
-  return (
-    
-    <div className="page-container">
-    
-      <Container className="centered-container">
-        <Row>
-          <Col xs={6} md={4}>
-           
-          </Col>
-          <Col xs={6} md={4}>
-           
-          </Col>
-          <Col xs={6} md={4}>
-          
-          </Col>
-        </Row>
-        <Row className="content-row">
-          <Col sm={6}>
-          <AuthTabs />
-          </Col>
-        </Row>
-        <Row>
-          <Col sm={6}>
-          
-          </Col>
-        </Row>
-      
-      </Container>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoginPage: true, // 默认显示登录页面
+    };
+  }
+
+  togglePage = () => {
+    // 切换登录和注册页面
+    this.setState((prevState) => ({
+      isLoginPage: !prevState.isLoginPage,
+    }));
+  };
+
+  render() {
+    const { isLoginPage } = this.state;
+
+    return (
+      <div>
+        <h1>Your App</h1>
+        {isLoginPage ? (
+          <LoginPage togglePage={this.togglePage} />
+        ) : (
+          <RegisterPage togglePage={this.togglePage} />
+        )}
+      </div>
+    );
+  }
 }
 
 export default App;
