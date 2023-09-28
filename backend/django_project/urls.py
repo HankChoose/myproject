@@ -17,27 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from . import views
-from allauth.account.views import SignupView, LoginView, LogoutView
-from django.views.generic import TemplateView
-from django.conf.urls import url
-from .views import CustomSignupView
 
 urlpatterns = [
-
     path('admin/', admin.site.urls),
-    path("", views.index, name="index"),
     path('accounts/', include('allauth.urls')),
-    path('accounts/signup/', SignupView.as_view(), name='account_signup'),
-    path('accounts/login/', LoginView.as_view(), name='account_login'),
-    path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
-    path('api/signup/', CustomSignupView.as_view(), name='api_signup'),
-    # url(r'^accounts/signup/',
-    # 'mainapp.signup_views.signup_view', name='account_signup'),
-    # url(r'^accounts/', include('allauth.urls')),
+    # path('accounts/profile/', views.profile_view, name='account_profile'),
     path('accounts/profile/', views.profile, name="profile"),
-
+    # path("", views.index, name="index"),
     path('encyclopedia/', include("encyclopedia.urls")),
     # path('register', views.CreateUserView, name="CreateUserView"),
     path('send-data/', views.Register, name='Register'),
-    # path('send_test_email/', views.send_test_email, name='send_test_email'),
 ]

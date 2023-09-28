@@ -4,18 +4,12 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-
 const AuthTabs = () => {
-  const [username, setUsername] = useState('hank');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('chy123hank$A');
-  const [password2, setPassword2] = useState('chy123hank$A');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [action, setAction] = useState('login');
   const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
-
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -31,16 +25,20 @@ const AuthTabs = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //const userData = { email,username, password,password2 };
-    
+    const userData = { email, password };
+  /*  
     const userData = {
-      username: 'hank1',
-      email: 'hankchenv@gmail.com',
-      password1: 'chy123hank$A',
-      password2: 'chy123hank$A',
+      email: 'choose_last@163.com',
+      password: '1234',
+      // 添加要发送给Django的数据
     };
-
-   
+  
+  const dataToSend = {
+    key1: 'value1',
+    key2: 'value2',
+    // 添加要发送给Django的数据
+  };
+  */
 
     try {
 
@@ -55,22 +53,20 @@ const AuthTabs = () => {
         body: JSON.stringify(userData),
       });
       */
-      const response = await axios.post('/api/signup/', userData, {
+     // 设置CSRF令牌作为请求头
+      const config = {
         headers: {
-          'X-CSRFToken': csrfToken,
+          'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
         },
-      })
+      };
+      const response = await axios.post('/send-data/', userData, config);
+      
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
       console.log('Response from Django:', response.data);
-      //const responseData = await response.json();
-      setResponse(response.data); // 更新数据状态
-      setError(null); // 清除错误状态
     } catch (error) {
       //console.error(error);
       console.error('Error sending data to Django:', error);
-      setError(error.response ? error.response.data : error.message);
-      setResponse(null); // 清除数据状态
     }
   };
 
@@ -94,21 +90,6 @@ const AuthTabs = () => {
           </Form.Group>
           <Button as="input" type="submit" value="Submit" />{''}
         </Form>
-        <div>
-          {response && (
-            <div>
-              <h2>成功响应：</h2>
-              <pre>{JSON.stringify(response, null, 2)}</pre>
-            </div>
-          )}
-
-          {error && (
-            <div>
-              <h2>错误：</h2>
-              <pre>{JSON.stringify(error, null, 2)}</pre>
-            </div>
-          )}
-        </div>
        
     </>
    

@@ -1,7 +1,5 @@
 jQuery(function ($) {
-
     'use strict';
-
     // Mean menu
     jQuery('.mean-menu').meanmenu({
         meanScreenWidth: "1199"
@@ -19,7 +17,7 @@ jQuery(function ($) {
     });
 
     // Preloader
-    $("body").addClass("pre-loaded");
+    //$("body").addClass("pre-loaded");
 
     // Scrolltop
     $(window).on('scroll', function() {
@@ -30,7 +28,9 @@ jQuery(function ($) {
             $("#scrolltop").removeClass("scrolltopactive");
         }
     });
+
     $("#scrolltop").on('click', function () {
+        //alert("zzz1");
         $("html").animate({
             scrollTop: 0
         }, 2000);
@@ -72,6 +72,7 @@ jQuery(function ($) {
     })
 
     // Daily counter
+    var dealCounter1 = 0; // Assign a value to dealCounter1
     function dailyCounter1() {
         var countDate = new Date("15 October 2022 9:56:00");
         var sec = 1000;

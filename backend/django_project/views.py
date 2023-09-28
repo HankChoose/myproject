@@ -1,5 +1,3 @@
-from allauth.account.forms import SignupForm
-from django.core.mail import send_mail
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
@@ -18,7 +16,6 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from .serializers import UserSerializer
 import json
-from allauth.account.views import SignupView
 
 
 @csrf_exempt
@@ -43,7 +40,7 @@ class CreateUserView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# @csrf_exempt
+@csrf_exempt
 def Register(request):
     if request.method == 'POST':
 
@@ -96,28 +93,3 @@ def index(request):
 @login_required
 def profile(request):
     return render(request, 'profile.html')
-
-
-def send_test_email(request):
-    subject = 'This is a test email'
-    message = 'Hello, this is a test email sent from Django Allauth.'
-    from_email = 'zhiyouyueservice@gmail.comm'  # 发件人邮箱地址
-    recipient_list = ['hankchenv@gmail.com']  # 收件人邮箱地址
-
-    send_mail(subject, message, from_email, recipient_list)
-
-    return HttpResponse('Test email sent successfully!')
-
-# views.py
-
-
-class CustomSignupView(APIView):
-    def post(self, request, *args, **kwargs):
-        # 创建一个自定义的用户注册表单
-        form = SignupForm(request.data)
-        if form.is_valid():
-            # 注册用户
-            user = form.save(request)
-            return Response({"message": "User registered successfully"}, status=status.HTTP_201_CREATED)
-        else:
-            return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-pug#t6-2ups3a1ujjn17a&p!y=ac2d-8*1g2w)ox-vcem$dn=u
 DEBUG = True
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['zhiyouyuec.com', '15.156.132.176']
+ALLOWED_HOSTS = ['zhiyouyuea.com']
 
 # Set the secure proxy header
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'encyclopedia',
     'corsheaders',
     'rest_framework',
-    'rest_framework.authtoken',
     'djoser',
     'allauth',
     'allauth.account',
@@ -63,6 +62,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+
 AUTHENTICATION_BACKENDS = (
     # django admin所使用的用户登录与django-allauth无关
     'django.contrib.auth.backends.ModelBackend',
@@ -71,21 +71,21 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-# AUTHENTICATION_CLASSES = (
-# 'allauth.account.auth_backends.AuthenticationBackend',
-# )
+AUTHENTICATION_CLASSES = (
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
-# 配置邮件发送OK
+# 配置邮件发送
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'zhiyouyueservice@gmail.com'  # 你的gmail账号和授权码
+EMAIL_HOST_USER = 'zhiyouyuea@gmail.com'  # 你的163账号和授权码
 EMAIL_HOST_PASSWORD = 'chy123hank$A'
 EMAIL_USE_TLS = True  # 这里必须是 True，否则发送不成功
-EMAIL_FROM = 'zhiyouyueservice@gmail.com'  # 发送人 你的 gmail账号
+EMAIL_FROM = 'zhiyouyuea@gmail.com'  # 发送人 你的 163账号
 
 # 默认显示的发送人，（邮箱地址必须与发送人一致），不设置的话django默认使用的webmaster@localhost
-DEFAULT_FROM_EMAIL = 'zhiyouyueservice@gmail.com'
+DEFAULT_FROM_EMAIL = 'zhiyouyuea@gmail.com'
 
 # 在这里设置您的登录和注册视图，以便它们指向您的React页面
 LOGIN_URL = 'your-login-url'  # 替换为您的登录页面URL
@@ -108,8 +108,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_EMAIL_VERIFICATION ="optional"
 
 # 如ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # 强制邮箱验证
-ACCOUNT_EMAIL_VERIFICATION = "optional"
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # 强制邮箱验证
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_UNIQUE_EMAIL_CONFIRMATION = True
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = LOGIN_URL
@@ -157,13 +156,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# CORS_ALLOWED_ORIGINS = [
-# "https://zhiyouyuec.com",
-# ]
-
-# CORS_ORIGIN_WHITELIST = [
-# "https://zhiyouyuec.com/react/:3000",  # 添加你的 React 前端的域名和端口
-# ]
+CORS_ALLOWED_ORIGINS = [
+    "https://zhiyouyuea.com",
+]
 
 ROOT_URLCONF = 'django_project.urls'
 
@@ -172,7 +167,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         # 'DIRS': [os.path.join(BASE_DIR, 'frontend', 'build')],
-        # 'DIRS': [os.path.join(BASE_DIR, 'templates')],  # 您自己的模板文件夹路径
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -184,10 +178,6 @@ TEMPLATES = [
         },
     },
 ]
-
-# 配置 allauth 使用的模板
-# ACCOUNT_SIGNUP_TEMPLATE = 'account/signup.html'
-# ACCOUNT_LOGIN_TEMPLATE = 'account/login.html'
 
 WSGI_APPLICATION = 'django_project.wsgi.application'
 
