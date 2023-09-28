@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-pug#t6-2ups3a1ujjn17a&p!y=ac2d-8*1g2w)ox-vcem$dn=u
 DEBUG = True
 
 # ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['zhiyouyuea.com', '15.156.132.176']
+ALLOWED_HOSTS = ['zhiyouyuec.com', '15.156.132.176']
 
 # Set the secure proxy header
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -158,11 +158,11 @@ MIDDLEWARE = [
 ]
 
 # CORS_ALLOWED_ORIGINS = [
-# "https://zhiyouyuea.com",
+# "https://zhiyouyuec.com",
 # ]
 
 # CORS_ORIGIN_WHITELIST = [
-# "https://zhiyouyuea.com/react/:3000",  # 添加你的 React 前端的域名和端口
+# "https://zhiyouyuec.com/react/:3000",  # 添加你的 React 前端的域名和端口
 # ]
 
 ROOT_URLCONF = 'django_project.urls'
