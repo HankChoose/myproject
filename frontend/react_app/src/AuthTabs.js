@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Tabs, Tab, Form, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import axios from 'axios';
 import Cookies from 'js-cookie';
