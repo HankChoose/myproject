@@ -11,7 +11,7 @@ services:
       - ./frontend/react_app/src:/app/src
       - frontend_static:/app/dist
     ports:
-      - "8080:8080"
+      - "3000:3000"
     networks:
       - app-network
 
