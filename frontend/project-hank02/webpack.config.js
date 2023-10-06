@@ -8,7 +8,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 export default {
     mode: 'development',
     devtool: 'source-map',
-    entry: './src/index.ts', // 入口文件改为.ts
+    entry: './src/index.tsx', // 入口文件改为.ts
     module: {
         rules: [
             {
