@@ -2,24 +2,17 @@
 
 import { StylableWebpackPlugin } from '@stylable/webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-
-
-devServer: {
- //disableHostCheck: true
- host: '0.0.0.0'
- /*
- allowedHosts: [
-    'example.com',
-    'subdomain.example.com',
-    'localhost'
-  ]
-  */
-}
+const path = require('path');
 
 /** @type {import('webpack').Configuration} */
 export default {
     mode: 'development',
     devtool: 'source-map',
+    entry: './src/index.ts', // 入口文件改为.ts
+    output: {
+      filename: 'bundle.js',
+      path: path.resolve(__dirname, 'dist'),
+    },
     module: {
         rules: [
             {
@@ -41,3 +34,19 @@ export default {
     plugins: [new StylableWebpackPlugin(), new HtmlWebpackPlugin({ title: 'Stylable App' })],
     cache: { type: 'filesystem' },
 };
+
+
+
+ /*
+devServer: {
+  disableHostCheck: true
+  host: '0.0.0.0'
+ 
+  allowedHosts: [
+     'example.com',
+     'subdomain.example.com',
+     'localhost'
+   ]
+  
+ }
+*/
