@@ -29,7 +29,7 @@ WORKDIR /app
 
 COPY ./project-hank02/package*.json /app/
 # 复制项目代码到容器中
-#COPY ./project-hank02/ /app/
+COPY ./project-hank02/ /app/
 # 安装项目依赖
 RUN npm install
 RUN npm install react-router-dom
