@@ -5,10 +5,10 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: vite-codux # 指定要使用的构建阶段
+      target: wabpack-codux # 指定要使用的构建阶段
     container_name: myproject-frontend
     volumes:
-      - ./frontend/project-hank01/src:/app/src
+      - ./frontend/project-hank02/src:/app/src
       - frontend_static:/app/dist
     ports:
       - "3000:3000"
