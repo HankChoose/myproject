@@ -6,6 +6,7 @@ import svgr from 'vite-plugin-svgr';
 export default defineConfig({
     plugins: [react(), svgr()],
     server: {
+        host: '0.0.0.0', // 允许外部访问
         port: 3000 // 自定义端口号
     }
 });
