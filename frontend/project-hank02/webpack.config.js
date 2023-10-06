@@ -5,8 +5,16 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 
 /** @type {import('webpack').Configuration} */
+
+module.exports = {
+    // ...其他配置
+    //mode: 'production', // 或 'development'
+    mode: 'development', // 或 'production'
+    // ...其他配置
+  };
+  
 export default {
-    mode: 'development',
+    //mode: 'development',
     devtool: 'source-map',
     //entry: './src/index.ts', // 入口文件改为.ts
     devServer: {
