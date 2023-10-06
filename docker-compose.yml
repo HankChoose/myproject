@@ -5,7 +5,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: production-stage # 指定要使用的构建阶段
+      target: build-stage # 指定要使用的构建阶段
     container_name: myproject-frontend
     volumes:
       - ./frontend/project-hank02/public:/app/public
