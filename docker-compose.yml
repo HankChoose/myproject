@@ -29,7 +29,6 @@ services:
       - ./nginx/ssl:/etc/nginx/ssl
       - backend_static:/app/static
     depends_on:
-      - backend
       - frontend
     networks:
       - app-network
