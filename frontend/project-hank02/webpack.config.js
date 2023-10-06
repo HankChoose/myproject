@@ -2,17 +2,13 @@
 
 import { StylableWebpackPlugin } from '@stylable/webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-const path = require('path');
+
 
 /** @type {import('webpack').Configuration} */
 export default {
     mode: 'development',
     devtool: 'source-map',
     entry: './src/index.ts', // 入口文件改为.ts
-    output: {
-      filename: 'bundle.js',
-      path: path.resolve(__dirname, 'dist'),
-    },
     module: {
         rules: [
             {
