@@ -57,5 +57,25 @@ RUN npm install --save-dev typescript ts-loader webpack webpack-cli
 # 构建React应用
 RUN npm run build
 # 启动React应用
-#CMD ["npm", "start"]
-CMD ["npm", "run"]
+CMD ["npm", "start"]
+
+
+
+FROM node:latest  as vite-codux
+# 设置工作目录
+WORKDIR /app
+COPY ./project-hank01/package*.json /app/
+# 复制项目代码到容器中
+COPY ./project-hank01/ /app/
+# 安装项目依赖
+RUN npm install
+RUN npm install react-router-dom
+RUN npm install axios
+RUN npm install react-bootstrap bootstrap
+RUN npm install js-cookie
+RUN npm install --save-dev typescript ts-loader webpack webpack-cli
+
+# 构建React应用
+RUN npm run build
+# 启动React应用
+CMD ["npm", "run", "serve"]

@@ -5,7 +5,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: wabpack-codux # 指定要使用的构建阶段
+      target: vite-codux # 指定要使用的构建阶段
     container_name: myproject-frontend
     volumes:
       - ./frontend/react_app/src:/app/src
