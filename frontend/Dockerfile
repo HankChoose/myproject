@@ -2,9 +2,9 @@
 FROM node:latest  as build-stage
 # 设置工作目录
 WORKDIR /app
-COPY ./project-hank01package*.json /app/
+COPY ./project-hank01/package*.json /app/
 # 复制项目代码到容器中
-COPY ./project-hank01 /app/
+COPY ./project-hank01/ /app/
 # 安装项目依赖
 RUN npm install
 RUN npm install react-router-dom
@@ -27,9 +27,9 @@ FROM node:latest  as production-stage
 # 设置工作目录
 WORKDIR /app
 
-COPY ./project-hank01package*.json /app/
+COPY ./project-hank01/package*.json /app/
 # 复制项目代码到容器中
-#COPY ./project-hank01 /app/
+#COPY ./project-hank01/ /app/
 # 安装项目依赖
 RUN npm install
 RUN npm install react-router-dom
