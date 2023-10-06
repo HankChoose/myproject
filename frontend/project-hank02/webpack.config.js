@@ -11,6 +11,7 @@ export default {
     //entry: './src/index.ts', // 入口文件改为.ts
     devServer: {
       port: 3000, // 设置Webpack开发服务器监听的端口号
+      host: '0.0.0.0', // 允许外部访问
     },
     module: {
         rules: [
