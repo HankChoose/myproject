@@ -5,7 +5,15 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 
 devServer: {
-  disableHostCheck: true
+ //disableHostCheck: true
+ host: '0.0.0.0'
+ /*
+ allowedHosts: [
+    'example.com',
+    'subdomain.example.com',
+    'localhost'
+  ]
+  */
 }
 
 /** @type {import('webpack').Configuration} */
