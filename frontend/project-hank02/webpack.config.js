@@ -6,21 +6,14 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 /** @type {import('webpack').Configuration} */
 
-module.exports = {
-    // ...其他配置
-    //mode: 'production', // 或 'development'
-    mode: 'development', // 或 'production'
-    // ...其他配置
-  };
-  
 export default {
-    //mode: 'development',
+    mode: 'development',
     devtool: 'source-map',
     //entry: './src/index.ts', // 入口文件改为.ts
     devServer: {
       port: 3000, // 设置Webpack开发服务器监听的端口号
       //host: '0.0.0.0', // 允许外部访问
-      public: 'zhiyouyuec.com', // 允许的主机名
+      allowedHosts: ['your-nginx-domain.com'],
     },
     module: {
         rules: [
