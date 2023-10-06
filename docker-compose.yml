@@ -29,7 +29,7 @@ services:
       target: production-stage # 指定要使用的构建阶段
     container_name: myproject-frontend
     volumes:
-      - ./frontend/project-hank01/public:/app/dist
+      - ./frontend/project-hank01/public:/app/public
       - ./frontend/project-hank01/src:/app/src
     ports:
       - "3000:3000"
