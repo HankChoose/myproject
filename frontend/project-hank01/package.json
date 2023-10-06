@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+	"start": "vite", // 使用 "vite" 来启动应用程序
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
