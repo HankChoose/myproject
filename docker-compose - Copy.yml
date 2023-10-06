@@ -1,0 +1,80 @@
+version: '3'
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: myproject-backend
+    #target: development   name as form Dockerfile
+    #command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - backend_static:/app/django_project/static
+      - ./backend:/app
+      - ./backend/django_project/templates:/app/django_project/templates
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_NAME=mydb
+      - DB_USER=myuser
+      - DB_PASSWORD=mypw
+    networks:
+      - app-network
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: production-stage # 指定要使用的构建阶段
+    container_name: myproject-frontend
+    volumes:
+      - ./frontend/project-hank01/public:/app/public
+      - ./frontend/project-hank01/src:/app/src
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: mysql:latest
+    container_name: myproject-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypw
+      MYSQL_ROOT_PASSWORD: myrootpw
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - app-network
+    #command: ["sh", "-c", "sleep 10 && python manage.py migrate"]
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      #- ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/ssl:/etc/nginx/ssl
+      - backend_static:/app/static
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+volumes:
+  dbdata:
+  backend_static:
+ 
