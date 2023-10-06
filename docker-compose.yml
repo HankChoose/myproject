@@ -8,7 +8,7 @@ services:
       target: vite-codux # 指定要使用的构建阶段
     container_name: myproject-frontend
     volumes:
-      - ./frontend/react_app/src:/app/src
+      - ./frontend/project-hank01/src:/app/src
       - frontend_static:/app/dist
     ports:
       - "3000:3000"
