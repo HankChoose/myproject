@@ -52,6 +52,8 @@ RUN npm install react-router-dom
 RUN npm install axios
 RUN npm install react-bootstrap bootstrap
 RUN npm install js-cookie
+RUN npm install --save-dev typescript ts-loader webpack webpack-cli
+
 # 构建React应用
 RUN npm run build
 # 启动React应用
