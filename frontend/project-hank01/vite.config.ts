@@ -7,19 +7,14 @@ export default defineConfig({
     plugins: [react(), svgr()],
     server: {
         host: '0.0.0.0', // 允许外部访问
-        port: 3000 // 自定义端口号
-       
-    }
-
-});
-
-module.exports = ({
-    proxy: {
-        '/ws': {
-          target: 'ws://localhost:3000', // WebSocket服务器的地址和端口
-          changeOrigin: true,
-          ws: true,
-        },
+        port: 3000, // 自定义端口号
+        proxy: {
+            '/ws': {
+              target: 'ws://localhost:3000', // WebSocket服务器的地址和端口
+              changeOrigin: true,
+              ws: true,
+            },
+        }
     }
 
 });
