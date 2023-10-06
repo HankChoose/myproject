@@ -53,6 +53,8 @@ RUN npm install axios
 RUN npm install react-bootstrap bootstrap
 RUN npm install js-cookie
 RUN npm install --save-dev typescript ts-loader webpack webpack-cli
+RUN npm install -g webpack@5
+RUN npm install --save-dev webpack@5 webpack-cli@4 webpack-dev-server@4
 
 # 构建React应用
 RUN npm run build
