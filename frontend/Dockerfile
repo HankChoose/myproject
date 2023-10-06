@@ -58,4 +58,4 @@ RUN npm install --save-dev typescript ts-loader webpack webpack-cli
 RUN npm run build
 # 启动React应用
 #CMD ["npm", "start"]
-CMD ["npm", "run", "build"]
+CMD ["npm", "run"]
