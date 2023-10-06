@@ -12,8 +12,6 @@ services:
       - ./frontend/project-hank01/src:/app/src
     ports:
       - "3000:3000"
-    depends_on:
-      - db
     networks:
       - app-network
 
