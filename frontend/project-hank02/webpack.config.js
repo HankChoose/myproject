@@ -3,6 +3,11 @@
 import { StylableWebpackPlugin } from '@stylable/webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
+
+devServer: {
+  disableHostCheck: true
+}
+
 /** @type {import('webpack').Configuration} */
 export default {
     mode: 'development',
