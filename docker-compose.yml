@@ -5,7 +5,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: wabpack-codux # 指定要使用的构建阶段
+      target: wabpack-coduxls
+       # 指定要使用的构建阶段
     container_name: myproject-frontend
     volumes:
       - ./frontend/project-hank02/src:/app/src
@@ -14,8 +15,9 @@ services:
       - "3000:3000"
     networks:
       - app-network
-
-  
+    #extra_hosts:
+      #- "myapp.local:192.168.0.10
+    
   nginx:
     image: nginx:latest
     ports:
