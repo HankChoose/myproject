@@ -5,10 +5,10 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: wabpack-codux
+      target: build-stage
     container_name: myproject-frontend
     volumes:
-      - ./frontend/project-hank02/src:/app/src
+      - ./frontend/react_app/src:/app/src
       - frontend_static:/app/dist
     ports:
       - "3000:3000"

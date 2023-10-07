@@ -16,11 +16,6 @@ RUN npm run build
 # 启动React应用
 CMD ["npm", "start"]
 
-# production stage
-#FROM nginx:stable-alpine as production-stage
-#COPY --from=build-stage /app/dist /usr/share/nginx/html
-#EXPOSE 80
-#CMD ["nginx", "-g", "daemon off;"]
 
 #FROM node:lts-alpine as production-stage
 FROM node:latest  as production-stage
