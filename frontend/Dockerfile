@@ -11,6 +11,7 @@ RUN npm install react-router-dom
 RUN npm install axios
 RUN npm install react-bootstrap bootstrap
 RUN npm install js-cookie
+RUN apt-get update && apt-get install -y python3-pip
 RUN npm install ws
 RUN npm install websocket
 RUN pip install websocket-client
@@ -34,6 +35,7 @@ RUN npm install react-router-dom
 RUN npm install axios
 RUN npm install react-bootstrap bootstrap
 RUN npm install js-cookie
+RUN apt-get update && apt-get install -y python3-pip
 RUN npm install ws
 RUN npm install websocket
 RUN pip install websocket-client
@@ -53,6 +55,7 @@ RUN npm install react-router-dom
 RUN npm install axios
 RUN npm install react-bootstrap bootstrap
 RUN npm install js-cookie
+RUN apt-get update && apt-get install -y python3-pip
 RUN npm install ws
 RUN npm install websocket
 RUN pip install websocket-client
@@ -79,6 +82,7 @@ RUN npm install react-router-dom
 RUN npm install axios
 RUN npm install react-bootstrap bootstrap
 RUN npm install js-cookie
+RUN apt-get update && apt-get install -y python3-pip
 RUN npm install ws
 RUN npm install websocket
 RUN pip install websocket-client
