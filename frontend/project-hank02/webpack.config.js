@@ -17,7 +17,6 @@ export default {
         'zhiyouyuec.com', // 允许的主机名或域名
         'localhost', // 本地主机
       ],
-      https: true, // 启用 HTTPS
       proxy: {
         '/ws': {
           target: 'wss://zhiyouyuec.com', // WebSocket服务器的地址
