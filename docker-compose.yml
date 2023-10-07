@@ -5,7 +5,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: build-stage
+      target: vite-codux
     container_name: myproject-frontend
     volumes:
       - ./frontend/react_app/src:/app/src
