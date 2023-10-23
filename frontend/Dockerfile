@@ -85,11 +85,11 @@ RUN npm install websocket
 RUN npm install sass
 RUN npm update sass
 RUN npm install vite-plugin-sass
-RUN npm install --save-dev @types/js-cookie
-RUN npm install --save font-awesome
-RUN npm install bootstrap@4.5.3
-RUN npm install react-icons --save
-RUN npm install @react-icons/all-files --save
+#RUN npm install --save-dev @types/js-cookie
+#RUN npm install --save font-awesome
+#RUN npm install bootstrap@4.5.3
+#RUN npm install react-icons --save
+#RUN npm install @react-icons/all-files --save
 
 
 
