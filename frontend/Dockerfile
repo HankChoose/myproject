@@ -81,7 +81,12 @@ RUN npm install react-bootstrap bootstrap
 RUN npm install js-cookie
 RUN npm install ws
 RUN npm install websocket
-RUN npm install --save-dev typescript ts-loader webpack webpack-cli
+RUN npm install --save-dev @types/js-cookie
+RUN npm install --save font-awesome
+RUN npm install bootstrap@4.5.3
+RUN npm install react-icons --save
+RUN npm install @react-icons/all-files --save
+
 
 
 # 构建React应用
