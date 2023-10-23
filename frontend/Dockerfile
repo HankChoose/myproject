@@ -75,6 +75,8 @@ COPY ./project-hank01/package*.json /app/
 COPY ./project-hank01/ /app/
 # 安装项目依赖
 RUN npm install
+RUN npm clear cache --force
+RUN npm update
 RUN npm install react-router-dom
 RUN npm install axios
 RUN npm install react-bootstrap bootstrap
@@ -88,6 +90,7 @@ RUN npm install --save font-awesome
 RUN npm install bootstrap@4.5.3
 RUN npm install react-icons --save
 RUN npm install @react-icons/all-files --save
+
 
 
 
