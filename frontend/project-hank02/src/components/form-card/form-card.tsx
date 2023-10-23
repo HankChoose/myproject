@@ -19,7 +19,7 @@ export const FormCard = ({ className, formType = 'signin', children }: FormCardP
     const linkresetpw =
         formType === 'signin' ? <a id="resetpw" >Forgot my password</a> : formType === 'signup' ? <span/> : <span/> ;
     const linksign =
-        formType === 'signin' ? <a id="linksignup" >Sign Up</a> : formType === 'signup' ? <a id="linksignin" >Sign In</a> : <span/> ;
+        formType === 'signin' ? <a id="linksignup" href="https://zhiyouyuec.com/signup" >Sign Up</a> : formType === 'signup' ? <a id="linksignin" href="https://zhiyouyuec.com/signin">Sign In</a> : <span/> ;
     const titlecard =
         formType === 'signin' ? 'Sign In' : formType === 'signup' ? 'Sign Up' : <span/>;
     
