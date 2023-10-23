@@ -25,9 +25,11 @@ export const FormCard = ({ className, formType = 'signin', children }: FormCardP
     
     return <div className={st(classes.root, className)}>
         {children}
+        { linksign }
         <h1>{titlecard }</h1>
-        {linksign}
+        <a id="linksignin" href="/signin" >Sign In 1111 </a>
         <Input />
+        <a id="linksignin" href="/signup" >Sign Up 2222</a>
         <Inputpw />
         { linkresetpw } 
         <Button> {titlecard } </Button>
