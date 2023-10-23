@@ -11,4 +11,5 @@ export default defineConfig({
         // your options here
       }
     }
+   }
 });
