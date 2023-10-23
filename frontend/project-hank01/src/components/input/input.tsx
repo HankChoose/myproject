@@ -11,10 +11,10 @@ export interface InputProps {
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
-export const Input = ({ className,id,name }: InputProps) => {
+export const Input = ({ className, id, name }: InputProps) => {
     return (
         <div className={classNames(styles.root, className)}>
-            <input id={id} name={name}/>
+            <input className={styles.Input} placeholder="Email"></input>
         </div>
     );
 };

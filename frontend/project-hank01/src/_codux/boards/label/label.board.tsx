@@ -3,6 +3,6 @@ import { Label } from '../../../components/label/label';
 
 export default createBoard({
     name: 'Label',
-    Board: () => <label>Hank Label</label>,
+    Board: () => <Label>My Label</Label>,
     isSnippet: true,
 });

@@ -3,6 +3,6 @@ import { Button } from '../../../components/button/button';
 
 export default createBoard({
     name: 'Button',
-    Board: () => <Button />,
+    Board: () => <Button>My Button</Button>,
     isSnippet: true,
 });
