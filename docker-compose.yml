@@ -8,7 +8,7 @@ services:
       target: vite-codux
     container_name: myproject-frontend
     volumes:
-      - ./frontend/project-hank01/src:/app/src
+      - ./frontend/project-hank02/src:/app/src
       - frontend_static:/app/dist
     ports:
       - "3000:3000"

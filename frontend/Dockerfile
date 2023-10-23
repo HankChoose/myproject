@@ -70,9 +70,9 @@ CMD ["npm", "start"]
 FROM node:latest  as vite-codux
 # 设置工作目录
 WORKDIR /app
-COPY ./project-hank01/package*.json /app/
+COPY ./project-hank02/package*.json /app/
 # 复制项目代码到容器中
-COPY ./project-hank01/ /app/
+COPY ./project-hank02/ /app/
 # 安装项目依赖
 RUN npm install
 RUN npm update
