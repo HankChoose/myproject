@@ -75,7 +75,6 @@ COPY ./project-hank01/package*.json /app/
 COPY ./project-hank01/ /app/
 # 安装项目依赖
 RUN npm install
-RUN npm clear cache --force
 RUN npm update
 RUN npm install react-router-dom
 RUN npm install axios
