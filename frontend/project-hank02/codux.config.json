@@ -21,7 +21,7 @@
     }
   },
   "styling": {
-    "solution": "scss modules"
+    "solution": "stylable"
   },
   "svgLoader": "both"
 }
