@@ -81,6 +81,7 @@ RUN npm install react-bootstrap bootstrap
 RUN npm install js-cookie
 RUN npm install ws
 RUN npm install websocket
+RUN npm install sass
 RUN npm update sass
 RUN npm install --save-dev @types/js-cookie
 RUN npm install --save font-awesome
