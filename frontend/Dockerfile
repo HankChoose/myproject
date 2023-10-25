@@ -85,6 +85,8 @@ RUN npm install websocket
 RUN npm install sass
 RUN npm update sass
 RUN npm install vite-plugin-sass
+RUN npm install vite-plugin-svgr --save-dev
+RUN npm install style-loader css-loader sass-loader node-sass --save-dev
 #RUN npm install --save-dev @types/js-cookie
 #RUN npm install --save font-awesome
 #RUN npm install bootstrap@4.5.3
