@@ -6,8 +6,6 @@ import { Tabs, Tab, Form, Button } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
-import { Hanktest2 } from '../hanktest-2/hanktest-2';
-
 
 export interface LinkareaProps {
     className?: string;
