@@ -24,17 +24,29 @@ export interface FormCardProps {
 export const FormCard = ({ className, formType = 'signin', children, callbackFunction }: FormCardProps) => {
     const handleClickSignup = () => {
         const valueToSend = 'signup';
-        callbackFunction(valueToSend);
+        if (callbackFunction !== undefined) {
+            callbackFunction(valueToSend);
+        } else {
+        // 处理函数未定义的情况
+        }
     };
 
     const handleClickSignin = () => {
         const valueToSend = 'signin';
-        callbackFunction(valueToSend);
+        if (callbackFunction !== undefined) {
+            callbackFunction(valueToSend);
+        } else {
+        // 处理函数未定义的情况
+        }
     };
 
     const handleClickResetpw = () => {
         const valueToSend = 'resetpw';
-        callbackFunction(valueToSend);
+        if (callbackFunction !== undefined) {
+            callbackFunction(valueToSend);
+        } else {
+        // 处理函数未定义的情况
+        }
     };
 
 
