@@ -11,13 +11,18 @@ function GotoSignup() {
     React.useEffect(() => {
         navigate('/signup'); // 在 useEffect 中调用 navigate
     }, []); // 空数组表示只在组件挂载时调用一次
-
+    return (
+    <div></div>
+  );
 }
 function GotoSignin() {
     const navigate = useNavigate(); // 在<Router>组件内使用useNavigate
     React.useEffect(() => {
         navigate('/signin'); // 在 useEffect 中调用 navigate
     }, []); // 空数组表示只在组件挂载时调用一次
+    return (
+     <div></div>
+    );
 
 }
 
@@ -26,7 +31,9 @@ function GotoResetpw() {
     React.useEffect(() => {
         navigate('/resetpw'); // 在 useEffect 中调用 navigate
     }, []); // 空数组表示只在组件挂载时调用一次
-
+    return (
+    <div></div>
+    );
 }
 
 
