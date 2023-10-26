@@ -59,7 +59,7 @@ RUN npm install websocket
 RUN npm install --save-dev typescript ts-loader webpack webpack-cli
 RUN npm install -g webpack@5
 RUN npm install --save-dev webpack@5 webpack-cli@4 webpack-dev-server@4
-
+RUN npm install style-loader css-loader sass-loader node-sass --save-dev
 # 构建React应用
 RUN npm run build
 # 启动React应用
@@ -86,10 +86,9 @@ RUN npm install vite sass
 #RUN npm update sass
 RUN npm install vite-plugin-sass
 RUN npm install vite-plugin-svgr --save-dev
-RUN npm install style-loader css-loader sass-loader node-sass --save-dev
-#RUN npm install --save-dev @types/js-cookie
-#RUN npm install --save font-awesome
-#RUN npm install bootstrap@4.5.3
+RUN npm install --save-dev @types/js-cookie
+RUN npm install --save font-awesome
+RUN npm install bootstrap@4.5.3
 #RUN npm install react-icons --save
 #RUN npm install @react-icons/all-files --save
 
