@@ -45,9 +45,9 @@ CMD ["npm", "start"]
 FROM node:latest  as wabpack-codux
 # 设置工作目录
 WORKDIR /app
-COPY ./project-hank01/package*.json /app/
+COPY ./ProjectVite01/package*.json /app/
 # 复制项目代码到容器中
-COPY ./project-hank01/ /app/
+COPY ./ProjectVite01/ /app/
 # 安装项目依赖
 RUN npm install
 RUN npm install react-router-dom
@@ -70,9 +70,9 @@ CMD ["npm", "start"]
 FROM node:latest  as vite-codux
 # 设置工作目录
 WORKDIR /app
-COPY ./project-hank01/package*.json /app/
+COPY ./ProjectVite01/package*.json /app/
 # 复制项目代码到容器中
-COPY ./project-hank01/ /app/
+COPY ./ProjectVite01/ /app/
 # 安装项目依赖
 RUN npm install
 RUN npm update
@@ -82,8 +82,8 @@ RUN npm install react-bootstrap bootstrap
 RUN npm install js-cookie
 RUN npm install ws
 RUN npm install websocket
-RUN npm install sass
-RUN npm update sass
+RUN npm install vite sass
+#RUN npm update sass
 RUN npm install vite-plugin-sass
 RUN npm install vite-plugin-svgr --save-dev
 RUN npm install style-loader css-loader sass-loader node-sass --save-dev
