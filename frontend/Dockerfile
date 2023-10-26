@@ -89,11 +89,8 @@ RUN npm install vite-plugin-svgr --save-dev
 RUN npm install --save-dev @types/js-cookie
 RUN npm install --save font-awesome
 RUN npm install bootstrap@4.5.3
-#RUN npm install react-icons --save
-#RUN npm install @react-icons/all-files --save
-
-
-
+RUN npm install react-icons --save
+RUN npm install @react-icons/all-files --save
 
 # 构建React应用
 RUN npm run build
