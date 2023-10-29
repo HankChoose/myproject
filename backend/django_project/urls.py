@@ -27,5 +27,4 @@ urlpatterns = [
     path('encyclopedia/', include("encyclopedia.urls")),
     # path('register', views.CreateUserView, name="CreateUserView"),
     path('send-data/', views.Register, name='Register'),
-
 ]
