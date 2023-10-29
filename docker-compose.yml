@@ -1,27 +1,6 @@
 version: '3'
 services:
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: myproject-backend
-    #target: development   name as form Dockerfile
-    #command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - backend_static:/app/django_project/static
-      - ./backend:/app
-      - ./backend/django_project/templates:/app/django_project/templates
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-    environment:
-      - DB_HOST=db
-      - DB_NAME=mydb
-      - DB_USER=myuser
-      - DB_PASSWORD=mypw
-    networks:
-      - app-network
+ 
   frontend:
     build:
       context: ./frontend
@@ -66,7 +45,6 @@ services:
       - ./nginx/ssl:/etc/nginx/ssl
       - backend_static:/app/static
     depends_on:
-      - backend
       - frontend
     networks:
       - app-network
@@ -76,6 +54,5 @@ networks:
     driver: bridge
 volumes:
   dbdata:
-  backend_static:
   frontend_static:
  
