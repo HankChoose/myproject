@@ -27,4 +27,6 @@ urlpatterns = [
     path('encyclopedia/', include("encyclopedia.urls")),
     # path('register', views.CreateUserView, name="CreateUserView"),
     path('send-data/', views.Register, name='Register'),
+    path('@vite/client/', views.vite_client_handler, name='vite_client'),
+    path('@react-refresh/', views.react_refresh_handler, name='react_refresh'),
 ]

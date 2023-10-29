@@ -93,3 +93,13 @@ def index(request):
 @login_required
 def profile(request):
     return render(request, 'profile.html')
+
+
+def vite_client_handler(request):
+    # 处理 @vite/client 的逻辑
+    return HttpResponse("Hello from @vite/client handler")
+
+
+def react_refresh_handler(request):
+    # 处理 @react-refresh 的逻辑
+    return HttpResponse("Hello from @react-refresh handler")
