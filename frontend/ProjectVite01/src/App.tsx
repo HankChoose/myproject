@@ -38,7 +38,7 @@ function App() {
 
     return (
         <div className={styles.App}>
-            <Router>
+            <Router basename="/react">
                 {isInternalControlClicked === 'signup' ? <GotoSignup /> : <GotoSignin />}
                 {isInternalControlClicked === 'signin' ? <GotoSignin /> : null}
                 {isInternalControlClicked === 'resetpw' ? <GotoResetpw /> : <GotoSignin />}
