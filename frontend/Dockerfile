@@ -93,7 +93,7 @@ RUN npm install react-icons --save
 RUN npm install @react-icons/all-files --save
 RUN npm install -g npm
 RUN npm install @babel/core @babel/preset-react
-RUN npm install --save react-refresh @pmmmwh/react-refresh-webpack-plugin react-refresh/babel
+RUN npm install react-refresh --save-dev
 
 
 # 构建React应用
