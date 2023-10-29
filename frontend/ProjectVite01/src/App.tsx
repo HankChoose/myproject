@@ -72,15 +72,7 @@ function App() {
                                 />
                             }
                         />
-                        <Route
-                            index
-                            element={
-                                <FormCard
-                                    formType="resetpw"
-                                    callbackFunction={handleInternalControlClick}
-                                />
-                            }
-                        />
+                      
                     </Routes>
                 </div>
             </Router>
