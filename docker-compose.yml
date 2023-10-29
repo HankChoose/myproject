@@ -22,24 +22,21 @@ services:
       - DB_PASSWORD=mypw
     networks:
       - app-network
- 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: vite-codux
+      target: vite-codux # 指定要使用的构建阶段
     container_name: myproject-frontend
     volumes:
       - ./frontend/ProjectVite01/src:/app/src
       - frontend_static:/app/dist
     ports:
       - "3000:3000"
-	depends_on:
+    depends_on:
       - db
     networks:
       - app-network
-    #extra_hosts:
-      #- "myapp.local:192.168.0.10
 
   db:
     image: mysql:latest
