@@ -9,7 +9,7 @@ export default defineConfig({
         host: '0.0.0.0', // 允许外部访问
         port: 3000,      // 选择一个可供外部访问的端口
         proxy: {
-            '/api': 'http://localhost:8000', // 将/api请求代理到Django后端
+            '/api': 'https://localhost:8000', // 将/api请求代理到Django后端
         },
     },
    

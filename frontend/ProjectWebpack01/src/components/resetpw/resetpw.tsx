@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import styles from './new-component.module.scss';
+import styles from './resetpw.module.scss';
 
-export interface NewComponentProps {
+export interface ResetpwProps {
     className?: string;
 }
 
@@ -9,6 +9,6 @@ export interface NewComponentProps {
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
-export const NewComponent = ({ className }: NewComponentProps) => {
-    return <div className={classNames(styles.root, className)}>NewComponent</div>;
+export const Resetpw = ({ className }: ResetpwProps) => {
+    return <div className={classNames(styles.root, className)}>Resetpw</div>;
 };
