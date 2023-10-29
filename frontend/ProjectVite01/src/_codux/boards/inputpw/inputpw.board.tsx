@@ -3,11 +3,11 @@ import { Inputpw } from '../../../components/inputpw/inputpw';
 
 export default createBoard({
     name: 'Inputpw',
-    Board: () => <Inputpw />,
+    Board: () => <Inputpw>Password</Inputpw>,
     isSnippet: true,
     environmentProps: {
         canvasHeight: 66,
         windowWidth: 1024,
-        windowHeight: 489,
+        windowHeight: 300,
     },
 });

@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 export interface FormCardProps {
     className?: string;
     children?: React.ReactNode;
-    formType?: 'signin' | 'signup';
+    formType?: 'signin' | 'signup' | 'resetpw';
     callbackFunction?: (data: string) => void; // 定义回调函数类型
 }
 
@@ -21,13 +21,14 @@ export interface FormCardProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 
+
 export const FormCard = ({ className, formType = 'signin', children, callbackFunction }: FormCardProps) => {
     const handleClickSignup = () => {
         const valueToSend = 'signup';
         if (callbackFunction !== undefined) {
             callbackFunction(valueToSend);
         } else {
-        // 处理函数未定义的情况
+            // 处理函数未定义的情况
         }
     };
 
@@ -36,7 +37,7 @@ export const FormCard = ({ className, formType = 'signin', children, callbackFun
         if (callbackFunction !== undefined) {
             callbackFunction(valueToSend);
         } else {
-        // 处理函数未定义的情况
+            // 处理函数未定义的情况
         }
     };
 
@@ -45,34 +46,50 @@ export const FormCard = ({ className, formType = 'signin', children, callbackFun
         if (callbackFunction !== undefined) {
             callbackFunction(valueToSend);
         } else {
-        // 处理函数未定义的情况
+            // 处理函数未定义的情况
         }
     };
 
 
     const linkresetpw =
         formType === 'signin' ? (
-            <a onClick={handleClickResetpw}>Forgot my password</a>
-        ) : (<span />
+            <a onClick={handleClickResetpw}> Forgot my password </a>
+        ) : (
+            <span />
         );
+        
     const linkheader =
-        formType === 'signin' ? (
+        formType === 'signin'? (
             <span>Need an account?</span>
-        ) : formType === 'signup' ? (
+        ) : (formType === 'signup' || formType === 'resetpw') ? (
             <span>Have an account already?</span>
         ) : (
             <span />
         );
+
     const linksign =
         formType === 'signin' ? (
             <a onClick={handleClickSignup}> Sign Up </a>
-        ) : formType === 'signup' ? (
+        ) : (formType === 'signup' || formType === 'resetpw') ? (
             <a onClick={handleClickSignin}> Sign In </a>
         ) : (
             <span />
         );
+    
+    const Inputpwsign =
+        (formType === 'signin' || formType === 'signup') ? (
+            <Inputpw> Password </Inputpw>
+        ) : (<span />
+        );
+   
+    const Inputpwagian =
+        formType === 'signup' ? (
+            <Inputpw> Confirm password again </Inputpw>
+        ) : (<span />
+        );
+
     const titlecard =
-        formType === 'signin' ? 'Sign In' : formType === 'signup' ? 'Sign Up' : <span />;
+        formType === 'signin' ? 'Sign In' : formType === 'signup' ? 'Sign Up' : formType === 'resetpw' ? 'Reset password' : <span />;
 
     return (
         <div className={classNames(styles.root, className)}>
@@ -82,12 +99,12 @@ export const FormCard = ({ className, formType = 'signin', children, callbackFun
             <FormRow />
             <FormRow children={<Input />} />
             <FormRow />
-            <Inputpw />
-            {linkresetpw}
+            {Inputpwsign}
+            <span className={styles.handpoint}>{linkresetpw}</span>
+            <FormRow />
+            {Inputpwagian}
             <FormRow />
             <FormRow children={<Button> {titlecard} </Button>} />
-            <FormRow />
-
         </div>
     );
 };

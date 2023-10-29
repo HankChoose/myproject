@@ -3,6 +3,6 @@ import { FormCard } from '../../../components/form-card/form-card';
 
 export default createBoard({
     name: 'Resetpw',
-    Board: () => <FormCard />,
+    Board: () => <FormCard formType="resetpw" />,
     isSnippet: true,
 });
