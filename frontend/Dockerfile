@@ -91,6 +91,7 @@ RUN npm install --save font-awesome
 RUN npm install bootstrap@4.5.3
 RUN npm install react-icons --save
 RUN npm install @react-icons/all-files --save
+RUN npm install @babel/core @babel/preset-react
 RUN npm install --save react-refresh @pmmmwh/react-refresh-webpack-plugin react-refresh/babel
 
 
