@@ -5,14 +5,13 @@ import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 
 export interface InputpwProps {
     className?: string;
-    children?: string;
 }
 
 /**
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
-export const Inputpw = ({ className, children }: InputpwProps) => {
+export const Inputpw = ({ className }: InputpwProps) => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
@@ -24,7 +23,7 @@ export const Inputpw = ({ className, children }: InputpwProps) => {
             <input
                 type={showPassword ? 'text' : 'password'}
                 value={password}
-                placeholder= {children}
+                placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
                 className={styles.Input}
             />
