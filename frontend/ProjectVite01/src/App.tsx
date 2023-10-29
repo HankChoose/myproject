@@ -74,8 +74,11 @@ function App() {
 
                          <Route
                             path="/resetpw"
-                            element={
-                                <Resetpw />
+                           element={
+                                <FormCard
+                                    formType="resetpw"
+                                    callbackFunction={handleInternalControlClick}
+                                />
                             }
                         />
                         <Route
