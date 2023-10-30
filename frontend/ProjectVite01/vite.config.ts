@@ -10,9 +10,7 @@ export default defineConfig({
         port: 3000,      // 选择一个可供外部访问的端口
     },
 
-    resolve: {
-    alias: {
-        'https://zhiyouyuec.com': 'https://zhiyouyuec.com/react',
-    },
+    build: {
+        outDir: 'react',
     },
 });
