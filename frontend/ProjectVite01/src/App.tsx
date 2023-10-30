@@ -29,7 +29,7 @@ function GotoSignin() {
 function GotoResetpw() {
     const navigate = useNavigate(); // 在<Router>组件内使用useNavigate
     React.useEffect(() => {
-        navigate('/react/resetpw'); // 在 useEffect 中调用 navigate
+        navigate('/resetpw'); // 在 useEffect 中调用 navigate
     }, []); // 空数组表示只在组件挂载时调用一次
     return (
     <div></div>
@@ -54,7 +54,7 @@ function App() {
                 <div>
                     <Routes>
                         <Route
-                            path="/react/signin"
+                            path="/signin"
                             element={
                                 <FormCard
                                     formType="signin"
@@ -63,7 +63,7 @@ function App() {
                             }
                         />
                         <Route
-                            path="/react/signup"
+                            path="/signup"
                             element={
                                 <FormCard
                                     formType="signup"
@@ -73,7 +73,7 @@ function App() {
                         />
 
                          <Route
-                            path="/react/resetpw"
+                            path="/resetpw"
                             element={
                                 <FormCard
                                     formType="resetpw"
