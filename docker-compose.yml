@@ -64,7 +64,9 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       #- ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/ssl:/etc/nginx/ssl
+      - backend_static:/app/static
     depends_on:
+      - backend
       - frontend
     networks:
       - app-network
