@@ -9,8 +9,5 @@ export default defineConfig({
         host: '0.0.0.0', // 允许外部访问
         port: 3000,      // 选择一个可供外部访问的端口
     },
-
-    build: {
-        outDir: 'react',
-    },
+    base: '/react/',
 });
