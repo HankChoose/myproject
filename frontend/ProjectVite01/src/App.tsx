@@ -9,7 +9,7 @@ import React from 'react'
 function GotoSignup() {
     const navigate = useNavigate(); // 在<Router>组件内使用useNavigate
     React.useEffect(() => {
-        navigate('/signup'); // 在 useEffect 中调用 navigate
+        navigate('/react/signup'); // 在 useEffect 中调用 navigate
     }, []); // 空数组表示只在组件挂载时调用一次
     return (
     <div></div>
@@ -18,7 +18,7 @@ function GotoSignup() {
 function GotoSignin() {
     const navigate = useNavigate(); // 在<Router>组件内使用useNavigate
     React.useEffect(() => {
-        navigate('/signin'); // 在 useEffect 中调用 navigate
+        navigate('/react/signin'); // 在 useEffect 中调用 navigate
     }, []); // 空数组表示只在组件挂载时调用一次
     return (
      <div></div>
@@ -29,7 +29,7 @@ function GotoSignin() {
 function GotoResetpw() {
     const navigate = useNavigate(); // 在<Router>组件内使用useNavigate
     React.useEffect(() => {
-        navigate('/resetpw'); // 在 useEffect 中调用 navigate
+        navigate('/react/resetpw'); // 在 useEffect 中调用 navigate
     }, []); // 空数组表示只在组件挂载时调用一次
     return (
     <div></div>
@@ -54,7 +54,7 @@ function App() {
                 <div>
                     <Routes>
                         <Route
-                            path="/signin"
+                            path="/react/signin"
                             element={
                                 <FormCard
                                     formType="signin"
@@ -63,7 +63,7 @@ function App() {
                             }
                         />
                         <Route
-                            path="/signup"
+                            path="/react/signup"
                             element={
                                 <FormCard
                                     formType="signup"
@@ -73,8 +73,8 @@ function App() {
                         />
 
                          <Route
-                            path="/resetpw"
-                           element={
+                            path="/react/resetpw"
+                            element={
                                 <FormCard
                                     formType="resetpw"
                                     callbackFunction={handleInternalControlClick}
