@@ -57,9 +57,9 @@ export const FormCard = ({ className, formType = 'signin', children, callbackFun
         ) : (
             <span />
         );
-        
+
     const linkheader =
-        formType === 'signin'? (
+        formType === 'signin' ? (
             <span>Need an account?</span>
         ) : (formType === 'signup' || formType === 'resetpw') ? (
             <span>Have an account already?</span>
@@ -75,13 +75,13 @@ export const FormCard = ({ className, formType = 'signin', children, callbackFun
         ) : (
             <span />
         );
-    
+
     const Inputpwsign =
         (formType === 'signin' || formType === 'signup') ? (
             <Inputpw> Password </Inputpw>
         ) : (<span />
         );
-   
+
     const Inputpwagian =
         formType === 'signup' ? (
             <Inputpw> Confirm password again </Inputpw>
@@ -92,9 +92,13 @@ export const FormCard = ({ className, formType = 'signin', children, callbackFun
         formType === 'signin' ? 'Sign In' : formType === 'signup' ? 'Sign Up' : formType === 'resetpw' ? 'Reset password' : <span />;
 
     return (
+
         <div className={classNames(styles.root, className)}>
+            <a href="https://zhiyouyuec.com">Home</a>
             {children}
-            <h1>{titlecard}</h1>
+            <h1>
+                
+                {titlecard}</h1>
             {linkheader}<span className={styles.handpoint}>{linksign}</span>
             <FormRow />
             <FormRow children={<Input />} />
