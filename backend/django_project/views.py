@@ -94,8 +94,8 @@ def pd(request):
     return render(request, 'pd.html')
 
 
-def qwd(request):
-    return render(request, 'qwd.html')
+def qwb(request):
+    return render(request, 'qwb.html')
 
 
 @login_required
