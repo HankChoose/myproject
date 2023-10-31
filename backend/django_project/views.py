@@ -90,12 +90,12 @@ def index(request):
     return render(request, 'index.html')
 
 
-def test01(request):
-    return render(request, 'test01.html')
+def pd(request):
+    return render(request, 'pd.html')
 
 
-def test02(request):
-    return render(request, 'test02.html')
+def qwd(request):
+    return render(request, 'qwd.html')
 
 
 @login_required
