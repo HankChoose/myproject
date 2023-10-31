@@ -98,6 +98,26 @@ def qwb(request):
     return render(request, 'qwb.html')
 
 
+def cbs(request):
+    return render(request, 'cbs.html')
+
+
+def pi(request):
+    return render(request, 'pi.html')
+
+
+def fi(request):
+    return render(request, 'fi.html')
+
+
+def fe(request):
+    return render(request, 'fe.html')
+
+
+def sh(request):
+    return render(request, 'sh.html')
+
+
 @login_required
 def profile(request):
     return render(request, 'profile.html')
