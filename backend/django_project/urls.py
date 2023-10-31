@@ -34,5 +34,5 @@ urlpatterns = [
     path("fi/", views.fi, name="fi"),
     path("fe/", views.fe, name="fe"),
     path("sh/", views.sh, name="sh"),
-    path("wf/", views.wf, name="wf"),
+    path("wfd/", views.wfd, name="wfd"),
 ]
