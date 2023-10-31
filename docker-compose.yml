@@ -13,8 +13,7 @@ services:
       - ./backend/django_project/templates:/app/django_project/templates
     ports:
       - "8000:8000"
-    depends_on:
-      - db
+    
     environment:
       - DB_HOST=db
       - DB_NAME=mydb
@@ -38,23 +37,7 @@ services:
       - app-network
     #extra_hosts:
       #- "myapp.local:192.168.0.10
-  db:
-    image: mysql:latest
-    container_name: myproject-mysql
-    restart: always
-    environment:
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypw
-      MYSQL_ROOT_PASSWORD: myrootpw
-    ports:
-      - "3306:3306"
-    volumes:
-      - dbdata:/var/lib/mysql
-    networks:
-      - app-network
-    #command: ["sh", "-c", "sleep 10 && python manage.py migrate"]
-
+  
   nginx:
     image: nginx:latest
     ports:
