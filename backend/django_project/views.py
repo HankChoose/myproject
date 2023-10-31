@@ -90,6 +90,14 @@ def index(request):
     return render(request, 'index.html')
 
 
+def test01(request):
+    return render(request, 'test01.html')
+
+
+def test02(request):
+    return render(request, 'test02.html')
+
+
 @login_required
 def profile(request):
     return render(request, 'profile.html')

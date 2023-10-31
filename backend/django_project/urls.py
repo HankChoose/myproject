@@ -24,6 +24,8 @@ urlpatterns = [
     # path('accounts/profile/', views.profile_view, name='account_profile'),
     path('accounts/profile/', views.profile, name="profile"),
     path("", views.index, name="index"),
+    path("", views.test01, name="test01"),
+    path("", views.test02, name="test02"),
     path('encyclopedia/', include("encyclopedia.urls")),
     # path('register', views.CreateUserView, name="CreateUserView"),
     path('send-data/', views.Register, name='Register'),
