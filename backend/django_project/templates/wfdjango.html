@@ -1,0 +1,75 @@
+<p>{% extends "layout.html" %}
+  
+  {% load static %}
+  {% csrf_token %}
+  
+  {% block title %}
+  Hankwebsite
+  {% endblock %}
+  
+  {% block body %}
+ </p>
+<p>&nbsp; </p>
+<table width="1066" border="1" align="left">
+  <tbody>
+    <tr>
+      <th width="857" align="left" scope="col"><h1>Web Framework-Django</h1></th>
+      <th width="193" scope="col"><a href="https://www.djangoproject.com/start/overview/">Learn more</a></th>
+    </tr>
+    <tr>
+      <th scope="row">&nbsp;</th>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<div>
+  <p>Django is a high-level Python web framework that simplifies web development by providing many built-in features and tools. It follows the "batteries-included" philosophy, meaning it comes with a wide range of components and libraries, allowing developers to focus on writing application-specific code rather than reinventing the wheel. Here are the key aspects and components of Django:</p>
+  <ol>
+    <li>
+      <p><strong>URL Routing</strong>: Django provides a URL dispatcher that maps URLs to view functions, allowing you to define how different URLs are handled by your application.</p>
+    </li>
+    <li>
+      <p><strong>Views</strong>: Views in Django are responsible for processing HTTP requests and returning HTTP responses. They can render HTML templates, handle form submissions, and perform various actions.</p>
+    </li>
+    <li>
+      <p><strong>Models</strong>: Django's Object-Relational Mapping (ORM) simplifies database operations. You define your data models in Python, and Django handles the creation, querying, and management of the database.</p>
+    </li>
+    <li>
+      <p><strong>Templates</strong>: Django uses a template engine for generating dynamic HTML. Templates are separate from your Python code, promoting a clean separation of concerns.</p>
+    </li>
+    <li>
+      <p><strong>Forms</strong>: Django provides a form handling system that makes it easy to create and validate HTML forms. It can handle form rendering, user input validation, and data storage.</p>
+    </li>
+    <li>
+      <p><strong>Authentication and Authorization</strong>: Django includes a robust authentication system with user management, permissions, and support for third-party authentication providers. You can easily control who can access specific parts of your application.</p>
+    </li>
+    <li>
+      <p><strong>Admin Interface</strong>: Django offers an admin panel that can be customized to manage the application's data. This is particularly useful for content management and internal administrative tasks.</p>
+    </li>
+    <li>
+      <p><strong>Security</strong>: Django includes built-in security features, such as protection against common web vulnerabilities like SQL injection, cross-site scripting (XSS), and cross-site request forgery (CSRF).</p>
+    </li>
+    <li>
+      <p><strong>Middleware</strong>: You can add custom middleware to process requests and responses globally. Middleware is useful for tasks like authentication, logging, and request/response modification.</p>
+    </li>
+    <li>
+      <p><strong>Internationalization and Localization</strong>: Django supports building multilingual applications with translation and localization features.</p>
+    </li>
+    <li>
+      <p><strong>Caching</strong>: Django has built-in support for caching to improve the performance of your web applications.</p>
+    </li>
+    <li>
+      <p><strong>Testing</strong>: Django provides a testing framework for creating and running tests to ensure the correctness of your application.</p>
+    </li>
+    <li>
+      <p><strong>REST Framework</strong>: Django REST framework is a powerful and flexible toolkit for building Web APIs, which is often used for building web services and mobile app backends.</p>
+    </li>
+  </ol>
+  <p>Django follows the Don't Repeat Yourself (DRY) and Convention over Configuration (CoC) principles, which can lead to increased productivity and maintainability. It's widely used for a variety of web applications, from simple blogs to complex, data-driven sites. Additionally, Django has a large and active community, which means you can find extensive documentation, third-party packages, and support when needed.</p>
+</div>
+
+<p>&nbsp;</p>
+<p>{% endblock %}</p>
