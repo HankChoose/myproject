@@ -118,8 +118,8 @@ def sh(request):
     return render(request, 'sh.html')
 
 
-def wfdjango(request):
-    return render(request, 'wfdjango.html')
+def wfd(request):
+    return render(request, 'wfd.html')
 
 
 @login_required

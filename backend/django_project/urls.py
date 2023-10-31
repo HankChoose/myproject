@@ -34,5 +34,5 @@ urlpatterns = [
     path("fi/", views.fi, name="fi"),
     path("fe/", views.fe, name="fe"),
     path("sh/", views.sh, name="sh"),
-    path("wfdjango/", views.wfdjango, name="wfdjango"),
+    path("wf/", views.wf, name="wf"),
 ]
