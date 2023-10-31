@@ -1,14 +1,95 @@
-{% extends "layout.html" %}
-
-{% load static %}
-{% csrf_token %}
-
-{% block title %}
-Hankwebsite
-{% endblock %}
-
-{% block body %}
-
+<p>{% extends "layout.html" %}
+  
+  {% load static %}
+  {% csrf_token %}
+  
+  {% block title %}
+  Hankwebsite
+  {% endblock %}
+  
+  {% block body %}
+ </p>
+<p>&nbsp; </p>
 <div>Test01</div>
 
-{% endblock %}
+<p>project/<br>
+  |-- backend/<br>
+  |   |-- django_project/     # Django项目文件夹<br>
+  |   |   |-- manage.py<br>
+  |   |   |-- ...<br>
+  |   |-- Dockerfile          # Django容器的Dockerfile<br>
+  |<br>
+  |-- frontend/<br>
+  |   |-- react_app/          # React.js项目文件夹<br>
+  |   |   |-- package.json<br>
+  |   |   |-- ...<br>
+  |   |-- Dockerfile          # React.js容器的Dockerfile<br>
+  |<br>
+  |-- nginx/<br>
+  |   |-- nginx.conf          # Nginx配置文件<br>
+  |<br>
+|-- docker-compose.yml      # Docker Compose配置文件</p>
+<p>1.构建Django容器:<br>
+  # 使用Docker官方的Python镜像作为基础镜像<br>
+  FROM python:3.9</p>
+<p># 设置工作目录<br>
+  WORKDIR /app</p>
+<p># 安装依赖<br>
+  COPY backend/django_project/requirements.txt /app/<br>
+  RUN pip install --no-cache-dir -r requirements.txt</p>
+<p># 将Django项目文件复制到容器中<br>
+  COPY backend/django_project/ /app/</p>
+<p># 启动Django服务<br>
+  CMD [&quot;python&quot;, &quot;manage.py&quot;, &quot;runserver&quot;, &quot;0.0.0.0:8000&quot;]</p>
+<p>2.用于构建React.js容器：<br>
+  # 使用Node.js镜像作为基础镜像<br>
+  FROM node:14</p>
+<p># 设置工作目录<br>
+  WORKDIR /app</p>
+<p># 安装依赖<br>
+  COPY frontend/react_app/package.json /app/<br>
+  COPY frontend/react_app/package-lock.json /app/<br>
+  RUN npm install</p>
+<p># 将React.js项目文件复制到容器中<br>
+  COPY frontend/react_app/ /app/</p>
+<p># 启动React.js服务<br>
+  CMD [&quot;npm&quot;, &quot;start&quot;]</p>
+<p>3.配置Nginx：<br>
+  # project/nginx/nginx.conf</p>
+<p># HTTP服务器<br>
+  server {<br>
+  listen 80;</p>
+<p> # Nginx代理到Django容器的地址<br>
+  location /api/ {<br>
+  proxy_pass http://django:8000;<br>
+  }</p>
+<p> # Nginx代理到React.js容器的地址<br>
+  location / {<br>
+  proxy_pass http://frontend:3000;<br>
+  }<br>
+  }</p>
+<p>4.docker-compose.yml<br>
+  version: '3'</p>
+<p>services:<br>
+  django:<br>
+  build:<br>
+  context: ./backend<br>
+  expose:<br>
+  - 8000</p>
+<p> frontend:<br>
+  build:<br>
+  context: ./frontend<br>
+  expose:<br>
+  - 3000</p>
+<p> nginx:<br>
+  image: nginx:latest<br>
+  ports:<br>
+  - &quot;80:80&quot;<br>
+  volumes:<br>
+  - ./nginx/nginx.conf:/etc/nginx/nginx.conf<br>
+  depends_on:<br>
+  - django<br>
+  - frontend</p>
+<p>5.ALLOWED_HOSTS = ['nginx', 'frontend', 'your_other_allowed_host']<br>
+</p>
+<p>{% endblock %}</p>
