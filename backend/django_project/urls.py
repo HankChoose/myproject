@@ -55,6 +55,9 @@ urlpatterns = [
     path("bdpython/", views.bdpython, name="bdpython"),
     path("bdphp/", views.bdphp, name="bdphp"),
     path("bdnotejs/", views.bdnotejs, name="bdnotejs"),
+    path("tdocker/", views.tdocker, name="tdocker"),
+    path("tnginx/", views.tnginx, name="tnginx"),
+    path("tgit/", views.tgit, name="tgit"),
 
 
 ]
