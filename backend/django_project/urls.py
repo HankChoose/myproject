@@ -37,7 +37,7 @@ urlpatterns = [
     path("wfd/", views.wfd, name="wfd"),
     path("wffastapi/", views.wffastapi, name="wffastapi"),
     path("wfflutter/", views.wfflutter, name="wfflutter"),
-    path("wfspring/", views.wfspring, name="wfspring"),
+    path("wfspringboot/", views.wfspringboot, name="wfspringboot"),
     path("wfflask/", views.wfflask, name="wfflask"),
 
 ]

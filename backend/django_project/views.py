@@ -126,8 +126,8 @@ def wfflask(request):
     return render(request, 'wfflask.html')
 
 
-def wfspring(request):
-    return render(request, 'wfspring.html')
+def wfspringboot(request):
+    return render(request, 'wfspringboot.html')
 
 
 def wfflutter(request):
