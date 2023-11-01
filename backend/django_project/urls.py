@@ -38,6 +38,6 @@ urlpatterns = [
     path("wffastapi/", views.wffastapi, name="wffastapi"),
     path("wfflutter/", views.wfflutter, name="wfflutter"),
     path("wfspring/", views.wfspring, name="wfspring"),
-    path("wflask/", views.wflask, name="wflask"),
+    path("wfflask/", views.wfflask, name="wfflask"),
 
 ]

@@ -122,8 +122,8 @@ def wfd(request):
     return render(request, 'wfd.html')
 
 
-def wflask(request):
-    return render(request, 'wflask.html')
+def wfflask(request):
+    return render(request, 'wfflask.html')
 
 
 def wfspring(request):
