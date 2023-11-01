@@ -185,3 +185,23 @@ def fdbootstrap(request):
 
 def fdscss(request):
     return render(request, 'fdscss.html')
+
+
+def bdnotejs(request):
+    return render(request, 'bdnotejs.html')
+
+
+def bdphp(request):
+    return render(request, 'bdphp.html')
+
+
+def bdpython(request):
+    return render(request, 'bdpython.html')
+
+
+def bdc(request):
+    return render(request, 'bdc.html')
+
+
+def bdjava(request):
+    return render(request, 'bdjava.html')
