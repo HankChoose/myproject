@@ -50,6 +50,11 @@ urlpatterns = [
     path("fdjavascript/", views.fdjavascript, name="fdjavascript"),
     path("fdtypescript/", views.fdtypescript, name="fdtypescript"),
     path("fdreact/", views.fdreact, name="fdreact"),
+    path("bdjava/", views.bdjava, name="bdjava"),
+    path("bdc/", views.bdc, name="bdc"),
+    path("bdpython/", views.bdpython, name="bdpython"),
+    path("bdphp/", views.bdphp, name="bdphp"),
+    path("bdnotejs/", views.bdnotejs, name="bdnotejs"),
 
 
 ]
