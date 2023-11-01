@@ -76,6 +76,11 @@ def Register(request):
             return JsonResponse(combined_datano)
 
 
+@login_required
+def profile(request):
+    return render(request, 'profile.html')
+
+
 def index(request):
     '''
     context = {
@@ -158,6 +163,25 @@ def dbmysql(request):
     return render(request, 'dbmysql.html')
 
 
-@login_required
-def profile(request):
-    return render(request, 'profile.html')
+def fdreact(request):
+    return render(request, 'fdreact.html')
+
+
+def fdtypescript(request):
+    return render(request, 'fdtypescript.html')
+
+
+def fdjavascript(request):
+    return render(request, 'fdjavascript.html')
+
+
+def fdhtml(request):
+    return render(request, 'fdhtml.html')
+
+
+def fdbootstrap(request):
+    return render(request, 'fdbootstrap.html')
+
+
+def fdscss(request):
+    return render(request, 'fdscss.html')

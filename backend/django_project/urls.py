@@ -44,5 +44,12 @@ urlpatterns = [
     path("dboracle/", views.dboracle, name="dboracle"),
     path("dbpostgresql/", views.dbpostgresql, name="dbpostgresql"),
     path("dbmongodb/", views.dbmongodb, name="dbmongodb"),
+    path("fdscss/", views.fdscss, name="fdscss"),
+    path("fdbootstrap/", views.fdbootstrap, name="fdbootstrap"),
+    path("fdhtml/", views.fdhtml, name="fdhtml"),
+    path("fdjavascript/", views.fdjavascript, name="fdjavascript"),
+    path("fdtypescript/", views.fdtypescript, name="fdtypescript"),
+    path("fdreact/", views.fdreact, name="fdreact"),
+
 
 ]
