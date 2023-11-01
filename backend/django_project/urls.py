@@ -39,5 +39,10 @@ urlpatterns = [
     path("wfflutter/", views.wfflutter, name="wfflutter"),
     path("wfspringboot/", views.wfspringboot, name="wfspringboot"),
     path("wfflask/", views.wfflask, name="wfflask"),
+    path("dbmysql/", views.dbmysql, name="dbmysql"),
+    path("dbsqlsever/", views.dbsqlsever, name="dbsqlsever"),
+    path("dboracle/", views.dboracle, name="dboracle"),
+    path("dbpostgresql/", views.dbpostgresql, name="dbpostgresql"),
+    path("dbmongodb/", views.dbmongodb, name="dbmongodb"),
 
 ]

@@ -138,6 +138,26 @@ def wffastapi(request):
     return render(request, 'wffastapi.html')
 
 
+def dbmongodb(request):
+    return render(request, 'dbmongodb.html')
+
+
+def dbpostgresql(request):
+    return render(request, 'dbpostgresql.html')
+
+
+def dboracle(request):
+    return render(request, 'dboracle.html')
+
+
+def dbsqlsever(request):
+    return render(request, 'dbsqlsever.html')
+
+
+def dbmysql(request):
+    return render(request, 'dbmysql.html')
+
+
 @login_required
 def profile(request):
     return render(request, 'profile.html')
