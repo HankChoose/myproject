@@ -1,0 +1,68 @@
+<p>{% extends "layout.html" %}
+  
+  {% load static %}
+  {% csrf_token %}
+  
+  {% block title %}
+  Hankwebsite
+  {% endblock %}
+  
+  {% block body %}
+ </p>
+<div>
+<p>&nbsp; </p>
+<table width="1066" border="0" align="left">
+  <tbody>
+    <tr>
+      <th width="901" align="left" scope="col"><h1>Web Framework-SpringBoot</h1></th>
+      <th width="155" scope="col" align="right"><a href="https://spring.io/projects/spring-boot" target="_blank">Learn more</a></th>
+    </tr>
+    <tr>
+      <th scope="row">&nbsp;</th>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>&nbsp; </p>
+<p>&nbsp; </p>
+
+<div>
+  <p>Spring Boot is a Java-based open-source framework that simplifies the development of production-ready applications. It is part of the larger Spring ecosystem and is designed to make it easier to create stand-alone, production-grade Spring-based applications with minimal configuration and boilerplate code. Here are some key aspects of Spring Boot:</p>
+  <ol>
+    <li>
+      <p><strong>Standalone Applications</strong>: Spring Boot applications are self-contained and can run as standalone Java applications. They embed an embedded web server (like Tomcat, Jetty, or Undertow), reducing the need for external server setup.</p>
+    </li>
+    <li>
+      <p><strong>Opinionated Defaults</strong>: Spring Boot adopts an opinionated approach, providing sensible defaults for configuration. This means developers can get started quickly without having to configure every detail of their application.</p>
+    </li>
+    <li>
+      <p><strong>Auto-Configuration</strong>: Spring Boot's auto-configuration feature automatically configures Spring components and third-party libraries based on the project's dependencies. It simplifies configuration and reduces the need for extensive XML or Java-based configuration files.</p>
+    </li>
+    <li>
+      <p><strong>Spring Boot Starters</strong>: Spring Boot offers a collection of pre-packaged dependencies known as "starters." Starters simplify the inclusion of common sets of features and libraries, making it easy to set up specific types of applications (e.g., web applications, data access, messaging) with a single dependency.</p>
+    </li>
+    <li>
+      <p><strong>Microservices Support</strong>: Spring Boot is often used in building microservices due to its lightweight nature and the ability to create independently deployable services. It is well-suited for microservices architecture.</p>
+    </li>
+    <li>
+      <p><strong>Spring Boot Actuator</strong>: Actuator is a set of production-ready features provided by Spring Boot for monitoring and managing your application in production. It includes health checks, metrics, application endpoints, and more.</p>
+    </li>
+    <li>
+      <p><strong>Development Tools</strong>: Spring Boot DevTools offer features such as automatic application restart, live reload, and remote debugging to enhance the development experience.</p>
+    </li>
+    <li>
+      <p><strong>Data Access</strong>: Spring Boot simplifies database access with support for various data sources, including JDBC, JPA, and NoSQL databases. It provides a consistent and easy-to-use interface for data access.</p>
+    </li>
+    <li>
+      <p><strong>Security</strong>: Spring Boot integrates with Spring Security to provide authentication and authorization features for securing your application.</p>
+    </li>
+    <li>
+      <p><strong>Testing</strong>: Spring Boot offers tools for unit testing and integration testing, making it easier to write tests for your application.</p>
+    </li>
+  </ol>
+  <p>Spring Boot has gained popularity for developing a wide range of applications, including web applications, RESTful APIs, batch processing jobs, and microservices. It is an excellent choice for Java developers looking to streamline application development and focus on writing business logic rather than extensive configuration.</p>
+</div>
+
+<p>&nbsp;</p>
+<p>{% endblock %}</p>

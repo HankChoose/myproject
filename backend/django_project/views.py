@@ -122,6 +122,22 @@ def wfd(request):
     return render(request, 'wfd.html')
 
 
+def wflask(request):
+    return render(request, 'wflask.html')
+
+
+def wfspring(request):
+    return render(request, 'wfspring.html')
+
+
+def wfflutter(request):
+    return render(request, 'wfflutter.html')
+
+
+def wffastapi(request):
+    return render(request, 'wffastapi.html')
+
+
 @login_required
 def profile(request):
     return render(request, 'profile.html')

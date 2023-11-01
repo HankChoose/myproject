@@ -1,0 +1,63 @@
+<p>{% extends "layout.html" %}
+  
+  {% load static %}
+  {% csrf_token %}
+  
+  {% block title %}
+  Hankwebsite
+  {% endblock %}
+  
+  {% block body %}
+ </p>
+<div>
+<p>&nbsp; </p>
+<table width="1066" border="0" align="left">
+  <tbody>
+    <tr>
+      <th width="901" align="left" scope="col"><h1>Web Framework-FastAPI</h1></th>
+      <th width="155" scope="col" align="right"><a href="https://fastapi.tiangolo.com/" target="_blank">Learn more</a></th>
+    </tr>
+    <tr>
+      <th scope="row">&nbsp;</th>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p>&nbsp; </p>
+<p>&nbsp; </p>
+
+<div>
+  <p>FastAPI is a modern, fast (high-performance), web framework for building APIs with Python. It is designed to make it easy to create RESTful APIs quickly with minimal code and a focus on type hints and automatic documentation generation. FastAPI is built on top of Starlette for the web components and Pydantic for data validation and serialization.</p>
+  <p>Key features of FastAPI include:</p>
+  <ol>
+    <li>
+      <p>Automatic validation: FastAPI uses Python type hints to validate request and response data, making it easy to handle form data, query parameters, and JSON payloads.</p>
+    </li>
+    <li>
+      <p>Fast execution: It is built on top of asynchronous programming techniques and offers excellent performance, making it a great choice for building high-performance APIs.</p>
+    </li>
+    <li>
+      <p>Automatic API documentation: FastAPI generates interactive API documentation based on the provided type hints and docstrings. It's based on the OpenAPI specification and can be easily viewed and tested through a web browser.</p>
+    </li>
+    <li>
+      <p>Dependency injection: FastAPI supports dependency injection for functions, allowing you to manage the dependencies and dependencies' lifecycles easily.</p>
+    </li>
+    <li>
+      <p>Websockets: It also supports WebSocket functionality, making it suitable for real-time applications.</p>
+    </li>
+    <li>
+      <p>Authentication and security: FastAPI provides tools for handling authentication and securing your API using OAuth2, API tokens, and other methods.</p>
+    </li>
+    <li>
+      <p>Data validation: FastAPI integrates Pydantic for data validation and serialization, which simplifies the handling of data in your API.</p>
+    </li>
+    <li>
+      <p>Built-in testing: It has built-in testing utilities for creating test cases and running tests for your APIs.</p>
+    </li>
+  </ol>
+  <p>FastAPI has gained popularity in the Python web development community due to its simplicity, performance, and the ability to rapidly create robust APIs. It's often compared to frameworks like Flask and Django, but it stands out for its focus on type hints and automatic documentation, as well as its asynchronous capabilities for building efficient APIs.</p>
+</div>
+
+<p>&nbsp;</p>
+<p>{% endblock %}</p>
