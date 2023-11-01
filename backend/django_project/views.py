@@ -205,15 +205,3 @@ def bdc(request):
 
 def bdjava(request):
     return render(request, 'bdjava.html')
-
-
-def tgit(request):
-    return render(request, 'tgit.html')
-
-
-def tnginx(request):
-    return render(request, 'tnginx.html')
-
-
-def tdocker(request):
-    return render(request, 'tdocker.html')
