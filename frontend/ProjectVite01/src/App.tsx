@@ -30,7 +30,7 @@ function App() {
                 <Link to="/react/userapply"> UserApply </Link>
                 <Link to="/react/signin"> SignIn </Link>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/react" element={<Home />} />
                     <Route path="/react/userapply" element={<Provider store={store}><UserApply /></Provider>} />
                     <Route path="/react/userapply2" element={<Provider store={store}><UserApply2 /></Provider>} />
                     <Route path="/react/signin" element={<FormCard formType="signin" />} />
