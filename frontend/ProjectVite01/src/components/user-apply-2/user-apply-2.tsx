@@ -66,7 +66,7 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         <div>
             <select value={userInfo2.applytype} onChange={handleApplytypeChange}><option>Apple</option><option>Banana</option><option>Watermelon</option></select>
             <input type="text" placeholder="Requirements" value={userInfo2.requirements} onChange={handleRequirementsChange} />
-           <Link to="/userapply">Previous page</Link>
+           <Link to="/react/userapply">Previous page</Link>
             <Link to="/">Cancle</Link>
            <button onClick={handleSubmission}>Submit</button>
         </div>

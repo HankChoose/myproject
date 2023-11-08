@@ -27,7 +27,7 @@ export const FormCard = ({ className, formType = 'signin', children}: FormCardPr
 
     const linkresetpw =
         formType === 'signin' ? (
-            <Link to="/resetpw"> Forgot my password </Link>
+            <Link to="/react/resetpw"> Forgot my password </Link>
         ) : (
             <span />
         );
@@ -43,9 +43,9 @@ export const FormCard = ({ className, formType = 'signin', children}: FormCardPr
 
     const linksign =
         formType === 'signin' ? (
-             <Link to="/signup"> Sign Up </Link>
+             <Link to="/react/signup"> Sign Up </Link>
         ) : (formType === 'signup' || formType === 'resetpw') ? (
-            <Link to="/signin"> Sign In </Link>
+            <Link to="/react/signin"> Sign In </Link>
         ) : (
             <span />
         );
