@@ -45,7 +45,7 @@ export const UserApply = ({ className}: UserApplyProps) => {
         <input type="text" placeholder="Email" value={userInfo.email} onChange={handleEmailChange} />
        
         <Link to="/react/userapply2">Next page</Link>
-        <Link to="/">Cancle</Link>
+        <a href="https://zhiyouyuec.com">Home</a>       
        
         </div>
     </div>;

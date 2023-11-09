@@ -7,6 +7,6 @@ export default createBoard({
     environmentProps: {
         windowWidth: 1144,
         canvasHeight: 435,
-        windowHeight: 578
+        windowHeight: 529
     }
 });

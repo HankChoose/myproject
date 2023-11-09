@@ -23,7 +23,9 @@ const store = createStore(rootReducer);
 function App() {
 
     return (
+       
         <div className={styles.App}>
+        
             <Router>
                 <Link to="/react/userapply"> UserApply </Link>
                 <Link to="/react/signin"> SignIn </Link>
