@@ -23,9 +23,7 @@ const store = createStore(rootReducer);
 function App() {
 
     return (
-
         <div className={styles.App}>
-
             <Router>
                 <Link to="/react/userapply"> UserApply </Link>
                 <Link to="/react/signin"> SignIn </Link>
@@ -44,7 +42,7 @@ function App() {
                         <Route path="test3" element={<Test3 />} />
                         <Route path="test4" element={<Test4 />} />
                     </Route>
-                 
+
                 </Routes>
 
             </Router>

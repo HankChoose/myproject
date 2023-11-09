@@ -79,7 +79,7 @@ export const FormCard = ({ className, formType = 'signin', children}: FormCardPr
             <span className={styles.handpoint}>{linkresetpw}</span>
             <FormRow />
             {Inputpwagian}
-            <FormRow />
+           
             <FormRow children={<Button> {titlecard} </Button>} />
         </div>
     );

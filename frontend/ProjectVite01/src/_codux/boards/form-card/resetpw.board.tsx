@@ -6,4 +6,7 @@ export default createBoard({
     name: 'Resetpw',
     Board: () => <Router><FormCard formType="resetpw" /></Router>,
     isSnippet: true,
+    environmentProps: {
+        canvasWidth: 370
+    }
 });
