@@ -61,6 +61,7 @@ RUN npm install -g webpack@5
 RUN npm install --save-dev webpack@5 webpack-cli@4 webpack-dev-server@4
 RUN npm install style-loader css-loader sass-loader node-sass --save-dev
 RUN npm install redux react-redux
+RUN npm install formik yup
 # 构建React应用
 RUN npm run build
 # 启动React应用
@@ -96,6 +97,7 @@ RUN npm install -g npm
 RUN npm install @babel/core @babel/preset-react
 RUN npm install react-refresh --save-dev
 RUN npm install redux react-redux
+RUN npm install formik yup
 
 # 构建React应用
 RUN npm run build

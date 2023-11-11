@@ -1,32 +1,29 @@
-"""
-URL configuration for django_project project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/dev/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import include, path
+from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
 from . import views
+from .views import UserDemandCreateView
+from .views import CheckUserAPIView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    # path('accounts/profile/', views.profile_view, name='account_profile'),
-    path('accounts/profile/', views.profile, name="profile"),
-    path('encyclopedia/', include("encyclopedia.urls")),
-    # path('register', views.CreateUserView, name="CreateUserView"),
-    path('send-data/', views.Register, name='Register'),
     path("", views.index, name="index"),
+    path('encyclopedia/', include("encyclopedia.urls")),
+    path('create/', UserDemandCreateView.as_view(), name='create-demand'),
+    path('api/check-email-exist/<str:email>/',
+         check_email_exist, name='check_email_exist'),
+    path('api/check_user/', CheckUserAPIView.as_view(), name='check_user'),
+    path('accounts/', include('allauth.urls')),
+    path('accounts/login/', LoginView.as_view(), name='account_login'),
+    path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
+    path('accounts/signup/', SignupView.as_view(), name='account_signup'),
+    path('accounts/password/change/', PasswordChangeView.as_view(),
+         name='account_change_password'),
+    # path('accounts/profile/', views.profile_view, name='account_profile'),
+    # path('accounts/profile/', views.profile, name="profile"),
+    # path('register', views.CreateUserView, name="CreateUserView"),
+    # path('send-data/', views.Register, name='Register'),
     path("pd/", views.pd, name="pd"),
     path("qwb/", views.qwb, name="qwb"),
     path("cbs/", views.cbs, name="cbs"),

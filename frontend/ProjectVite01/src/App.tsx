@@ -27,8 +27,8 @@ function App() {
         <div className={styles.App}>
         
             <Router>
-                <Link to="/react/userapply"> UserApply </Link>
-                <Link to="/react/signin"> SignIn </Link>
+                <Link to="/react/userapply"> U </Link>
+                <Link to="/react/signin"> S </Link>
                 <Routes>
                     <Route path="/react" element={<Home />} />
                     <Route path="/react/userapply" element={<Provider store={store}><UserApply /></Provider>} />
