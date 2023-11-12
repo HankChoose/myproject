@@ -4,6 +4,7 @@ from allauth.account.views import LoginView, LogoutView, SignupView, PasswordCha
 from . import views
 from .views import UserDemandCreateView
 from .views import CheckUserAPIView
+from .views import check_email_exist
 
 
 urlpatterns = [
