@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 from django.http import HttpResponseNotFound
 from .util import convert_markdown_to_html
+from rest_framework import generics
 from .serializers import UserDemandSerializer
 from .models import UserDemand
 from django.http import HttpResponse, HttpResponseRedirect
