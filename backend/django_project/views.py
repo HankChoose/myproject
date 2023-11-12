@@ -12,10 +12,40 @@ from django.db import connection
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.conf import settings
-
+from allauth.account.views import LoginView, SignupView, PasswordChangeView
 from django.views.decorators.csrf import csrf_exempt
 from .serializers import UserSerializer
+from .serializers import UserDemandSerializer
+from rest_framework import generics
+from rest_framework.views import APIView
+from .models import UserDemand
+from django.contrib.auth.decorators import login_required
 import json
+
+# ------------------------------------------------------------>Check exists email
+
+
+def check_email_exist(request, email):
+    from django.contrib.auth.models import User
+    exists = User.objects.filter(email=email).exists()
+    return JsonResponse({'exists': exists})
+
+
+class CheckUserAPIView(APIView):
+    def post(self, request, *args, **kwargs):
+        email = request.data.get('email', '')
+        try:
+            user = User.objects.get(email=email)
+            return Response({'exists': True}, status=status.HTTP_200_OK)
+        except User.DoesNotExist:
+            return Response({'exists': False}, status=status.HTTP_200_OK)
+
+# ------------------------------------------------------------>For UserDemand
+
+
+class UserDemandCreateView(generics.CreateAPIView):
+    queryset = UserDemand.objects.all()
+    serializer_class = UserDemandSerializer
 
 
 @csrf_exempt

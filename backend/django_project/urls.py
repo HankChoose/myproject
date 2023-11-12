@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
 from . import views
-
+from .views import UserDemandCreateView
 from .views import CheckUserAPIView
 
 
@@ -10,6 +10,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index, name="index"),
     path('encyclopedia/', include("encyclopedia.urls")),
+    path('create/', UserDemandCreateView.as_view(), name='create-demand'),
+    path('api/check-email-exist/<str:email>/',
+         check_email_exist, name='check_email_exist'),
     path('api/check_user/', CheckUserAPIView.as_view(), name='check_user'),
     path('accounts/', include('allauth.urls')),
     path('accounts/login/', LoginView.as_view(), name='account_login'),

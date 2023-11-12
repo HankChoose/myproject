@@ -7,8 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 from django.http import HttpResponseNotFound
 from .util import convert_markdown_to_html
-from rest_framework import generics
-from .serializers import UserDemandSerializer
+
 from .models import UserDemand
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import HttpResponseRedirect, reverse
@@ -23,7 +22,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import render
-from allauth.account.views import LoginView, SignupView, PasswordChangeView
+
 
 
 def index(request):
@@ -38,33 +37,6 @@ def index(request):
 
     })
 
-# ------------------------------------------------------------>Check exists email
-
-
-def check_email_exist(request, email):
-    from django.contrib.auth.models import User
-    exists = User.objects.filter(email=email).exists()
-    return JsonResponse({'exists': exists})
-
-
-User = get_user_model()
-
-
-class CheckUserAPIView(APIView):
-    def post(self, request, *args, **kwargs):
-        email = request.data.get('email', '')
-        try:
-            user = User.objects.get(email=email)
-            return Response({'exists': True}, status=status.HTTP_200_OK)
-        except User.DoesNotExist:
-            return Response({'exists': False}, status=status.HTTP_200_OK)
-
-# ------------------------------------------------------------>For UserDemand
-
-
-class UserDemandCreateView(generics.CreateAPIView):
-    queryset = UserDemand.objects.all()
-    serializer_class = UserDemandSerializer
 
 # ------------------------------------------------------------>For Entry
 
