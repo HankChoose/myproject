@@ -1,26 +1,29 @@
-from django.shortcuts import render
+from .models import User
+from .models import UserDemand
+
+import json
+
 from django.contrib.auth.decorators import login_required
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-# from .models import User
 from django.contrib.auth.models import User
 from django.http import HttpResponseServerError
-from django.http import JsonResponse
 from django.http import HttpResponse
 from django.db import connection
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.conf import settings
-from allauth.account.views import LoginView, SignupView, PasswordChangeView
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import UserSerializer
-from .serializers import UserDemandSerializer
+
 from rest_framework import generics
 from rest_framework.views import APIView
-from .models import UserDemand
-from django.contrib.auth.decorators import login_required
-import json
+from rest_framework.response import Response
+from rest_framework import status
+
+from .serializers import UserSerializer
+from .serializers import UserDemandSerializer
+
+from allauth.account.views import LoginView, SignupView, PasswordChangeView
+
 
 # ------------------------------------------------------------>Check exists email
 

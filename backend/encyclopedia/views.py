@@ -1,28 +1,24 @@
-import json
-from rest_framework import generics
 from .models import Book
-from django.shortcuts import redirect
+from . import util
+from .util import convert_markdown_to_html
+import json
 import random
+
+from django import forms
+from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse
 from django.http import HttpResponseNotFound
-from .util import convert_markdown_to_html
-
-from .models import UserDemand
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import HttpResponseRedirect, reverse
 from django.shortcuts import render
-from . import util
-from django import forms
-from django.contrib.auth import get_user_model
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+
+from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from django.http import JsonResponse
-from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
-from django.shortcuts import render
-
 
 
 def index(request):
