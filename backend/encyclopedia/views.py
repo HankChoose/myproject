@@ -41,7 +41,6 @@ def index(request):
 # ------------------------------------------------------------>Check exists email
 
 
-@login_required
 def check_email_exist(request, email):
     from django.contrib.auth.models import User
     exists = User.objects.filter(email=email).exists()
