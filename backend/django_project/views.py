@@ -46,6 +46,7 @@ class CheckUserAPIView(APIView):
 # ------------------------------------------------------------>For UserDemand
 
 
+@csrf_exempt
 class UserDemandCreateView(generics.CreateAPIView):
     queryset = UserDemand.objects.all()
     serializer_class = UserDemandSerializer
