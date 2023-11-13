@@ -67,16 +67,30 @@ const handleSignUp = (values: FormikValues) => {
     // Add code to submit data for sign-up
     const csrftoken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('csrftoken='))?.split('=')[1];
     // Set the CSRF token in the headers of the Axios request
-    axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
-    axios.post("/accounts/signup/", values)
-    .then(response => {
-        // 处理成功响应
-        console.log('成功',response.data);
-    })
-    .catch(error => {
-        // 处理错误
-        console.error('失败', error);
-    });
+     const userData = {
+      username: 'hank2', // 用户名
+      email: 'hankchenv@gmail.com', // 电子邮件
+      password1: 'chy123hank$A', // 密码
+      password2: 'chy123hank$A', // 确认密码
+      csrfmiddlewaretoken:'gqpJHqRqYqUaEbepPxqhNzLKbL2RL9PSczu7GG1ZTRpzoeDjc3UXnGQlYMfrJ012'
+      // 其他注册相关信息
+    };
+
+    try {
+
+      // 设置CSRF令牌作为请求头
+      const config = {
+        headers: {
+          'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+          'Referer': 'https://zhiyouyuec.com'
+        },
+      };
+      const response = axios.post('/accounts/signup/', userData, config);
+      console.log('Response from Django:');
+    } catch (error) {
+      //console.error(error);
+      console.error('Error sending data to Django:', error);
+    }
 };
 
 const handleResetPassword = (values: FormikValues) => {
