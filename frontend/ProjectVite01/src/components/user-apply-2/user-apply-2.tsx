@@ -51,8 +51,6 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         dispatch(updateRequirements(e.target.value));
         console.log("Requirements is:", e.target.value);
     };
-    
-   
 
     const handleSubmission = () => {
         const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
@@ -60,6 +58,9 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         console.log("userInfo2:",userInfo2);
         console.log("userInfoArray:",userInfoArray);
         //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+        const csrftoken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('csrftoken='))?.split('=')[1];
+        // Set the CSRF token in the headers of the Axios request
+        axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
         axios.post("/create/", userInfoArray)
         .then(response => {
         // 处理成功响应
