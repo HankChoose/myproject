@@ -25,8 +25,8 @@ type RootState2 = {
     };
 };
 
-const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
-axios.defaults.headers.common['X-CSRF-Token'] = csrfToken;
+
+
 /**
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
@@ -51,18 +51,20 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         dispatch(updateRequirements(e.target.value));
         console.log("Requirements is:", e.target.value);
     };
-
-    const config = {
-    headers: {
-        'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-    },
-    };
+    
+   
 
     const handleSubmission = () => {
+        const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
+        const config = {
+        headers: {
+            'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+        },
+        };
         console.log("userInfo:",userInfo);
         console.log("userInfo2:",userInfo2);
         console.log("userInfoArray:",userInfoArray);
-        axios.post("/create/", userInfoArray)
+        axios.post("/create/", userInfoArray, config)
         .then(response => {
         // 处理成功响应
         })
