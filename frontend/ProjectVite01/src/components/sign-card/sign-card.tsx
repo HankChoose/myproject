@@ -44,19 +44,13 @@ const validationSchemaResetpw = Yup.object().shape({
 });
 
 const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
-const config = {
-    headers: {
-        'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-        'Referer': 'https://zhiyouyuec.com'
-    },
-};
-
 
 const handleSignIn = (values: FormikValues) => {
     // Logic for handling sign-in form submission
     console.log('Handling sign-in form submission:', values);
     // Add code to submit data for sign-in
-    axios.post("/accounts/login/", values, config)
+    axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+    axios.post("/accounts/login/", values)
     .then(response => {
         // 处理成功响应
         console.log('成功',response.data);
@@ -71,7 +65,8 @@ const handleSignUp = (values: FormikValues) => {
     // Logic for handling sign-up form submission
     console.log('Handling sign-up form submission:', values);
     // Add code to submit data for sign-up
-    axios.post("/accounts/signup/", values, config)
+    axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+    axios.post("/accounts/signup/", values)
     .then(response => {
         // 处理成功响应
         console.log('成功',response.data);
@@ -86,7 +81,8 @@ const handleResetPassword = (values: FormikValues) => {
     // Logic for handling reset password form submission
     console.log('Handling reset password form submission:', values);
     // Add code to submit data for reset password
-    axios.post("/accounts/password/change/", values, config)
+    axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+    axios.post("/accounts/password/change/", values)
     .then(response => {
         // 处理成功响应
         console.log('成功',response.data);

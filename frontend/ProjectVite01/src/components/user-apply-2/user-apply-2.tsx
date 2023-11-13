@@ -56,16 +56,11 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
 
     const handleSubmission = () => {
         const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
-        const config = {
-        headers: {
-            'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-            'Referer': 'https://zhiyouyuec.com'
-        },
-        };
         console.log("userInfo:",userInfo);
         console.log("userInfo2:",userInfo2);
         console.log("userInfoArray:",userInfoArray);
-        axios.post("/create/", userInfoArray, config)
+        axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+        axios.post("/create/", userInfoArray)
         .then(response => {
         // 处理成功响应
         })
