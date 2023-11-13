@@ -27,13 +27,14 @@ from allauth.account.views import LoginView, SignupView, PasswordChangeView
 
 # ------------------------------------------------------------>Check exists email
 
-
+@csrf_exempt
 def check_email_exist(request, email):
     from django.contrib.auth.models import User
     exists = User.objects.filter(email=email).exists()
     return JsonResponse({'exists': exists})
 
 
+@csrf_exempt
 class CheckUserAPIView(APIView):
     def post(self, request, *args, **kwargs):
         email = request.data.get('email', '')
@@ -46,6 +47,7 @@ class CheckUserAPIView(APIView):
 # ------------------------------------------------------------>For UserDemand
 
 
+@csrf_exempt
 class UserDemandCreateView(generics.CreateAPIView):
     queryset = UserDemand.objects.all()
     serializer_class = UserDemandSerializer
