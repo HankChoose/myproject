@@ -35,6 +35,7 @@ export const TestCheckEmail2 = ({ className }: TestCheckEmail2Props) => {
         },
     });
     return <div className={classNames(styles.root, className)}>
+    <div className={classNames(styles.FormRow)}> <a href="https://zhiyouyuec.com">Home</a></div>
             <form onSubmit={formik.handleSubmit}>
             <label htmlFor="email">邮箱地址:</label>
             <input
