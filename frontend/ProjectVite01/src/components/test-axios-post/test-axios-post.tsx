@@ -37,7 +37,8 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //const userData = { email, password };
+    const userData = { email, password };
+    
     /*
     const userData = {
       username: 'hank2', // 用户名
@@ -45,7 +46,7 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
       password: 'chy123hank$A', // 密码
      
     };
-    */
+   
     const userData = {
         username: 'hank',
         email: 'hankchenv@gmail.com',
@@ -53,7 +54,7 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
         demand_description: '123435666asdf',
      
     };
-
+    */
    
     /*  
       const userData = {
@@ -90,8 +91,8 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
       };
       ///accounts/signup/
       
-      const response = await axios.post('/create/', userData, config);
-      //const response = await axios.post('/send-data/', userData, config);
+      //const response = await axios.post('/create/', userData, config);
+      const response = await axios.post('/send-data/', userData, config);
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
       console.log('Response from Django:', response.data);
