@@ -47,6 +47,7 @@ const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
 const config = {
     headers: {
         'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+        'Referer': 'https://zhiyouyuec.com'
     },
 };
 
