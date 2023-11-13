@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import axios from "axios";
 
 export interface SignCardProps {
     className?: string;
@@ -46,18 +47,45 @@ const handleSignIn = (values: FormikValues) => {
     // Logic for handling sign-in form submission
     console.log('Handling sign-in form submission:', values);
     // Add code to submit data for sign-in
+    axios.post("/accounts/login", values)
+    .then(response => {
+        // 处理成功响应
+        console.log('成功',response.data);
+    })
+    .catch(error => {
+        // 处理错误
+         console.error('失败', error);
+    });
 };
 
 const handleSignUp = (values: FormikValues) => {
     // Logic for handling sign-up form submission
     console.log('Handling sign-up form submission:', values);
     // Add code to submit data for sign-up
+    axios.post("/accounts/signup", values)
+    .then(response => {
+        // 处理成功响应
+        console.log('成功',response.data);
+    })
+    .catch(error => {
+        // 处理错误
+        console.error('失败', error);
+    });
 };
 
 const handleResetPassword = (values: FormikValues) => {
     // Logic for handling reset password form submission
     console.log('Handling reset password form submission:', values);
     // Add code to submit data for reset password
+    axios.post("/accounts/password/change", values)
+    .then(response => {
+        // 处理成功响应
+        console.log('成功',response.data);
+    })
+    .catch(error => {
+        // 处理错误
+        console.error('失败', error);
+    });
 };
 /**
  * This component was created using Codux's Default new component template.
