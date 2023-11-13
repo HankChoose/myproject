@@ -13,7 +13,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path('encyclopedia/', include("encyclopedia.urls")),
     path('create/', UserDemandCreateView.as_view(), name='create-demand'),
-    path('receive_data/', Receive_data.as_view(), name='receive_data'),
+    path('receive_data/', Receive_data, name='receive_data'),
 
     path('api/check-email-exist/<str:email>/',
          check_email_exist, name='check_email_exist'),
