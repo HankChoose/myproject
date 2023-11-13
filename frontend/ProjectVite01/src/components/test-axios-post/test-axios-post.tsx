@@ -37,9 +37,17 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const userData = { email, password };
-    
+
+    const apiUrl = '/send-data/';
+    const userData = {
+      email: 'choose_last@163.com',
+      password: '1234',
+      // 添加要发送给Django的数据
+    };
+ 
     /*
+    const userData = { email, password };
+
     const userData = {
       username: 'hank2', // 用户名
       email: 'hankchenv@gmail.com', // 电子邮件
@@ -57,11 +65,7 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
     */
    
     /*  
-      const userData = {
-        email: 'choose_last@163.com',
-        password: '1234',
-        // 添加要发送给Django的数据
-      };
+    
     
     const dataToSend = {
       key1: 'value1',
@@ -91,8 +95,8 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
       };
       ///accounts/signup/
       
-      //const response = await axios.post('/create/', userData, config);
-      const response = await axios.post('/send-data/', userData, config);
+      const response = await axios.post(apiUrl, userData);
+      //const response = await axios.post('/send-data/', userData, config);
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
       console.log('Response from Django:', response.data);
