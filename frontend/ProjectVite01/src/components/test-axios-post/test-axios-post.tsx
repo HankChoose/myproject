@@ -5,6 +5,8 @@ import Cookies from 'js-cookie';
 import React, { useState } from 'react';
 import { Tabs, Tab, Form, Button } from 'react-bootstrap';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+
 
 export interface TestAxiosPostProps {
     className?: string;
