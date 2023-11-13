@@ -25,6 +25,8 @@ SECRET_KEY = 'django-insecure-pug#t6-2ups3a1ujjn17a&p!y=ac2d-8*1g2w)ox-vcem$dn=u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+APPEND_SLASH = False
+
 # ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = ['zhiyouyuec.com']
 
