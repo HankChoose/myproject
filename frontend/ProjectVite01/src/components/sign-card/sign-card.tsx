@@ -65,7 +65,9 @@ const handleSignUp = (values: FormikValues) => {
     // Logic for handling sign-up form submission
     console.log('Handling sign-up form submission:', values);
     // Add code to submit data for sign-up
-    //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+    const csrftoken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('csrftoken='))?.split('=')[1];
+    // Set the CSRF token in the headers of the Axios request
+    axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
     axios.post("/accounts/signup/", values)
     .then(response => {
         // 处理成功响应
