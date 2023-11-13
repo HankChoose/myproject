@@ -38,12 +38,23 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     //const userData = { email, password };
+    /*
     const userData = {
       username: 'hank2', // 用户名
       email: 'hankchenv@gmail.com', // 电子邮件
       password: 'chy123hank$A', // 密码
      
     };
+    */
+    const userData = {
+        username: 'hank',
+        email: 'hankchenv@gmail.com',
+        demand_type: 'aaa',
+        demand_description: '123435666asdf',
+     
+    };
+
+   
     /*  
       const userData = {
         email: 'choose_last@163.com',
@@ -77,7 +88,9 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
           'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
         },
       };
-      const response = await axios.post('/accounts/signup/', userData, config);
+      ///accounts/signup/
+      
+      const response = await axios.post('/create/', userData, config);
       //const response = await axios.post('/send-data/', userData, config);
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
