@@ -37,7 +37,13 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const userData = { email, password };
+    //const userData = { email, password };
+    const userData = {
+      username: 'hank2', // 用户名
+      email: 'hankchenv@gmail.com', // 电子邮件
+      password: 'chy123hank$A', // 密码
+     
+    };
     /*  
       const userData = {
         email: 'choose_last@163.com',
