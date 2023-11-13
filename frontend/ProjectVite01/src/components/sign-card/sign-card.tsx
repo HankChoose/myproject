@@ -47,7 +47,7 @@ const handleSignIn = (values: FormikValues) => {
     // Logic for handling sign-in form submission
     console.log('Handling sign-in form submission:', values);
     // Add code to submit data for sign-in
-    axios.post("/accounts/login", values)
+    axios.post("/accounts/login/", values)
     .then(response => {
         // 处理成功响应
         console.log('成功',response.data);
@@ -62,7 +62,7 @@ const handleSignUp = (values: FormikValues) => {
     // Logic for handling sign-up form submission
     console.log('Handling sign-up form submission:', values);
     // Add code to submit data for sign-up
-    axios.post("/accounts/signup", values)
+    axios.post("/accounts/signup/", values)
     .then(response => {
         // 处理成功响应
         console.log('成功',response.data);
@@ -77,7 +77,7 @@ const handleResetPassword = (values: FormikValues) => {
     // Logic for handling reset password form submission
     console.log('Handling reset password form submission:', values);
     // Add code to submit data for reset password
-    axios.post("/accounts/password/change", values)
+    axios.post("/accounts/password/change/", values)
     .then(response => {
         // 处理成功响应
         console.log('成功',response.data);

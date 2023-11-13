@@ -52,7 +52,7 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         console.log("userInfo:",userInfo);
         console.log("userInfo2:",userInfo2);
         console.log("userInfoArray:",userInfoArray);
-        axios.post("/create", userInfoArray)
+        axios.post("/create/", userInfoArray)
         .then(response => {
         // 处理成功响应
         })
