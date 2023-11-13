@@ -71,8 +71,8 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
           'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
         },
       };
-      const response = await axios.post('/accounts/login/', userData, config);
-      
+      //const response = await axios.post('/accounts/login/', userData, config);
+      const response = await axios.post('/send-data/', userData, config);
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
       console.log('Response from Django:', response.data);
