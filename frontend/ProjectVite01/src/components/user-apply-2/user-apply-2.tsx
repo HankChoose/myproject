@@ -59,7 +59,7 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         console.log("userInfo:",userInfo);
         console.log("userInfo2:",userInfo2);
         console.log("userInfoArray:",userInfoArray);
-        axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+        //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
         axios.post("/create/", userInfoArray)
         .then(response => {
         // 处理成功响应

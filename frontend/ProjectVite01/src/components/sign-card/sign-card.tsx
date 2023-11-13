@@ -49,7 +49,7 @@ const handleSignIn = (values: FormikValues) => {
     // Logic for handling sign-in form submission
     console.log('Handling sign-in form submission:', values);
     // Add code to submit data for sign-in
-    axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+    //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
     axios.post("/accounts/login/", values)
     .then(response => {
         // 处理成功响应
@@ -65,7 +65,7 @@ const handleSignUp = (values: FormikValues) => {
     // Logic for handling sign-up form submission
     console.log('Handling sign-up form submission:', values);
     // Add code to submit data for sign-up
-    axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+    //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
     axios.post("/accounts/signup/", values)
     .then(response => {
         // 处理成功响应
@@ -81,7 +81,7 @@ const handleResetPassword = (values: FormikValues) => {
     // Logic for handling reset password form submission
     console.log('Handling reset password form submission:', values);
     // Add code to submit data for reset password
-    axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+    //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
     axios.post("/accounts/password/change/", values)
     .then(response => {
         // 处理成功响应
