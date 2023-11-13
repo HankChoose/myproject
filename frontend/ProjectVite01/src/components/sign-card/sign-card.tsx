@@ -6,6 +6,7 @@ import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import axios from "axios";
+import Cookies from 'js-cookie';
 
 export interface SignCardProps {
     className?: string;
@@ -87,6 +88,9 @@ const handleResetPassword = (values: FormikValues) => {
         console.error('失败', error);
     });
 };
+
+const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
+axios.defaults.headers.common['X-CSRF-Token'] = csrfToken;
 /**
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
