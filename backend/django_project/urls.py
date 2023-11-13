@@ -14,7 +14,7 @@ urlpatterns = [
     path('encyclopedia/', include("encyclopedia.urls")),
     path('create/', UserDemandCreateView.as_view(), name='create-demand'),
     path('receive_data/', Receive_data, name='receive_data'),
-
+    path('send-data/', views.Register, name='Register'),
     path('api/check-email-exist/<str:email>/',
          check_email_exist, name='check_email_exist'),
     path('api/check_user/', CheckUserAPIView.as_view(), name='check_user'),
@@ -29,7 +29,7 @@ urlpatterns = [
     # path('accounts/profile/', views.profile_view, name='account_profile'),
     # path('accounts/profile/', views.profile, name="profile"),
     # path('register', views.CreateUserView, name="CreateUserView"),
-    path('send-data/', views.Register, name='Register'),
+
     path("pd/", views.pd, name="pd"),
     path("qwb/", views.qwb, name="qwb"),
     path("cbs/", views.cbs, name="cbs"),
