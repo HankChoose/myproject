@@ -38,7 +38,15 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const apiUrl = '/accounts/signup/';
+    const apiUrl = '/accounts/login/';
+     const userData = {
+      email: 'choose_last@163.com',
+      password: '1234',
+      // 添加要发送给Django的数据
+    };
+   
+    
+    /*
 
     const userData = {
       username: 'hankchenv111', // 用户名
@@ -46,13 +54,7 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
       password: 'chy123hank$A', // 电子邮件
 
     };
-    
-    /*
-    const userData = {
-      email: 'choose_last@163.com',
-      password: '1234',
-      // 添加要发送给Django的数据
-    };
+   
     const userData = {
       username: 'hankchenv111@gmail.com', // 用户名
       password: 'chy123hank$A', // 电子邮件
