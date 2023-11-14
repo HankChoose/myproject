@@ -89,6 +89,7 @@ const handleSignUp = (values: FormikValues) => {
           'Referer': 'https://zhiyouyuec.com'
         },
       };
+      axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
       const response = axios.post('/accounts/signup/', userData);
       console.log('Response from Django:');
     } catch (error) {
