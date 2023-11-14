@@ -38,7 +38,7 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const apiUrl = '/accounts/signup/';
+    const apiUrl = '/send-data/';
     
     const userData = {
       username: 'hankchenv111@gmail.com', // 用户名
