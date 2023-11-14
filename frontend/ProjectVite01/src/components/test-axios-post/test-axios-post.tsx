@@ -107,6 +107,7 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
       */
       // 设置CSRF令牌作为请求头
       const config = {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
