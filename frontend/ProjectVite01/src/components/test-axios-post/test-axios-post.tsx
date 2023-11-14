@@ -38,13 +38,13 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const apiUrl = '/api/auth/signup/';
+    const apiUrl = '/accounts/signup/';
 
     const userData = {
       username: 'hankchenv111', // 用户名
       email: 'choose_last@163.com',
       password: 'chy123hank$A', // 电子邮件
-     
+
     };
     
     /*
