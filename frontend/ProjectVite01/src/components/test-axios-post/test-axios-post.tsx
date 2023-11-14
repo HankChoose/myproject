@@ -41,9 +41,9 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
     const apiUrl = '/accounts/signup/';
     
     const userData = {
-      username: 'hank2', // 用户名
-      email: 'hankchenv111@gmail.com', // 电子邮件
-      password: 'chy123hank$A', // 密码
+      username: 'hankchenv111@gmail.com', // 用户名
+      password: 'chy123hank$A', // 电子邮件
+      password2: 'chy123hank$A', // 密码
      
     };
     /*
@@ -99,8 +99,7 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
           'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
         },
       };
-      ///accounts/signup/
-      
+     
       const response = await axios.post(apiUrl, userData, config);
       //const response = await axios.post('/send-data/', userData, config);
       //const response = await axios.post(`/api/${action}/`, userData);

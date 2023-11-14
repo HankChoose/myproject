@@ -90,7 +90,7 @@ const handleSignUp = (values: FormikValues) => {
         },
       };
       axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
-      const response = axios.post('/accounts/signup/', userData);
+      const response = axios.post('/accounts/signup/', userData,config);
       console.log('Response from Django:');
     } catch (error) {
       //console.error(error);
