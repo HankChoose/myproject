@@ -39,14 +39,20 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
     e.preventDefault();
 
     const apiUrl = '/send-data/';
+    const userData = {
+      email: 'choose_last@163.com',
+      password: '1234',
+      // 添加要发送给Django的数据
+    };
     
+    /*
+
     const userData = {
       username: 'hankchenv111@gmail.com', // 用户名
       password: 'chy123hank$A', // 电子邮件
       password2: 'chy123hank$A', // 密码
      
     };
-    /*
     const userData = { email, password };
     
     const userData = {
