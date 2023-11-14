@@ -55,6 +55,7 @@ const handleSignIn = (values: FormikValues) => {
       password: values.password,
       // 添加要发送给Django的数据
     };
+    console.log('Handling sign-in form userData:', userData);
     axios.post("/accounts/login/", userData)
     .then(response => {
         // 处理成功响应
@@ -70,6 +71,7 @@ const handleSignUp = (values: FormikValues) => {
     // Logic for handling sign-up form submission
     console.log('Handling sign-up form submission:', values);
     // Add code to submit data for sign-up
+  
     const csrftoken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('csrftoken='))?.split('=')[1];
     // Set the CSRF token in the headers of the Axios request
     const userData = {
@@ -78,7 +80,7 @@ const handleSignUp = (values: FormikValues) => {
       password2: values.password,
       // 添加要发送给Django的数据
     };
-
+    console.log('Handling sign-up form userData:', userData);
     try {
       // 设置CSRF令牌作为请求头
       const config = {
@@ -87,7 +89,7 @@ const handleSignUp = (values: FormikValues) => {
           'Referer': 'https://zhiyouyuec.com'
         },
       };
-      const response = axios.post('/accounts/signup/', userData, config);
+      const response = axios.post('/accounts/signup/', userData);
       console.log('Response from Django:');
     } catch (error) {
       //console.error(error);
