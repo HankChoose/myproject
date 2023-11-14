@@ -50,7 +50,12 @@ const handleSignIn = (values: FormikValues) => {
     console.log('Handling sign-in form submission:', values);
     // Add code to submit data for sign-in
     //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
-    axios.post("/accounts/login/", values)
+    const userData = {
+      username: values.email,
+      password: values.password,
+      // 添加要发送给Django的数据
+    };
+    axios.post("/accounts/login/", userData)
     .then(response => {
         // 处理成功响应
         console.log('成功',response.data);
@@ -67,17 +72,14 @@ const handleSignUp = (values: FormikValues) => {
     // Add code to submit data for sign-up
     const csrftoken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('csrftoken='))?.split('=')[1];
     // Set the CSRF token in the headers of the Axios request
-     const userData = {
-      username: 'hank2', // 用户名
-      email: 'hankchenv@gmail.com', // 电子邮件
-      password1: 'chy123hank$A', // 密码
-      password2: 'chy123hank$A', // 确认密码
-      csrfmiddlewaretoken:'gqpJHqRqYqUaEbepPxqhNzLKbL2RL9PSczu7GG1ZTRpzoeDjc3UXnGQlYMfrJ012'
-      // 其他注册相关信息
+    const userData = {
+      username: values.email,
+      password: values.password,
+      password2: values.password,
+      // 添加要发送给Django的数据
     };
 
     try {
-
       // 设置CSRF令牌作为请求头
       const config = {
         headers: {
