@@ -43,6 +43,7 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
     const userData = {
       username: 'hankchenv111', // 用户名
       password: 'chy123hank$A', // 电子邮件
+      password2: 'chy123hank$A', // 电子邮件
     
     };
     
