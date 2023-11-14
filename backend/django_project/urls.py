@@ -24,7 +24,7 @@ urlpatterns = [
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(),
          name='account_logout'),
-    path('accounts/signup/', SignupView.as_view(),
+    path('accounts/signup/', csrf_exempt(SignupView.as_view()),
          name='account_signup'),
     path('accounts/password/change/', PasswordChangeView.as_view(),
          name='account_change_password'),
