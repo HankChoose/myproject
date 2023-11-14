@@ -5,7 +5,7 @@ from django.urls import reverse
 class MyViewTests(TestCase):
     def test_my_view(self):
         # 创建一个测试用的URL
-        url = reverse('/send-data/')
+        url = reverse('Register')
 
         # 模拟GET请求
         response = self.client.get(url)
@@ -18,7 +18,7 @@ class MyViewTests(TestCase):
 
     def test_another_view(self):
         # 创建另一个测试用的URL
-        url = reverse('/accounts/signup/')
+        url = reverse('account_signup')
 
         # 模拟POST请求
         response = self.client.post(url, {'key': 'value'})
