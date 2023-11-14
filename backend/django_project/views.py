@@ -26,6 +26,14 @@ from .serializers import UserDemandSerializer
 from allauth.account.views import LoginView, SignupView, PasswordChangeView
 
 
+class CustomSignupView(SignupView, APIView):
+    # Customize SignupView if needed
+    def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        # Add any additional logic if needed
+        return response
+
+
 # ------------------------------------------------------------>Check exists email
 
 

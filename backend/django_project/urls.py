@@ -6,6 +6,7 @@ from .views import UserDemandCreateView
 from .views import CheckUserAPIView
 from .views import Receive_data
 from .views import check_email_exist
+from .views import CustomSignupView
 from django.views.decorators.csrf import csrf_exempt
 
 app_name = 'django_project'
@@ -19,6 +20,7 @@ urlpatterns = [
     path('send-data/', views.Register, name='Register'),
     path('api/check-email-exist/<str:email>/',
          check_email_exist, name='check_email_exist'),
+    path('api/auth/signup/', CustomSignupView.as_view(), name='custom-signup'),
     path('api/check_user/', CheckUserAPIView.as_view(), name='check_user'),
     path('accounts/', include('allauth.urls')),
     path('accounts/login/', LoginView.as_view(), name='account_login'),
