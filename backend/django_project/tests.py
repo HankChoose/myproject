@@ -11,8 +11,8 @@ class MyViewTests(TestCase):
 
         # 在每个测试用例开始前设置一些初始数据
         self.home_url = reverse('index')
-        self.login_url = reverse('accounts/login/')
-        self.signup_url = reverse('accounts/signup/')
+        self.login_url = reverse('account_login')
+        self.signup_url = reverse('account_signup')
 
         self.username = 'testuser'
         self.password = 'testpassword'

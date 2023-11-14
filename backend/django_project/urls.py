@@ -8,6 +8,8 @@ from .views import Receive_data
 from .views import check_email_exist
 from django.views.decorators.csrf import csrf_exempt
 
+app_name = 'django_project'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index, name="index"),
