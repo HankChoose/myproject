@@ -107,7 +107,7 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
       };
      
       const response = await axios.post(apiUrl, userData, config);
-      //const response = await axios.post('/send-data/', userData, config);
+      //const response = await axios.post('/send-data/', userData);
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
       console.log('Response from Django:', response.data);
