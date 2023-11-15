@@ -51,8 +51,10 @@ class MyViewTests(TestCase):
         # 模拟GET请求
         response = self.client.get(url)
 
-        print(response.text)
-        print("new_url", new_url)
+        print(response)
+        if response.status_code == 301:
+            new_url = response.headers['Location']
+            print("new_url", new_url)
 
         # 检查响应状态码
         self.assertEqual(response.status_code, 200)
@@ -69,8 +71,10 @@ class MyViewTests(TestCase):
 
         new_url = response.headers['Location']
 
-        print(response.text)
-        print("new_url", new_url)
+        print(response)
+        if response.status_code == 301:
+            new_url = response.headers['Location']
+            print("new_url", new_url)
 
         # 检查响应状态码
         self.assertEqual(response.status_code, 200)
@@ -85,8 +89,10 @@ class MyViewTests(TestCase):
         # 模拟GET请求
         response = self.client.get(url)
 
-        print(response.text)
-        print("new_url", new_url)
+        print(response)
+        if response.status_code == 301:
+            new_url = response.headers['Location']
+            print("new_url", new_url)
 
         # 检查响应状态码
         self.assertEqual(response.status_code, 200)
