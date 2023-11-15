@@ -4,12 +4,15 @@ from django.contrib.auth.models import User
 
 import requests
 
+'''
 response = requests.get('your_url_here')
 
 if response.status_code == 301:
     new_url = response.headers['Location']
     updated_response = requests.get(new_url)
     # 处理 updated_response，可能是获取内容或其他操作
+
+'''
 
 
 class MyViewTests(TestCase):
