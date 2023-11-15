@@ -12,6 +12,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     # path('encyclopedia/', include("encyclopedia.urls")),
     path('create/', views.UserDemandCreateView, name='create-demand'),
+    path('create2/', views.UserDemandCreateView2, name='create-demand2'),
     path('receive_data/', views.Receive_data, name='receive_data'),
     path('receive_data2/', views.Receive_data2, name='receive_data2'),
     path('send-data/', views.Register, name='register'),

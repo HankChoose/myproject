@@ -54,6 +54,26 @@ class UserDemandCreateView(generics.CreateAPIView):
 
 
 @csrf_exempt
+def UserDemandCreateView2(request):
+    if request.method == 'POST':
+        # Retrieve POST data
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        demand_type = request.POST.get('demand_type')
+        demand_description = request.POST.get('demand_description')
+
+        # Process the data as needed (e.g., save to database)
+        # ...
+
+        # Return a response (e.g., a success message)
+        return HttpResponse('Success! Data received and processed.', username)
+
+    else:
+        # Handle other HTTP methods (GET, etc.) or render a form
+        return render(request, 'your_template.html')
+
+
+@csrf_exempt
 def Register2(request):
     if request.method == 'POST':
 
