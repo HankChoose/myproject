@@ -66,8 +66,8 @@ def UserDemandCreateView2(request):
         # ...
 
         # Return a response (e.g., a success message)
-        return HttpResponse('Success! Data received and processed.', username)
-
+        response_content = f'Success! Data received and processed. Username: {username}, Email: {email}, Demand Type: {demand_type}, Demand Description: {demand_description}'
+        return HttpResponse(response_content)
     else:
         # Handle other HTTP methods (GET, etc.) or render a form
         return render(request, 'your_template.html')
