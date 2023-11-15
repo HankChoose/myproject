@@ -41,7 +41,7 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
     const apiUrl = '/accounts/login/';
 
     const userData = {
-      username: 'hank3', // 用户名
+      //username: 'hank3', // 用户名
       email: 'hankchenv@gmail.com',
       password: 'chy123hank$A', // 电子邮件
 
@@ -110,9 +110,8 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
       */
       // 设置CSRF令牌作为请求头
       const config = {
-        method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          //'Content-Type': 'application/json',
           'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
         },
       };
