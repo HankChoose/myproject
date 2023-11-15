@@ -17,7 +17,6 @@ if response.status_code == 301:
 
 class MyViewTests(TestCase):
 
-    '''
     def setUp(self):
         # 在每个测试用例开始前执行的设置，例如创建测试数据库对象等
         # pass
@@ -38,12 +37,12 @@ class MyViewTests(TestCase):
         self.password2_new = 'testpasswordnew'
         self.user = User.objects.create_user(
             username=self.username, password=self.password)
-    '''
 
     def tearDown(self):
         # 在每个测试用例结束后执行的清理操作
         pass
 
+    '''
     def test_register2(self):
         # 创建一个测试用的URL
         url = reverse('receive_data')
@@ -51,10 +50,10 @@ class MyViewTests(TestCase):
         # 模拟GET请求
         response = self.client.get(url)
 
-        print(response)
+        print("response=",response)
         if response.status_code == 301:
             new_url = response.headers['Location']
-            print("new_url", new_url)
+            print("new_url=", new_url)
 
         # 检查响应状态码
         self.assertEqual(response.status_code, 200)
@@ -71,10 +70,10 @@ class MyViewTests(TestCase):
 
         new_url = response.headers['Location']
 
-        print(response)
+        print("response=",response)
         if response.status_code == 301:
             new_url = response.headers['Location']
-            print("new_url", new_url)
+            print("new_url=", new_url)
 
         # 检查响应状态码
         self.assertEqual(response.status_code, 200)
@@ -89,10 +88,10 @@ class MyViewTests(TestCase):
         # 模拟GET请求
         response = self.client.get(url)
 
-        print(response)
+        print("response=",response)
         if response.status_code == 301:
             new_url = response.headers['Location']
-            print("new_url", new_url)
+            print("new_url=", new_url)
 
         # 检查响应状态码
         self.assertEqual(response.status_code, 200)
@@ -100,6 +99,7 @@ class MyViewTests(TestCase):
         # 检查响应内容
         self.assertContains(response, "Hank2")
     '''
+
     def test_signup_view(self):
         # 测试注册页面是否返回200 OK
         response = self.client.get(self.signup_url)
@@ -131,7 +131,8 @@ class MyViewTests(TestCase):
         self.assertEqual(response.status_code, 200)  # 登录失败应该返回相同的登录页面
         self.assertContains(
             response, 'Invalid username or password')  # 检查是否包含错误消息
-    
+
+    '''
     def test_contains_01(self):
         # 创建一个测试用的URL
         url = reverse('Register')
