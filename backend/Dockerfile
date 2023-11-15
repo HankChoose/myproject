@@ -24,6 +24,7 @@ RUN pip install djangorestframework
 RUN pip install djoser
 RUN pip install django-allauth
 
+
 #RUN pip install django-sslserver
 #RUN apt-get update && apt-get install -y nginx
 
