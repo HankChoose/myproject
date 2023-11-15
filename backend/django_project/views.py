@@ -53,6 +53,22 @@ class UserDemandCreateView(generics.CreateAPIView):
 
 
 @csrf_exempt
+def Register2(request):
+    if request.method == 'POST':
+
+        email = 'choose_last@163.com'
+        password = 'password123'
+
+        datajson = {'email': email, 'password': password}
+        dataok = {'message': f'Successful register', 'status': 'success'}
+        datano = {'message': f'Invalid register', 'status': 'error'}
+
+        combined_dataok = {'dataok ': dataok, 'datajson': datajson}
+        combined_datano = {'datano ': datano}
+        return JsonResponse(combined_dataok)
+
+
+@csrf_exempt
 def Receive_data(request):
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))

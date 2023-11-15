@@ -32,6 +32,19 @@ class MyViewTests(TestCase):
         # 在每个测试用例结束后执行的清理操作
         pass
 
+    def test_register2(self):
+        # 创建一个测试用的URL
+        url = reverse('receive_data')
+
+        # 模拟GET请求
+        response = self.client.get(url)
+
+        # 检查响应状态码
+        self.assertEqual(response.status_code, 200)
+
+        # 检查响应内容
+        self.assertContains(response, "123")
+
     def test_receive_data_01(self):
         # 创建一个测试用的URL
         url = reverse('receive_data')
