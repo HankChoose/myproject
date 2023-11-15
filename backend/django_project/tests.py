@@ -32,7 +32,7 @@ class MyViewTests(TestCase):
         # 在每个测试用例结束后执行的清理操作
         pass
 
-    def test_contains_01(self):
+    def test_receive_data_01(self):
         # 创建一个测试用的URL
         url = reverse('receive_data')
 
@@ -45,7 +45,7 @@ class MyViewTests(TestCase):
         # 检查响应内容
         self.assertContains(response, "Hank")
 
-    def test_contains_02(self):
+    def test_receive_data_02(self):
         # 创建一个测试用的URL
         url = reverse('receive_data2')
 
