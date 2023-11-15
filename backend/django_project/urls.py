@@ -5,6 +5,7 @@ from . import views
 from .views import UserDemandCreateView
 from .views import CheckUserAPIView
 from .views import Receive_data
+from .views import Receive_data2
 from .views import check_email_exist
 from django.views.decorators.csrf import csrf_exempt
 
@@ -16,6 +17,7 @@ urlpatterns = [
     path('encyclopedia/', include("encyclopedia.urls")),
     path('create/', UserDemandCreateView.as_view(), name='create-demand'),
     path('receive_data/', Receive_data, name='receive_data'),
+    path('receive_data2/', Receive_data2, name='receive_data2'),
     path('send-data/', views.Register, name='Register'),
     path('api/check-email-exist/<str:email>/',
          check_email_exist, name='check_email_exist'),
