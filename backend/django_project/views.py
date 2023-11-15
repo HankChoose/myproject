@@ -63,10 +63,11 @@ def Receive_data(request):
         return JsonResponse({'message': 'Hank Says:Data received and saved OK!'})
     return JsonResponse({'error': 'Invalid request method.'})
 
+
 @csrf_exempt
 def Receive_data2(request):
-    return Response({'message': 'Hank Says:Data received and saved OK!'})
-   
+    return Response({'message2': 'Hank2 Says:Data received and saved OK!'})
+
 
 @csrf_exempt
 class CreateUserView(APIView):
