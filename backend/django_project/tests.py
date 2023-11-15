@@ -22,9 +22,9 @@ class MyViewTests(TestCase):
         # pass
 
         # 在每个测试用例开始前设置一些初始数据
-        self.home_url = reverse('index', follow=False)
-        self.login_url = reverse('account_login', follow=False)
-        self.signup_url = reverse('account_signup', follow=False)
+        self.home_url = reverse('index')
+        self.login_url = reverse('account_login')
+        self.signup_url = reverse('account_signup')
 
         self.username = 'testuser'
         self.password = 'testpassword'
@@ -102,24 +102,24 @@ class MyViewTests(TestCase):
 
     def test_signup_view(self):
         # 测试注册页面是否返回200 OK
-        response = self.client.get(self.signup_url)
+        response = self.client.get(self.signup_url, follow=False)
         self.assertEqual(response.status_code, 200)
 
         # 测试使用有效数据注册用户是否成功
         data = {'username': self.username_new,
                 'password1': self.password_new, 'password2': self.password2_new}
-        response = self.client.post(self.signup_url, data)
+        response = self.client.post(self.signup_url, data, follow=False)
         self.assertRedirects(response, self.login_url)
 
     def test_login_view_get(self):
         # 测试GET请求是否返回正确的状态码
-        response = self.client.get(self.login_url)
+        response = self.client.get(self.login_url, follow=False)
         self.assertEqual(response.status_code, 200)
 
     def test_login_view_post_valid_credentials(self):
         # 测试POST请求使用有效凭据是否会成功登录用户
         data = {'username': self.username, 'password': self.password}
-        response = self.client.post(self.login_url, data)
+        response = self.client.post(self.login_url, data, follow=False)
         self.assertEqual(response.status_code, 302)  # 302表示重定向，可以根据你的实际情况调整
         self.assertRedirects(response, self.home_url)
 
@@ -127,7 +127,7 @@ class MyViewTests(TestCase):
         # 测试POST请求使用无效凭据是否会返回错误消息
         data = {'username': self.username_invalid,
                 'password': self.password_invalid}
-        response = self.client.post(self.login_url, data)
+        response = self.client.post(self.login_url, data, follow=False)
         self.assertEqual(response.status_code, 200)  # 登录失败应该返回相同的登录页面
         self.assertContains(
             response, 'Invalid username or password')  # 检查是否包含错误消息
