@@ -66,7 +66,7 @@ def Receive_data(request):
 
 @csrf_exempt
 def Receive_data2(request):
-    return Response({'message2': 'Hank2 Says:Data received and saved OK!'})
+    return JsonResponse({'message': 'Hank2 Says:Data received and saved OK!'})
 
 
 @csrf_exempt
