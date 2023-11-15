@@ -19,7 +19,7 @@ urlpatterns = [
     path('api/check-email-exist/<str:email>/',
          views.check_email_exist, name='check_email_exist'),
     path('api/check_user/', views.CheckUserAPIView, name='check_user'),
-    path('accounts/login/', LoginView.as_view(), name='account_login'),
+    path('accounts/login/', csrf_exempt(LoginView.as_view()), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(),
          name='account_logout'),
     path('accounts/signup/', csrf_exempt(SignupView.as_view()),
