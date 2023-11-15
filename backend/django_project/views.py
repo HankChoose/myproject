@@ -98,7 +98,7 @@ class CreateUserView(APIView):
 @csrf_exempt
 def Register(request):
     if request.method == 'POST':
-        # data = json.loads(request.body)
+        data = json.loads(request.body)
         email = data['email']
         password = data['password']
 
