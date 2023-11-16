@@ -38,14 +38,14 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const apiUrl = '/accounts/login/';
+    const apiUrl = '/create2/';
 
-    const userData = {
-      //username: 'hank3', // 用户名
-      login: 'hankchenv@gmail.com',
-      password: 'chy123hank$A', // 电子邮件
-
-    };
+    const [data, setData] = useState({
+        username: 'hank2',
+        email: 'choose_last@163.com',
+        demand_type: 'AAA',
+        demand_description: 'ABC'
+    });
     
     /*
 
@@ -116,7 +116,7 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
         },
       };
      
-      const response = await axios.post(apiUrl, userData, config);
+      const response = await axios.post(apiUrl, data, config);
       //const response = await axios.post('/send-data/', userData);
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
