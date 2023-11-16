@@ -10,6 +10,7 @@ app_name = 'django_project'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index, name="index"),
+    path('accounts/', include('allauth.urls')),
     # path('encyclopedia/', include("encyclopedia.urls")),
     path('create/', views.UserDemandCreateView, name='create-demand'),
     path('create2/', views.UserDemandCreateView2, name='create-demand2'),
