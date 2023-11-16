@@ -57,10 +57,11 @@ class UserDemandCreateView(generics.CreateAPIView):
 def UserDemandCreateView2(request):
     if request.method == 'POST':
         # Retrieve POST data
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        demand_type = request.POST.get('demand_type')
-        demand_description = request.POST.get('demand_description')
+        data = json.loads(request.body.decode('utf-8'))
+        username = data.get('username')
+        email = data.get('email')
+        demand_type = data.get('demand_type')
+        demand_description = data.get('demand_description')
 
         # Process the data as needed (e.g., save to database)
 
