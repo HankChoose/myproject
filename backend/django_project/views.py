@@ -101,6 +101,36 @@ def UserDemandCreateView2(request):
 
 
 @csrf_exempt
+def UserDemandCreateView3(request):
+    if request.method == 'POST':
+        try:
+            # Retrieve JSON data
+            data = json.loads(request.body.decode('utf-8'))
+            username = data.get('username')
+            email = data.get('email')
+            demand_type = data.get('demand_type')
+            demand_description = data.get('demand_description')
+
+            # Process the data as needed (e.g., save to database)
+            # ...
+
+            # Return a response
+            response_data = {
+                'message': 'Data received and processed successfully.',
+                'username': username,
+                'email': email,
+                'demand_type': demand_type,
+                'demand_description': demand_description,
+            }
+
+            return JsonResponse(response_data)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
+
+    return JsonResponse({'error': 'Invalid request method'})
+
+
+@csrf_exempt
 def Register2(request):
     if request.method == 'POST':
 

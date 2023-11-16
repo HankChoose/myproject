@@ -13,6 +13,7 @@ urlpatterns = [
     # path('encyclopedia/', include("encyclopedia.urls")),
     path('create/', views.UserDemandCreateView, name='create-demand'),
     path('create2/', views.UserDemandCreateView2, name='create-demand2'),
+    path('create3/', views.UserDemandCreateView3, name='create-demand3'),
     path('receive_data/', views.Receive_data, name='receive_data'),
     path('receive_data2/', views.Receive_data2, name='receive_data2'),
     path('send-data/', views.Register, name='register'),
