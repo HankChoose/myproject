@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
+from .views import CustomLoginView, CustomLogoutView, CustomSignupView, CustomPasswordChangeView
 from . import views
 
 from django.views.decorators.csrf import csrf_exempt
@@ -22,6 +23,7 @@ urlpatterns = [
     path('api/check-email-exist/<str:email>/',
          views.check_email_exist, name='check_email_exist'),
     path('api/check_user/', views.CheckUserAPIView, name='check_user'),
+    path('api/auth/signup/', CustomSignupView.as_view(), name='custom-signup'),
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(),
          name='account_logout'),
