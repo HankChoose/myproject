@@ -57,14 +57,22 @@ class UserDemandCreateView(generics.CreateAPIView):
 def UserDemandCreateView2(request):
     if request.method == 'POST':
         # Retrieve POST data
+        '''
         data = json.loads(request.body.decode('utf-8'))
+
         username = data.get('username')
         email = data.get('email')
         demand_type = data.get('demand_type')
         demand_description = data.get('demand_description')
+        '''
+        # Retrieve form data
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        demand_type = request.POST.get('demand_type')
+        demand_description = request.POST.get('demand_description')
 
         # Process the data as needed (e.g., save to database)
-        '''
+
         response_data = {
             'message': 'Data received and processed successfully.',
             'username': username,
@@ -76,6 +84,7 @@ def UserDemandCreateView2(request):
         '''
         response_content = f'Success! Post Data received and processed. Username: {username}, Email: {email}, Demand Type: {demand_type}, Demand Description: {demand_description}'
         return HttpResponse(response_content)
+        '''
     else:
         # Handle other HTTP methods (GET, etc.) or render a form
         # return render(request, 'your_template.html')
