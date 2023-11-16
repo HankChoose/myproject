@@ -40,12 +40,12 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
 
     const apiUrl = '/create2/';
 
-    const [data, setData] = useState({
+    const userData = {
         username: 'hank2',
         email: 'choose_last@163.com',
         demand_type: 'AAA',
         demand_description: 'ABC'
-    });
+    };
     
     /*
 
@@ -116,7 +116,7 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
         },
       };
      
-      const response = await axios.post(apiUrl, data, config);
+      const response = await axios.post(apiUrl, userData, config);
       //const response = await axios.post('/send-data/', userData);
       //const response = await axios.post(`/api/${action}/`, userData);
       //console.log('Response:',response.data.message);
