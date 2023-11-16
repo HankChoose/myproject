@@ -64,15 +64,17 @@ def UserDemandCreateView2(request):
         demand_description = data.get('demand_description')
 
         # Process the data as needed (e.g., save to database)
-        response_content = {
+        '''
+        response_data = {
             'message': 'Data received and processed successfully.',
             'username': username,
             'email': email,
             'demand_type': demand_type,
             'demand_description': demand_description,
         }
-
-        # response_content = f'Success! Post Data received and processed. Username: {username}, Email: {email}, Demand Type: {demand_type}, Demand Description: {demand_description}'
+        return JsonResponse(response_data)
+        '''
+        response_content = f'Success! Post Data received and processed. Username: {username}, Email: {email}, Demand Type: {demand_type}, Demand Description: {demand_description}'
         return HttpResponse(response_content)
     else:
         # Handle other HTTP methods (GET, etc.) or render a form
