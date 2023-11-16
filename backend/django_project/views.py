@@ -66,11 +66,19 @@ def UserDemandCreateView2(request):
         # ...
 
         # Return a response (e.g., a success message)
-        response_content = f'Success! Data received and processed. Username: {username}, Email: {email}, Demand Type: {demand_type}, Demand Description: {demand_description}'
+        response_content = f'Success! Post Data received and processed. Username: {username}, Email: {email}, Demand Type: {demand_type}, Demand Description: {demand_description}'
         return HttpResponse(response_content)
     else:
         # Handle other HTTP methods (GET, etc.) or render a form
-        return render(request, 'your_template.html')
+        # return render(request, 'your_template.html')
+        # Retrieve GET data
+        username = request.GET.get('username')
+        email = request.GET.get('email')
+        demand_type = request.GET.get('demand_type')
+        demand_description = request.GET.get('demand_description')
+
+        response_content = f'Success! Get Data received and processed. Username: {username}, Email: {email}, Demand Type: {demand_type}, Demand Description: {demand_description}'
+        return HttpResponse(response_content)
 
 
 @csrf_exempt
