@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
-from .views import CustomLoginView, CustomLogoutView, CustomSignupView, CustomPasswordChangeView
+from .views import CustomSignupView
 from . import views
 
 from django.views.decorators.csrf import csrf_exempt
