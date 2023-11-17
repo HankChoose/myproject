@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import styles from './test-axios-post-2.module.scss';
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import Cookies from 'js-cookie';
 
 export interface TestAxiosPost2Props {
     className?: string;
@@ -13,12 +13,20 @@ export interface TestAxiosPost2Props {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const TestAxiosPost2 = ({ className }: TestAxiosPost2Props) => {
+     const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
      const [formData, setFormData] = useState({
         username: '',
         email: '',
         password1: '',
         password2: '',
     });
+
+    const config = {
+       headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+        },
+      };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,7 +36,7 @@ export const TestAxiosPost2 = ({ className }: TestAxiosPost2Props) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('/accounts/signup/', formData);
+            const response = await axios.post('/accounts/signup/', formData,config);
             console.log('User signed up successfully:', response.data);
         } catch (error) {
             console.error('Error signing up:', error);
