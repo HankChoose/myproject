@@ -25,6 +25,7 @@ RUN pip install djoser
 RUN pip install django-allauth
 RUN pip install --upgrade django
 RUN pip install --upgrade djangorestframework
+RUN pip install django-cors-headers
 
 
 #RUN pip install django-sslserver

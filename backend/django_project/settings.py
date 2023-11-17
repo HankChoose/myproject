@@ -27,8 +27,8 @@ DEBUG = True
 
 APPEND_SLASH = False
 
-# ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['zhiyouyuec.com']
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['zhiyouyuec.com']
 
 # Set the secure proxy header
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
