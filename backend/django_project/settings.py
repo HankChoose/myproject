@@ -64,6 +64,10 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+CORS_ALLOWED_ORIGINS = [
+    "*",
+]
+
 
 AUTHENTICATION_BACKENDS = (
     # django admin所使用的用户登录与django-allauth无关
