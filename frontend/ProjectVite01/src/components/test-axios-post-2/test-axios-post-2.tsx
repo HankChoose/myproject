@@ -36,7 +36,7 @@ export const TestAxiosPost2 = ({ className }: TestAxiosPost2Props) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('/accounts/signup2/', formData,config);
+            const response = await axios.post('/accounts/signup/', formData,config);
             console.log('User signed up successfully:', response.data);
         } catch (error) {
             console.error('Error signing up:', error);
