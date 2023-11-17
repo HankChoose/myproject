@@ -25,14 +25,20 @@ from rest_framework.renderers import JSONRenderer
 from .serializers import UserSerializer
 from .serializers import UserDemandSerializer
 
-from allauth.account.views import LoginView, SignupView, PasswordChangeView
+from allauth.account.views import SignupView
+from django.contrib.auth.models import User
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import AllowAny
 
 
-class CustomSignupView(SignupView, APIView):
-    # Customize SignupView if needed
-    def post(self, request, *args, **kwargs):
-        response = super().post(request, *args, **kwargs)
-        # Add any additional logic if needed
+@permission_classes([AllowAny])
+class CustomSignupView(SignupView):
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+
+        # 在这里你可以根据需要进行额外的数据库操作
+        # 例如，将用户数据存入其他表，执行其他自定义逻辑等
+
         return response
 
 # ------------------------------------------------------------>Check exists email
