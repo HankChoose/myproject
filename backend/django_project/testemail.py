@@ -11,7 +11,7 @@ EMAIL_HOST_PASSWORD = 'chy123hank$A'
 # Create a test message
 msg = MIMEMultipart()
 msg['From'] = 'zhiyouyuec@gmail.com'
-msg['To'] = 'recipient@example.com'
+msg['To'] = 'hankchenv@gmail.com'
 msg['Subject'] = 'Hank:Test Subject'
 body = 'Hank-Test email body.'
 msg.attach(MIMEText(body, 'plain'))
