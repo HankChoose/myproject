@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'zhiyouyuec@gmail.com'
-EMAIL_HOST_PASSWORD = 'chy123hank$A'
+EMAIL_HOST_PASSWORD = 'lawr wxds ovuc gpik'
 
 # Create a test message
 msg = MIMEMultipart()
