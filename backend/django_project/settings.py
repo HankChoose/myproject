@@ -104,7 +104,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'zhiyouyuec@gmail.com'  # 你的163账号和授权码
-EMAIL_HOST_PASSWORD = 'chy123hank$A'
+EMAIL_HOST_PASSWORD = 'lawr wxds ovuc gpik'
 EMAIL_USE_TLS = True  # 这里必须是 True，否则发送不成功
 EMAIL_FROM = 'zhiyouyuec@gmail.com'  # 发送人 你的 163账号
 
