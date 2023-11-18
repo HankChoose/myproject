@@ -82,6 +82,8 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+SITE_DOMAIN = 'zhiyouyuec.com'
+
 CORS_ALLOWED_ORIGINS = [
     "*",
 ]
