@@ -22,7 +22,6 @@ urlpatterns = [
     path('send-data2/', views.Register2, name='register2'),
     path('api/check-email-exist/<str:email>/',
          views.check_email_exist, name='check_email_exist'),
-    path('signup/', SignupView.as_view(), name='signup'),
     path('api/check_user/', CheckUserAPIView.as_view(), name='check_user'),
     path('accounts/signup/', SignupView.as_view(), name='custom_signup'),
     path('accounts/signup2/', CustomSignupView.as_view(), name='custom_signup'),
