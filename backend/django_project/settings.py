@@ -125,8 +125,9 @@ LOGIN_REDIRECT_URL = '/accounts/profile/'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 # 要求用户注册时必须填写email
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_CONFIRMATION_SIGNUP_MESSAGE = 'account/confirmation_signup_message.txt'
-
+# ACCOUNT_EMAIL_CONFIRMATION_SIGNUP_MESSAGE = 'account/confirmation_signup_message.txt'
+ACCOUNT_EMAIL_CONFIRMATION_SUBJECT = 'Please Confirm Your Email Address'
+ACCOUNT_EMAIL_CONFIRMATION_TEMPLATE = 'account/confirmation_signup_message.txt'
 # 如果ACCOUNT_EMAIL_VERIFICATION = 'mandatory' ，用户必须通过邮箱验证后才能登陆 如果你不需要邮箱验证，只需要设置
 # 作用于第三方账号的注册
 # ACCOUNT_EMAIL_VERIFICATION = 'none'
