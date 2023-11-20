@@ -114,7 +114,7 @@ EMAIL_FROM = 'zhiyouyuec@gmail.com'  # 发送人 你的 163账号
 DEFAULT_FROM_EMAIL = 'zhiyouyuec@gmail.com'
 
 # 在这里设置您的登录和注册视图，以便它们指向您的React页面
-LOGIN_URL = 'your-login-url'  # 替换为您的登录页面URL
+LOGIN_URL = 'react/signin'  # 替换为您的登录页面URL
 LOGOUT_URL = 'your-logout-url'  # 替换为您的注销URL
 # 设置登录和注册成功后重定向的页面，默认是 "/accounts/profile/"
 LOGIN_REDIRECT_URL = '/accounts/profile/'
@@ -127,7 +127,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 # ACCOUNT_EMAIL_CONFIRMATION_SIGNUP_MESSAGE = 'account/confirmation_signup_message.txt'
 ACCOUNT_EMAIL_CONFIRMATION_SUBJECT = 'Please Confirm Your Email Address'
-ACCOUNT_EMAIL_CONFIRMATION_TEMPLATE = 'account/confirmation_signup_message.txt'
+ACCOUNT_EMAIL_CONFIRMATION_TEMPLATE = 'account/confirmation_signup_message.html'
 # 如果ACCOUNT_EMAIL_VERIFICATION = 'mandatory' ，用户必须通过邮箱验证后才能登陆 如果你不需要邮箱验证，只需要设置
 # 作用于第三方账号的注册
 # ACCOUNT_EMAIL_VERIFICATION = 'none'
