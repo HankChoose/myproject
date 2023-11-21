@@ -1,10 +1,17 @@
 import smtplib
+import os
+from django import setup
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from django.contrib.sites.models import Site
 
 # 获取当前站点（通常 ID 为 1）
 site = Site.objects.get(id=1)
+
+# 设置 DJANGO_SETTINGS_MODULE 环境变量
+os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'  # 替换为你的项目名称
+# 初始化 Django
+setup()
 
 # Your email configuration
 EMAIL_HOST = 'smtp.gmail.com'
