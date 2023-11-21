@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import include, path
-from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
+from allauth.account.views import ConfirmEmailView, LoginView, LogoutView, SignupView, PasswordChangeView
 from .views import CustomSignupView, CheckUserAPIView
 from . import views
 
@@ -13,6 +13,8 @@ urlpatterns = [
     path("", views.index, name="index"),
     path('accounts/', include('allauth.urls')),
     path('encyclopedia/', include("encyclopedia.urls")),
+    path('custom-confirm-email/<str:key>/',
+         ConfirmEmailView.as_view(), name='custom_confirm_email'),
     path('create/', views.UserDemandCreateView, name='create-demand'),
     path('create2/', views.UserDemandCreateView2, name='create-demand2'),
     path('create3/', views.UserDemandCreateView3, name='create-demand3'),

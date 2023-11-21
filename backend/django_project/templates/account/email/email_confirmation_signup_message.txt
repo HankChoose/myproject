@@ -1,0 +1,10 @@
+{% load account %}
+
+Hello from {{ site_name }}!
+
+You're receiving this e-mail because user {{ user }} has given yours as an e-mail address to connect their account.
+
+To confirm this is correct, go to http://www.zhiyouyuec.com/custom-confirm-email/{{ key }}/
+
+All the best,
+The {{ site_name }} Team

@@ -125,6 +125,10 @@ LOGIN_REDIRECT_URL = 'https://zhiyouyuec.com/react/signin'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 # 要求用户注册时必须填写email
 ACCOUNT_EMAIL_REQUIRED = True
+# 允许通过 GET 请求直接确认邮箱
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_URL = 'custom-confirm-email'
+
 ACCOUNT_EMAIL_CONFIRMATION_SIGNUP_MESSAGE = 'account/confirmation_signup_message.html'
 ACCOUNT_EMAIL_CONFIRMATION_SUBJECT = 'Please Confirm Your Email Address'
 # ACCOUNT_EMAIL_CONFIRMATION_TEMPLATE = 'account/confirmation_signup_message.html'
