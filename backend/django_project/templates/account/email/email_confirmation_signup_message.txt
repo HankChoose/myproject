@@ -1,4 +1,3 @@
-{% load sites %}
 {% load account %}
 
 Hello from {{ site_name }}!
