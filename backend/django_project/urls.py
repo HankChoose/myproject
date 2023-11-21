@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.urls import include, path
-from allauth.account.views import ConfirmEmailView, LoginView, LogoutView, SignupView, PasswordChangeView
-from .views import CustomSignupView, CheckUserAPIView
+from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
+from .views import CustomSignupView, CheckUserAPIView, CustomConfirmEmailView
 from . import views
+
 
 from django.views.decorators.csrf import csrf_exempt
 
@@ -14,8 +15,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('encyclopedia/', include("encyclopedia.urls")),
     path('custom-confirm-email/<str:key>/',
-         ConfirmEmailView.as_view(), name='custom_confirm_email'),
-    path('useraccount/',  views.userAccount, name='userAccount'),
+         CustomConfirmEmailView.as_view(), name='custom_confirm_email'),
+    path('user-account/',  views.user_account_view, name='userAccount'),
     path('create/', views.UserDemandCreateView, name='create-demand'),
     path('create2/', views.UserDemandCreateView2, name='create-demand2'),
     path('create3/', views.UserDemandCreateView3, name='create-demand3'),

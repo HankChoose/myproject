@@ -43,6 +43,11 @@ class CustomConfirmEmailView(ConfirmEmailView):
         return redirect('django_project:userAccount')  # 替换为你自己的用户账户 URL
 
 
+def user_account_view(request):
+
+    return render(request, 'useraccount.html')
+
+
 @permission_classes([AllowAny])
 class CustomSignupView(SignupView):
     def create(self, request, *args, **kwargs):
@@ -253,11 +258,6 @@ def index(request):
     static_url = settings.STATIC_URL
     '''
     return render(request, 'index.html')
-
-
-def userAccount(request):
-
-    return render(request, 'useraccount.html')
 
 
 def pd(request):
