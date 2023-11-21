@@ -3,7 +3,7 @@ from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
 from .views import CustomSignupView, CheckUserAPIView, CustomConfirmEmailView
 from . import views
-
+from django.urls import reverse
 
 from django.views.decorators.csrf import csrf_exempt
 
