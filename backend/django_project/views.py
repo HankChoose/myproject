@@ -30,6 +30,18 @@ from django.contrib.auth.models import User
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import AllowAny
 
+from allauth.account.views import ConfirmEmailView
+from django.shortcuts import redirect
+
+
+class CustomConfirmEmailView(ConfirmEmailView):
+    template_name = 'account/email/email_confirmation_signup_message.txt'  # 替换为你自己的模板路径
+
+    def get(self, *args, **kwargs):
+        # 自定义确认邮箱后的逻辑，例如设置用户状态等
+        # 这里只是简单地重定向到用户账户页面，你可以根据需求进行修改
+        return redirect('django_project:userAccount')  # 替换为你自己的用户账户 URL
+
 
 @permission_classes([AllowAny])
 class CustomSignupView(SignupView):
@@ -241,6 +253,11 @@ def index(request):
     static_url = settings.STATIC_URL
     '''
     return render(request, 'index.html')
+
+
+def userAccount(request):
+
+    return render(request, 'useraccount.html')
 
 
 def pd(request):
