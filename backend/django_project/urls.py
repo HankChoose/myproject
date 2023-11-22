@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
-from .views import CheckEmailExistView, CustomUserProfileView, CustomSignupView, CheckUserAPIView, CustomConfirmEmailView
+from .views import CheckEmailExistView, CustomUserProfileView, CheckUserAPIView, CustomConfirmEmailView
 from . import views
 from django.urls import reverse
 
