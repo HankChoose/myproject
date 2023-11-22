@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
-from .views import CheckEmailExistView, CustomUserProfileView, CheckUserAPIView, CustomConfirmEmailView
+from .views import CustomLoginView, CheckEmailExistView, CustomUserProfileView, CheckUserAPIView, CustomConfirmEmailView
 from . import views
 from django.urls import reverse
 
@@ -32,7 +32,7 @@ urlpatterns = [
          CustomConfirmEmailView.as_view(), name='custom_confirm_email'),
     path('api/check_user/', CheckUserAPIView.as_view(), name='check_user'),
     path('accounts/signup/', SignupView.as_view(), name='account_signup'),
-    path('accounts/login/', LoginView.as_view(), name='account_login'),
+    path('accounts/login/', CustomLoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
     path('accounts/password/change/', PasswordChangeView.as_view(),
          name='account_change_password'),

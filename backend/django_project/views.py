@@ -24,7 +24,7 @@ from .serializers import UserSerializer
 from .serializers import UserDemandSerializer
 
 from allauth.account.models import EmailAddress
-from allauth.account.views import ConfirmEmailView
+from allauth.account.views import ConfirmEmailView, LoginView
 
 
 class CustomConfirmEmailView(ConfirmEmailView):
@@ -39,6 +39,15 @@ class CustomConfirmEmailView(ConfirmEmailView):
 def user_account_view(request):
 
     return render(request, 'useraccount.html')
+
+
+# 在你的应用的 views.py 中
+
+
+class CustomLoginView(LoginView):
+    def get_success_url(self):
+        # 修改这里，以指定登录成功后的重定向 URL
+        return redirect('accounts_user_profile')
 
 
 def CustomUserProfileView(request):
