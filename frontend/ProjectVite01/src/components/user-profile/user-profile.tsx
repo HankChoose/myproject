@@ -10,5 +10,5 @@ export interface UserProfileProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const UserProfile = ({ className }: UserProfileProps) => {
-    return <div className={classNames(styles.root, className)}>UserProfile</div>;
+    return <div className={classNames(styles.root, className)}>UserProfile11111111111</div>;
 };
