@@ -1,18 +1,15 @@
+import json
 from .models import User
 from .models import UserDemand
-
-import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseServerError
 from django.http import HttpResponse
 from django.db import connection
-from django.shortcuts import render, redirect
-from django.contrib import messages
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework import generics
@@ -21,17 +18,13 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer
-
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import AllowAny
 from .serializers import UserSerializer
 from .serializers import UserDemandSerializer
 
-from allauth.account.views import SignupView
-from django.contrib.auth.models import User
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import AllowAny
-
+from allauth.account.models import EmailAddress
 from allauth.account.views import ConfirmEmailView
-from django.shortcuts import redirect
 
 
 class CustomConfirmEmailView(ConfirmEmailView):
@@ -48,20 +41,25 @@ def user_account_view(request):
     return render(request, 'useraccount.html')
 
 
-@permission_classes([AllowAny])
-class CustomSignupView(SignupView):
-    def create(self, request, *args, **kwargs):
-        response = super().create(request, *args, **kwargs)
+def CustomUserProfileView(request):
+    if request.user.is_authenticated:
+        email_address = EmailAddress.objects.get(
+            user=request.user, verified=True)
+        if email_address:
+            # 邮箱已验证
+            return render(request, 'useraccount.html')
+        else:
+            # 邮箱未验证
+            return render(request, 'useraccountno.html')
+    else:
+        # 用户未登录
+        return render(request, 'index.html')
 
-        # 在这里你可以根据需要进行额外的数据库操作
-        # 例如，将用户数据存入其他表，执行其他自定义逻辑等
-
-        return response
 
 # ------------------------------------------------------------>Check exists email
 
 
-def check_email_exist(request, email):
+def CheckEmailExistView(request, email):
     from django.contrib.auth.models import User
     exists = User.objects.filter(email=email).exists()
     return JsonResponse({'exists': exists})

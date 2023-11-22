@@ -119,7 +119,7 @@ DEFAULT_FROM_EMAIL = 'zhiyouyuec@gmail.com'
 LOGIN_URL = 'https://zhiyouyuec.com/react/signin'  # 替换为您的登录页面URL
 LOGOUT_URL = 'your-logout-url'  # 替换为您的注销URL
 # 设置登录和注册成功后重定向的页面，默认是 "/accounts/profile/"
-LOGIN_REDIRECT_URL = 'https://zhiyouyuec.com/react/signin'
+LOGIN_REDIRECT_URL = 'accounts_user_profile'
 
 # ACCOUNT
 # 指定要使用的登录方法(用户名、电子邮件地址两者之一)'username_email'，'email'
@@ -129,7 +129,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 # 允许通过 GET 请求直接确认邮箱
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-ACCOUNT_EMAIL_CONFIRMATION_URL = 'custom-confirm-email'
+ACCOUNT_EMAIL_CONFIRMATION_URL = 'custom_confirm_email'
 
 ACCOUNT_EMAIL_CONFIRMATION_SIGNUP_MESSAGE = 'account/confirmation_signup_message.html'
 ACCOUNT_EMAIL_CONFIRMATION_SUBJECT = 'Please Confirm Your Email Address'
@@ -188,6 +188,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 使用数据库存储 session 数据
+SESSION_COOKIE_AGE = 1209600  # 设置 session 过期时间，单位是秒 (2周)
 
 CORS_ALLOWED_ORIGINS = [
     "https://zhiyouyuec.com",
