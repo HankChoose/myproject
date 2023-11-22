@@ -37,6 +37,13 @@ export const TestAxiosPost3 = ({ className }: TestAxiosPost3Props) => {
 
         try {
         const response = await axios.post('/accounts/login/', formData,config);
+        if (response.status === 200) {
+            localStorage.setItem('token', response.data.token);
+            // 跳转到用户首页或执行其他登录后的逻辑
+            //history.push('/userhome');
+        } else {
+            console.error('Login failed');
+        }
         console.log(response.data);
         } catch (error) {
         console.error('Error creating user:', error);

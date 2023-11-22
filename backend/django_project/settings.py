@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'encyclopedia',
     'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken',
     'djoser',
     'allauth',
     'allauth.account',
@@ -79,6 +80,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
 
 SITE_ID = 1
 
@@ -119,7 +126,7 @@ DEFAULT_FROM_EMAIL = 'zhiyouyuec@gmail.com'
 LOGIN_URL = 'https://zhiyouyuec.com/react/signin'  # 替换为您的登录页面URL
 LOGOUT_URL = 'your-logout-url'  # 替换为您的注销URL
 # 设置登录和注册成功后重定向的页面，默认是 "/accounts/profile/"
-LOGIN_REDIRECT_URL = 'accounts_user_profile'
+LOGIN_REDIRECT_URL = 'https://zhiyouyuec.com/react/userprofile'
 
 # ACCOUNT
 # 指定要使用的登录方法(用户名、电子邮件地址两者之一)'username_email'，'email'
@@ -140,7 +147,7 @@ ACCOUNT_EMAIL_CONFIRMATION_SUBJECT = 'Please Confirm Your Email Address'
 # SOCIALACCOUNT_EMAIL_VERIFICATION = 'optional' / 'mandatory' / 'none'
 
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'  # 使用 https 协议
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # 强制邮箱验证
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # 强制邮箱验证
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_UNIQUE_EMAIL_CONFIRMATION = True
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = LOGIN_REDIRECT_URL

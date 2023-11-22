@@ -12,6 +12,7 @@ from django.db import connection
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
+from rest_framework.authtoken.models import Token
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -42,17 +43,6 @@ def user_account_view(request):
 
 
 # 在你的应用的 views.py 中
-
-
-class CustomLoginView(LoginView):
-    # def get_success_url(self):
-    # 修改这里，以指定登录成功后的重定向 URL
-    # return redirect('accounts_user_profile')
-
-    def get(self, *args, **kwargs):
-        # 自定义确认邮箱后的逻辑，例如设置用户状态等
-        # 这里只是简单地重定向到用户账户页面，你可以根据需求进行修改
-        return redirect('accounts_user_profile')  # 替换为你自己的用户账户 URL
 
 
 def CustomUserProfileView(request):
