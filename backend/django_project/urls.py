@@ -20,7 +20,6 @@ urlpatterns = [
          name='accounts_user_profile'),
     path('api/check-email-exist/<str:email>/',
          CheckEmailExistView.as_view(), name='check_email_exist'),
-
     path('user-account/',  views.user_account_view, name='userAccount'),
     path('create/', views.UserDemandCreateView, name='create-demand'),
     path('create2/', views.UserDemandCreateView2, name='create-demand2'),
@@ -29,9 +28,7 @@ urlpatterns = [
     path('receive_data2/', views.Receive_data2, name='receive_data2'),
     path('send-data/', views.Register, name='register'),
     path('send-data2/', views.Register2, name='register2'),
-
     path('api/check_user/', CheckUserAPIView.as_view(), name='check_user'),
-
     path('accounts/signup/', SignupView.as_view(), name='account_signup'),
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
