@@ -36,7 +36,7 @@ export const TestAxiosPost3 = ({ className }: TestAxiosPost3Props) => {
         e.preventDefault();
 
         try {
-        const response = await axios.post('/accounts/signin/', formData,config);
+        const response = await axios.post('/accounts/login/', formData,config);
         console.log(response.data);
         } catch (error) {
         console.error('Error creating user:', error);
