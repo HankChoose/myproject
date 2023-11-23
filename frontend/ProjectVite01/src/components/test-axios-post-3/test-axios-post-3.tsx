@@ -47,9 +47,7 @@ export const TestAxiosPost3 = ({ className }: TestAxiosPost3Props) => {
             // 跳转到用户首页或执行其他登录后的逻辑
             //history.push('/userhome');
             console.log('Login OK',response.data);
-            React.useEffect(() => {
-                navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
-            }, []); // 空数组表示只在组件挂载时调用一次
+            navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
         } else {
             console.error('Login failed');
         }
