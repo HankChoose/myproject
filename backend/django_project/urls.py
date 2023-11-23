@@ -20,7 +20,7 @@ urlpatterns = [
     path('api/check-email-exist/<str:email>/',
          views.CheckEmailExistView, name='check_email_exist'),
     path('user-account/',  views.user_account_view, name='userAccount'),
-    path('api/user/', views.get_user_data, name='get_user_data')
+    path('api/user/', views.get_user_data, name='get_user_data'),
     path('create/', views.UserDemandCreateView, name='create-demand'),
     path('create2/', views.UserDemandCreateView2, name='create-demand2'),
     path('create3/', views.UserDemandCreateView3, name='create-demand3'),
