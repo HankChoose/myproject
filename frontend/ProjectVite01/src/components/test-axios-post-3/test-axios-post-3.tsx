@@ -3,6 +3,7 @@ import styles from './test-axios-post-3.module.scss';
 import React, { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 
 export interface TestAxiosPost3Props {
     className?: string;
@@ -12,6 +13,8 @@ export interface TestAxiosPost3Props {
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
+
+
 export const TestAxiosPost3 = ({ className }: TestAxiosPost3Props) => {
     const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
     const config = {
@@ -32,6 +35,8 @@ export const TestAxiosPost3 = ({ className }: TestAxiosPost3Props) => {
         setFormData({ ...formData, [name]: value });
     };
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -42,6 +47,9 @@ export const TestAxiosPost3 = ({ className }: TestAxiosPost3Props) => {
             // 跳转到用户首页或执行其他登录后的逻辑
             //history.push('/userhome');
             console.log('Login OK',response.data);
+            React.useEffect(() => {
+                navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
+            }, []); // 空数组表示只在组件挂载时调用一次
         } else {
             console.error('Login failed');
         }
