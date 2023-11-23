@@ -34,8 +34,8 @@ from rest_framework.response import Response
 from .serializers import UserDataSerializer
 
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
 def get_user_data(request):
     user_data = request.user  # Assuming user data is stored in the User model
     serializer = UserDataSerializer(user_data)
