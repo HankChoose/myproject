@@ -28,6 +28,20 @@ from allauth.account.models import EmailAddress
 from allauth.account.views import ConfirmEmailView, LoginView
 
 
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from .serializers import UserDataSerializer
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_user_data(request):
+    user_data = request.user  # Assuming user data is stored in the User model
+    serializer = UserDataSerializer(user_data)
+    return Response(serializer.data)
+
+
 class CustomConfirmEmailView(ConfirmEmailView):
     template_name = 'account/email/email_confirmation_signup_message.txt'  # 替换为你自己的模板路径
 

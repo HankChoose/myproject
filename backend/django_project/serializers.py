@@ -1,6 +1,14 @@
 from rest_framework import serializers
 from .models import User
 from .models import UserDemand
+# Adjust the import based on your User model
+from django.contrib.auth.models import User
+
+
+class UserDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']  # Add more fields as needed
 
 
 class UserSerializer(serializers.ModelSerializer):
