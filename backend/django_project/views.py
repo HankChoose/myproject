@@ -1,5 +1,6 @@
 
 from django.shortcuts import render
+from .models import Book3
 
 
 def index(request):
