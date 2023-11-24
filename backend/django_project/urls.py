@@ -14,16 +14,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('encyclopedia/', include("encyclopedia.urls")),
 
-    path('accounts/userprofile/', views.CustomUserProfileView,
-         name='accounts_user_profile'),
-    path('api/check-email-exist/<str:email>/',
-         views.CheckEmailExistView, name='check_email_exist'),
-    path('user-account/',  views.user_account_view, name='userAccount'),
-    path('api/user/', views.get_user_data, name='get_user_data'),
-
-    path('custom-confirm-email/<str:key>/',
-         CustomConfirmEmailView.as_view(), name='custom_confirm_email'),
-    path('api/check_user/', CheckUserAPIView.as_view(), name='check_user'),
     path('accounts/signup/', SignupView.as_view(), name='account_signup'),
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
