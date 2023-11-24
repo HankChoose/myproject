@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
-
+from . import views
 
 app_name = 'django_project'
 
