@@ -1,16 +1,4 @@
 
-from . import util
-from .util import convert_markdown_to_html
-import json
-import random
-
-from django import forms
-from django.shortcuts import redirect
-from django.views.decorators.csrf import csrf_exempt
-from django.urls import reverse
-from django.http import HttpResponseNotFound
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import HttpResponseRedirect, reverse
 from django.shortcuts import render
 
 
