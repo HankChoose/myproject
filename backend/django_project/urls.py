@@ -4,7 +4,6 @@ from allauth.account.views import LoginView, LogoutView, SignupView, PasswordCha
 from .views import get_user_data, CustomUserProfileView, CheckUserAPIView, CustomConfirmEmailView
 from . import views
 from django.urls import reverse
-
 from django.views.decorators.csrf import csrf_exempt
 
 app_name = 'django_project'
@@ -21,13 +20,6 @@ urlpatterns = [
          views.CheckEmailExistView, name='check_email_exist'),
     path('user-account/',  views.user_account_view, name='userAccount'),
     path('api/user/', views.get_user_data, name='get_user_data'),
-    path('create/', views.UserDemandCreateView, name='create-demand'),
-    path('create2/', views.UserDemandCreateView2, name='create-demand2'),
-    path('create3/', views.UserDemandCreateView3, name='create-demand3'),
-    path('receive_data/', views.Receive_data, name='receive_data'),
-    path('receive_data2/', views.Receive_data2, name='receive_data2'),
-    path('send-data/', views.Register, name='register'),
-    path('send-data2/', views.Register2, name='register2'),
 
     path('custom-confirm-email/<str:key>/',
          CustomConfirmEmailView.as_view(), name='custom_confirm_email'),
