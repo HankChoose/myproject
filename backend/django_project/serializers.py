@@ -5,6 +5,18 @@ from .models import UserDemand
 from django.contrib.auth.models import User
 
 
+class UserDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']  # Add more fields as needed
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+
+
 class UserDemandSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserDemand
