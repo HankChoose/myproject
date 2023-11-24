@@ -1,4 +1,4 @@
-from .models import Book
+
 from . import util
 from .util import convert_markdown_to_html
 import json
