@@ -25,3 +25,9 @@ class UserDemand(models.Model):
 
     def __str__(self):
         return self.username
+
+
+class Book3(models.Model):
+    title3 = models.CharField(max_length=100)
+    author3 = models.CharField(max_length=100)
+    publication_date = models.DateField()
