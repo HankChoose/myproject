@@ -67,7 +67,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
-    'detector',
+    # 'detector',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
