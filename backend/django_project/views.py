@@ -1,6 +1,5 @@
 import json
-from .models import User
-from .models import UserDemand
+
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib import messages
@@ -33,9 +32,20 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from .serializers import UserDataSerializer
+from .serializers import UserSerializer
+from .models import UserDemand
+from django.contrib.auth.models import User
 
 
+@csrf_exempt
+class UserProfileView(APIView):
+    def get(self, request):
+        user_profiles = User.objects.all()
+        serializer = UserSerializer(user_profiles, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+'''
 @csrf_exempt
 # @login_required
 class UserProfileView(TemplateView):
@@ -47,6 +57,7 @@ class UserProfileView(TemplateView):
         context['user_data'] = self.request.user
         return context
 
+'''
 # -------------------------------------------->For CustomConfirmEmailView
 
 
