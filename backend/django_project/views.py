@@ -11,6 +11,7 @@ from django.http import HttpResponse
 from django.db import connection
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import TemplateView
 
 from rest_framework.authtoken.models import Token
 from rest_framework import generics
@@ -26,20 +27,26 @@ from .serializers import UserDemandSerializer
 
 from allauth.account.models import EmailAddress
 from allauth.account.views import ConfirmEmailView, LoginView
-
+from allauth.account.decorators import login_required
 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+
 from .serializers import UserDataSerializer
 
 
-@api_view(['GET'])
-# @permission_classes([IsAuthenticated])
-def get_user_data(request):
-    user_data = request.user  # Assuming user data is stored in the User model
-    serializer = UserDataSerializer(user_data)
-    return Response(serializer.data)
+# @login_required
+class UserProfileView(TemplateView):
+    template_name = 'user_profile.html'  # 你的模板文件路径，根据需要修改
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # 在这里添加你需要的用户信息查询
+        context['user_data'] = self.request.user
+        return context
+
+# -------------------------------------------->For CustomConfirmEmailView
 
 
 class CustomConfirmEmailView(ConfirmEmailView):
@@ -58,7 +65,7 @@ def user_account_view(request):
 
 # 在你的应用的 views.py 中
 
-
+'''
 def CustomUserProfileView(request):
     if request.user.is_authenticated:
         email_address = EmailAddress.objects.get(
@@ -73,14 +80,16 @@ def CustomUserProfileView(request):
         # 用户未登录
         return render(request, 'index.html')
 
-
-# ------------------------------------------------------------>Check exists email
+'''
+# ------------------------------------------------->Check exists email
 
 
 def CheckEmailExistView(request, email):
     from django.contrib.auth.models import User
     exists = User.objects.filter(email=email).exists()
     return JsonResponse({'exists': exists})
+
+# -------------------------------------------->For CheckUserAPIView
 
 
 class CheckUserAPIView(APIView):
@@ -92,10 +101,9 @@ class CheckUserAPIView(APIView):
         except User.DoesNotExist:
             return Response({'exists': False}, status=status.HTTP_200_OK)
 
-# ------------------------------------------------------------>For UserDemand
 
+# -------------------------------------------->For UserDemand
 
-@csrf_exempt
 class UserDemandCreateView(generics.CreateAPIView):
     queryset = UserDemand.objects.all()
     serializer_class = UserDemandSerializer
@@ -178,21 +186,7 @@ def UserDemandCreateView3(request):
     return JsonResponse({'error': 'Invalid request method'})
 
 
-@csrf_exempt
-def Register2(request):
-    if request.method == 'POST':
-
-        email = 'choose_last@163.com'
-        password = 'password123'
-
-        datajson = {'email': email, 'password': password}
-        dataok = {'message': f'Successful register', 'status': 'success'}
-        datano = {'message': f'Invalid register', 'status': 'error'}
-
-        combined_dataok = {'dataok ': dataok, 'datajson': datajson}
-        combined_datano = {'datano ': datano}
-        return JsonResponse(combined_dataok)
-
+# -------------------------------------------->For Receive_data
 
 @csrf_exempt
 def Receive_data(request):
@@ -210,15 +204,7 @@ def Receive_data(request):
 def Receive_data2(request):
     return JsonResponse({'message': 'Hank2 Says:Data received and saved OK!'})
 
-
-@csrf_exempt
-class CreateUserView(APIView):
-    def post(self, request, format=None):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# -------------------------------------------->For register
 
 
 @csrf_exempt
@@ -255,6 +241,32 @@ def Register(request):
         else:
             return JsonResponse(combined_datano)
         '''
+
+
+@csrf_exempt
+def Register2(request):
+    if request.method == 'POST':
+
+        email = 'choose_last@163.com'
+        password = 'password123'
+
+        datajson = {'email': email, 'password': password}
+        dataok = {'message': f'Successful register', 'status': 'success'}
+        datano = {'message': f'Invalid register', 'status': 'error'}
+
+        combined_dataok = {'dataok ': dataok, 'datajson': datajson}
+        combined_datano = {'datano ': datano}
+        return JsonResponse(combined_dataok)
+
+
+@csrf_exempt
+class CreateUserView(APIView):
+    def post(self, request, format=None):
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @login_required
