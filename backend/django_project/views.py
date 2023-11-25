@@ -36,6 +36,7 @@ from rest_framework.response import Response
 from .serializers import UserDataSerializer
 
 
+@csrf_exempt
 # @login_required
 class UserProfileView(TemplateView):
     template_name = 'user_profile.html'  # 你的模板文件路径，根据需要修改
