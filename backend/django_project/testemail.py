@@ -4,7 +4,7 @@ import os
 from django import setup
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-
+from django.contrib.sites.models import Site
 
 # 设置 DJANGO_SETTINGS_MODULE 环境变量
 os.environ['DJANGO_SETTINGS_MODULE'] = 'django_project.settings'  # 替换为你的项目名称
