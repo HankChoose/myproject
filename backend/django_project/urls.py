@@ -14,7 +14,7 @@ urlpatterns = [
     path('encyclopedia/', include("encyclopedia.urls")),
     path('accounts/', include('allauth.urls')),
 
-    path('user-profile/', UserProfileView.as_view(), name='user_profile'),
+    path('user-profile/', views.UserProfileView, name='user_profile'),
 
     path('custom-confirm-email/<str:key>/',
          CustomConfirmEmailView.as_view(), name='custom_confirm_email'),
