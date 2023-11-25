@@ -35,9 +35,11 @@ from rest_framework.response import Response
 from .serializers import UserSerializer
 from .models import UserDemand
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_protect
+from django.utils.decorators import method_decorator
 
 
-@csrf_exempt
+@method_decorator(csrf_protect, name='dispatch')
 class UserProfileView(APIView):
     def get(self, request):
         user_profiles = User.objects.all()
