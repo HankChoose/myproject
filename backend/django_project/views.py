@@ -221,7 +221,7 @@ def Register(request):
 
         combined_dataok = {'dataok ': dataok, 'datajson': datajson}
         combined_datano = {'datano ': datano}
-        # return JsonResponse(combined_dataok)
+        return JsonResponse(combined_dataok)
         '''
         try:
             # user = User.objects.create_user(email=email, password=password)
