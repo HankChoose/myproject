@@ -26,7 +26,7 @@ urlpatterns = [
          views.CheckEmailExistView, name='check_email_exist'),
     path('api/check_user/', CheckUserAPIView.as_view(), name='check_user'),
 
-    path('user-demand-create/', views.UserDemandCreateView,
+    path('user-demand-create/', UserDemandCreateView.as_view(),
          name='user_demand_create'),
     path('user-demand-create2/', views.UserDemandCreateView2,
          name='user_demand_create2'),
