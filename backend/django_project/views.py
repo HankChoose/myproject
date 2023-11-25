@@ -37,6 +37,7 @@ from .models import UserDemand
 from django.contrib.auth.models import User
 
 
+@csrf_exempt
 class UserProfileView(APIView):
     def get(self, request):
         user_profiles = User.objects.all()
