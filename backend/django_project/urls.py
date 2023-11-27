@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
-from .views import UserProfileView, UserDemandCreateView, UserDemandCreateView2, UserDemandCreateView3, CheckUserAPIView, CustomConfirmEmailView
+from .views import send_confirmation_email, UserProfileView, UserDemandCreateView, UserDemandCreateView2, UserDemandCreateView3, CheckUserAPIView, CustomConfirmEmailView
 from . import views
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
+
 
 app_name = 'django_project'
 
@@ -15,6 +16,9 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 
     path('user-profile/', UserProfileView.as_view(), name='user_profile'),
+
+    path('send-confirmation-email/', send_confirmation_email,
+         name='send_confirmation_email'),
 
     path('custom-confirm-email/<str:key>/',
          CustomConfirmEmailView.as_view(), name='custom_confirm_email'),
