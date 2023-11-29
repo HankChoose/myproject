@@ -63,10 +63,21 @@ def send_confirmation_email(request):
         return HttpResponse("No unconfirmed email address found.")
 
 
+'''
 @method_decorator(csrf_protect, name='dispatch')
 class UserProfileView(APIView):
     def get(self, request):
         user_profiles = User.objects.all()
+        serializer = UserSerializer(user_profiles, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+'''
+
+
+@method_decorator(csrf_protect, name='dispatch')
+class UserProfileView(APIView):
+    def get(self, request):
+        user_email = request.user.email
+        user_profiles = User.objects.filter(email=user_email)
         serializer = UserSerializer(user_profiles, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

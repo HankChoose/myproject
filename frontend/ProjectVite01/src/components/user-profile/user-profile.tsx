@@ -17,18 +17,20 @@ interface UserData {
 export const UserProfile = ({ className }: UserProfileProps) => {
     //const [userData, setUserData] = useState(null);
     const [userData, setUserData] = useState<UserData | null>(null);
+    
     useEffect(() => {
         const fetchData = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('https://zhiyouyuec.com/api/user/', {
+            const response = await axios.get('https://zhiyouyuec.com/user-profile/', {
             headers: {
                 'Authorization': `Token ${token}`
             }
             });
 
             if (response.status === 200) {
-            setUserData(response.data);
+                setUserData(response.data);
+                console.log(response.data);
             } else {
             console.error('Failed to fetch user data. Unexpected status:', response.status);
             }
