@@ -3,7 +3,7 @@ from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
 
 from .views import UserAccountView, UserDemandCreateView, UserDemandCreateView2, UserDemandCreateView3, CheckUserAPIView, CustomConfirmEmailView
-from .views import send_confirmation_email, react_user_profile, Receive_data, Receive_data2, Register, Register2
+from .views import index, send_confirmation_email, react_user_profile, Receive_data, Receive_data2, Register, Register2, CheckEmailExistView
 from .views import pd, qwb, cbs, pi, fi, fe, sh, wfd, wffastapi, wfflutter, wfspringboot, wfflask, dbmysql, dbsqlsever, dboracle, dbpostgresql, dbmongodb, fdscss, fdbootstrap, fdhtml, fdjavascript, fdtypescript, fdreact, bdjava, bdc, bdpython, bdphp, bdnotejs, tdocker, tnginx, tgit, faqs, contactus, aboutus
 
 from django.urls import reverse
