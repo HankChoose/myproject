@@ -57,7 +57,7 @@ function App() {
                     <Route path="/react/testaxiospost2" element={<TestAxiosPost2 />} />
                     <Route path="/react/testaxiospost3" element={<TestAxiosPost3 />} />
                     <Route path="/react/testtoken" element={ <TestToken />} />
-                    <Route path="/react/userprofile" element={<UserProfile />} />
+                    <Route path="/react/accounts/login/userprofile/" element={<UserProfile />} />
                     <Route path="/react/page1" element={<Page1 />}>
                         <Route path="test1" element={<Test1 />} />
                         <Route path="test2" element={<Test2 />} />
