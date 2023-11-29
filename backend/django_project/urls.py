@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
 
+from . import views
 from .views import UserAccountView, UserDemandCreateView, UserDemandCreateView2, UserDemandCreateView3, CheckUserAPIView, CustomConfirmEmailView
 from .views import index, send_confirmation_email, react_user_profile, Receive_data, Receive_data2, Register, Register2, CheckEmailExistView
 from .views import pd, qwb, cbs, pi, fi, fe, sh, wfd, wffastapi, wfflutter, wfspringboot, wfflask, dbmysql, dbsqlsever, dboracle, dbpostgresql, dbmongodb, fdscss, fdbootstrap, fdhtml, fdjavascript, fdtypescript, fdreact, bdjava, bdc, bdpython, bdphp, bdnotejs, tdocker, tnginx, tgit, faqs, contactus, aboutus
@@ -18,7 +19,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 
 
-    path('react/userprofile/', react_user_profile, name='react_user_profile'),
+    path('react/userprofile/', views.react_user_profile, name='react_user_profile'),
     path('user-account/', UserAccountView.as_view(), name='user_account'),
 
     path('send-confirmation-email/', send_confirmation_email,
