@@ -51,7 +51,7 @@ export const TestAxiosPost3 = ({ className }: TestAxiosPost3Props) => {
             const accessToken = response.data.access_token;
             // 在这里进行你的其他操作，比如存储在本地存储中
             localStorage.setItem('accessToken', accessToken);
-            navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
+            //navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
         } else {
             console.error('Login failed');
         }
