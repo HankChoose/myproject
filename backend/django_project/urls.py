@@ -18,7 +18,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 
 
-    path('react-userprofile/', react_user_profile, name='react_user_profile'),
+    path('react/userprofile/', react_user_profile, name='react_user_profile'),
     path('user-account/', UserAccountView.as_view(), name='user_account'),
 
     path('send-confirmation-email/', send_confirmation_email,
