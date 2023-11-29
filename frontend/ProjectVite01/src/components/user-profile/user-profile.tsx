@@ -21,7 +21,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
 
     const fetchData = async () => {
         // 获取保存在本地存储中的令牌
-        const token = localStorage.getItem('accessToken');
+        const token = localStorage.getItem('csrftoken');
 
         if (token) {
             try {

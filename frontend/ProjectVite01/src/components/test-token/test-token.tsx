@@ -11,7 +11,7 @@ export interface TestTokenProps {
  */
 export const TestToken = ({ className }: TestTokenProps) => {
 
-    const token = localStorage.getItem('accessToken');
+    const token = localStorage.getItem('csrftoken');
     console.log('Token=',token);
     return <div className={classNames(styles.root, className)}>
          <div>
