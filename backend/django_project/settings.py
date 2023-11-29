@@ -128,7 +128,7 @@ LOGIN_URL = 'https://zhiyouyuec.com/react/singin'  # 替换为您的登录页面
 LOGOUT_URL = 'your-logout-url'  # 替换为您的注销URL
 # 设置登录和注册成功后重定向的页面，默认是 "/accounts/profile/"
 # LOGIN_REDIRECT_URL = 'https://zhiyouyuec.com/react/userprofile'
-LOGIN_REDIRECT_URL = 'react/userprofile/'
+LOGIN_REDIRECT_URL = 'user_account'
 # ACCOUNT
 # 指定要使用的登录方法(用户名、电子邮件地址两者之一)'username_email'，'email'
 # ACCOUNT_AUTHENTICATION_METHOD ="username" | "email" | "username_email"
