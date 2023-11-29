@@ -65,7 +65,7 @@ def send_confirmation_email(request):
 
 '''
 @method_decorator(csrf_protect, name='dispatch')
-class UserProfileView(APIView):
+class UserAccountView(APIView):
     def get(self, request):
         user_profiles = User.objects.all()
         serializer = UserSerializer(user_profiles, many=True)
@@ -74,7 +74,7 @@ class UserProfileView(APIView):
 
 
 @method_decorator(csrf_protect, name='dispatch')
-class UserProfileView(APIView):
+class UserAccountView(APIView):
     def get(self, request):
         user_email = request.user.email
         user_profiles = User.objects.filter(email=user_email)
@@ -104,12 +104,12 @@ class CustomConfirmEmailView(ConfirmEmailView):
     def get(self, *args, **kwargs):
         # 自定义确认邮箱后的逻辑，例如设置用户状态等
         # 这里只是简单地重定向到用户账户页面，你可以根据需求进行修改
-        return redirect('userAccount')  # 替换为你自己的用户账户 URL
+        return redirect('react_user_profile')  # 替换为你自己的用户账户 URL
 
 
-def user_account_view(request):
+def react_user_profile(request):
 
-    return render(request, 'useraccount.html')
+    return render(request, 'user_profile.html')
 
 
 # 在你的应用的 views.py 中
