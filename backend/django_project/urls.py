@@ -7,8 +7,7 @@ from .views import send_confirmation_email, react_user_profile, Receive_data, Re
 from .views import pd, qwb, cbs, pi, fi, fe, sh, wfd, wffastapi, wfflutter, wfspringboot, wfflask, dbmysql, dbsqlsever, dboracle, dbpostgresql, dbmongodb, fdscss, fdbootstrap, fdhtml, fdjavascript, fdtypescript, fdreact, bdjava, bdc, bdpython, bdphp, bdnotejs, tdocker, tnginx, tgit, faqs, contactus, aboutus
 
 from django.urls import reverse
-from django.decorators.csrf import csrf_exempt
-
+from django.views.decorators.csrf import csrf_exempt
 
 app_name = 'django_project'
 
