@@ -22,7 +22,7 @@ urlpatterns = [
 
     path('custom-confirm-email/<str:key>/',
          CustomConfirmEmailView.as_view(), name='custom_confirm_email'),
-    path('user-account/',  views.user_account_view, name='user_account'),
+    path('react/user-account/',  views.user_account_view, name='user_account'),
 
 
     # path('accounts/userprofile/', views.CustomUserProfileView,name='accounts_user_profile'),
