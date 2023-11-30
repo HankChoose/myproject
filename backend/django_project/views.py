@@ -50,13 +50,12 @@ def user_auth_token(request):
 
 @method_decorator(login_required, name='dispatch')
 class UserProfileView(APIView):
-    def get(self, request):
-        # user_email = request.user.email
-        # user_profiles = User.objects.filter(email=user_email)
-        # serializer = UserSerializer(user_profiles, many=True)
-        # return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response('request', request)
-
+    def get(self, request, *args, **kwargs):
+        user_email = request.user.email
+        user_profiles = User.objects.filter(email=user_email)
+        serializer = UserSerializer(user_profiles, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        
 
 @method_decorator(csrf_protect, name='dispatch')
 class UserProfileView2(APIView):
