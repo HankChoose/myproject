@@ -52,11 +52,11 @@ def user_auth_token(request):
 @method_decorator(csrf_protect, name='dispatch')
 class UserProfileView(APIView):
     def get(self, request):
-        user_email = request.user.email
+        # user_email = request.user.email
         # user_profiles = User.objects.filter(email=user_email)
         # serializer = UserSerializer(user_profiles, many=True)
         # return Response(serializer.data, status=status.HTTP_200_OK)
-        return Response('user_email', user_email)
+        return Response('request.user', request.user)
 
 
 @method_decorator(csrf_protect, name='dispatch')
