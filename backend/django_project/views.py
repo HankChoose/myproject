@@ -48,7 +48,7 @@ def user_auth_token(request):
     return obtain_auth_token(request)
 
 
-@method_decorator(csrf_protect, login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class UserProfileView(APIView):
     def get(self, request):
         # user_email = request.user.email
