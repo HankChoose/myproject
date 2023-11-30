@@ -64,7 +64,7 @@ class UserProfileView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-@login_required
+@method_decorator(csrf_protect, name='dispatch')
 class UserProfileView2(APIView):
     def get(self, request):
         user_profiles = User.objects.all()
