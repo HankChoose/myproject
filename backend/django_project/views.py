@@ -1,47 +1,34 @@
 import json
+from .models import UserDemand
 
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseServerError
-from django.http import HttpResponse
+from django.http import HttpResponseServerError, HttpResponse
 from django.db import connection
 from django.conf import settings
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.generic import TemplateView
+from django.contrib.auth.models import User
+from django.utils.decorators import method_decorator
 
 from rest_framework.authtoken.models import Token
-from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.views import ObtainAuthToken, obtain_auth_token
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.decorators import api_view, renderer_classes
+from rest_framework.decorators import api_view, permission_classes, renderer_classes
 from rest_framework.renderers import JSONRenderer
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
+from .serializers import UserSerializer, UserDemandSerializer
 
-from .serializers import UserSerializer
-from .serializers import UserDemandSerializer
-
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
-
-from .serializers import UserSerializer
-from .models import UserDemand
-from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_protect
-from django.utils.decorators import method_decorator
-# from django.contrib.auth.decorators import login_required
-
-from allauth.account.models import EmailAddress
+from allauth.account.models import EmailAddress, EmailConfirmation
 from allauth.account.views import ConfirmEmailView, LoginView
 from allauth.account.decorators import login_required
-from allauth.account.models import EmailConfirmation
 from allauth.account.utils import send_email_confirmation
 
 
@@ -53,6 +40,12 @@ class UserTokenView(ObtainAuthToken):
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
         return Response({'token': token.key})
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def user_token_auth(request):
+    return obtain_auth_token(request)
 
 
 @login_required
