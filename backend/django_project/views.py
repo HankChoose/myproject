@@ -56,6 +56,7 @@ class UserTokenView(ObtainAuthToken):
 
 
 @login_required
+@method_decorator(csrf_protect, name='dispatch')
 class UserProfileView(APIView):
     def get(self, request):
         user_email = request.user.email
