@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
-from .views import send_confirmation_email, UserProfileView, UserDemandCreateView, CheckUserAPIView, CustomConfirmEmailView, UserTokenView
+from .views import send_confirmation_email, UserProfileView, UserProfileView2, UserDemandCreateView, CheckUserAPIView, CustomConfirmEmailView, UserTokenView
 from . import views
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -16,6 +16,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 
     path('user-profile/', UserProfileView.as_view(), name='user_profile'),
+    path('user-profile2/', UserProfileView2.as_view(), name='user_profile2'),
     path('user-token/',  UserTokenView.as_view(), name='user_token'),
 
     path('send-confirmation-email/', send_confirmation_email,
