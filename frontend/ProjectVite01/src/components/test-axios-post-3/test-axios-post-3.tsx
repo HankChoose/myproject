@@ -41,18 +41,22 @@ export const TestAxiosPost3 = ({ className }: TestAxiosPost3Props) => {
         e.preventDefault();
 
         try {
-        const response = await axios.post('/accounts/login/', formData,config);
-        if (response.status === 200) {
-            localStorage.setItem('accessToken', response.data.token);
-            // 跳转到用户首页或执行其他登录后的逻辑
-            //history.push('/userhome');
-            console.log('Login OK',response.data);
-            console.log('response.data.token',response.data.token);
-            // 在这里进行你的其他操作，比如存储在本地存储中
-            navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
-        } else {
-            console.error('Login failed');
-        }
+            const response = await axios.post('/accounts/login/', formData,config);
+            if (response.status === 200) {
+                
+                
+                // 跳转到用户首页或执行其他登录后的逻辑
+                //history.push('/userhome');
+                console.log('Login OK',response.data);
+                const response2 = await axios.post('/user-token/', formData,config);
+                console.log('Login2 OK',response2.data);
+                localStorage.setItem('accessToken', response2.data.token);
+                console.log('response2.data.token',response2.data.token);
+                // 在这里进行你的其他操作，比如存储在本地存储中
+                navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
+            } else {
+                console.error('Login failed');
+            }
         console.log(response.data);
         } catch (error) {
         console.error('Error creating user:', error);
