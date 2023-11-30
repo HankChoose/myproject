@@ -55,7 +55,7 @@ class UserTokenView(ObtainAuthToken):
         return Response({'token': token.key})
 
 
-@method_decorator(csrf_protect, name='dispatch')
+@login_required
 class UserProfileView(APIView):
     def get(self, request):
         user_email = request.user.email
@@ -64,7 +64,7 @@ class UserProfileView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-@method_decorator(csrf_protect, name='dispatch')
+@login_required
 class UserProfileView2(APIView):
     def get(self, request):
         user_profiles = User.objects.all()
