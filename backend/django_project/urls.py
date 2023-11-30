@@ -18,7 +18,6 @@ urlpatterns = [
     path('user-profile/', views.UserProfileView, name='user_profile'),
     path('user-profile2/', UserProfileView2.as_view(), name='user_profile2'),
     path('user-token/',  UserTokenView.as_view(), name='user_token'),
-    path('user-token2/', views.user_token_auth, name='user_token_auth'),
     path('user-account/',  views.user_account, name='user_account'),
 
     path('send-confirmation-email/', send_confirmation_email,

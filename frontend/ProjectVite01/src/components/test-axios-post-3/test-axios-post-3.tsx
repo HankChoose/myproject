@@ -36,7 +36,6 @@ export const TestAxiosPost3 = ({ className }: TestAxiosPost3Props) => {
     };
 
     const navigate = useNavigate();
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -48,7 +47,10 @@ export const TestAxiosPost3 = ({ className }: TestAxiosPost3Props) => {
                 // 跳转到用户首页或执行其他登录后的逻辑
                 //history.push('/userhome');
                 console.log('Login OK',response.data);
-                const response2 = await axios.post('/user-token/', formData,config);
+                const response2 = await axios.post('/user-token/', {
+                    username: formData.login,
+                    password: formData.password,
+                });
                 console.log('Login2 OK',response2.data);
                 localStorage.setItem('accessToken', response2.data.token);
                 console.log('response2.data.token',response2.data.token);

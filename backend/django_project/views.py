@@ -44,7 +44,7 @@ class UserTokenView(ObtainAuthToken):
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-def user_token_auth(request):
+def user_auth_token(request):
     return obtain_auth_token(request)
 
 
