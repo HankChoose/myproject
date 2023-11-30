@@ -14,7 +14,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         email: string;
         // 其他属性...
     }
-    const [userData, setUserData] = useState<UserData | null>(null);
+    const [userData, setUserData] = useState<UserData[]>([]);
     
     useEffect(() => {
         // 在组件加载时发送请求
@@ -56,8 +56,14 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         <div>
         {userData ? (
             <div>
-            <p>Welcome, {userData.username}!</p>
+            <p>Welcome!</p>
             {/* 其他用户信息的显示 */}
+            <h1>Data:</h1>
+            <ul>
+                {userData.map(item => (
+                <li key={item.id}>{item.username}{item.email}</li>
+                ))}
+            </ul>
             </div>
         ) : (
             <p>Please log in to view user data.</p>
