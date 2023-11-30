@@ -15,7 +15,7 @@ urlpatterns = [
     path('encyclopedia/', include("encyclopedia.urls")),
     path('accounts/', include('allauth.urls')),
 
-    path('user-profile/', views.UserProfileView, name='user_profile'),
+    path('user-profile/', UserProfileView.as_view(), name='user_profile'),
     path('user-profile2/', UserProfileView2.as_view(), name='user_profile2'),
     path('user-token/',  UserTokenView.as_view(), name='user_token'),
     path('user-account/',  views.user_account, name='user_account'),
