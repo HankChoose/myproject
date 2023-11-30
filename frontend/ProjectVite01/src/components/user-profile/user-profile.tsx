@@ -25,7 +25,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
 
         if (token) {
             try {
-                const response = await fetch('hhttps://zhiyouyuec.com/user-account/', {
+                const response = await fetch('https://zhiyouyuec.com/user-profile/', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`

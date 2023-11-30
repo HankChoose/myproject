@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 export default createBoard({
     name: 'UserProfile',
-    Board: () =><Router> <UserProfile /></Router>,
+    Board: () => <Router> <UserProfile /></Router>,
     isSnippet: true,
+    environmentProps: {
+        canvasHeight: 5
+    }
 });
