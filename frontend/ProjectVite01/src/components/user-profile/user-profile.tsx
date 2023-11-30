@@ -9,7 +9,9 @@ export interface UserProfileProps {
 
 export const UserProfile = ({ className }: UserProfileProps) => {
     interface UserData {
+        id: string;
         username: string;
+        email: string;
         // 其他属性...
     }
     const [userData, setUserData] = useState<UserData | null>(null);
@@ -35,6 +37,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
 
                 if (response.ok) {
                 const data = await response.json();
+                console.log('data',data);
                 setUserData(data);
                 } else {
                 // 处理请求失败的情况
