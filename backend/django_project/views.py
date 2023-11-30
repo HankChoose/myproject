@@ -13,6 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 
 from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -21,6 +22,8 @@ from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import AllowAny
+
+
 from .serializers import UserSerializer
 from .serializers import UserDemandSerializer
 
@@ -40,6 +43,16 @@ from allauth.account.views import ConfirmEmailView, LoginView
 from allauth.account.decorators import login_required
 from allauth.account.models import EmailConfirmation
 from allauth.account.utils import send_email_confirmation
+
+
+class UserTokenView(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({'token': token.key})
 
 
 @login_required
@@ -93,10 +106,10 @@ class CustomConfirmEmailView(ConfirmEmailView):
     def get(self, *args, **kwargs):
         # 自定义确认邮箱后的逻辑，例如设置用户状态等
         # 这里只是简单地重定向到用户账户页面，你可以根据需求进行修改
-        return redirect('userAccount')  # 替换为你自己的用户账户 URL
+        return redirect('user_token')  # 替换为你自己的用户账户 URL
 
 
-def user_account_view(request):
+def user_token(request):
 
     return render(request, 'useraccount.html')
 
