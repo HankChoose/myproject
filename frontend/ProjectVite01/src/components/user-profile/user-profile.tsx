@@ -56,12 +56,17 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         <div>
         {userData ? (
             <div>
+            <h1>User Home</h1>
             <p>Welcome!</p>
-            {/* 其他用户信息的显示 */}
-            <h1>Data:</h1>
             <ul>
                 {userData.map(item => (
-                <li key={item.id}>{item.username}{item.email}</li>
+                <li key={item.id}>{item.username}</li>
+                ))}
+            </ul>
+           
+            <ul>
+                {userData.map(item => (
+                <li key={item.id}>{item.email}</li>
                 ))}
             </ul>
             </div>
