@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 export default createBoard({
     name: 'TestAxiosPost2',
-    Board: () =><Router>  <TestAxiosPost2 /></Router> ,
+    Board: () => <Router>  <TestAxiosPost2 /></Router>,
     isSnippet: true,
+    environmentProps: {
+        canvasHeight: 5
+    }
 });
