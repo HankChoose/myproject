@@ -16,6 +16,8 @@ export const TestList = ({ className }: TestListProps) => {
         id: string;
         username: string;
         email: string;
+        demand_type: string;
+        demand_description: string;
         // 其他属性...
     }
     const [data, setData] = useState<data[]>([]);
@@ -74,8 +76,10 @@ export const TestList = ({ className }: TestListProps) => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Age</th>
+            <th>Usernam</th>
+            <th>Email</th>
+            <th>Type</th>
+            <th>Description</th>
           </tr>
         </thead>
         <tbody>
@@ -84,6 +88,8 @@ export const TestList = ({ className }: TestListProps) => {
               <td>{item.id}</td>
               <td>{item.username}</td>
               <td>{item.email}</td>
+              <td>{item.demand_type}</td>
+              <td>{item.demand_description}</td>
             </tr>
           ))}
         </tbody>
