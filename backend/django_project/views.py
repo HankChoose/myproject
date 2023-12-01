@@ -147,8 +147,18 @@ class UserDemandCreateView(generics.CreateAPIView):
     serializer_class = UserDemandSerializer
 
 
+class UserDemandListAPIView(generics.ListAPIView):
+    queryset = UserDemand.objects.all()
+    serializer_class = UserDemandSerializer
+
+
+class UserDemandListAPIView2(generics.ListAPIView):
+    queryset = UserDemand.objects.all()
+    serializer_class = UserDemandSerializer
+
+
 @csrf_exempt
-def UserDemandCreateView2(request):
+def user_demand_create(request):
     if request.method == 'POST':
         serializer = UserDemandSerializer(data=request.data)
         if serializer.is_valid():
@@ -157,37 +167,8 @@ def UserDemandCreateView2(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@csrf_exempt
-def UserDemandCreateView3(request):
-    if request.method == 'POST':
-        try:
-            # Retrieve JSON data
-            data = json.loads(request.body.decode('utf-8'))
-            username = data.get('username')
-            email = data.get('email')
-            demand_type = data.get('demand_type')
-            demand_description = data.get('demand_description')
-
-            # Process the data as needed (e.g., save to database)
-            # ...
-
-            # Return a response
-            response_data = {
-                'message': 'Data received and processed successfully.',
-                'username': username,
-                'email': email,
-                'demand_type': demand_type,
-                'demand_description': demand_description,
-            }
-
-            return JsonResponse(response_data)
-        except json.JSONDecodeError:
-            return JsonResponse({'error': 'Invalid JSON data'}, status=400)
-
-    return JsonResponse({'error': 'Invalid request method'})
-
-
 # -------------------------------------------->For Receive_data
+
 
 @csrf_exempt
 def Receive_data(request):
