@@ -23,6 +23,7 @@ import { TestAxiosPost2 } from './components/test-axios-post-2/test-axios-post-2
 import { TestAxiosPost3 } from './components/test-axios-post-3/test-axios-post-3';
 import { UserProfile } from './components/user-profile/user-profile';
 import { TestToken } from './components/test-token/test-token';
+import { TestList } from './components/test-list/test-list';
 
 // 导入根 reducer
 const store = createStore(rootReducer);
@@ -42,6 +43,7 @@ function App() {
                 <Link to="/react/testaxiospost2"> TA2 </Link>
                 <Link to="/react/testaxiospost3"> TA3 </Link>
                 <Link to="/react/testtoken"> TT </Link>
+                <Link to="/react/testlist"> UP </Link>
                 <Link to="/react/userprofile"> UP </Link>
 
                 <Routes>
@@ -56,7 +58,8 @@ function App() {
                     <Route path="/react/testaxiospost" element={<TestAxiosPost />} />
                     <Route path="/react/testaxiospost2" element={<TestAxiosPost2 />} />
                     <Route path="/react/testaxiospost3" element={<TestAxiosPost3 />} />
-                    <Route path="/react/testtoken" element={ <TestToken />} />
+                    <Route path="/react/testtoken" element={<TestToken />} />
+                    <Route path="/react/testlist" element={<TestList />} />
                     <Route path="/react/userprofile" element={<UserProfile />} />
                     <Route path="/react/page1" element={<Page1 />}>
                         <Route path="test1" element={<Test1 />} />
@@ -71,7 +74,8 @@ function App() {
 
 
             </Router>
-          
+            <TestList />
+
 
 
 
