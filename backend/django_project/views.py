@@ -148,7 +148,7 @@ class UserDemandCreateView(generics.CreateAPIView):
 
 
 class UserDemandListAPIView(generics.ListAPIView):
-    serializer_class = UserDemandSerializer
+    # serializer_class = UserDemandSerializer
 
     def get(self, request, *args, **kwargs):
         user_email = request.user.email
