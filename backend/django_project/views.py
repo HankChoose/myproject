@@ -6,13 +6,14 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from django.http import HttpResponseServerError, HttpResponse
 from django.db import connection
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.generic import TemplateView
 from django.contrib.auth.models import User
-from django.utils.decorators import method_decorator
+
 
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken, obtain_auth_token
@@ -55,7 +56,7 @@ class UserProfileView(APIView):
         user_profiles = User.objects.filter(email=user_email)
         serializer = UserSerializer(user_profiles, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-        
+
 
 @method_decorator(csrf_protect, name='dispatch')
 class UserProfileView2(APIView):
@@ -117,26 +118,7 @@ def user_account(request):
 
     return render(request, 'useraccount.html')
 
-
-# 在你的应用的 views.py 中
-
-'''
-def CustomUserProfileView(request):
-    if request.user.is_authenticated:
-        email_address = EmailAddress.objects.get(
-            user=request.user, verified=True)
-        if email_address:
-            # 邮箱已验证
-            return render(request, 'useraccount.html')
-        else:
-            # 邮箱未验证
-            return render(request, 'useraccountno.html')
-    else:
-        # 用户未登录
-        return render(request, 'index.html')
-
-'''
-# ------------------------------------------------->Check exists email
+# -------------------------------------------->Check exists email
 
 
 def CheckEmailExistView(request, email):
@@ -167,49 +149,11 @@ class UserDemandCreateView(generics.CreateAPIView):
 @csrf_exempt
 def UserDemandCreateView2(request):
     if request.method == 'POST':
-        # Retrieve POST data
-        '''
-        data = json.loads(request.body.decode('utf-8'))
-
-        username = data.get('username')
-        email = data.get('email')
-        demand_type = data.get('demand_type')
-        demand_description = data.get('demand_description')
-        '''
-        # Retrieve form data
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        demand_type = request.POST.get('demand_type')
-        demand_description = request.POST.get('demand_description')
-
-        # Process the data as needed (e.g., save to database)
-
-        response_data = {
-            'message': 'Data received and processed successfully.',
-            'username': username,
-            'email': email,
-            'demand_type': demand_type,
-            'demand_description': demand_description,
-        }
-        return JsonResponse(response_data)
-        '''
-        response_content = f'Success! Post Data received and processed. Username: {username}, Email: {email}, Demand Type: {demand_type}, Demand Description: {demand_description}'
-        return HttpResponse(response_content)
-        '''
-    else:
-        # Handle other HTTP methods (GET, etc.) or render a form
-        # return render(request, 'your_template.html')
-        # Retrieve GET data
-        username = request.GET.get('username')
-        email = request.GET.get('email')
-        demand_type = request.GET.get('demand_type')
-        demand_description = request.GET.get('demand_description')
-
-        # Process the data as needed (e.g., save to database)
-
-        response_content = f'Success! Get Data received and processed. Username: {username}, Email: {email}, Demand Type: {demand_type}, Demand Description: {demand_description}'
-        return HttpResponse(response_content)
-
+        serializer = UserDemandSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @csrf_exempt
 def UserDemandCreateView3(request):
@@ -477,3 +421,24 @@ def contactus(request):
 
 def faqs(request):
     return render(request, 'faqs.html')
+
+
+# 在你的应用的 views.py 中
+
+'''
+def CustomUserProfileView(request):
+    if request.user.is_authenticated:
+        email_address = EmailAddress.objects.get(
+            user=request.user, verified=True)
+        if email_address:
+            # 邮箱已验证
+            return render(request, 'useraccount.html')
+        else:
+            # 邮箱未验证
+            return render(request, 'useraccountno.html')
+    else:
+        # 用户未登录
+        return render(request, 'index.html')
+
+
+'''
