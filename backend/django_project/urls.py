@@ -20,7 +20,7 @@ urlpatterns = [
     path('user-token/',  UserTokenView.as_view(), name='user_token'),
     path('user-account/',  views.user_account, name='user_account'),
 
-    path('send-confirmation-email/', send_confirmation_email,
+    path('send-confirmation-email/', views.send_confirmation_email,
          name='send_confirmation_email'),
 
     path('custom-confirm-email/<str:key>/',
