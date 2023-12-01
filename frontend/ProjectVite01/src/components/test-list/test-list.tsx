@@ -32,7 +32,7 @@ export const TestList = ({ className }: TestListProps) => {
 
         if (token) {
             try {
-                const response = await fetch('https://zhiyouyuec.com/user-profile/', {
+                const response = await fetch('https://zhiyouyuec.com/user-demand-list/', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
