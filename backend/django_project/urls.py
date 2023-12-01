@@ -37,8 +37,6 @@ urlpatterns = [
          name='user_demand_create'),
     path('user-demand-list/', UserDemandListAPIView.as_view(),
          name='user_demand_list'),
-    path('user-demand-create2/', views.user_demand_create,
-         name='user_demand_create2'),
     path('user-demand-list2/', UserDemandListAPIView2.as_view(),
          name='user_demand_list2'),
 

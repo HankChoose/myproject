@@ -148,23 +148,18 @@ class UserDemandCreateView(generics.CreateAPIView):
 
 
 class UserDemandListAPIView(generics.ListAPIView):
-    queryset = UserDemand.objects.all()
     serializer_class = UserDemandSerializer
+
+    def get(self, request, *args, **kwargs):
+        user_email = request.user.email
+        user_demands = UserDemand.objects.filter(email=user_email)
+        serializer = UserDemandSerializer(user_demands, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class UserDemandListAPIView2(generics.ListAPIView):
     queryset = UserDemand.objects.all()
     serializer_class = UserDemandSerializer
-
-
-@csrf_exempt
-def user_demand_create(request):
-    if request.method == 'POST':
-        serializer = UserDemandSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # -------------------------------------------->For Receive_data
