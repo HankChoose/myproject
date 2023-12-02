@@ -3,7 +3,9 @@ import styles from './test-list.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Table, Button } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
+import { FromRowRight } from '../from-row-right/from-row-right';
+import { FromRowSeparate } from '../from-row-separate/from-row-separate';
 
 export interface TestListProps {
     className?: string;
@@ -32,7 +34,7 @@ export const TestList = ({ className }: TestListProps) => {
         fetchData();
     }, [page, pageSize, sortOrder]);
 
-    const handlePageChange = (newPage:number) => {
+    const handlePageChange = (newPage: number) => {
         setPage(newPage);
     };
 
@@ -45,20 +47,20 @@ export const TestList = ({ className }: TestListProps) => {
         setSortOrder(newSortOrder);
     };
 
-    const handleCheckboxChange = (id:number) => {
-      const selected = selectedItems.includes(id);
+    const handleCheckboxChange = (id: number) => {
+        const selected = selectedItems.includes(id);
 
-      if (selected) {
-        setSelectedItems(selectedItems.filter(item => item !== id));
-      } else {
-        setSelectedItems([...selectedItems, id]);
-      }
+        if (selected) {
+            setSelectedItems(selectedItems.filter(item => item !== id));
+        } else {
+            setSelectedItems([...selectedItems, id]);
+        }
     };
 
     const handleDelete = () => {
-      const updatedData = data.filter(item => !selectedItems.includes(Number(item.id)));
-      setData(updatedData);
-      setSelectedItems([]);
+        const updatedData = data.filter(item => !selectedItems.includes(Number(item.id)));
+        setData(updatedData);
+        setSelectedItems([]);
     };
 
     const fetchData = async () => {
@@ -68,85 +70,88 @@ export const TestList = ({ className }: TestListProps) => {
         if (token) {
             try {
                 const response = await fetch('https://zhiyouyuec.com/user-demand-list/', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
-                    'Content-Type': 'application/json',
-                },
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
+                        'Content-Type': 'application/json',
+                    },
                 });
 
                 if (response.ok) {
-                const data = await response.json();
-                console.log('data',data);
-                setData(data);
+                    const data = await response.json();
+                    console.log('data', data);
+                    setData(data);
                 } else {
-                // 处理请求失败的情况
-                console.error('Failed to fetch user data:', response.status, response.statusText);
+                    // 处理请求失败的情况
+                    console.error('Failed to fetch user data:', response.status, response.statusText);
                 }
             } catch (error) {
                 console.error('Error fetching user data:', error);
             }
         } else {
-        // 处理令牌不存在的情况
-        console.error('Access token is undefined or null.');
+            // 处理令牌不存在的情况
+            console.error('Access token is undefined or null.');
         }
     };
 
     return <div className={classNames(styles.root, className)}>
-        <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th></th>
-            <th>ID</th>
-            <th>Usernam</th>
-            <th>Email</th>
-            <th>Type</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((item) => (
-            <tr key={item.id}>
-              <td>
-                <input
-                  type="checkbox"
-                  checked={selectedItems.includes(Number(item.id))}
-                  onChange={() => handleCheckboxChange(Number(item.id))}
-                />
-              </td>
-              <td>{item.id}</td>
-              <td>{item.username}</td>
-              <td>{item.email}</td>
-              <td>{item.demand_type}</td>
-              <td>{item.demand_description}</td>
-            </tr>
-          ))}
-        </tbody>
+      <FromRowRight>
+        <div>
+          <div>
+              <label>Page Size: </label>
+              <select onChange={(e) => handlePageSizeChange(Number(e.target.value))} value={pageSize}>
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+              </select>
+          </div>
+          <div>
+              <label>Sort Order: </label>
+              <select onChange={(e) => handleSortChange(e.target.value)} value={sortOrder}>
+                  <option value="asc">Ascending</option>
+                  <option value="desc">Descending</option>
+              </select>
+          </div>
+        </div>
+      </FromRowRight>
+      <Table striped bordered hover>
+          <thead>
+              <tr>
+                  <th></th>
+                  <th>ID</th>
+                  <th>Usernam</th>
+                  <th>Email</th>
+                  <th>Type</th>
+                  <th>Description</th>
+              </tr>
+          </thead>
+          <tbody>
+              {data.map((item) => (
+                  <tr key={item.id}>
+                      <td>
+                          <input
+                              type="checkbox"
+                              checked={selectedItems.includes(Number(item.id))}
+                              onChange={() => handleCheckboxChange(Number(item.id))}
+                          />
+                      </td>
+                      <td>{item.id}</td>
+                      <td>{item.username}</td>
+                      <td>{item.email}</td>
+                      <td>{item.demand_type}</td>
+                      <td>{item.demand_description}</td>
+                  </tr>
+              ))}
+          </tbody>
       </Table>
-      <div>
-        <div>
-          <label>Page Size: </label>
-          <select onChange={(e) => handlePageSizeChange(Number(e.target.value))} value={pageSize}>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-          </select>
-        </div>
-        <div>
-          <label>Sort Order: </label>
-          <select onChange={(e) => handleSortChange(e.target.value)} value={sortOrder}>
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-          </select>
-        </div>
-      </div>
-      <div>
+  
+    <div>
+      <FromRowSeparate>
         <button onClick={() => handlePageChange(page - 1)} disabled={page === 1}>
-          Previous
+            Previous
         </button>
         <button onClick={() => handlePageChange(page + 1)}>Next</button>
-      </div>
-    
-    
+        </FromRowSeparate>
+    </div>
     </div>;
 };
