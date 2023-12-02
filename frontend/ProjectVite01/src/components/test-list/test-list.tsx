@@ -19,10 +19,10 @@ export interface TestListProps {
 export const TestList = ({ className }: TestListProps) => {
     interface data {
         id: string;
-        username: string;
-        email: string;
         demand_type: string;
         demand_description: string;
+        username: string;
+        email: string;
         // 其他属性...
     }
     const [data, setData] = useState<data[]>([]);
@@ -117,10 +117,11 @@ export const TestList = ({ className }: TestListProps) => {
                 <tr>
                     <th></th>
                     <th>ID</th>
-                    <th>Usernam</th>
-                    <th>Email</th>
                     <th>Type</th>
                     <th>Description</th>
+                     <th>Usernam</th>
+                    <th>Email</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -134,10 +135,16 @@ export const TestList = ({ className }: TestListProps) => {
                             />
                         </td>
                         <td>{item.id}</td>
-                        <td>{item.username}</td>
-                        <td>{item.email}</td>
                         <td>{item.demand_type}</td>
                         <td>{item.demand_description}</td>
+                        <td>{item.username}</td>
+                        <td>{item.email}</td>
+                        <td>
+                        <a href={item.id} target="_blank" rel="noopener noreferrer">
+                            Open
+                        </a>
+                        </td>
+                       
                     </tr>
                 ))}
             </tbody>
