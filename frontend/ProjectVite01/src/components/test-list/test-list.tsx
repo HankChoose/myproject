@@ -92,7 +92,7 @@ export const TestList = ({ className }: TestListProps) => {
     };
 
     return <div className={classNames(styles.root, className)}>
-        <table>
+        <Table  striped bordered hover>
         <thead>
           <tr>
             <th></th>
@@ -121,7 +121,7 @@ export const TestList = ({ className }: TestListProps) => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
       <div>
         <div>
           <label>Page Size: </label>
