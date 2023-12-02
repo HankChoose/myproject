@@ -140,7 +140,7 @@ export const TestList = ({ className }: TestListProps) => {
                         <td>{item.username}</td>
                         <td>{item.email}</td>
                         <td>
-                        <a href={item.id} target="_blank" rel="noopener noreferrer">
+                        <a href={`userapplycontent/${item.id}`} target="_blank" rel="noopener noreferrer">
                             Open
                         </a>
                         </td>
