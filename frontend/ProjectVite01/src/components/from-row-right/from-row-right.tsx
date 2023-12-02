@@ -11,5 +11,5 @@ export interface FromRowRightProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const FromRowRight = ({ className , children }: FromRowRightProps) => {
-    return <div className={classNames(styles.root, className)}></div>;
+    return <div className={classNames(styles.root, className)}> {children} </div>;
 };

@@ -95,63 +95,58 @@ export const TestList = ({ className }: TestListProps) => {
     };
 
     return <div className={classNames(styles.root, className)}>
-      <FromRowRight>
-        <div>
-          <div>
-              <label>Page Size: </label>
-              <select onChange={(e) => handlePageSizeChange(Number(e.target.value))} value={pageSize}>
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-              </select>
-          </div>
-          <div>
-              <label>Sort Order: </label>
-              <select onChange={(e) => handleSortChange(e.target.value)} value={sortOrder}>
-                  <option value="asc">Ascending</option>
-                  <option value="desc">Descending</option>
-              </select>
-          </div>
-        </div>
-      </FromRowRight>
-      <Table striped bordered hover>
-          <thead>
-              <tr>
-                  <th></th>
-                  <th>ID</th>
-                  <th>Usernam</th>
-                  <th>Email</th>
-                  <th>Type</th>
-                  <th>Description</th>
-              </tr>
-          </thead>
-          <tbody>
-              {data.map((item) => (
-                  <tr key={item.id}>
-                      <td>
-                          <input
-                              type="checkbox"
-                              checked={selectedItems.includes(Number(item.id))}
-                              onChange={() => handleCheckboxChange(Number(item.id))}
-                          />
-                      </td>
-                      <td>{item.id}</td>
-                      <td>{item.username}</td>
-                      <td>{item.email}</td>
-                      <td>{item.demand_type}</td>
-                      <td>{item.demand_description}</td>
-                  </tr>
-              ))}
-          </tbody>
-      </Table>
-  
-    <div>
-      <FromRowSeparate>
-        <button onClick={() => handlePageChange(page - 1)} disabled={page === 1}>
-            Previous
-        </button>
-        <button onClick={() => handlePageChange(page + 1)}>Next</button>
+        <FromRowRight>
+            <div>
+                <label></label>
+                <select onChange={(e) => handlePageSizeChange(Number(e.target.value))} value={pageSize}>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            <div>
+                <label></label>
+                <select onChange={(e) => handleSortChange(e.target.value)} value={sortOrder}>
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select>
+            </div>
+        </FromRowRight>
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>ID</th>
+                    <th>Usernam</th>
+                    <th>Email</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {data.map((item) => (
+                    <tr key={item.id}>
+                        <td>
+                            <input
+                                type="checkbox"
+                                checked={selectedItems.includes(Number(item.id))}
+                                onChange={() => handleCheckboxChange(Number(item.id))}
+                            />
+                        </td>
+                        <td>{item.id}</td>
+                        <td>{item.username}</td>
+                        <td>{item.email}</td>
+                        <td>{item.demand_type}</td>
+                        <td>{item.demand_description}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </Table>
+        <FromRowSeparate>
+            <button onClick={() => handlePageChange(page - 1)} disabled={page === 1}>
+                Previous
+            </button>
+            <button onClick={() => handlePageChange(page + 1)}>Next</button>
         </FromRowSeparate>
-    </div>
     </div>;
 };
