@@ -2,10 +2,12 @@ import classNames from 'classnames';
 import styles from './test-list.module.scss';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Table, Button } from 'react-bootstrap';
 
 export interface TestListProps {
     className?: string;
 }
+
 
 /**
  * This component was created using Codux's Default new component template.
@@ -21,12 +23,42 @@ export const TestList = ({ className }: TestListProps) => {
         // 其他属性...
     }
     const [data, setData] = useState<data[]>([]);
+    const [selectedItems, setSelectedItems] = useState<number[]>([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
     const [sortOrder, setSortOrder] = useState('asc'); // 'asc' or 'desc'
     useEffect(() => {
         fetchData();
     }, [page, pageSize, sortOrder]);
+
+    const handlePageChange = (newPage:number) => {
+        setPage(newPage);
+    };
+
+    const handlePageSizeChange = (newPageSize: number) => {
+        setPageSize(newPageSize);
+        setPage(1); // Reset to the first page when changing page size
+    };
+
+    const handleSortChange = (newSortOrder: string) => {
+        setSortOrder(newSortOrder);
+    };
+
+    const handleCheckboxChange = (id:number) => {
+      const selected = selectedItems.includes(id);
+
+      if (selected) {
+        setSelectedItems(selectedItems.filter(item => item !== id));
+      } else {
+        setSelectedItems([...selectedItems, id]);
+      }
+    };
+
+    const handleDelete = () => {
+      const updatedData = data.filter(item => !selectedItems.includes(Number(item.id)));
+      setData(updatedData);
+      setSelectedItems([]);
+    };
 
     const fetchData = async () => {
         // 获取保存在本地存储中的令牌
@@ -59,22 +91,11 @@ export const TestList = ({ className }: TestListProps) => {
         }
     };
 
-    const handlePageChange = (newPage:number) => {
-        setPage(newPage);
-    };
-
-    const handlePageSizeChange = (newPageSize: number) => {
-        setPageSize(newPageSize);
-        setPage(1); // Reset to the first page when changing page size
-    };
-
-    const handleSortChange = (newSortOrder: string) => {
-        setSortOrder(newSortOrder);
-    };
     return <div className={classNames(styles.root, className)}>
         <table>
         <thead>
           <tr>
+            <th></th>
             <th>ID</th>
             <th>Usernam</th>
             <th>Email</th>
@@ -85,6 +106,13 @@ export const TestList = ({ className }: TestListProps) => {
         <tbody>
           {data.map((item) => (
             <tr key={item.id}>
+              <td>
+                <input
+                  type="checkbox"
+                  checked={selectedItems.includes(Number(item.id))}
+                  onChange={() => handleCheckboxChange(Number(item.id))}
+                />
+              </td>
               <td>{item.id}</td>
               <td>{item.username}</td>
               <td>{item.email}</td>
