@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 import styles from './test-list.module.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Table, Button } from 'react-bootstrap';
+import {Table, Button } from 'react-bootstrap';
 
 export interface TestListProps {
     className?: string;
@@ -92,7 +93,7 @@ export const TestList = ({ className }: TestListProps) => {
     };
 
     return <div className={classNames(styles.root, className)}>
-        <Table  striped bordered hover>
+        <Table striped bordered hover>
         <thead>
           <tr>
             <th></th>
