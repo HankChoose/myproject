@@ -166,8 +166,8 @@ def user_demand_content(request, id):
     # Get the content of the requested entry
     user_demands = UserDemand.objects.filter(id=id)
     serializer = UserDemandSerializer(user_demands, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK
-    
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
     '''
     # If the entry does not exist, render an error page
     if content is None:
