@@ -163,14 +163,22 @@ class UserDemandListAPIView2(generics.ListAPIView):
     serializer_class = UserDemandSerializer
 
 
-def user_demand_content(request, demand_type):
+class UserDemandContentAPIView(generics.ListAPIView):
+    # serializer_class = UserDemandSerializer
+    def get(self, request, demand_type):
+        user_email = request.user.email
+        user_demands = UserDemand.objects.filter(demand_type=demand_type)
+        serializer = UserDemandSerializer(user_demands, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    '''
+    def user_demand_content(request, demand_type):
     # user_demands = get_object_or_404(UserDemand, demand_type=demand_type)
     user_demands = UserDemand.objects.filter(demand_type=demand_type)
     serializer = UserDemandSerializer(user_demands, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
     # return Response(user_demands, status=status.HTTP_200_OK)
-
-    '''
+    
     # If the entry does not exist, render an error page
     if content is None:
         # return HttpResponseNotFound(f"Page not found: {id}")

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
-from .views import UserProfileView, UserProfileView2, UserDemandCreateView, UserDemandListAPIView, UserDemandListAPIView2, CheckUserAPIView, CustomConfirmEmailView, UserTokenView
+from .views import UserDemandContentAPIView, UserProfileView, UserProfileView2, UserDemandCreateView, UserDemandListAPIView, UserDemandListAPIView2, CheckUserAPIView, CustomConfirmEmailView, UserTokenView
 from . import views
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -41,7 +41,7 @@ urlpatterns = [
          name='user_demand_list2'),
 
     path("user-apply-content/<str:demand_type>",
-         views.user_demand_content, name="user_demand_content"),
+         UserDemandContentAPIView.as_view(), name="user_demand_content"),
 
 
     path('receive-data/', views.Receive_data, name='receive_data'),
