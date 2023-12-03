@@ -166,8 +166,9 @@ class UserDemandListAPIView2(generics.ListAPIView):
 def user_demand_content(request, id):
     user_demands = get_object_or_404(UserDemand, id=id)
     # user_demands = UserDemand.objects.filter(id=id)
-    serializer = UserDemandSerializer(user_demands, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    # serializer = UserDemandSerializer(user_demands, many=True)
+    # return Response(serializer.data, status=status.HTTP_200_OK)
+    return Response(user_demands, status=status.HTTP_200_OK)
 
     '''
     # If the entry does not exist, render an error page
