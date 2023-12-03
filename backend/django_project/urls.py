@@ -40,7 +40,7 @@ urlpatterns = [
     path('user-demand-list2/', UserDemandListAPIView2.as_view(),
          name='user_demand_list2'),
 
-    path("user-apply-content/<id:id>",
+    path("user-apply-content/<int:id>",
          UserDemandContentAPIView.as_view(), name="user_demand_content"),
 
 
