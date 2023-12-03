@@ -162,6 +162,28 @@ class UserDemandListAPIView2(generics.ListAPIView):
     serializer_class = UserDemandSerializer
 
 
+def user_demand_content(request, id):
+    # Get the content of the requested entry
+    user_demands = UserDemand.objects.filter(id=id)
+    serializer = UserDemandSerializer(user_demands, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK
+    
+    '''
+    # If the entry does not exist, render an error page
+    if content is None:
+        # return HttpResponseNotFound(f"Page not found: {id}")
+        return render(request, "encyclopedia/entrycontent.html", {
+            "id": id.capitalize(),
+            "content": f"Page not found: {id}",
+        })
+
+    # If the entry exists, render the entry page
+    return render(request, "encyclopedia/entrycontent.html", {
+        "id": id.capitalize(),
+        "content": content_html,
+    })
+    '''
+
 # -------------------------------------------->For Receive_data
 
 

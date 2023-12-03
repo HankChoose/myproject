@@ -40,6 +40,9 @@ urlpatterns = [
     path('user-demand-list2/', UserDemandListAPIView2.as_view(),
          name='user_demand_list2'),
 
+    path("react/userapplycontent/<int:id>",
+         views.user_demand_content, name="user_demand_content"),
+
 
     path('receive-data/', views.Receive_data, name='receive_data'),
     path('receive-data2/', views.Receive_data2, name='receive_data2'),
