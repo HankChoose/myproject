@@ -163,8 +163,8 @@ class UserDemandListAPIView2(generics.ListAPIView):
     serializer_class = UserDemandSerializer
 
 
-def user_demand_content(request, id):
-    user_demands = get_object_or_404(UserDemand, id=id)
+def user_demand_content(request, demand_type):
+    user_demands = get_object_or_404(UserDemand, demand_type=demand_type)
     # user_demands = UserDemand.objects.filter(id=id)
     # serializer = UserDemandSerializer(user_demands, many=True)
     # return Response(serializer.data, status=status.HTTP_200_OK)
