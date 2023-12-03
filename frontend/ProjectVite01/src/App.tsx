@@ -62,7 +62,7 @@ function App() {
                     <Route path="/react/testtoken" element={<TestToken />} />
                     <Route path="/react/testlist" element={<TestList />} />
                     <Route path="/react/userprofile" element={<UserProfile />} />
-                    <Route path="/react/userapplycontent" element={ <UserApplyContent />} />
+                    <Route path="/react/userapplycontent/:id" element={ <UserApplyContent />} />
                     <Route path="/react/page1" element={<Page1 />}>
                         <Route path="test1" element={<Test1 />} />
                         <Route path="test2" element={<Test2 />} />

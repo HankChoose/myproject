@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import styles from './user-apply-content.module.scss';
+import { useParams } from 'react-router-dom';
 
 export interface UserApplyContentProps {
     className?: string;
@@ -10,5 +11,11 @@ export interface UserApplyContentProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const UserApplyContent = ({ className }: UserApplyContentProps) => {
-    return <div className={classNames(styles.root, className)}>UserApplyContent</div>;
+    const {id}= useParams();
+    const apiUrl = `https://zhiyouyuec.com/user-apply-content/${id}`;
+
+    return <div className={classNames(styles.root, className)}>
+        <h2>User Apply Content ID: {id}</h2>
+        <h3>apiUrl: {apiUrl}</h3>
+    </div>;
 };
