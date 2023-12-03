@@ -19,7 +19,7 @@ class User2(models.Model):
 
 class UserDemand(models.Model):
     # 使用AutoField定义自动增长的ID字段
-    id = models.AutoField(primary_key=True)
+    # id = models.AutoField(primary_key=True)
 
     username = models.CharField(max_length=255)
     email = models.EmailField()

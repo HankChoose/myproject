@@ -1,7 +1,8 @@
+
 import json
 from .models import UserDemand
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -163,8 +164,8 @@ class UserDemandListAPIView2(generics.ListAPIView):
 
 
 def user_demand_content(request, id):
-    # Get the content of the requested entry
-    user_demands = UserDemand.objects.filter(id=id)
+    user_demands = get_object_or_404(UserDemand, id=id)
+    # user_demands = UserDemand.objects.filter(id=id)
     serializer = UserDemandSerializer(user_demands, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
