@@ -27,6 +27,7 @@ export const TestList = ({ className }: TestListProps) => {
         // 其他属性...
     }
     const [data, setData] = useState<data[]>([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const [selectedItems, setSelectedItems] = useState<number[]>([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
@@ -35,6 +36,11 @@ export const TestList = ({ className }: TestListProps) => {
     useEffect(() => {
         fetchData();
     }, [page, pageSize, sortOrder]);
+
+    // Filtering logic
+    const filteredData = data.filter(item =>
+        item.username.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     const handlePageChange = (newPage: number) => {
         setPage(newPage);
@@ -98,6 +104,12 @@ export const TestList = ({ className }: TestListProps) => {
     };
 
     return <div className={classNames(styles.root, className)}>
+        <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={e => setSearchTerm(e.target.value)}
+        />
         <FromRowRight>
             <div>
                 <label></label>
