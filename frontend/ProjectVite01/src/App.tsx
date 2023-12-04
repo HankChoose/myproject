@@ -26,7 +26,7 @@ import { UserProfile } from './components/user-profile/user-profile';
 import { TestToken } from './components/test-token/test-token';
 import { TestList } from './components/test-list/test-list';
 import { UserApplyContent } from './components/user-apply-content/user-apply-content';
-import TestListComponent from './components/test-list-component/test-list-component';
+import { TestListSearch } from './components/test-list-search/test-list-search';
 
 // 导入根 reducer
 const store = createStore(rootReducer);
@@ -64,7 +64,7 @@ function App() {
                     <Route path="/react/testlist" element={<TestList />} />
                     <Route path="/react/userprofile" element={<UserProfile />} />
                     <Route path="/react/userapplycontent/:id" element={<UserApplyContent />} />
-                    <Route path="/react/testlistclass" element={<TestListComponent />} />
+                    <Route path="/react/testlistsearch" element={ <TestListSearch />} />
                     <Route path="/react/page1" element={<Page1 />}>
                         <Route path="test1" element={<Test1 />} />
                         <Route path="test2" element={<Test2 />} />
@@ -75,7 +75,8 @@ function App() {
                     </Route>
                 </Routes>
             </Router>
-            
+           
+
         </div>
     );
 
