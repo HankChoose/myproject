@@ -28,6 +28,7 @@ export const TestList = ({ className }: TestListProps) => {
     }
     const [data, setData] = useState<data[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [sortedField, setSortedField] = useState<string | null>(null);
     const [selectedItems, setSelectedItems] = useState<number[]>([]);
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
@@ -41,6 +42,15 @@ export const TestList = ({ className }: TestListProps) => {
     const filteredData = data.filter(item =>
         item.username.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+     // Sorting logic
+    const sortedData = sortedField
+    ? [...filteredData].sort((a, b) => {
+        const order = sortOrder === 'asc' ? 1 : -1;
+        return a[sortedField as keyof typeof a] > b[sortedField as keyof typeof b] ? order : -order;
+      })
+    : filteredData;
+
 
     const handlePageChange = (newPage: number) => {
         setPage(newPage);
