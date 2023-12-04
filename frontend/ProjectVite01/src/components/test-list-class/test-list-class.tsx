@@ -27,21 +27,28 @@ class TestListClass extends Component<{}, TestListClassState> {
     // 在组件加载时获取数据
     const token = localStorage.getItem('accessToken');
     const apiUrl = `${baseUrl}/user-demand-list/`;
-    try {
-      const response = fetch(apiUrl, {
-        method: 'GET',
-        headers: {
-          'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
-          'Content-Type': 'application/json', // 可以根据需要添加其他头部信息
-          // 其他头部信息...
-        },
-      });
+    if (token) {
+      try {
+          const response = fetch(apiUrl, {
+              method: 'GET',
+              headers: {
+                  'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
+                  'Content-Type': 'application/json',
+              },
+          });
 
-      // 处理响应数据
-      console.log(response);
-    } catch (error) {
-      // 处理错误
-      console.error(error);
+          if (response) {
+              console.log('response', response);  
+          } else {
+              // 处理请求失败的情况
+              console.error('Failed to fetch user data:', response);
+          }
+      } catch (error) {
+          console.error('Error fetching user data:', error);
+      }
+    } else {
+        // 处理令牌不存在的情况
+        console.error('Access token is undefined or null.');
     }
   }
 
