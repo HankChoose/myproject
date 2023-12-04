@@ -118,7 +118,11 @@ export const TestList = ({ className }: TestListProps) => {
             type="text"
             placeholder="Search..."
             value={searchTerm}
-            onChange={e => setSearchTerm(e.target.value)}
+            onChange={e => {
+                setSearchTerm(e.target.value);
+                console.log("Search Term:", e.target.value);
+            }}
+            
         />
         <FromRowRight>
             <div>
