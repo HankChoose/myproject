@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import styles from './user-apply-content.module.scss';
 import { useParams } from 'react-router-dom';
+import {baseUrl} from '../../constants';
 
 export interface UserApplyContentProps {
     className?: string;
@@ -12,7 +13,7 @@ export interface UserApplyContentProps {
  */
 export const UserApplyContent = ({ className }: UserApplyContentProps) => {
     const {id}= useParams();
-    const apiUrl = `https://zhiyouyuec.com/user-apply-content/${id}`;
+    const apiUrl = `${baseUrl}/user-apply-content/${id}`;
 
     return <div className={classNames(styles.root, className)}>
         <h2>User Apply Content ID: {id}</h2>

@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import styles from './App.module.scss';
+
 import { UserApplyArea } from './components/user-apply-area/user-apply-area';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { Home } from './components/home/home';
@@ -32,9 +33,8 @@ const store = createStore(rootReducer);
 function App() {
 
     return (
-
+        
         <div className={styles.App}>
-
             <Router>
                 <Link to="/react/userapply"> U </Link>
                 <Link to="/react/signin"> S </Link>
@@ -71,15 +71,11 @@ function App() {
                         <Route path="test3" element={<Test3 />} />
                         <Route path="test4" element={<Test4 />} />
                     </Route>
-
                 </Routes>
-
-
             </Router>
-           
-
         </div>
     );
+
 }
 
 export default App;
