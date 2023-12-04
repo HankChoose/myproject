@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import styles from './test-list-class.module.scss';
 import React, { Component } from 'react';
+
 import axios from 'axios';
 import {baseUrl} from '../../constants';
 
@@ -27,7 +28,7 @@ class TestListClass extends Component<{}, TestListClassState> {
     const token = localStorage.getItem('accessToken');
     const apiUrl = `${baseUrl}/user-demand-list/`;
     try {
-      const response = axios.get(apiUrl, {
+      const response = fetch(apiUrl, {
         method: 'GET',
         headers: {
           'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
