@@ -28,6 +28,7 @@ class TestListClass extends Component<{}, TestListClassState> {
     const apiUrl = `${baseUrl}/user-demand-list/`;
     try {
       const response = axios.get(apiUrl, {
+        method: 'GET',
         headers: {
           'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
           'Content-Type': 'application/json', // 可以根据需要添加其他头部信息
