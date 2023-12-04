@@ -24,14 +24,23 @@ class TestListClass extends Component<{}, TestListClassState> {
 
   componentDidMount() {
     // 在组件加载时获取数据
+    const token = localStorage.getItem('accessToken');
     const apiUrl = `${baseUrl}/user-demand-list/`;
-    axios.get(apiUrl)
-      .then(response => {
-        this.setState({ data: response.data });
-      })
-      .catch(error => {
-        console.error('Error fetching data: ', error);
+    try {
+      const response = axios.get(apiUrl, {
+        headers: {
+          'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
+          'Content-Type': 'application/json', // 可以根据需要添加其他头部信息
+          // 其他头部信息...
+        },
       });
+
+      // 处理响应数据
+      console.log(response);
+    } catch (error) {
+      // 处理错误
+      console.error(error);
+    }
   }
 
   handleSearchChange = (e:React.ChangeEvent<HTMLInputElement>) => {
