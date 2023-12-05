@@ -85,10 +85,15 @@ export const TestDataTable = ({ className,data }: TestDataTableProps) => {
     return currentData.map((item) => (
       <tr key={item.id}>
         <td>{item.id}</td>
+        <td>{item.demand_type}</td>
         <td>{item.demand_description}</td>
         <td>{item.username}</td>
         <td>{item.email}</td>
-        {/* 其他列... */}
+        <td>
+          <a href={`userapplycontent/${item.id}`} target="_blank" rel="noopener noreferrer">
+              Open
+          </a>
+        </td>
       </tr>
     ));
   };
@@ -120,9 +125,11 @@ export const TestDataTable = ({ className,data }: TestDataTableProps) => {
         <thead>
           <tr>
             <th onClick={() => handleSortChange('id')}>ID</th>
+            <th onClick={() => handleSortChange('demand_type')}>Demand Type</th>
             <th onClick={() => handleSortChange('demand_description')}>Demand Description</th>
             <th onClick={() => handleSortChange('username')}>Username</th>
             <th onClick={() => handleSortChange('email')}>Email</th>
+            <th></th>
             {/* 其他属性的表头... */}
           </tr>
         </thead>
