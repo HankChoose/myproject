@@ -30,9 +30,9 @@ const sampleData = [
 
 export const TestListDataTable = ({ className }: TestListDataTableProps) => {
     
-    useEffect(() => {
-            fetchData();
-    });
+    //useEffect(() => {
+            //fetchData();
+    //});
     const [data, setData] = useState<Data[]>([]);
     const fetchData = async () => {
         // 获取保存在本地存储中的令牌
