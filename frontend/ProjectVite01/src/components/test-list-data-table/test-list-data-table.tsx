@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import styles from './test-list-data-table.module.scss';
-import React, { useState } from 'react';
 import { baseUrl } from '../../constants';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TestDataTable } from '../test-data-table/test-data-table';
 
