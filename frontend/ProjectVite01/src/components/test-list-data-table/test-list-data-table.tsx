@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import styles from './test-list-data-table.module.scss';
 import React, { useState } from 'react';
 import { baseUrl } from '../../constants';
+import axios from 'axios';
 import { TestDataTable } from '../test-data-table/test-data-table';
 
 export interface TestListDataTableProps {
@@ -54,6 +55,6 @@ export const TestListDataTable = ({ className }: TestListDataTableProps) => {
     };
 
     return <div className={classNames(styles.root, className)}>
-        <TestDataTable data={data} />,
+        <TestDataTable data={data} />
     </div>;
 };
