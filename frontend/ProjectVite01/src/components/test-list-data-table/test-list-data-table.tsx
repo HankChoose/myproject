@@ -67,6 +67,6 @@ export const TestListDataTable = ({ className }: TestListDataTableProps) => {
     };
 
     return <div className={classNames(styles.root, className)}>
-        <TestDataTable data={sampleData} />
+        <TestDataTable data={data} />
     </div>;
 };
