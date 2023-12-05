@@ -45,7 +45,7 @@ export const TestDataTable = ({ className,data }: TestDataTableProps) => {
 
   // 排序数据
   const sortedData = [...filteredData].sort((a, b) => {
-    const compareValue = a[sortedField].localeCompare(b[sortedField]);
+    const compareValue = String(a[sortedField]).localeCompare(String(b[sortedField]));
     return sortOrder === 'asc' ? compareValue : -compareValue;
   });
 
