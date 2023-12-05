@@ -148,7 +148,7 @@ export const TestList = ({ className }: TestListProps) => {
                     <th>ID</th>
                     <th>Type</th>
                     <th>Description</th>
-                     <th>Usernam</th>
+                     <th>Username</th>
                     <th>Email</th>
                     <th></th>
                 </tr>
