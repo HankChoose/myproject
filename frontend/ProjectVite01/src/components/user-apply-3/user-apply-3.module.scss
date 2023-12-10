@@ -13,8 +13,9 @@
 }
 
 
-.flowImage {
-    background-image: url('../../assets/self/userapply1.png');
+.flowImage3 {
+    background-image: url('../../assets/self/userapply3.png');
+    /* 图片路径 */
     /* 图片路径 */
     height: 20vh;
     background-repeat: no-repeat;
@@ -40,16 +41,6 @@
     text-align: center;
     align-items: center;
     justify-content: space-between;
-}
-
-.FormRowRight {
-    border: 0px solid black;
-    display: flex;
-    height: 35px;
-    width: auto;
-    text-align: center;
-    align-items: center;
-    justify-content: end;
 }
 
 .FormRowSmall {

@@ -1,5 +1,7 @@
 import classNames from 'classnames';
 import styles from './user-apply.module.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
 import React, { useRef, useState, Component } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { updateName, updateEmail } from "../../actions/userInfoActions";
@@ -42,11 +44,8 @@ export const UserApply = ({ className }: UserApplyProps) => {
 
 
     return <div className={classNames(styles.root, className)}>
-       
-        <div className={styles.FromArea}>
-            <div className={classNames(styles.FormRow)}>  <a href={baseUrl}>Home</a></div>
-            <div className={classNames(styles.FormRow)}> </div>
-            <div className={classNames(styles.FormRow)}> </div>
+        <div className={classNames(styles.flowImage)}></div>
+        <div className={styles.FromArea}> 
             <div className={classNames(styles.FormRow)}>
                 <input type="text" className={classNames(styles.Input)}  placeholder="Name" value={userInfo.name} onChange={handleNameChange} />
             </div>
@@ -55,7 +54,7 @@ export const UserApply = ({ className }: UserApplyProps) => {
                 <input type="text" className={classNames(styles.Input)} placeholder="Email" value={userInfo.email} onChange={handleEmailChange} />
             </div>
             <div className={classNames(styles.FormRow)}></div>
-            <div className={classNames(styles.FormRow)}><Link to="/react/userapply2">Next page</Link></div>
+            <div className={classNames(styles.FormRow)}><Link to="/react/userapply2"><Button variant="primary">Next page</Button>{' '}</Link></div>
            
            
         </div>

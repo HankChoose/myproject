@@ -3,14 +3,26 @@
     text-align: start;
     box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.12);
     width: 600px;
-    display: block;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     justify-items: center;
     border-radius: 0.8em;
-    height: 430px;
+    height: auto;
     margin: 0px;
+    position: relative;
+    align-content: center;
+}
+
+.FromArea {
+
+    text-align: center;
+    align-items: center;
+    border: 0px solid black;
+    position: relative;
+    top: 2em;
+    width: 300px;
+
 }
 
 .FormRow {
@@ -120,15 +132,4 @@
     }
 
     color: #ffffff;
-}
-
-.FromArea {
-
-    text-align: center;
-    align-items: center;
-    border: 0px solid black;
-    position: fixed;
-    top: 4em;
-    width: 300px;
-
 }

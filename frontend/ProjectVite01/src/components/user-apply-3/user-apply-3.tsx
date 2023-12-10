@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import styles from './user-apply-2.module.scss';
+import styles from './user-apply-3.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import React, { useRef, useState, Component, ChangeEvent } from 'react';
@@ -9,11 +9,11 @@ import axios from "axios";
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import {baseUrl} from '../../constants';
-
-export interface UserApply2Props {
+export interface UserApply3Props {
     className?: string;
     callbackFunction?: (data: string) => void; // 定义回调函数类型
 }
+
 
 type RootState = {
     userInfo: {
@@ -29,13 +29,11 @@ type RootState2 = {
     };
 };
 
-
 /**
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
-export const UserApply2 = ({ className}: UserApply2Props) => {
-
+export const UserApply3 = ({ className }: UserApply3Props) => {
     const userInfo = useSelector((state:RootState) => state.userInfo);
     const userInfo2 = useSelector((state: RootState2) => state.userInfo2);
     const userInfoArray = [userInfo, userInfo2];
@@ -75,7 +73,7 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
 
     
     return <div className={classNames(styles.root, className)}>
-        <div className={classNames(styles.flowImage2)}></div>
+        <div className={classNames(styles.flowImage3)}></div>
         <div className={styles.FromArea}>
             <div className={classNames(styles.FormRow)}> </div>
              <div className={classNames(styles.FormRow)}>
@@ -86,9 +84,10 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
                 <input type="text" className={classNames(styles.Input)} placeholder="Requirements" value={userInfo2.requirements} onChange={handleRequirementsChange} />
             </div>
             <div className={classNames(styles.FormRow)}> </div>
-             <div className={classNames(styles.FormRow)}> 
-               <Link to="/react/userapply3"><Button variant="primary">Next page</Button></Link> 
-               <Link to="/react/userapply"><Button variant="primary">Previous page</Button></Link>    
+             <div className={classNames(styles.FormRow)}>  
+                <Link to="/react/userapply"><Button variant="primary">Submit</Button></Link>
+                <Link to="/react/userapply2"><Button variant="primary">Previous page</Button></Link>
+               
             </div>         
           
         </div>
