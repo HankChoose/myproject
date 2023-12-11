@@ -49,6 +49,15 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
         console.log("userInfo:",userInfo);
         console.log("userInfo2:",userInfo2);
+        const [requestData, setRequestData] = useState({
+            name: userInfo.name,
+            eamil: userInfo.email,
+            applytype: userInfo2.applytype,
+            requirements:userInfo2.requirements,
+            // 添加更多的数据字段...
+        });
+
+        console.log("requestData:",requestData);
        
     };
 
