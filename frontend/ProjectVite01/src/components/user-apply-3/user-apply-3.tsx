@@ -39,13 +39,11 @@ type RootState2 = {
 export const UserApply3 = ({ className }: UserApply3Props) => {
     const userInfo = useSelector((state:RootState) => state.userInfo);
     const userInfo2 = useSelector((state: RootState2) => state.userInfo2);
-    const userInfoArray = [userInfo, userInfo2];
+
     console.log("userInfo-1:",userInfo);
     console.log("userInfo2-1:",userInfo2);
-    console.log("userInfoArray-1:",userInfoArray);
     const dispatch = useDispatch();
    
-
     const handleSubmission = () => {
         const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
         console.log("userInfo:",userInfo);
