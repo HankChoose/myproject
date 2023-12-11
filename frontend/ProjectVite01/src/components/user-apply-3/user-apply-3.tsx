@@ -56,12 +56,8 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             demand_description:userInfo2.requirements,
         }];
 
-   
-
-
         console.log("requestData:",requestData);
         //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
-        const csrftoken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('csrftoken='))?.split('=')[1];
         // Set the CSRF token in the headers of the Axios request
         const config = {
             headers: {
