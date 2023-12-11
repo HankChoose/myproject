@@ -49,12 +49,12 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         console.log("userInfo:",userInfo);
         console.log("userInfo2:",userInfo2);
       
-        const requestData = [{ 
+        const requestData = { 
             username: userInfo.name,
             email: userInfo.email,
             demand_type: userInfo2.applytype,
-            demand_description:userInfo2.requirements,
-        }];
+            demand_description:userInfo2.requirements
+        };
 
         console.log("requestData:",requestData);
         //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
@@ -76,6 +76,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         .catch(error => {
         // 处理错误
         });
+
     };
 
     
