@@ -67,8 +67,8 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             },
             body: JSON.stringify(requestData),
         };
-
-        const apiUrl = 'https://zhiyouyuec.com/user-demand-create/';
+        
+        const apiUrl = `${baseUrl}/user-demand-create/`;
         axios.post(apiUrl, requestData, config)
         .then(response => {
         // 处理成功响应
