@@ -49,28 +49,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
         console.log("userInfo:",userInfo);
         console.log("userInfo2:",userInfo2);
-        const [requestData, setRequestData] = useState({
-            name: userInfo.name,
-            eamil: userInfo.email,
-            applytype: userInfo2.applytype,
-            requirements:userInfo2.requirements,
-            // 添加更多的数据字段...
-        });
-
-        console.log("requestData:",requestData);
-        //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
-        const csrftoken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('csrftoken='))?.split('=')[1];
-        // Set the CSRF token in the headers of the Axios request
-        axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
-        const apiUrl = `${baseUrl}/user-demand-create/`;
-        console.log("apiUrl:",apiUrl);
-        axios.post(apiUrl, requestData)
-        .then(response => {
-        // 处理成功响应
-        })
-        .catch(error => {
-        // 处理错误
-        });
+       
     };
 
     
