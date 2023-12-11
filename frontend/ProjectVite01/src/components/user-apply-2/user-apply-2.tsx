@@ -9,10 +9,11 @@ import axios from "axios";
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import {baseUrl} from '../../constants';
+import Form from 'react-bootstrap/Form';
 
 export interface UserApply2Props {
     className?: string;
-    callbackFunction?: (data: string) => void; // 定义回调函数类型
+    //callbackFunction?: (data: string) => void; // 定义回调函数类型
 }
 
 type RootState = {
@@ -55,36 +56,30 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         console.log("Requirements is:", e.target.value);
     };
 
-    const handleSubmission = () => {
-        const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
-        console.log("userInfo:",userInfo);
-        console.log("userInfo2:",userInfo2);
-        console.log("userInfoArray:",userInfoArray);
-        //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
-        const csrftoken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('csrftoken='))?.split('=')[1];
-        // Set the CSRF token in the headers of the Axios request
-        axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
-        axios.post("/create/", userInfoArray)
-        .then(response => {
-        // 处理成功响应
-        })
-        .catch(error => {
-        // 处理错误
-        });
-    };
 
     
     return <div className={classNames(styles.root, className)}>
         <div className={classNames(styles.flowImage2)}></div>
         <div className={styles.FromArea}>
             <div className={classNames(styles.FormRow)}> </div>
-             <div className={classNames(styles.FormRow)}>
-                <select value={userInfo2.applytype} className={classNames(styles.Input)} onChange={handleApplytypeChange}><option>Apple</option><option>Banana</option><option>Watermelon</option></select>
-            </div>
+                <div className={classNames(styles.FormRow)}>
+                    
+                    <Form.Select aria-label="Default select example"
+                        value={userInfo2.applytype} 
+                        className={classNames(styles.Input)} 
+                        onChange={handleApplytypeChange}>
+                        <option>React</option>
+                        <option value="Django">Django</option>
+                        <option value="Web">Web</option>
+                        <option value="Nginx">Nginx</option>
+                    </Form.Select>
+                </div>
+            <div className={classNames(styles.FormRow)}> </div>
             <div className={classNames(styles.FormRow)}> </div>
             <div className={classNames(styles.FormRow)}>
-                <input type="text" className={classNames(styles.Input)} placeholder="Requirements" value={userInfo2.requirements} onChange={handleRequirementsChange} />
+              <Form.Control as="textarea" rows={3} placeholder="Requirements" value={userInfo2.requirements} onChange={handleRequirementsChange} />
             </div>
+            <div className={classNames(styles.FormRow)}> </div>
             <div className={classNames(styles.FormRow)}> </div>
              <div className={classNames(styles.FormRow)}> 
                <Link to="/react/userapply3"><Button variant="primary">Next page</Button></Link> 

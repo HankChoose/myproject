@@ -7,6 +7,10 @@ import rootReducer from '../../../reducers/rootReducer'; // 导入根 reducer
 const store = createStore(rootReducer); // 创建 Redux store
 export default createBoard({
     name: 'UserApply3',
-    Board: () =><Provider store={store}><Router><UserApply3 /></Router></Provider>,
+    Board: () => <Provider store={store}>
+    <Router>
+        <UserApply3 />
+    </Router>
+    </Provider>,
     isSnippet: true,
 });

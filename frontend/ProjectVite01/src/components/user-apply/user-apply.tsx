@@ -7,10 +7,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { updateName, updateEmail } from "../../actions/userInfoActions";
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import {baseUrl} from '../../constants';
+import Form from 'react-bootstrap/Form';
 
 export interface UserApplyProps {
     className?: string;
-    callbackFunction?: (data: string) => void; // 定义回调函数类型
+    //callbackFunction?: (data: string) => void; // 定义回调函数类型
 }
 
 type RootState = {
@@ -45,14 +46,18 @@ export const UserApply = ({ className }: UserApplyProps) => {
 
     return <div className={classNames(styles.root, className)}>
         <div className={classNames(styles.flowImage)}></div>
+        <div className={classNames(styles.FormRow)}></div>
         <div className={styles.FromArea}> 
             <div className={classNames(styles.FormRow)}>
-                <input type="text" className={classNames(styles.Input)}  placeholder="Name" value={userInfo.name} onChange={handleNameChange} />
+                <Form.Control type="text"  placeholder="Name" value={userInfo.name} onChange={handleNameChange} /> 
             </div>
             <div className={classNames(styles.FormRow)}></div>
+            <div className={classNames(styles.FormRow)}></div>
+             
             <div className={classNames(styles.FormRow)}>
-                <input type="text" className={classNames(styles.Input)} placeholder="Email" value={userInfo.email} onChange={handleEmailChange} />
+                <Form.Control type="text" placeholder="Email" value={userInfo.email} onChange={handleEmailChange} />
             </div>
+            <div className={classNames(styles.FormRow)}></div>
             <div className={classNames(styles.FormRow)}></div>
             <div className={classNames(styles.FormRow)}><Link to="/react/userapply2"><Button variant="primary">Next page</Button>{' '}</Link></div>
            

@@ -9,9 +9,11 @@ import axios from "axios";
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import {baseUrl} from '../../constants';
+import Table from 'react-bootstrap/Table';
+
 export interface UserApply3Props {
     className?: string;
-    callbackFunction?: (data: string) => void; // 定义回调函数类型
+    //callbackFunction?: (data: string) => void; // 定义回调函数类型
 }
 
 
@@ -43,26 +45,24 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
     const dispatch = useDispatch();
    
 
-    const handleApplytypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        dispatch(updateApplytype(e.target.value));
-        console.log("Applytype is:", e.target.value);
-    }
-
-    const handleRequirementsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(updateRequirements(e.target.value));
-        console.log("Requirements is:", e.target.value);
-    };
-
     const handleSubmission = () => {
         const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
         console.log("userInfo:",userInfo);
         console.log("userInfo2:",userInfo2);
+        const [requestData, setRequestData] = useState({
+            name: userInfo.name,
+            eamil: userInfo.email,
+            applytype: userInfo2.applytype,
+            requirements:userInfo2.requirements,
+            // 添加更多的数据字段...
+        });
+
         console.log("userInfoArray:",userInfoArray);
         //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
         const csrftoken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('csrftoken='))?.split('=')[1];
         // Set the CSRF token in the headers of the Axios request
         axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
-        axios.post("/create/", userInfoArray)
+        axios.post("/user-demand-create/", requestData)
         .then(response => {
         // 处理成功响应
         })
@@ -75,22 +75,42 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
     return <div className={classNames(styles.root, className)}>
         <div className={classNames(styles.flowImage3)}></div>
         <div className={styles.FromArea}>
-            <div className={classNames(styles.FormRow)}> </div>
-             <div className={classNames(styles.FormRow)}>
-                <select value={userInfo2.applytype} className={classNames(styles.Input)} onChange={handleApplytypeChange}><option>Apple</option><option>Banana</option><option>Watermelon</option></select>
-            </div>
-            <div className={classNames(styles.FormRow)}> </div>
-            <div className={classNames(styles.FormRow)}>
-                <input type="text" className={classNames(styles.Input)} placeholder="Requirements" value={userInfo2.requirements} onChange={handleRequirementsChange} />
-            </div>
+           <Table bordered>
+            <thead>
+            <tr>
+            <th>Item</th>
+            <th>Detail</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td>Name:</td>
+                <td>{userInfo.name}</td>
+                </tr>
+                <tr>
+                <td>Email:</td>
+                <td>{userInfo.email}</td>
+                </tr>
+                <tr>
+                <td>Type</td>
+                <td>{userInfo2.applytype}</td>
+                </tr>
+                <tr>
+                <td>Comment</td>
+                <td>{userInfo2.requirements}</td>
+                </tr>
+            </tbody>
+            </Table>
             <div className={classNames(styles.FormRow)}> </div>
              <div className={classNames(styles.FormRow)}>  
-                <Link to="/react/userapply"><Button variant="primary">Submit</Button></Link>
+                <Button variant="primary"  onClick={handleSubmission}>Submit</Button>
                 <Link to="/react/userapply2"><Button variant="primary">Previous page</Button></Link>
                
             </div>         
           
         </div>
+
+        
 
     </div>;
 };
