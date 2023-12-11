@@ -50,11 +50,13 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         console.log("userInfo2:",userInfo2);
       
         const requestData = [{ 
-            username: userInfo.name,
-            eamil: userInfo.email,
-            demand_type: userInfo2.applytype,
-            demand_description:userInfo2.requirements,
+            "username": userInfo.name,
+            "eamil": userInfo.email,
+            "demand_type": userInfo2.applytype,
+            "demand_description":userInfo2.requirements,
         }];
+
+   
 
 
         console.log("requestData:",requestData);
