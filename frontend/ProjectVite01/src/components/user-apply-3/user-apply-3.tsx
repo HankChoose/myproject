@@ -61,7 +61,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         const csrftoken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('csrftoken='))?.split('=')[1];
         // Set the CSRF token in the headers of the Axios request
         axios.defaults.headers.common['X-CSRFToken'] = csrftoken;
-        const apiUrl = `${baseUrl}/user-demand-create/`;
+        const apiUrl = "https://zhiyouyuec.com/user-demand-create/";
         axios.post(apiUrl, requestData)
         .then(response => {
         // 处理成功响应
