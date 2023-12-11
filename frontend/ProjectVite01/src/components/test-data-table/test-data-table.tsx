@@ -39,7 +39,8 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
         return (
             item.demand_description.toLowerCase().includes(searchTerm.toLowerCase()) ||
             item.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.email.toLowerCase().includes(searchTerm.toLowerCase())
+            item.email.toLowerCase().includes(searchTerm.toLowerCase()) || 
+            item.demand_type.toLowerCase().includes(searchTerm.toLowerCase())
             // 添加其他属性的搜索条件...
         );
     });

@@ -67,11 +67,15 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             },
             body: JSON.stringify(requestData),
         };
-        
+
         const apiUrl = `${baseUrl}/user-demand-create/`;
         axios.post(apiUrl, requestData, config)
         .then(response => {
         // 处理成功响应
+            const navigate = useNavigate(); // 在<Router>组件内使用useNavigate
+            React.useEffect(() => {
+                navigate('/react/testlisdatatable'); // 在 useEffect 中调用 navigate
+            }); // 空数组表示只在组件挂载时调用一次
         })
         .catch(error => {
         // 处理错误
