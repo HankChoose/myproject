@@ -71,7 +71,8 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         const apiUrl = `${baseUrl}/user-demand-create/`;
         axios.post(apiUrl, requestData, config)
         .then(response => {
-        // 处理成功响应
+            // 处理成功响应
+            console.log("response OK:",response);
             const navigate = useNavigate(); // 在<Router>组件内使用useNavigate
             React.useEffect(() => {
                 navigate('/react/testlisdatatable'); // 在 useEffect 中调用 navigate
