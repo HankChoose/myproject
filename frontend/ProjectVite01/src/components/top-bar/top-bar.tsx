@@ -16,14 +16,16 @@ export interface TopBarProps {
  */
 export const TopBar = ({ className }: TopBarProps) => {
     return <div className={classNames(styles.root, className)}>
-     <a href="https://zhiyouyuec.com">
+    
     <div className={classNames(styles.toRow)}>
-    <span className={classNames(styles.logoImage)}></span>
-    <span className={classNames(styles.logoWord)}></span>
+     <a href="https://zhiyouyuec.com">
+      <span className={classNames(styles.logoImage)}></span>
+      <span className={classNames(styles.logoWord)}></span>
+     </a>
     <a href="https://zhiyouyuec.com"><BsHouseFill />Home</a>
     <Link to="/react/testlink"><BsSearchHeart />T</Link>
     </div>
-    </a>
+   
 
     <div  className={classNames(styles.toRowUser)}>
       <Link to="/react/signin"><BsPersonUp />Sign In</Link>
