@@ -60,12 +60,15 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
         // Set the CSRF token in the headers of the Axios request
         const config = {
+            method: 'POST',
             headers: {
-                'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-                'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
             },
+            body: JSON.stringify(requestData),
         };
-        const apiUrl = "https://zhiyouyuec.com/user-demand-create/";
+
+        const apiUrl = 'https://zhiyouyuec.com/user-demand-create/';
         axios.post(apiUrl, requestData, config)
         .then(response => {
         // 处理成功响应
