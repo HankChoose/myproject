@@ -47,8 +47,18 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
 
     // 排序数据
     const sortedData = [...filteredData].sort((a, b) => {
-        const compareValue = String(a[sortedField]).localeCompare(String(b[sortedField]));
+
+        if (sortedField === 'id') {
+        // 如果是 id 字段，以数字形式比较
+        const compareValue = parseInt(a[sortedField], 10)-parseInt(b[sortedField], 10);
         return sortOrder === 'asc' ? compareValue : -compareValue;
+      } else {
+        // 其他字段按字符形式比较
+         const compareValue = String(a[sortedField]).localeCompare(String(b[sortedField]));
+         return sortOrder === 'asc' ? compareValue : -compareValue;
+      }
+       
+        
     });
 
     // 分页数据
