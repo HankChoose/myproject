@@ -53,7 +53,7 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         console.log("Requirements is:", e.target.value);
     };
 
-
+    userInfo2.applytype="React";
     
     return <div className={classNames(styles.root, className)}>
         <div className={classNames(styles.flowImage2)}></div>
@@ -61,7 +61,8 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
             <div className={classNames(styles.FormRow)}> </div>
                 <div className={classNames(styles.FormRow)}>
                     
-                    <Form.Select aria-label="Default select example"
+                    <Form.Select 
+                        aria-label="Default select example"
                         value={userInfo2.applytype} 
                         className={classNames(styles.Input)} 
                         onChange={handleApplytypeChange}>
