@@ -45,6 +45,14 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
     console.log("userInfo2-1:",userInfo2);
     const dispatch = useDispatch();
     const navigate = useNavigate(); // 在<Router>组件内使用useNavigate
+
+    const isMounted = useRef(true);
+    React.useEffect(() => {
+        return () => {
+        // Component will unmount
+        isMounted.current = false;
+        };
+    }, []);
    
     const handleSubmission = () => {
         const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
@@ -75,10 +83,9 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         .then(response => {
             // 处理成功响应
             console.log("response OK:",response);
-            React.useEffect(() => {
-                console.log("Inside useEffect");
-                navigate('/react/userapply4'); // 在 useEffect 中调用 navigate
-            }, [response]); 
+            if (isMounted.current) {
+                navigate('/react/userapply4');
+            }
           
         })
         .catch(error => {

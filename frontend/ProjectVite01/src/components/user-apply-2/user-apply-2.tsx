@@ -55,6 +55,7 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
 
     userInfo2.applytype="React";
     
+    
     return <div className={classNames(styles.root, className)}>
         <div className={classNames(styles.flowImage2)}></div>
         <div className={styles.FromArea}>
