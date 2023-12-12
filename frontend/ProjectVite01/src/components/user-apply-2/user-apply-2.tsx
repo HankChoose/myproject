@@ -65,7 +65,7 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
                         value={userInfo2.applytype} 
                         className={classNames(styles.Input)} 
                         onChange={handleApplytypeChange}>
-                        <option>React</option>
+                        <option value="React">React</option>
                         <option value="Django">Django</option>
                         <option value="Web">Web</option>
                         <option value="Nginx">Nginx</option>

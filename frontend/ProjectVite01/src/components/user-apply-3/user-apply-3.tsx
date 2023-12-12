@@ -78,7 +78,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             React.useEffect(() => {
                 console.log("Inside useEffect");
                 navigate('/react/userapply4'); // 在 useEffect 中调用 navigate
-            }, []); 
+            }, [response]); 
           
         })
         .catch(error => {
