@@ -70,18 +70,18 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
 
         const apiUrl = `${baseUrl}/user-demand-create/`;
         axios.post(apiUrl, requestData, config)
-        .then(response => {
+        if (Response) {
             // 处理成功响应
-            console.log("response OK:",response);
+            console.log("response OK:",Response);
             const navigate = useNavigate(); // 在<Router>组件内使用useNavigate
             React.useEffect(() => {
                 navigate('/react/testlisdatatable'); // 在 useEffect 中调用 navigate
             }); // 空数组表示只在组件挂载时调用一次
-        })
-        .catch(error => {
-        // 处理错误
-        });
-
+        } else {
+            // 处理请求失败的情况
+            console.error('Failed to fetch user data:', Response);
+        }
+        
     };
 
     
