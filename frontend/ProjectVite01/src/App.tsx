@@ -31,6 +31,7 @@ import { TopBar } from './components/top-bar/top-bar';
 import { UserApply3 } from './components/user-apply-3/user-apply-3';
 import { TestLink } from './components/test-link/test-link';
 import { TestNavigate } from './components/test-navigate/test-navigate';
+import { UserApply4 } from './components/user-apply-4/user-apply-4';
 //import { TopbarProvider } from './TopbarContext';
 // 导入根 reducer
 const store = createStore(rootReducer);
@@ -49,6 +50,7 @@ function App() {
                         <Route path="/react/userapply" element={<Provider store={store}><UserApply /></Provider>} />
                         <Route path="/react/userapply2" element={<Provider store={store}><UserApply2 /></Provider>} />
                         <Route path="/react/userapply3" element={<Provider store={store}><UserApply3 /></Provider>} />
+                        <Route path="/react/userapply4" element={<UserApply4 />} />
                         <Route path="/react/signin" element={<SignCard formType="signin" />} />
                         <Route path="/react/signup" element={<SignCard formType="signup" />} />
                         <Route path="/react/resetpw" element={<SignCard formType="resetpw" />} />
@@ -63,7 +65,7 @@ function App() {
                         <Route path="/react/userprofile" element={<UserProfile />} />
                         <Route path="/react/userapplycontent/:id" element={<UserApplyContent />} />
                         <Route path="/react/testlisdatatable" element={<TestListDataTable />} />
-                        <Route path="/react/testnavigate" element={ <TestNavigate />} />
+                        <Route path="/react/testnavigate" element={<TestNavigate />} />
                         <Route path="/react/page1" element={<Page1 />}>
                             <Route path="test1" element={<Test1 />} />
                             <Route path="test2" element={<Test2 />} />
@@ -75,6 +77,7 @@ function App() {
                     </Routes>
 
                 </div>
+              
             </Router>
 
 

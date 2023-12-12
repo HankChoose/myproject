@@ -6,7 +6,8 @@ import React, { useRef, useState, Component, ChangeEvent } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { updateApplytype, updateRequirements } from "../../actions/userInfo2Actions";
 import axios from "axios";
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate} from 'react-router-dom';
+
 import Cookies from 'js-cookie';
 import {baseUrl} from '../../constants';
 import Table from 'react-bootstrap/Table';
@@ -43,6 +44,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
     console.log("userInfo-1:",userInfo);
     console.log("userInfo2-1:",userInfo2);
     const dispatch = useDispatch();
+    const navigate = useNavigate(); // 在<Router>组件内使用useNavigate
    
     const handleSubmission = () => {
         const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
@@ -70,18 +72,18 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
 
         const apiUrl = `${baseUrl}/user-demand-create/`;
         axios.post(apiUrl, requestData, config)
-        if (Response) {
+        .then(response => {
             // 处理成功响应
-            console.log("response OK:",Response);
-            const navigate = useNavigate(); // 在<Router>组件内使用useNavigate
+            console.log("response OK:",response);
             React.useEffect(() => {
-                navigate('/react/testlisdatatable'); // 在 useEffect 中调用 navigate
-            }); // 空数组表示只在组件挂载时调用一次
-        } else {
-            // 处理请求失败的情况
-            console.error('Failed to fetch user data:', Response);
-        }
-        
+                navigate('/react/userapply4'); // 在 useEffect 中调用 navigate
+            }, []); // 
+          
+        })
+        .catch(error => {
+        // 处理错误
+        });
+
     };
 
     
