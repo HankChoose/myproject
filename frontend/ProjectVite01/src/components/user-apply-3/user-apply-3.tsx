@@ -77,7 +77,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             console.log("response OK:",response);
             React.useEffect(() => {
                 navigate('/react/userapply4'); // 在 useEffect 中调用 navigate
-            }, []); // 
+            }); // 
           
         })
         .catch(error => {
