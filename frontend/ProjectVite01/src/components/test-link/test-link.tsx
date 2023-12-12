@@ -14,7 +14,7 @@ export interface TestLinkProps {
 export const TestLink = ({ className }: TestLinkProps) => {
     return <div className={classNames(styles.root, className)}>
     
-      <Link to="/react/userapply"> U </Link>
+      <Link to="/react/userapply"> D </Link>
       <Link to="/react/signin"> S </Link>
       <Link to="/react/checkemail"> E1 </Link>
       <Link to="/react/checkemail2"> E2 </Link>
@@ -22,8 +22,9 @@ export const TestLink = ({ className }: TestLinkProps) => {
       <Link to="/react/testaxiospost2"> TA2 </Link>
       <Link to="/react/testaxiospost3"> TA3 </Link>
       <Link to="/react/testtoken"> TT </Link>
-      <Link to="/react/testlist"> UP </Link>
+      <Link to="/react/testlist"> TL </Link>
       <Link to="/react/userprofile"> UP </Link>
+      <Link to="/react/testnavigate"> TN </Link>
     
     </div>;
 };

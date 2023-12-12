@@ -30,6 +30,7 @@ import { TestListDataTable } from './components/test-list-data-table/test-list-d
 import { TopBar } from './components/top-bar/top-bar';
 import { UserApply3 } from './components/user-apply-3/user-apply-3';
 import { TestLink } from './components/test-link/test-link';
+import { TestNavigate } from './components/test-navigate/test-navigate';
 //import { TopbarProvider } from './TopbarContext';
 // 导入根 reducer
 const store = createStore(rootReducer);
@@ -58,10 +59,11 @@ function App() {
                         <Route path="/react/testaxiospost3" element={<TestAxiosPost3 />} />
                         <Route path="/react/testtoken" element={<TestToken />} />
                         <Route path="/react/testlist" element={<TestList />} />
-                        <Route path="/react/testlink" element={ <TestLink />} />
+                        <Route path="/react/testlink" element={<TestLink />} />
                         <Route path="/react/userprofile" element={<UserProfile />} />
                         <Route path="/react/userapplycontent/:id" element={<UserApplyContent />} />
                         <Route path="/react/testlisdatatable" element={<TestListDataTable />} />
+                        <Route path="/react/testnavigate" element={ <TestNavigate />} />
                         <Route path="/react/page1" element={<Page1 />}>
                             <Route path="test1" element={<Test1 />} />
                             <Route path="test2" element={<Test2 />} />
@@ -74,7 +76,8 @@ function App() {
 
                 </div>
             </Router>
-           
+
+
         </div>
 
     );
