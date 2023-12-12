@@ -3,6 +3,7 @@ import styles from './user-apply-3.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import React, { useRef, useState, Component, ChangeEvent } from 'react';
+
 import { useSelector, useDispatch } from "react-redux";
 import { updateApplytype, updateRequirements } from "../../actions/userInfo2Actions";
 import axios from "axios";
@@ -46,15 +47,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate(); // 在<Router>组件内使用useNavigate
 
-    const isMounted = useRef(true);
-    React.useEffect(() => {
-        return () => {
-        // Component will unmount
-        isMounted.current = false;
-        };
-    }, []);
-   
-    const handleSubmission = () => {
+    const handleSubmission = async () => {
         const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
         console.log("userInfo:",userInfo);
         console.log("userInfo2:",userInfo2);
@@ -79,19 +72,18 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         };
 
         const apiUrl = `${baseUrl}/user-demand-create/`;
-        axios.post(apiUrl, requestData, config)
-        .then(response => {
-            // 处理成功响应
-            console.log("response OK:",response);
-            if (isMounted.current) {
-                navigate('/react/userapply4');
+        
+        try {
+            const response = await axios.post(apiUrl, requestData,config);
+            if (response.status === 201) {
+                navigate('/react/userapply4'); // 在 useEffect 中调用 navigate
+            } else {
+                console.error('created failed');
             }
-          
-        })
-        .catch(error => {
-        // 处理错误
-        });
-
+        console.log(response.data);
+        } catch (error) {
+        console.error('Error creating user:', error);
+        }
     };
 
     
