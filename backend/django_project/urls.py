@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import include, path
-from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView
+from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView, PasswordResetView
 from .views import UserDemandContentAPIView, UserProfileView, UserProfileView2, UserDemandCreateView, UserDemandListAPIView, UserDemandListAPIView2, CheckUserAPIView, CustomConfirmEmailView, UserTokenView
 from . import views
 from django.urls import reverse
@@ -54,8 +54,12 @@ urlpatterns = [
          name='account_signup'),
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
+
+    path('accounts/password/reset/', PasswordResetView.as_view(),
+         name='account_reset_password'),
     path('accounts/password/change/', PasswordChangeView.as_view(),
          name='account_change_password'),
+
     # path('accounts/profile/', views.profile_view, name='account_profile'),
     # path('accounts/profile/', views.profile, name="profile"),
     path("pd/", views.pd, name="pd"),
