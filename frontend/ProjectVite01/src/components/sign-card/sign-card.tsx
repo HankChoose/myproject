@@ -71,9 +71,9 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         const apiUrl = `${baseUrl}/accounts/login/`;
         const apiUr2 = `${baseUrl}//user-token/`;
         const userData = {
-        login: values.email,
-        password: values.password,
-        // 添加要发送给Django的数据
+            login: values.email,
+            password: values.password,
+            // 添加要发送给Django的数据
         };
 
         const config = {
@@ -119,11 +119,11 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         const apiUr2= `${baseUrl}//user-token/`;
 
         const userData = {
-        username: values.email,
-        email: values.email,
-        password: values.password,
-        password2: values.password,
-        // 添加要发送给Django的数据
+            username: values.email,
+            email: values.email,
+            password1: values.password,
+            password2: values.password,
+            // 添加要发送给Django的数据
         };
         console.log('Handling sign-up form userData:', userData);
 
@@ -142,7 +142,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                 console.log('Sign-up OK',response.data);
                 const response2 = await axios.post(apiUr2, {
                     username: userData.email,
-                    password: userData.password,
+                    password: userData.password1,
                 });
                 console.log('Login2 OK',response2.data);
                 localStorage.setItem('accessToken', response2.data.token);
