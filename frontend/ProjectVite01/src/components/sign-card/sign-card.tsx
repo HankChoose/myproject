@@ -118,8 +118,11 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         const apiUrl = `${baseUrl}/accounts/signup/`;
         const apiUr2= `${baseUrl}//user-token/`;
 
+        // Split the email address at the "@" symbol
+        const parts = values.email.split('@');
+
         const userData = {
-            username: values.email,
+            username: parts[0],
             email: values.email,
             password1: values.password,
             password2: values.password,
