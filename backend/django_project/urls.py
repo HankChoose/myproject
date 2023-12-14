@@ -15,6 +15,11 @@ urlpatterns = [
     path('encyclopedia/', include("encyclopedia.urls")),
     path('accounts/', include('allauth.urls')),
 
+    path('api/check_verification_status/',
+         views.check_verification_status, name='check_verification_status'),
+    path('api/resend_verification_email/',
+         views.resend_verification_email, name='resend_verification_email'),
+
     path('user-profile/', UserProfileView.as_view(), name='user_profile'),
     path('user-profile2/', UserProfileView2.as_view(), name='user_profile2'),
     path('user-token/',  UserTokenView.as_view(), name='user_token'),
