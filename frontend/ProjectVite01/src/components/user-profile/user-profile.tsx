@@ -89,7 +89,8 @@ export const UserProfile = ({ className }: UserProfileProps) => {
 
     const handleResendVerification = () => {
         // 发送请求重新发送验证邮件
-        axios.post('/api/resend_verification_email/')
+        const apiUrl = `${baseUrl}/api/resend_verification_email/`;
+        axios.post(apiUrl)
             .then(response => {
                 console.log('Verification email sent successfully:', response.data.message);
             })
@@ -100,7 +101,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
 
 
     const [editable, setEditable] = useState(false);
-    const [username, setUsername] = useState('hankchenv'); // Initial username
+    const [username, setUsername] = useState(''); // Initial username
     const handleEditClick = () => {
         setEditable(true);
     };
