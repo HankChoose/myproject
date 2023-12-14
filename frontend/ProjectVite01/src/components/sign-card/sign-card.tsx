@@ -140,15 +140,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                 // 跳转到用户首页或执行其他登录后的逻辑
                 //history.push('/userhome');
                 console.log('Sign-up OK',response.data);
-                const response2 = await axios.post(apiUr2, {
-                    username: userData.username,
-                    password: userData.password,
-                });
-                console.log('Login2 OK',response2.data);
-                localStorage.setItem('accessToken', response2.data.token);
-                console.log('response2.data.token',response2.data.token);
-                // 在这里进行你的其他操作，比如存储在本地存储中
-                navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
+               
             } else {
                 console.error('Login failed');
             }
