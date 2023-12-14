@@ -44,39 +44,104 @@ const validationSchemaResetpw = Yup.object().shape({
 
 });
 
-const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
 
-const handleSignIn = async (values: FormikValues) => {
-    // Logic for handling sign-in form submission
-    console.log('Handling sign-in form submission:', values);
-    // Add code to submit data for sign-in
-    //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+
+/**
+ * This component was created using Codux's Default new component template.
+ * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
+ */
+export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
+
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+    
+    const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
     const navigate = useNavigate();
-    const apiUrl = `${baseUrl}/accounts/login/`;
-    const apiUr2= `${baseUrl}//user-token/`;
-    const userData = {
-      login: values.email,
-      password: values.password,
-      // 添加要发送给Django的数据
+
+    const handleSignIn = async (values: FormikValues) => {
+        // Logic for handling sign-in form submission
+        console.log('Handling sign-in form submission:', values);
+        // Add code to submit data for sign-in
+        //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+      
+        const apiUrl = `${baseUrl}/accounts/login/`;
+        const apiUr2 = `${baseUrl}//user-token/`;
+        const userData = {
+        login: values.email,
+        password: values.password,
+        // 添加要发送给Django的数据
+        };
+
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+            },
+        };
+        
+        console.log('Handling sign-in form userData:', userData,config);
+
+        try {
+                const response = await axios.post(apiUrl, userData,config);
+                if (response.status === 200) {
+                    // 跳转到用户首页或执行其他登录后的逻辑
+                    //history.push('/userhome');
+                    console.log('Login OK',response.data);
+                    const response2 = await axios.post(apiUr2, {
+                        username: userData.login,
+                        password: userData.password,
+                    });
+                    console.log('Login2 OK',response2.data);
+                    localStorage.setItem('accessToken', response2.data.token);
+                    console.log('response2.data.token',response2.data.token);
+                    // 在这里进行你的其他操作，比如存储在本地存储中
+                    navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
+                } else {
+                    console.error('Login failed');
+                }
+            console.log(response.data);
+            } catch (error) {
+            console.error('Error creating user:', error);
+            }
+    
     };
 
-    const config = {
+    const handleSignUp =async (values: FormikValues) => {
+        // Logic for handling sign-up form submission
+        console.log('Handling sign-up form submission:', values);
+        // Add code to submit data for sign-up
+
+        const apiUrl = `${baseUrl}/accounts/signup/`;
+        const apiUr2= `${baseUrl}//user-token/`;
+
+        const userData = {
+        username: values.email,
+        email: values.email,
+        password: values.password,
+        password2: values.password,
+        // 添加要发送给Django的数据
+        };
+        console.log('Handling sign-up form userData:', userData);
+
+        const config = {
         headers: {
             'Content-Type': 'multipart/form-data',
             'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-        },
-    };
+            },
+        };
     
-    console.log('Handling sign-in form userData:', userData,config);
-
-    try {
+        try {
             const response = await axios.post(apiUrl, userData,config);
-            if (response.status === 200) {
+            if (response.status === 201) {
                 // 跳转到用户首页或执行其他登录后的逻辑
                 //history.push('/userhome');
-                console.log('Login OK',response.data);
+                console.log('Sign-up OK',response.data);
                 const response2 = await axios.post(apiUr2, {
-                    username: userData.login,
+                    username: userData.username,
                     password: userData.password,
                 });
                 console.log('Login2 OK',response2.data);
@@ -87,95 +152,39 @@ const handleSignIn = async (values: FormikValues) => {
             } else {
                 console.error('Login failed');
             }
-        console.log(response.data);
         } catch (error) {
         console.error('Error creating user:', error);
         }
-   
-};
-
-const handleSignUp =async (values: FormikValues) => {
-    // Logic for handling sign-up form submission
-     console.log('Handling sign-up form submission:', values);
-    // Add code to submit data for sign-up
-    const navigate = useNavigate();
-    const apiUrl = `${baseUrl}/accounts/signup/`;
-    const apiUr2= `${baseUrl}//user-token/`;
-
-    const userData = {
-      username: values.email,
-      email: values.email,
-      password: values.password,
-      password2: values.password,
-      // 添加要发送给Django的数据
     };
-    console.log('Handling sign-up form userData:', userData);
 
-    const config = {
-       headers: {
-         'Content-Type': 'multipart/form-data',
-         'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-        },
-    };
-   
-    try {
-        const response = await axios.post(apiUrl, userData,config);
-        if (response.status === 201) {
-            // 跳转到用户首页或执行其他登录后的逻辑
-            //history.push('/userhome');
-            console.log('Sign-up OK',response.data);
-            const response2 = await axios.post(apiUr2, {
-                username: userData.username,
-                password: userData.password,
-            });
-            console.log('Login2 OK',response2.data);
-            localStorage.setItem('accessToken', response2.data.token);
-            console.log('response2.data.token',response2.data.token);
-            // 在这里进行你的其他操作，比如存储在本地存储中
-            navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
-        } else {
-            console.error('Login failed');
+    const handleResetPassword =async (values: FormikValues) => {
+        // Logic for handling reset password form submission
+        console.log('Handling reset password form submission:', values);
+        // Add code to submit data for reset password
+        //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+        const userData = {
+        email: values.email,
+        };
+        const config = {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+            },
+            body: JSON.stringify(userData),
+        };
+        const apiUrl = `${baseUrl}/accounts/password/reset/`;
+        try {
+            const response = await axios.post(apiUrl, userData,config);
+            if (response.status === 200) {
+                console.log('Password reset email sent:', response.data);
+            } else {
+                console.error('Password reset email sent failed');
+            }  
+        } catch (error) {
+        console.error('Error sending password reset email:', error);
         }
-    } catch (error) {
-    console.error('Error creating user:', error);
-    }
-};
-
-const handleResetPassword =async (values: FormikValues) => {
-    // Logic for handling reset password form submission
-    console.log('Handling reset password form submission:', values);
-    // Add code to submit data for reset password
-    //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
-    const userData = {
-      email: values.email,
     };
-    const config = {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-        },
-        body: JSON.stringify(userData),
-    };
-    const apiUrl = `${baseUrl}/accounts/password/reset/`;
-    try {
-        const response = await axios.post(apiUrl, userData,config);
-        if (response.status === 200) {
-            console.log('Password reset email sent:', response.data);
-        } else {
-            console.error('Password reset email sent failed');
-        }  
-    } catch (error) {
-    console.error('Error sending password reset email:', error);
-    }
-};
-
-
-/**
- * This component was created using Codux's Default new component template.
- * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
- */
-export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
 
     const validationSchema =
         formType === 'signin' ? (
@@ -236,12 +245,6 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         },
     });
 
-    const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
-
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
     return (
 
         <div className={classNames(styles.root)}>
