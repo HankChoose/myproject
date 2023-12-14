@@ -43,8 +43,6 @@ export const TestAxiosPost3 = ({ className }: TestAxiosPost3Props) => {
         try {
             const response = await axios.post('/accounts/login/', formData,config);
             if (response.status === 200) {
-                
-                
                 // 跳转到用户首页或执行其他登录后的逻辑
                 //history.push('/userhome');
                 console.log('Login OK',response.data);

@@ -72,7 +72,6 @@ const handleSignIn = async (values: FormikValues) => {
     try {
             const response = await axios.post(apiUrl, userData,config);
             if (response.status === 200) {
-
                 // 跳转到用户首页或执行其他登录后的逻辑
                 //history.push('/userhome');
                 console.log('Login OK',response.data);
@@ -101,6 +100,7 @@ const handleSignUp =async (values: FormikValues) => {
     // Add code to submit data for sign-up
     const navigate = useNavigate();
     const apiUrl = `${baseUrl}/accounts/signup/`;
+    const apiUr2= `${baseUrl}//user-token/`;
 
     const userData = {
       username: values.email,
@@ -120,7 +120,22 @@ const handleSignUp =async (values: FormikValues) => {
    
     try {
         const response = await axios.post(apiUrl, userData,config);
-        console.log(response.data);
+        if (response.status === 201) {
+            // 跳转到用户首页或执行其他登录后的逻辑
+            //history.push('/userhome');
+            console.log('Sign-up OK',response.data);
+            const response2 = await axios.post(apiUr2, {
+                username: userData.username,
+                password: userData.password,
+            });
+            console.log('Login2 OK',response2.data);
+            localStorage.setItem('accessToken', response2.data.token);
+            console.log('response2.data.token',response2.data.token);
+            // 在这里进行你的其他操作，比如存储在本地存储中
+            navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
+        } else {
+            console.error('Login failed');
+        }
     } catch (error) {
     console.error('Error creating user:', error);
     }
@@ -131,15 +146,28 @@ const handleResetPassword =async (values: FormikValues) => {
     console.log('Handling reset password form submission:', values);
     // Add code to submit data for reset password
     //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
-    axios.post("/accounts/password/change/", values)
-    .then(response => {
-        // 处理成功响应
-        console.log('成功',response.data);
-    })
-    .catch(error => {
-        // 处理错误
-        console.error('失败', error);
-    });
+    const userData = {
+      email: values.email,
+    };
+    const config = {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+        },
+        body: JSON.stringify(userData),
+    };
+    const apiUrl = `${baseUrl}/accounts/password/reset/`;
+    try {
+        const response = await axios.post(apiUrl, userData,config);
+        if (response.status === 200) {
+            console.log('Password reset email sent:', response.data);
+        } else {
+            console.error('Password reset email sent failed');
+        }  
+    } catch (error) {
+    console.error('Error sending password reset email:', error);
+    }
 };
 
 
