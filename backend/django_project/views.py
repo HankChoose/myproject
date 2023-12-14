@@ -33,6 +33,39 @@ from allauth.account.models import EmailAddress, EmailConfirmation
 from allauth.account.views import ConfirmEmailView, LoginView
 from allauth.account.decorators import login_required
 from allauth.account.utils import send_email_confirmation
+from allauth.account.utils import send_email_confirmation
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def check_verification_status(request):
+    is_verified = request.user.profile.email_verified
+    return Response({'is_verified': is_verified})
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def resend_verification_email(request):
+    # 在此处实现重新发送验证邮件的逻辑
+    send_confirmation_email(request)
+    # 可以使用 allauth.account.utils.send_email_confirmation 方法
+    # 参考：https://django-allauth.readthedocs.io/en/latest/commands.html#send-email-confirmation
+    return Response({'message': 'Verification email sent successfully'})
+
+
+@login_required
+def send_confirmation_email(request):
+    # 获取当前用户
+    user = request.user
+
+    # 如果用户的电子邮件尚未确认，则发送确认电子邮件
+    if not user.emailaddress_set.filter(verified=True).exists():
+        email_address = user.emailaddress_set.first()
+        send_email_confirmation(request, email_address)
+
+    return render(request, 'confirmation_sent.html')
 
 
 class UserTokenView(ObtainAuthToken):
