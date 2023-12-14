@@ -141,7 +141,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                 //history.push('/userhome');
                 console.log('Sign-up OK',response.data);
                 const response2 = await axios.post(apiUr2, {
-                    login: userData.username,
+                    username: userData.email,
                     password: userData.password,
                 });
                 console.log('Login2 OK',response2.data);
