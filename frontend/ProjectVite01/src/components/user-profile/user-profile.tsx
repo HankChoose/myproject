@@ -40,9 +40,9 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                 });
 
                 if (response.ok) {
-                const data = await response.json();
-                console.log('data',data);
-                setUserData(data);
+                    const data = await response.json();
+                    console.log('fetchData_data',data);
+                    setUserData(data);
                 } else {
                 // 处理请求失败的情况
                 console.error('Failed to fetch user data:', response.status, response.statusText);
@@ -72,7 +72,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
 
                 if (response.ok) {
                     const data = await response.json();
-                    console.log('data',data);
+                    console.log('verifyEmail_data',data);
                     setIsVerified(data.is_verified);
                 } else {
                 // 处理请求失败的情况
