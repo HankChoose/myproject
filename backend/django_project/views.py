@@ -61,7 +61,7 @@ User = get_user_model()
 @permission_classes([IsAuthenticated])
 def resend_verification_email(request):
     # 获取用户的邮箱地址
-    user_email = request.user.email
+    user_email = request.email
     return Response("user_email=", user_email)
     # try:
     # 获取用户的EmailAddress对象
