@@ -53,9 +53,6 @@ def check_verification_status(request):
     return Response({'is_verified': is_verified})
 
 
-User = get_user_model()
-
-
 @api_view(['POST'])
 @login_required
 @permission_classes([IsAuthenticated])
