@@ -3,10 +3,17 @@
 import json
 from .models import UserDemand
 
+from allauth.account.models import EmailAddress, EmailConfirmation
+from allauth.account.views import ConfirmEmailView, LoginView
+from allauth.account.decorators import login_required
+from allauth.account.utils import send_email_confirmation
+from allauth.account.views import EmailVerificationSentView
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import HttpResponseServerError, HttpResponse
@@ -14,7 +21,6 @@ from django.db import connection
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.generic import TemplateView
-from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
 from rest_framework.authtoken.models import Token
@@ -27,17 +33,6 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes, renderer_classes
 from rest_framework.renderers import JSONRenderer
 from rest_framework.permissions import AllowAny, IsAuthenticated
-
-from allauth.account.models import EmailAddress, EmailConfirmation
-from allauth.account.views import ConfirmEmailView, LoginView
-from allauth.account.decorators import login_required
-from allauth.account.utils import send_email_confirmation
-from allauth.account.views import EmailVerificationSentView
-
-
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model
-from django.shortcuts import render, redirect
 
 
 from .serializers import UserSerializer, UserDemandSerializer
