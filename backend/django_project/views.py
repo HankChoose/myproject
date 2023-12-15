@@ -94,7 +94,8 @@ def send_confirmation_email(request):
 
     # 如果用户的电子邮件尚未确认，则发送确认电子邮件
     if not user.emailaddress_set.filter(verified=True).exists():
-        email_address = user.emailaddress_set.first()
+        email_address = EmailAddress.objects.get(
+            user=request.user, verified=False)
         send_email_confirmation(request, email_address)
 
     return render(request, 'confirmation_sent.html')
