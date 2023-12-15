@@ -60,12 +60,12 @@ User = get_user_model()
 @permission_classes([IsAuthenticated])
 def resend_verification_email(request):
     # 使用 get_user_model() 获取用户模型
-    user_email = request.user.email
+    user_email = request.User.email
 
     try:
         # 获取用户的 EmailAddress 对象
         email_address = EmailAddress.objects.get(
-            User=request.user, email=user_email)
+            user=request.user, email=user_email)
     except EmailAddress.DoesNotExist:
         return Response({'detail': 'No verified email address found for this user.'}, status=400)
 
