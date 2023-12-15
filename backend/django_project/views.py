@@ -62,16 +62,16 @@ User = get_user_model()
 def resend_verification_email(request):
     # 获取用户的邮箱地址
     user_email = request.user.email
+    return Response("user_email=", user_email)
+    # try:
+    # 获取用户的EmailAddress对象
 
-    try:
-        # 获取用户的EmailAddress对象
-        return Response("user_email=", user_email)
-        email_address = EmailAddress.objects.get(email=user_email)
-    except EmailAddress.DoesNotExist:
-        return Response({'detail': 'No verified email address found for this user.'}, status=400)
+    # email_address = EmailAddress.objects.get(email=user_email)
+    # except EmailAddress.DoesNotExist:
+    # return Response({'detail': 'No verified email address found for this user.'}, status=400)
 
     # if email_address.verified:
-        # return Response({'detail': 'Email address is already verified.'}, status=400)
+    # return Response({'detail': 'Email address is already verified.'}, status=400)
 
     # 重新发送验证邮件
     send_email_confirmation(request, email_address)
