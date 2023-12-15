@@ -105,17 +105,25 @@ def resend_verification_email(request):
 
 @api_view(['POST'])
 @login_required
-def send_confirmation_email(request):
-    # 获取当前用户
-    user = request.user
+@permission_classes([IsAuthenticated])
+def resend_verification_email(request):
+    # 获取用户的邮箱地址
+    user_email = request.user.email
 
-    # 如果用户的电子邮件尚未确认，则发送确认电子邮件
-    if not user.emailaddress_set.filter(verified=False).exists():
+    try:
+        # 获取用户的EmailAddress对象
         email_address = EmailAddress.objects.get(
-            user=request.user, verified=False)
-        send_email_confirmation(request, email_address)
+            user=request.user, email=user_email)
+    except EmailAddress.DoesNotExist:
+        return Response({'detail': 'No verified email address found for this user.'}, status=400)
 
-    return render(request, 'confirmation_sent.html')
+    if email_address.verified:
+        return Response({'detail': 'Email address is already verified.'}, status=400)
+
+    # 重新发送验证邮件
+    send_email_confirmation(request, email_address)
+
+    return Response({'detail': 'Verification email has been resent.'})
 
 
 class UserTokenView(ObtainAuthToken):
