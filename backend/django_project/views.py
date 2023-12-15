@@ -53,27 +53,6 @@ def check_verification_status(request):
     return Response({'is_verified': is_verified})
 
 
-class ResendVerificationEmailView(EmailVerificationSentView):
-    def resend_verification_email(self, request, *args, **kwargs):
-        # 获取用户的邮箱地址
-        user_email = request.user.email
-
-        try:
-            # 获取用户的EmailAddress对象
-            email_address = EmailAddress.objects.get(
-                user=request.user, email=user_email)
-        except EmailAddress.DoesNotExist:
-            return Response({'detail': 'No verified email address found for this user.'}, status=400)
-
-        if email_address.verified:
-            return Response({'detail': 'Email address is already verified.'}, status=400)
-
-        # 重新发送验证邮件
-        send_email_confirmation(request, email_address)
-
-        return Response({'detail': 'Verification email has been resent.'})
-
-
 User = get_user_model()
 
 
