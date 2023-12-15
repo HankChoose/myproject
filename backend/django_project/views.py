@@ -79,7 +79,7 @@ def resend_verification_email(request):
 
     # 如果用户的电子邮件尚未确认，则发送确认电子邮件
     if not user.emailaddress_set.filter(verified=False).exists():
-        email_address = user.emailaddress_set.first()
+        email_address = 'hankchenv@gmail.com'
         send_email_confirmation(request, email_address)
     # 可以使用 allauth.account.utils.send_email_confirmation 方法
     # 参考：https://django-allauth.readthedocs.io/en/latest/commands.html#send-email-confirmation
