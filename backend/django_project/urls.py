@@ -21,7 +21,6 @@ urlpatterns = [
     path('resend-verification-email/',
          views.resend_verification_email, name='resend_verification_email'),
 
-
     path('user-profile/', UserProfileView.as_view(), name='user_profile'),
     path('user-profile2/', UserProfileView2.as_view(), name='user_profile2'),
     path('user-token/',  UserTokenView.as_view(), name='user_token'),
