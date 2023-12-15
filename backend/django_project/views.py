@@ -57,6 +57,7 @@ User = get_user_model()
 
 
 @api_view(['POST'])
+@login_required
 @permission_classes([IsAuthenticated])
 def resend_verification_email(request):
     # 使用 get_user_model() 获取用户模型
@@ -65,7 +66,7 @@ def resend_verification_email(request):
     try:
         # 获取用户的 EmailAddress 对象
         email_address = EmailAddress.objects.get(
-            user=request.user, email=user_email)
+            user=request.user)
     except EmailAddress.DoesNotExist:
         return Response({'detail': 'No verified email address found for this user.'}, status=400)
 
