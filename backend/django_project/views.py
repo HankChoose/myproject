@@ -59,12 +59,18 @@ def check_verification_status(request):
 # @permission_classes([IsAuthenticated])
 def resend_verification_email(request):
     # 在此处实现重新发送验证邮件的逻辑
-    send_confirmation_email(request)
+    user = request.user
+
+    # 如果用户的电子邮件尚未确认，则发送确认电子邮件
+    if not user.emailaddress_set.filter(verified=True).exists():
+        email_address = user.emailaddress_set.first()
+        send_email_confirmation(request, email_address)
     # 可以使用 allauth.account.utils.send_email_confirmation 方法
     # 参考：https://django-allauth.readthedocs.io/en/latest/commands.html#send-email-confirmation
     return Response({'message': 'Verification email sent successfully'})
 
 
+@api_view(['POST'])
 @login_required
 def send_confirmation_email(request):
     # 获取当前用户
