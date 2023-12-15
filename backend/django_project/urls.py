@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView, PasswordResetView
 from .views import UserDemandContentAPIView, UserProfileView, UserProfileView2, UserDemandCreateView, UserDemandListAPIView, UserDemandListAPIView2, CheckUserAPIView, CustomConfirmEmailView, UserTokenView, ResendVerificationEmailView
+
 from . import views
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -15,10 +16,13 @@ urlpatterns = [
     path('encyclopedia/', include("encyclopedia.urls")),
     path('accounts/', include('allauth.urls')),
 
-    path('api/check_verification_status/',
+    path('check-verification-status2/',
          views.check_verification_status, name='check_verification_status'),
-    path('api/resend_verification_email/',
+    path('resend-verification-email/',
          views.resend_verification_email, name='resend_verification_email'),
+
+    path('resend-verification-email2/', ResendVerificationEmailView.as_view(),
+         name='resend_verification_email2'),
 
 
     path('user-profile/', UserProfileView.as_view(), name='user_profile'),

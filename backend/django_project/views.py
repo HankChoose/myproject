@@ -33,6 +33,7 @@ from allauth.account.views import ConfirmEmailView, LoginView
 from allauth.account.decorators import login_required
 from allauth.account.utils import send_email_confirmation
 from allauth.account.views import EmailVerificationSentView
+from django.contrib.auth import get_user_model
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -56,18 +57,28 @@ def check_verification_status(request):
     return Response({'is_verified': is_verified})
 
 
+User = get_user_model()
+
+
 class ResendVerificationEmailView(EmailVerificationSentView):
     def resend_verification_email(self, request, *args, **kwargs):
-        # 在这里添加自定义逻辑，例如检查是否允许用户重新发送验证邮件
-
         # 获取用户的邮箱地址
-        email_address = request.user.emailaddress_set.get(
-            email=request.user.email)
+        user_email = request.user.email
+
+        try:
+            # 获取用户的EmailAddress对象
+            email_address = EmailAddress.objects.get(
+                user=request.user, email=user_email)
+        except EmailAddress.DoesNotExist:
+            return Response({'detail': 'No verified email address found for this user.'}, status=400)
+
+        if email_address.verified:
+            return Response({'detail': 'Email address is already verified.'}, status=400)
 
         # 重新发送验证邮件
         send_email_confirmation(request, email_address)
 
-        return self.render_to_response(self.get_context_data())
+        return Response({'detail': 'Verification email has been resent.'})
 
 
 @api_view(['POST'])
