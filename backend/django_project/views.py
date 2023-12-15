@@ -112,27 +112,6 @@ class UserProfileView2(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-@login_required
-def send_confirmation_email(request):
-    user = request.user
-    # 在这里执行发送确认邮件的操作
-    # send_email_confirmation(request, user)
-    # return render(request, 'confirmation_email_sent.html')
-    # 检查用户是否已经有一个未确认的电子邮件地址
-    email_address = user.emailaddress_set.filter(verified=False).first()
-
-    if email_address:
-        # 如果存在未确认的电子邮件地址，发送确认邮件
-        confirmation = EmailConfirmation.create(email_address)
-        send_email_confirmation(request, confirmation)
-
-        # 返回一些成功的响应
-        return HttpResponse("Confirmation email sent successfully.")
-    else:
-        # 如果用户的所有电子邮件地址都已确认，返回一些错误信息
-        return HttpResponse("No unconfirmed email address found.")
-
-
 '''
 
         
