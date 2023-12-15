@@ -14,7 +14,7 @@ from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.generic import TemplateView
 from django.contrib.auth.models import User
-
+from django.shortcuts import get_object_or_404
 
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken, obtain_auth_token
@@ -27,8 +27,6 @@ from rest_framework.decorators import api_view, permission_classes, renderer_cla
 from rest_framework.renderers import JSONRenderer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
-from .serializers import UserSerializer, UserDemandSerializer
-
 from allauth.account.models import EmailAddress, EmailConfirmation
 from allauth.account.views import ConfirmEmailView, LoginView
 from allauth.account.decorators import login_required
@@ -38,15 +36,27 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 
+from .serializers import UserSerializer, UserDemandSerializer
+
+
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@login_required
+# @permission_classes([IsAuthenticated])
 def check_verification_status(request):
-    is_verified = request.user.profile.email_verified
+    user_email = request.user.email
+
+    # 获取用户的EmailAddress对象
+    email_address = get_object_or_404(
+        EmailAddress, user=request.user, email=user_email)
+
+    # 获取email_verified的值
+    is_verified = email_address.verified
     return Response({'is_verified': is_verified})
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@login_required
+# @permission_classes([IsAuthenticated])
 def resend_verification_email(request):
     # 在此处实现重新发送验证邮件的逻辑
     send_confirmation_email(request)
