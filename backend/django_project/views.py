@@ -93,7 +93,7 @@ def send_confirmation_email(request):
     user = request.user
 
     # 如果用户的电子邮件尚未确认，则发送确认电子邮件
-    if not user.emailaddress_set.filter(verified=True).exists():
+    if not user.emailaddress_set.filter(verified=False).exists():
         email_address = EmailAddress.objects.get(
             user=request.user, verified=False)
         send_email_confirmation(request, email_address)
