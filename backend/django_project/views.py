@@ -70,19 +70,26 @@ class ResendVerificationEmailView(EmailVerificationSentView):
         return self.render_to_response(self.get_context_data())
 
 
-@login_required
-# @permission_classes([IsAuthenticated])
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def resend_verification_email(request):
-    user = request.user
+    # 获取用户的邮箱地址
+    user_email = request.user.email
 
-    # 获取用户的邮箱地址对象
-    # email_address = user.emailaddress_set.get(email=user.email)
-    email_address = user.email
+    try:
+        # 获取用户的EmailAddress对象
+        email_address = EmailAddress.objects.get(
+            user=request.user, email=user_email)
+    except EmailAddress.DoesNotExist:
+        return Response({'detail': 'No verified email address found for this user.'}, status=400)
+
+    if email_address.verified:
+        return Response({'detail': 'Email address is already verified.'}, status=400)
+
     # 重新发送验证邮件
     send_email_confirmation(request, email_address)
 
-    # 返回响应或执行其他逻辑
-    return HttpResponse("Verification email has been resent.")
+    return Response({'detail': 'Verification email has been resent.'})
 
 
 @api_view(['POST'])
