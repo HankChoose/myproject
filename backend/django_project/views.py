@@ -33,9 +33,10 @@ from allauth.account.views import ConfirmEmailView, LoginView
 from allauth.account.decorators import login_required
 from allauth.account.utils import send_email_confirmation
 from allauth.account.views import EmailVerificationSentView
-# from django.contrib.auth import get_user_model
+
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 
 
@@ -77,7 +78,8 @@ class ResendVerificationEmailView(EmailVerificationSentView):
 
         return Response({'detail': 'Verification email has been resent.'})
 
-# User = get_user_model()
+
+User = get_user_model()
 
 
 @api_view(['POST'])
