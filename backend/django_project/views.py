@@ -70,14 +70,14 @@ class ResendVerificationEmailView(EmailVerificationSentView):
         return self.render_to_response(self.get_context_data())
 
 
-# @login_required
+@login_required
 # @permission_classes([IsAuthenticated])
 def resend_verification_email(request):
     user = request.user
 
     # 获取用户的邮箱地址对象
-    email_address = user.emailaddress_set.get(email=user.email)
-
+    # email_address = user.emailaddress_set.get(email=user.email)
+    email_address = user.email
     # 重新发送验证邮件
     send_email_confirmation(request, email_address)
 
