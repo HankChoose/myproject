@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView, PasswordResetView
-from .views import UserDemandContentAPIView, UserProfileView, UserProfileView2, UserDemandCreateView, UserDemandListAPIView, UserDemandListAPIView2, CheckUserAPIView, CustomConfirmEmailView, UserTokenView, ResendVerificationEmailView
-
+from .views import UserDemandContentAPIView, UserProfileView, UserProfileView2, UserDemandCreateView, UserDemandListAPIView, UserDemandListAPIView2, CheckUserAPIView, CustomConfirmEmailView, UserTokenView
 from . import views
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -26,8 +25,13 @@ urlpatterns = [
     path('user-token/',  UserTokenView.as_view(), name='user_token'),
     path('user-account/',  views.user_account, name='user_account'),
 
+    path('send-confirmation-email/', views.send_confirmation_email,
+         name='send_confirmation_email'),
+
     path('custom-confirm-email/<str:key>/',
          CustomConfirmEmailView.as_view(), name='custom_confirm_email'),
+
+
 
     # path('accounts/userprofile/', views.CustomUserProfileView,name='accounts_user_profile'),
     path('api/check-email-exist/<str:email>/',
