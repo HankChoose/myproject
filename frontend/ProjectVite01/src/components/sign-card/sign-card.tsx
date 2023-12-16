@@ -54,6 +54,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
 
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [loginStatus, setLoginStatus] = useState<string | null>(null);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -93,14 +94,20 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                     console.log('Login OK',response.data);
                     localStorage.setItem('accessToken', response.data.token);
                     console.log('response2.data.token',response.data.token);
+                    const loginSuccess = true;/* 模拟请求返回的值 */ 
+                    setLoginStatus(loginSuccess ? 'Login successful' : 'Username or password is incorrect');
                     // 在这里进行你的其他操作，比如存储在本地存储中
                     navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
                 } else {
                     console.error('Login failed');
+                    const loginSuccess = false;/* 模拟请求返回的值 */ 
+                    setLoginStatus(loginSuccess ? 'Login successful' : 'Username or password is incorrect');
                 }
                 console.log(response.data);
             } catch (error) {
-            console.error('Error creating user:', error);
+                console.error('Error creating user:', error);
+                const loginSuccess = false;/* 模拟请求返回的值 */ 
+                setLoginStatus(loginSuccess ? 'Login successful' : 'Username or password is incorrect');
             }
     
     };
@@ -254,7 +261,11 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                     <div className={classNames(styles.FormRow)}><h1> {titlecard}</h1></div>
                     <div className={classNames(styles.FormRowSmall)}> </div>
                     <div className={classNames(styles.FormRow)}>{linkheader}{linksign}</div>
-                    <div className={classNames(styles.FormRowSmall)}> </div>
+                    <div className={classNames(styles.FormRowSmall)}>
+                        <div className={classNames(styles.ErrorsArea)}>
+                            {loginStatus !== null && <p>{loginStatus}</p>}
+                        </div>
+                    </div>
                     <div>
                         <div className={classNames(styles.FormRow)}>
                             <input
