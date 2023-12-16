@@ -62,8 +62,10 @@ def resend_verification_email(request):
 
     try:
         # 获取用户的 EmailAddress 对象
-        email_address = EmailAddress.objects.get(
-            user=request.user, email=request.user.email)
+        user = User.objects.get(email=request.user.email)
+        email_address = EmailAddress.objects.get(user=user, email=user.email)
+    except User.DoesNotExist:
+        return Response({'detail': 'User not found.'}, status=400)
     except EmailAddress.DoesNotExist:
         return Response({'detail': 'No verified email address found for this user.'}, status=400)
 
