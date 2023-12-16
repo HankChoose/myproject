@@ -147,9 +147,9 @@ def user_account(request):
 
 
 def CheckEmailExistView(request, email):
-    from django.contrib.auth.models import User
-    exists = User.objects.filter(email=email).exists()
-    return JsonResponse({'exists': exists})
+    return JsonResponse({'email': email})
+    # exists = User.objects.filter(email=email).exists()
+    # return JsonResponse({'exists': exists})
 
 # -------------------------------------------->For CheckUserAPIView
 
