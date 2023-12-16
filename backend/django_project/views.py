@@ -13,6 +13,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -58,7 +59,7 @@ def check_verification_status(request):
 @permission_classes([IsAuthenticated])
 def resend_verification_email(request):
     # 使用 get_user_model() 获取用户模型
-    User = get_user_model()
+    # User.objects.filter(email=email).exists()
 
     try:
         # 获取用户的 EmailAddress 对象
