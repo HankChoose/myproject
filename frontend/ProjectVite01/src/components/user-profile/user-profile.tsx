@@ -5,10 +5,12 @@ import React, { useState ,useEffect} from 'react';
 import {baseUrl} from '../../constants';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
+import Cookies from 'js-cookie';
 
 export interface UserProfileProps {
     className?: string;
 }
+const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
 
 export const UserProfile = ({ className }: UserProfileProps) => {
     interface UserData {
@@ -32,10 +34,10 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         if (token) {
             try {
                 const response = await fetch(apiUrl, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
-                    'Content-Type': 'application/json',
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
+                        'Content-Type': 'application/json',
                 },
                 });
 
@@ -87,16 +89,34 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         }
     };
 
-    const handleResendVerification = () => {
+    const handleResendVerification =async () => {
         // 发送请求重新发送验证邮件
         const apiUrl = `${baseUrl}/api/resend_verification_email/`;
-        axios.post(apiUrl)
-            .then(response => {
-                console.log('Verification email sent successfully:', response.data.message);
-            })
-            .catch(error => {
-                console.error('Error resending verification email:', error);
-            });
+       
+        const config = {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+            },
+        };
+
+
+        try {
+                const response = await axios.post(apiUrl, '111',config);
+                if (response.status === 200) {
+                    // 跳转到用户首页或执行其他登录后的逻辑
+                    //history.push('/userhome');
+                    console.log('Login OK',response.data);
+
+                } else {
+                    console.error('Login failed');
+                }
+            console.log(response.data);
+            } catch (error) {
+            console.error('Error creating user:', error);
+            }
+      
     };
 
 

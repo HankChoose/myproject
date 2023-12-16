@@ -40,6 +40,7 @@ export const TestAxiosPost2 = ({ className }: TestAxiosPost2Props) => {
         e.preventDefault();
         const navigate = useNavigate();
         const apiUrl = `${baseUrl}/accounts/signup/`;
+        const apiUrl2 = `${baseUrl}/user-token/`;
         try {
         const response = await axios.post(apiUrl, formData,config);
         console.log(response.data);
@@ -48,7 +49,7 @@ export const TestAxiosPost2 = ({ className }: TestAxiosPost2Props) => {
                 // 跳转到用户首页或执行其他登录后的逻辑
                 //history.push('/userhome');
                 console.log('Login OK',response.data);
-                const response2 = await axios.post('/user-token/', {
+                const response2 = await axios.post(apiUrl2, {
                     username: formData.email,
                     password: formData.password1,
                 });

@@ -78,7 +78,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
 
         const config = {
             headers: {
-                'Content-Type': 'multipart/form-data',
+                'Content-Type': 'application/json',
                 'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
             },
         };
@@ -86,18 +86,16 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         console.log('Handling sign-in form userData:', userData,config);
 
         try {
-                const response = await axios.post(apiUrl, userData,config);
+                const response = await axios.post(apiUr2, {
+                    username: userData.login,
+                    password: userData.password,
+                });
                 if (response.status === 200) {
                     // 跳转到用户首页或执行其他登录后的逻辑
                     //history.push('/userhome');
                     console.log('Login OK',response.data);
-                    const response2 = await axios.post(apiUr2, {
-                        username: userData.login,
-                        password: userData.password,
-                    });
-                    console.log('Login2 OK',response2.data);
-                    localStorage.setItem('accessToken', response2.data.token);
-                    console.log('response2.data.token',response2.data.token);
+                    localStorage.setItem('accessToken', response.data.token);
+                    console.log('response2.data.token',response.data.token);
                     // 在这里进行你的其他操作，比如存储在本地存储中
                     navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
                 } else {
@@ -167,7 +165,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         // Add code to submit data for reset password
         //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
         const userData = {
-        email: values.email,
+            email: values.email,
         };
         const config = {
             method: 'POST',
