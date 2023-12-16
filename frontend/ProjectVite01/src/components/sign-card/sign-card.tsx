@@ -80,6 +80,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+                'Referer': `${baseUrl}`
             },
         };
         
