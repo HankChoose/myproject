@@ -69,7 +69,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
       
         const apiUrl = `${baseUrl}/accounts/login/`;
-        const apiUr2 = `${baseUrl}//user-token/`;
+        const apiUrl2 = `${baseUrl}//user-token/`;
         const userData = {
             login: values.email,
             password: values.password,
@@ -86,10 +86,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         console.log('Handling sign-in form userData:', userData,config);
 
         try {
-                const response = await axios.post(apiUr2, {
-                    username: userData.login,
-                    password: userData.password,
-                });
+                const response = await axios.post(apiUrl2, userData,config);
                 if (response.status === 200) {
                     // 跳转到用户首页或执行其他登录后的逻辑
                     //history.push('/userhome');
@@ -114,7 +111,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         // Add code to submit data for sign-up
 
         const apiUrl = `${baseUrl}/accounts/signup/`;
-        const apiUr2= `${baseUrl}//user-token/`;
+        const apiUrl2= `${baseUrl}//user-token/`;
 
         // Split the email address at the "@" symbol
         const parts = values.email.split('@');
@@ -141,7 +138,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                 // 跳转到用户首页或执行其他登录后的逻辑
                 //history.push('/userhome');
                 console.log('Sign-up OK',response.data);
-                const response2 = await axios.post(apiUr2, {
+                const response2 = await axios.post(apiUrl2, {
                     username: userData.email,
                     password: userData.password1,
                 });
