@@ -86,10 +86,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         console.log('Handling sign-in form userData:', userData,config);
 
         try {
-                const response = await axios.post(apiUrl2, {
-                    username: userData.username,
-                    password: userData.password,
-                });
+                const response = await axios.post(apiUrl2, userData,config);
                 if (response.status === 200) {
                     // 跳转到用户首页或执行其他登录后的逻辑
                     //history.push('/userhome');
