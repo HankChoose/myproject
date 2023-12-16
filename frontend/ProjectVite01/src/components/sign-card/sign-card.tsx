@@ -80,14 +80,16 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
             headers: {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-                'Referer': `${baseUrl}`
             },
         };
         
         console.log('Handling sign-in form userData:', userData,config);
 
         try {
-                const response = await axios.post(apiUrl2, userData,config);
+                const response = await axios.post(apiUrl2, {
+                    username: userData.username,
+                    password: userData.password,
+                });
                 if (response.status === 200) {
                     // 跳转到用户首页或执行其他登录后的逻辑
                     //history.push('/userhome');
