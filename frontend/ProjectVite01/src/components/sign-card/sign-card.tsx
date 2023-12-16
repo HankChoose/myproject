@@ -61,7 +61,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
     
     const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
     const navigate = useNavigate();
-
+    //-------------------------------------------------------->>handleSignIn
     const handleSignIn = async (values: FormikValues) => {
         // Logic for handling sign-in form submission
         console.log('Handling sign-in form submission:', values);
@@ -108,6 +108,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
     
     };
 
+    //-------------------------------------------------------->>handleSignUp
     const handleSignUp =async (values: FormikValues) => {
         // Logic for handling sign-up form submission
         console.log('Handling sign-up form submission:', values);
@@ -159,6 +160,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         }
     };
 
+    //-------------------------------------------------------->handleResetPassword
     const handleResetPassword =async (values: FormikValues) => {
         // Logic for handling reset password form submission
         console.log('Handling reset password form submission:', values);
@@ -271,7 +273,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                         </div>
                         <div className={classNames(styles.FormRow)}>
                             {formik.touched.email && formik.errors.email ? (
-                                <div>{formik.errors.email}</div>
+                                <div className={classNames(styles.ErrorsArea)}>{formik.errors.email}</div>
                             ) : null}
                         </div>
                     </div>
@@ -296,7 +298,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                             </div>
                             <div className={classNames(styles.FormRow)}>
                                 {formik.touched.password && formik.errors.password ? (
-                                    <div>{formik.errors.password}</div>
+                                    <div className={classNames(styles.ErrorsArea)}>{formik.errors.password}</div>
                                 ) : null}
                             </div>
                         </div>
@@ -321,7 +323,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                             </div>
                             <div className={classNames(styles.FormRow)}>
                                 {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-                                    <div>{formik.errors.confirmPassword}</div>
+                                    <div className={classNames(styles.ErrorsArea)}>{formik.errors.confirmPassword}</div>
                                 ) : null}
                             </div>
                         </div>
