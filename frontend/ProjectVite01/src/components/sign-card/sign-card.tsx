@@ -71,7 +71,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         const apiUrl = `${baseUrl}/accounts/login/`;
         const apiUrl2 = `${baseUrl}/user-token/`;
         const userData = {
-            login: values.email,
+            username: values.email,
             password: values.password,
             // 添加要发送给Django的数据
         };
