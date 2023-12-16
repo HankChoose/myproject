@@ -69,7 +69,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
       
         const apiUrl = `${baseUrl}/accounts/login/`;
-        const apiUrl2 = `${baseUrl}//user-token/`;
+        const apiUrl2 = `${baseUrl}/user-token/`;
         const userData = {
             login: values.email,
             password: values.password,
@@ -98,7 +98,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                 } else {
                     console.error('Login failed');
                 }
-            console.log(response.data);
+                console.log(response.data);
             } catch (error) {
             console.error('Error creating user:', error);
             }
@@ -111,7 +111,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         // Add code to submit data for sign-up
 
         const apiUrl = `${baseUrl}/accounts/signup/`;
-        const apiUrl2= `${baseUrl}//user-token/`;
+        const apiUrl2= `${baseUrl}/user-token/`;
 
         // Split the email address at the "@" symbol
         const parts = values.email.split('@');
