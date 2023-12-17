@@ -4,8 +4,8 @@ import { useFormik, FormikValues } from 'formik';
 import * as Yup from 'yup';
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
-import axios from "axios";
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate} from 'react-router-dom';
+import axios, { AxiosResponse } from 'axios';
 import Cookies from 'js-cookie';
 import { baseUrl } from '../../constants';
 
@@ -55,6 +55,8 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [loginStatus, setLoginStatus] = useState<string | null>(null);
+    const [emailExistenceStatus, setEmailExistenceStatus] = useState<string | null>(null);
+    
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -164,12 +166,28 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         }
     };
 
-
-    const checkEmailExistence = async (email:String) => {
-        const apiUrl = `${baseUrl}/check-email-exist/${email}/`;
+   
+    const checkEmailExistence = async (values: FormikValues) => {
+        const apiUrl = `${baseUrl}/check-email-exist/${values.email}/`;
         try {
             const response = await axios.get(apiUrl);
-            return response.data;
+            const data = response.data;
+            const exists = data.exists;
+            if (exists === true) {
+                // 邮箱存在的情况下的处理逻辑
+                console.log('Email exists!');
+                // 执行下一步操作...
+                const emailExists = true;/* 模拟请求返回的值 */ 
+                setEmailExistenceStatus(emailExists ? 'Email Exists' : 'Email not Exists');
+            } else if (exists === false) {
+                // 邮箱不存在的情况下的处理逻辑
+                console.log('Email does not exist!');
+                // 执行下一步操作...
+                 //handleSignUp(values);
+            } else {
+                // 数据尚未加载或加载过程中的处理逻辑
+                console.log('Loading data...');
+            }
         } catch (error) {
             console.error('Error checking email existence:', error);
             throw error;
@@ -258,8 +276,8 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
             if (formType === 'signin') {
                 handleSignIn(values);
             } else if (formType === 'signup') {
-                checkEmailExistence(values.email);
-                //handleSignUp(values);
+                checkEmailExistence(values);
+
             } else if (formType === 'resetpw') {
                 handleResetPassword(values);
             }
@@ -277,6 +295,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                     <div className={classNames(styles.FormRowSmall)}>
                         <div className={classNames(styles.ErrorsArea)}>
                             {loginStatus !== null && <p>{loginStatus}</p>}
+                            {emailExistenceStatus !== null && <p>{emailExistenceStatus}</p>}
                         </div>
                     </div>
                     <div>
