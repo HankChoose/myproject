@@ -29,7 +29,7 @@ urlpatterns = [
          CustomConfirmEmailView.as_view(), name='custom_confirm_email'),
 
     # path('accounts/userprofile/', views.CustomUserProfileView,name='accounts_user_profile'),
-    path('check-email-exist/',
+    path('check-email-exist/<str:email>/',
          views.CheckEmailExistView, name='check_email_exist'),
     path('check_user/', CheckUserAPIView.as_view(), name='check_user'),
 
