@@ -60,7 +60,6 @@ def check_verification_status(request):
 def resend_verification_email(request):
     # 使用 get_user_model() 获取用户模型
     # User.objects.filter(email=email).exists()
-
     try:
         # 获取用户的 EmailAddress 对象
         user = User.objects.get(email=request.user.email)
@@ -77,6 +76,15 @@ def resend_verification_email(request):
     send_email_confirmation(request, email_address)
 
     return Response({'detail': 'Verification email has been resent.'})
+
+# -------------------------------------------->Check exists email
+
+
+def CheckEmailExistView(request, email):
+    # return JsonResponse({'email': email})
+    # email_exists = EmailAddress.objects.filter(email=email, verified=False).exists()
+    email_exists = EmailAddress.objects.filter(email=email).exists()
+    return JsonResponse({'exists': email_exists})
 
 
 class UserTokenView(ObtainAuthToken):
@@ -142,18 +150,6 @@ class CustomConfirmEmailView(ConfirmEmailView):
 def user_account(request):
 
     return render(request, 'useraccount.html')
-
-# -------------------------------------------->Check exists email
-
-
-def CheckEmailExistView(request, email):
-
-    # return JsonResponse({'email': email})
-    # email_exists = EmailAddress.objects.filter(email=email, verified=False).exists()
-    # email_exists = EmailAddress.objects.filter(email=email).exists()
-    email_exists = EmailAddress.objects.filter(email=email).exists()
-    # exists = User.objects.filter(email=email).exists()
-    return JsonResponse({'exists': email_exists})
 
 # -------------------------------------------->For CheckUserAPIView
 

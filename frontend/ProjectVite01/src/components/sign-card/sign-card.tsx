@@ -164,6 +164,18 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         }
     };
 
+
+    const checkEmailExistence = async (email:String) => {
+        const apiUrl = `${baseUrl}/check-email-exist/${email}/`;
+        try {
+            const response = await axios.get(apiUrl);
+            return response.data;
+        } catch (error) {
+            console.error('Error checking email existence:', error);
+            throw error;
+        }
+    };
+
     //-------------------------------------------------------->handleResetPassword
     const handleResetPassword =async (values: FormikValues) => {
         // Logic for handling reset password form submission
@@ -246,7 +258,8 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
             if (formType === 'signin') {
                 handleSignIn(values);
             } else if (formType === 'signup') {
-                handleSignUp(values);
+                checkEmailExistence(values.email);
+                //handleSignUp(values);
             } else if (formType === 'resetpw') {
                 handleResetPassword(values);
             }
