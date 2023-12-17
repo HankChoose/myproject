@@ -178,11 +178,14 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                 console.log('Email exists!');
                 // 执行下一步操作...
                 const emailExists = true;/* 模拟请求返回的值 */ 
-                setEmailExistenceStatus(emailExists ? 'Email Exists' : 'Email not Exists');
+                setEmailExistenceStatus(emailExists ? 'The email already in use. You can click Forgot my password to verify the email address' : 'OK,Email can be used');
             } else if (exists === false) {
                 // 邮箱不存在的情况下的处理逻辑
                 console.log('Email does not exist!');
                 // 执行下一步操作...
+                // 执行下一步操作...
+                const emailExists = false;/* 模拟请求返回的值 */ 
+                 setEmailExistenceStatus(emailExists ? 'The email already in use. You can click Forgot my password to verify the email address' : 'OK,Email can be used');
                  //handleSignUp(values);
             } else {
                 // 数据尚未加载或加载过程中的处理逻辑
