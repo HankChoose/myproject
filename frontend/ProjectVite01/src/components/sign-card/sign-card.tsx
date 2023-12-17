@@ -178,7 +178,16 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                 console.log('Email exists!');
                 // 执行下一步操作...
                 const emailExists = true;/* 模拟请求返回的值 */ 
-                setEmailExistenceStatus(emailExists ? 'The email already in use. click Forgot my password to verify the email' : 'OK,Email can be used');
+                const statusMessage = emailExists ? (
+                    <>
+                    The email already in use. Click <Link to="/react/resetpw">Forgot my password</Link> to verify the email.
+                    </>
+                ) : (
+                    'OK, Email can be used'
+                );
+                // 将 JSX.Element 转为字符串
+                setEmailExistenceStatus(statusMessage as string);
+
             } else if (exists === false) {
                 // 邮箱不存在的情况下的处理逻辑
                 console.log('Email does not exist!');
