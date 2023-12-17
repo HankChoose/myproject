@@ -295,7 +295,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                     <div className={classNames(styles.FormRow)}><h1> {titlecard}</h1></div>
                     <div className={classNames(styles.FormRowSmall)}> </div>
                     <div className={classNames(styles.FormRow)}>{linkheader}{linksign}</div>
-                    <div className={classNames(styles.FormRowSmall)}>
+                    <div className={classNames(styles.FormRow)}>
                         <div className={classNames(styles.ErrorsArea)}>
                             {loginStatus !== null && <p>{loginStatus}</p>}
                             {emailExistenceStatus !== null && <p>{emailExistenceStatus}</p>}
