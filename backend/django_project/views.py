@@ -146,7 +146,8 @@ def user_account(request):
 # -------------------------------------------->Check exists email
 
 
-def CheckEmailExistView(request, email):
+def CheckEmailExistView(request):
+    email = request.GET.get('email', None)
     # return JsonResponse({'email': email})
     # email_exists = EmailAddress.objects.filter(email=email, verified=False).exists()
     email_exists = EmailAddress.objects.filter(email=email).exists()
