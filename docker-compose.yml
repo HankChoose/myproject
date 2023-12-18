@@ -63,7 +63,7 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email zhiyouyuec@gmail.com --agree-tos --no-eff-email -d zhiyouyuec.com
+    command: certonly --standalone -d zhiyouyuea.com -d www.zhiyouyuea.com
   
   nginx:
     image: nginx:latest
