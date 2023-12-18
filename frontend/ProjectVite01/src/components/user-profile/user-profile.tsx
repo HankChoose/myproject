@@ -109,25 +109,12 @@ export const UserProfile = ({ className }: UserProfileProps) => {
             </Card.Body>
             <ListGroup className="list-group-flush">
                 <ListGroup.Item><h3>Welcome! {usernames}</h3></ListGroup.Item>
-                <ListGroup.Item>Username:{usernames}
-                <p>{editable ? <input type="text" 
-                                    value={username} 
-                                    onChange={handleChange} /> : username}</p>
-                    {editable ? (
-                        <div>
-                        <button onClick={handleSaveClick}>Save</button>
-                        <button onClick={handleCancelClick}>Cancel</button>
-                        </div>
-                    ) : (
-                        <button onClick={handleEditClick}>Edit</button>
-                    )}</ListGroup.Item>
+                <ListGroup.Item>Username:{usernames}</ListGroup.Item>
                 <ListGroup.Item>Email:{email}</ListGroup.Item>
-                <ListGroup.Item></ListGroup.Item>
-                <ListGroup.Item>List:</ListGroup.Item>
+              
             </ListGroup>
             <Card.Body>
                 <Card.Link href="#">My Post</Card.Link>
-                <Card.Link href="#">check info</Card.Link>
             </Card.Body>
             </Card>
 
