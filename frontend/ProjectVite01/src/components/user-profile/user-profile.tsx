@@ -83,11 +83,16 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         setUsername(e.target.value);
     };
 
-   
-    const usernames = userData[0].username;
-    const usernamesString = usernames.toString()   
-    const email = userData[0].email; 
-    const emailString = email.toString() 
+    
+
+    const usernames = userData.map(item => (
+        <span key={item.id}>{item.username}</span>
+        ));
+    
+    const email = userData.map(item => (
+        <span key={item.id}>{item.email}</span>
+        ));
+    
     return (
         <div>
         {userData ? (
@@ -106,9 +111,9 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                 <tr>
                 <td>UserName:</td>
                 <td> 
+                {usernames}
                 <p>{editable ? <input type="text" 
                                 value={username} 
-                                placeholder={usernamesString}
                                 onChange={handleChange} /> : username}</p>
                 {editable ? (
                     <div>
@@ -123,9 +128,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                 <tr>
                 <td>Email:</td>
                 <td>
-                email
-                {emailString}
-                    
+                {email}            
               </td>
                 </tr>
                 <tr>
