@@ -6,6 +6,8 @@ import {baseUrl} from '../../constants';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
 import Cookies from 'js-cookie';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 export interface UserProfileProps {
     className?: string;
@@ -95,9 +97,28 @@ export const UserProfile = ({ className }: UserProfileProps) => {
     
     return (
         <div>
+
+       <Card style={{ width: '60vw' }}>
+       
+        <Card.Body>
+            <Card.Title><h1>User Home</h1></Card.Title>
+            <Card.Text>
+           Welcome! {usernames}
+            </Card.Text>
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+            <ListGroup.Item></ListGroup.Item>
+            <ListGroup.Item>Email:{email}</ListGroup.Item>
+            <ListGroup.Item>List</ListGroup.Item>
+        </ListGroup>
+        <Card.Body>
+            <Card.Link href="#">Card Link</Card.Link>
+            <Card.Link href="#">Another Link</Card.Link>
+        </Card.Body>
+        </Card>
         {userData ? (
             <div>
-            <h1>User Home</h1>
+            
             <p>Welcome!</p>
 
             <Table bordered>
