@@ -85,7 +85,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         setUsername(e.target.value);
     };
 
-    
+   
 
     const usernames = userData.map(item => (
         <span key={item.id}>{item.username}</span>
@@ -94,7 +94,9 @@ export const UserProfile = ({ className }: UserProfileProps) => {
     const email = userData.map(item => (
         <span key={item.id}>{item.email}</span>
         ));
-    
+
+    const firstusername = userData.length > 0 ? userData[0].username : null;
+    const firstEmail = userData.length > 0 ? userData[0].email : null;
     return (
         <div>
 
@@ -103,7 +105,8 @@ export const UserProfile = ({ className }: UserProfileProps) => {
             <Card.Body>
                 <Card.Title><h1>User Home</h1></Card.Title>
                 <Card.Text>
-                
+            firstusername:{firstusername}
+            firstEmail:{firstEmail}
                 </Card.Text>
             
             </Card.Body>
