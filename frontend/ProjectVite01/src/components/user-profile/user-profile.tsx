@@ -98,80 +98,39 @@ export const UserProfile = ({ className }: UserProfileProps) => {
     return (
         <div>
 
-       <Card style={{ width: '60vw' }}>
-       
-        <Card.Body>
-            <Card.Title><h1>User Home</h1></Card.Title>
-             <Card.Text>
-              
-            </Card.Text>
-          
-        </Card.Body>
-        <ListGroup className="list-group-flush">
-            <ListGroup.Item><h3>Welcome! {usernames}</h3></ListGroup.Item>
-            <ListGroup.Item>{usernames}</ListGroup.Item>
-            <ListGroup.Item>Email:{email}</ListGroup.Item>
-            <ListGroup.Item></ListGroup.Item>
-            <ListGroup.Item>List:</ListGroup.Item>
-        </ListGroup>
-        <Card.Body>
-            <Card.Link href="#">Card Link</Card.Link>
-            <Card.Link href="#">Another Link</Card.Link>
-        </Card.Body>
-        </Card>
-        {userData ? (
-            <div>
+        <Card style={{ width: '60vw' }}>
+        
+            <Card.Body>
+                <Card.Title><h1>User Home</h1></Card.Title>
+                <Card.Text>
+                
+                </Card.Text>
             
-            <p>Welcome!</p>
-
-            <Table bordered>
-            <thead>
-            <tr>
-            <th>Item</th>
-            <th>Detail</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td>UserName:</td>
-                <td> 
-                {usernames}
+            </Card.Body>
+            <ListGroup className="list-group-flush">
+                <ListGroup.Item><h3>Welcome! {usernames}</h3></ListGroup.Item>
+                <ListGroup.Item>Username:{usernames}
                 <p>{editable ? <input type="text" 
-                                value={username} 
-                                onChange={handleChange} /> : username}</p>
-                {editable ? (
-                    <div>
-                    <button onClick={handleSaveClick}>Save</button>
-                    <button onClick={handleCancelClick}>Cancel</button>
-                    </div>
-                ) : (
-                    <button onClick={handleEditClick}>Edit</button>
-                )}
-               </td>
-                </tr>
-                <tr>
-                <td>Email:</td>
-                <td>
-                {email}            
-              </td>
-                </tr>
-                <tr>
-                <td>Type</td>
-                <td>111</td>
-                </tr>
-                <tr>
-                <td>Comment</td>
-                <td>wwww</td>
-                </tr>
-            </tbody>
-            </Table>
+                                    value={username} 
+                                    onChange={handleChange} /> : username}</p>
+                    {editable ? (
+                        <div>
+                        <button onClick={handleSaveClick}>Save</button>
+                        <button onClick={handleCancelClick}>Cancel</button>
+                        </div>
+                    ) : (
+                        <button onClick={handleEditClick}>Edit</button>
+                    )}</ListGroup.Item>
+                <ListGroup.Item>Email:{email}</ListGroup.Item>
+                <ListGroup.Item></ListGroup.Item>
+                <ListGroup.Item>List:</ListGroup.Item>
+            </ListGroup>
+            <Card.Body>
+                <Card.Link href="#">My Post</Card.Link>
+                <Card.Link href="#">check info</Card.Link>
+            </Card.Body>
+            </Card>
 
-            </div>
-        ) : (
-            <p>Please log in to view user data.</p>
-        )}
-
-         
         </div>
     );
 };
