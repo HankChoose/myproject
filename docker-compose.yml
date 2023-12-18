@@ -63,7 +63,7 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    command: certonly --standalone -d zhiyouyuea.com -d www.zhiyouyuea.com
+    command: certonly --standalone -d zhiyouyuec.com -d www.zhiyouyuec.com
   
   nginx:
     image: nginx:latest
