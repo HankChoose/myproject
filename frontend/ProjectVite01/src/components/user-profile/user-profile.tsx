@@ -83,15 +83,10 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         setUsername(e.target.value);
     };
 
-    const usernames = userData.map(item => (
-        <span key={item.id}>{item.username}</span>
-        ));
+   
+    const usernames = userData[0].username;
     const usernamesString = usernames.toString()   
-    
-    const email = userData.map(item => (
-        <span key={item.id}>{item.email}</span>
-        ));
-    
+    const email = userData[0].email; 
     const emailString = email.toString() 
     return (
         <div>
