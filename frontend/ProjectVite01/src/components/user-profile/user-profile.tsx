@@ -102,15 +102,16 @@ export const UserProfile = ({ className }: UserProfileProps) => {
        
         <Card.Body>
             <Card.Title><h1>User Home</h1></Card.Title>
-            <Card.Text>
-           Welcome! {usernames}
+             <Card.Text>
+              
             </Card.Text>
+          
         </Card.Body>
         <ListGroup className="list-group-flush">
-            <ListGroup.Item>User Name:</ListGroup.Item>
+            <ListGroup.Item><h3>Welcome! {usernames}</h3></ListGroup.Item>
             <ListGroup.Item>{usernames}</ListGroup.Item>
-            <ListGroup.Item>Email:</ListGroup.Item>
-            <ListGroup.Item>{email}</ListGroup.Item>
+            <ListGroup.Item>Email:{email}</ListGroup.Item>
+            <ListGroup.Item></ListGroup.Item>
             <ListGroup.Item>List:</ListGroup.Item>
         </ListGroup>
         <Card.Body>
