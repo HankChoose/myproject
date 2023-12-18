@@ -23,6 +23,10 @@ export const UserProfile = ({ className }: UserProfileProps) => {
     }
     const [userData, setUserData] = useState<UserData[]>([]);
     const [isVerified, setIsVerified] = useState(false);
+    const [editing, setEditing] = useState(false);
+    //const [editable, setEditable] = useState(false);
+    const [username, setUsername] = useState(''); // Initial username
+
     useEffect(() => {
         // 在组件加载时发送请求
         fetchData();
@@ -60,32 +64,19 @@ export const UserProfile = ({ className }: UserProfileProps) => {
     };
 
    
-
-    const [editable, setEditable] = useState(false);
-    const [username, setUsername] = useState(''); // Initial username
-    const handleEditClick = () => {
-        setEditable(true);
+    const handleEdit = () => {
+        setEditing(true);
     };
 
-    const handleSaveClick = () => {
-        setEditable(false);
-        // Add logic to save the updated username to the server
-        // For simplicity, we'll just log it to the console here
-        console.log('Saving username:', username);
+    const handleSave = () => {
+        // 处理保存逻辑，比如将 username 提交到服务器
+        setEditing(false);
     };
 
-    const handleCancelClick = () => {
-        setEditable(false);
-        // If the user cancels, you might want to revert changes or do nothing
-        // For simplicity, we'll just log a message here
-        console.log('Edit cancelled');
+    const handleCancel = () => {
+        // 处理取消编辑逻辑，比如还原原始的 username
+        setEditing(false);
     };
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUsername(e.target.value);
-    };
-
-   
 
     const usernames = userData.map(item => (
         <span key={item.id}>{item.username}</span>
@@ -106,20 +97,23 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                 <Card.Title><h1>User Home</h1></Card.Title>
                 <Card.Text>
                 <div className={classNames(styles.FormRow)}>
-                    <span>{firstusername}</span>
-                    <p>{editable ? 
-                    <input type="text" 
-                    value={username}
-                    placeholder={firstusername}
-                    onChange={handleChange} /> : username}</p>
-                    {editable ? (
-                        <div>
-                        <button onClick={handleSaveClick}>Save</button>
-                        <button onClick={handleCancelClick}>Cancel</button>
-                        </div>
-                    ) : (
-                        <button onClick={handleEditClick}>Edit</button>
-                    )}
+                    {editing ? (
+                    <div>
+                    <input
+                        type="text"
+                        value={username}
+                        placeholder={firstusername}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <button onClick={handleSave}>Save</button>
+                    <button onClick={handleCancel}>Cancel</button>
+                    </div>
+                ) : (
+                    <div>
+                    <span>{username}</span>
+                    <button onClick={handleEdit}>Edit</button>
+                    </div>
+                )}
                 </div>
                 </Card.Text>
             
