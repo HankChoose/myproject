@@ -110,7 +110,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                     </div>
                 ) : (
                     <div>
-                    <span>{username}</span>
+                    <span>{firstusername}</span>
                     <button onClick={handleEdit}>Edit</button>
                     </div>
                 )}
