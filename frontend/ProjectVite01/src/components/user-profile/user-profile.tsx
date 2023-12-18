@@ -24,7 +24,6 @@ export const UserProfile = ({ className }: UserProfileProps) => {
     useEffect(() => {
         // 在组件加载时发送请求
         fetchData();
-        verifyEmail();
     }, []);
 
     const fetchData = async () => {
@@ -58,67 +57,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         }
     };
 
-    const verifyEmail = async () => {
-        // 获取保存在本地存储中的令牌
-        const token = localStorage.getItem('accessToken');
-        const apiUrl = `${baseUrl}/api/check_verification_status/`;
-        if (token) {
-            try {
-                const response = await fetch(apiUrl, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
-                    'Content-Type': 'application/json',
-                },
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log('verifyEmail_data',data);
-                    setIsVerified(data.is_verified);
-                } else {
-                // 处理请求失败的情况
-                console.error('Failed to fetch user data:', response.status, response.statusText);
-                }
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        } else {
-        // 处理令牌不存在的情况
-        console.error('Access token is undefined or null.');
-        }
-    };
-
-    const handleResendVerification =async () => {
-        // 发送请求重新发送验证邮件
-        const apiUrl = `${baseUrl}/api/resend_verification_email/`;
-       
-        const config = {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-            },
-        };
-
-
-        try {
-                const response = await axios.post(apiUrl, '111',config);
-                if (response.status === 200) {
-                    // 跳转到用户首页或执行其他登录后的逻辑
-                    //history.push('/userhome');
-                    console.log('Login OK',response.data);
-
-                } else {
-                    console.error('Login failed');
-                }
-            console.log(response.data);
-            } catch (error) {
-            console.error('Error creating user:', error);
-            }
-      
-    };
-
+   
 
     const [editable, setEditable] = useState(false);
     const [username, setUsername] = useState(''); // Initial username
