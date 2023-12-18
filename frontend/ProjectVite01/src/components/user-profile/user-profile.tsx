@@ -95,7 +95,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         <span key={item.id}>{item.email}</span>
         ));
 
-    const firstusername = userData.length > 0 ? userData[0].username : null;
+    const firstusername = userData.length > 0 ? userData[0].username : undefined;
     const firstEmail = userData.length > 0 ? userData[0].email : null;
     return (
         <div>
@@ -105,8 +105,19 @@ export const UserProfile = ({ className }: UserProfileProps) => {
             <Card.Body>
                 <Card.Title><h1>User Home</h1></Card.Title>
                 <Card.Text>
-            firstusername:{firstusername}
-            firstEmail:{firstEmail}
+                <p>{editable ? 
+                <input type="text" 
+                value={username}
+                placeholder={firstusername}
+                onChange={handleChange} /> : username}</p>
+                {editable ? (
+                    <div>
+                    <button onClick={handleSaveClick}>Save</button>
+                    <button onClick={handleCancelClick}>Cancel</button>
+                    </div>
+                ) : (
+                    <button onClick={handleEditClick}>Edit</button>
+                )}
                 </Card.Text>
             
             </Card.Body>
