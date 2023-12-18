@@ -143,6 +143,17 @@ export const UserProfile = ({ className }: UserProfileProps) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(e.target.value);
     };
+
+    const usernames = userData.map(item => (
+        <span key={item.id}>{item.username}</span>
+        ));
+    const usernamesString = usernames.toString()   
+    
+    const email = userData.map(item => (
+        <span key={item.id}>{item.email}</span>
+        ));
+    
+    const emailString = email.toString() 
     return (
         <div>
         {userData ? (
@@ -161,11 +172,10 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                 <tr>
                 <td>UserName:</td>
                 <td> 
-                {userData.map(item => (
-                <li key={item.id}>{item.username}</li>
-                ))}
-
-                <p>{editable ? <input type="text" value={username} onChange={handleChange} /> : username}</p>
+                <p>{editable ? <input type="text" 
+                                value={username} 
+                                placeholder={usernamesString}
+                                onChange={handleChange} /> : username}</p>
                 {editable ? (
                     <div>
                     <button onClick={handleSaveClick}>Save</button>
@@ -179,18 +189,9 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                 <tr>
                 <td>Email:</td>
                 <td>
-                    {userData.map(item => (
-                    <li key={item.id}>{item.email}</li>
-                    ))}
-
-                     {isVerified ? (
-                        <p>Your email is verified.</p>
-                    ) : (
-                        <div>
-                            <p>Your email is not verified. Please check your email and click the verification link.</p>
-                            <button onClick={handleResendVerification}>Resend Verification Email</button>
-                        </div>
-                    )}
+                email
+                {emailString}
+                    
               </td>
                 </tr>
                 <tr>
