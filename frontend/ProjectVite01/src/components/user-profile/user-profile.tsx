@@ -105,19 +105,22 @@ export const UserProfile = ({ className }: UserProfileProps) => {
             <Card.Body>
                 <Card.Title><h1>User Home</h1></Card.Title>
                 <Card.Text>
-                <p>{editable ? 
-                <input type="text" 
-                value={username}
-                placeholder={firstusername}
-                onChange={handleChange} /> : username}</p>
-                {editable ? (
-                    <div>
-                    <button onClick={handleSaveClick}>Save</button>
-                    <button onClick={handleCancelClick}>Cancel</button>
-                    </div>
-                ) : (
-                    <button onClick={handleEditClick}>Edit</button>
-                )}
+                <div className={classNames(styles.FormRow)}>
+                    <span>{firstusername}</span>
+                    <p>{editable ? 
+                    <input type="text" 
+                    value={username}
+                    placeholder={firstusername}
+                    onChange={handleChange} /> : username}</p>
+                    {editable ? (
+                        <div>
+                        <button onClick={handleSaveClick}>Save</button>
+                        <button onClick={handleCancelClick}>Cancel</button>
+                        </div>
+                    ) : (
+                        <button onClick={handleEditClick}>Edit</button>
+                    )}
+                </div>
                 </Card.Text>
             
             </Card.Body>
