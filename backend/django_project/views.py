@@ -123,11 +123,19 @@ def user_auth_token(request):
 
 @method_decorator(login_required, name='dispatch')
 class UserProfileView(APIView):
-    def get(self, request):
-        return Response("user_email")
-        # user_profiles = User.objects.filter(email=user_email)
-        # serializer = UserSerializer(user_profiles, many=True)
-        # return Response(serializer.data, status=status.HTTP_200_OK)
+    def get(self, request, token):
+        try:
+            email_address = EmailAddress.objects.get(confirmation_key=token)
+            user = email_address.user
+            # Customize the data you want to return
+            data = {
+                'username': user.username,
+                'email': user.email,
+                # Add more fields as needed
+            }
+            return Response(data, status=status.HTTP_200_OK)
+        except EmailAddress.DoesNotExist:
+            return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
 
 
 @method_decorator(csrf_protect, name='dispatch')
