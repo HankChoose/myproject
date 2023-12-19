@@ -102,35 +102,65 @@ export const UserProfile = ({ className }: UserProfileProps) => {
             </Card.Body>
             <ListGroup className="list-group-flush">
                 <ListGroup.Item><h3>Welcome! {usernames}</h3></ListGroup.Item>
-                <ListGroup.Item>Username:</ListGroup.Item>
+             
                 <ListGroup.Item>
-                <div className={classNames(styles.FormRow)}>
-                    {editing ? (
-                    <div>
-                    <input
-                        type="text"
-                        value={username}
-                        className={classNames(styles.Input)}
-                        placeholder={firstusername}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <button onClick={handleSave}>Save</button>
-                    <button onClick={handleCancel}>Cancel</button>
+               
+                <Table striped bordered hover>
+                <thead>
+                    <tr>
+               
+                    <th></th>
+                    <th></th>
+               
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+            
+                    <td>Username:</td>
+                    <td>
+                     <div className={classNames(styles.FormRow)}>
+                        {editing ? (
+                        <div>
+                        <input
+                            type="text"
+                            value={username}
+                            className={classNames(styles.Input)}
+                            placeholder={firstusername}
+                            onChange={(e) => setUsername(e.target.value)}
+                        />
+                        <button onClick={handleSave}>Save</button>
+                        <button onClick={handleCancel}>Cancel</button>
+                        </div>
+                    ) : (
+                        <div>
+                        <span>{firstusername}</span>
+                        <button onClick={handleEdit}>Edit</button>
+                        </div>
+                    )}
                     </div>
-                ) : (
-                    <div>
-                    <span>{firstusername}</span>
-                    <button onClick={handleEdit}>Edit</button>
-                    </div>
-                )}
-                </div>
+
+                    </td>
+
+                    </tr>
+                    <tr>
+                  
+                    <td>Email:</td>
+                    <td>{email}</td>
+
+                    </tr>
+                    <tr>
+                  
+                    <td colSpan={2}><Card.Link href="#">My Post</Card.Link></td>
+                 
+                    </tr>
+                </tbody>
+                </Table>
                 </ListGroup.Item>
-                <ListGroup.Item>Email:</ListGroup.Item>
-                <ListGroup.Item>{email}</ListGroup.Item>
               
             </ListGroup>
             <Card.Body>
-                <Card.Link href="#">My Post</Card.Link>
+                <Card.Link href="#"></Card.Link>
             </Card.Body>
             </Card>
 
