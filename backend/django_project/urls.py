@@ -24,7 +24,8 @@ urlpatterns = [
     path('user-profile2/', UserProfileView2.as_view(), name='user_profile2'),
     path('user-token/',  UserTokenView.as_view(), name='user_token'),
     path('user-account/',  views.user_account, name='user_account'),
-
+    path('user-change-username/', views.user_change_username,
+         name='user_change_username'),
     path('custom-confirm-email/<str:key>/',
          CustomConfirmEmailView.as_view(), name='custom_confirm_email'),
 

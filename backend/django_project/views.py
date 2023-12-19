@@ -39,6 +39,24 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from .serializers import UserSerializer, UserDemandSerializer
 
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def user_change_username(request):
+    new_username = request.data.get('new_username')
+
+    if not new_username:
+        return Response({'error': 'New username is required'}, status=400)
+
+    # 获取当前用户
+    user = request.user
+
+    # 更新用户名
+    user.username = new_username
+    user.save()
+
+    return Response({'message': 'Username updated successfully'})
+
+
 @api_view(['GET'])
 @login_required
 # @permission_classes([IsAuthenticated])
