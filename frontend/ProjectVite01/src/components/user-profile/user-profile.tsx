@@ -102,7 +102,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                     <input
                         type="text"
                         value={username}
-                        className={classNames(styles.input)}
+                        className={classNames(styles.Input)}
                         placeholder={firstusername}
                         onChange={(e) => setUsername(e.target.value)}
                     />
