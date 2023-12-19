@@ -121,20 +121,13 @@ def user_auth_token(request):
     return obtain_auth_token(request)
 
 
+@method_decorator(login_required, name='dispatch')
 class UserProfileView(APIView):
-    def get(self, request, token):
-        try:
-            email_address = EmailAddress.objects.get(confirmation_key=token)
-            user = email_address.user
-            # Customize the data you want to return
-            data = {
-                'username': user.username,
-                'email': user.email,
-                # Add more fields as needed
-            }
-            return Response(data, status=status.HTTP_200_OK)
-        except EmailAddress.DoesNotExist:
-            return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
+    def get(self, request, *args, **kwargs):
+        user_email = request.user.email
+        user_profiles = User.objects.filter(email=user_email)
+        serializer = UserSerializer(user_profiles, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @method_decorator(csrf_protect, name='dispatch')
@@ -145,6 +138,21 @@ class UserProfileView2(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+'''
+
+        
+@csrf_exempt
+# @login_required
+class UserProfileView(TemplateView):
+    template_name = 'user_profile.html'  # 你的模板文件路径，根据需要修改
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # 在这里添加你需要的用户信息查询
+        context['user_data'] = self.request.user
+        return context
+
+'''
 # -------------------------------------------->For CustomConfirmEmailView
 
 
