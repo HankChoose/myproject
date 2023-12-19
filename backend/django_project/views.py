@@ -121,7 +121,6 @@ def user_auth_token(request):
     return obtain_auth_token(request)
 
 
-@login_required
 class UserProfileView(APIView):
     def get(self, request, token):
         try:
@@ -146,21 +145,6 @@ class UserProfileView2(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-'''
-
-        
-@csrf_exempt
-# @login_required
-class UserProfileView(TemplateView):
-    template_name = 'user_profile.html'  # 你的模板文件路径，根据需要修改
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # 在这里添加你需要的用户信息查询
-        context['user_data'] = self.request.user
-        return context
-
-'''
 # -------------------------------------------->For CustomConfirmEmailView
 
 
