@@ -70,6 +70,8 @@ export const UserProfile = ({ className }: UserProfileProps) => {
 
     const handleSave = () => {
         // 处理保存逻辑，比如将 username 提交到服务器
+        handleChangeUsername();
+        fetchData();
         setEditing(false);
     };
 
@@ -88,6 +90,23 @@ export const UserProfile = ({ className }: UserProfileProps) => {
 
     const firstusername = userData.length > 0 ? userData[0].username : undefined;
     const firstEmail = userData.length > 0 ? userData[0].email : null;
+
+    const handleChangeUsername = async () => {
+        const token = localStorage.getItem('accessToken');
+        const apiUrl = `${baseUrl}/user-change-username/`;
+        const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${token}`,
+                },
+                body: JSON.stringify({ new_username: username }),
+            });
+
+        const data = await response.json();
+        console.log(data);  // Handle the response from the server
+    };
+
     return (
         <div>
 
