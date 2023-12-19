@@ -102,7 +102,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
             </Card.Body>
             <ListGroup className="list-group-flush">
                 <ListGroup.Item><h3>Welcome! {usernames}</h3></ListGroup.Item>
-                <ListGroup.Item><h3>Username:</h3></ListGroup.Item>
+                <ListGroup.Item>Username:</ListGroup.Item>
                 <ListGroup.Item>
                 <div className={classNames(styles.FormRow)}>
                     {editing ? (
