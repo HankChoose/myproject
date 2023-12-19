@@ -124,8 +124,7 @@ def user_auth_token(request):
 @method_decorator(login_required, name='dispatch')
 class UserProfileView(APIView):
     def get(self, request):
-        user_email = request.email
-        return Response("user_email", user_email)
+        return Response("user_email")
         # user_profiles = User.objects.filter(email=user_email)
         # serializer = UserSerializer(user_profiles, many=True)
         # return Response(serializer.data, status=status.HTTP_200_OK)
