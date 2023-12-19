@@ -8,6 +8,7 @@ import Table from 'react-bootstrap/Table';
 import Cookies from 'js-cookie';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
 
 export interface UserProfileProps {
     className?: string;
@@ -148,13 +149,22 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                             placeholder={firstusername}
                             onChange={(e) => setUsername(e.target.value)}
                         />
-                        <button onClick={handleSave}>Save</button>
-                        <button onClick={handleCancel}>Cancel</button>
+                        
+                        <Button variant="primary" size="sm"  onClick={handleSave}>
+                        Save
+                        </Button>{' '}
+
+                         <Button variant="primary" size="sm"  onClick={handleCancel}>
+                        Cancel
+                        </Button>{' '}
                         </div>
                     ) : (
                         <div>
                         <span>{firstusername}</span>
-                        <button onClick={handleEdit}>Edit</button>
+                       
+                        <Button variant="primary" size="sm"onClick={handleEdit}>
+                        Edit
+                        </Button>{' '}
                         </div>
                     )}
                     </div>
