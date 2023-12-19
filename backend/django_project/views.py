@@ -121,7 +121,7 @@ def user_auth_token(request):
     return obtain_auth_token(request)
 
 
-@method_decorator(login_required, name='dispatch')
+@login_required
 class UserProfileView(APIView):
     def get(self, request, token):
         try:
