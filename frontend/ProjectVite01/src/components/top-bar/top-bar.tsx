@@ -24,7 +24,7 @@ export const TopBar = ({ className }: TopBarProps) => {
 
     useEffect(() => {
       fetchData();
-    });
+    }, []);
 
 
     const fetchData = async () => {
