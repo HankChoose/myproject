@@ -74,9 +74,9 @@ export const TopBar = ({ className }: TopBarProps) => {
         });
 
         if (response.ok) {
+          fetchData();
           localStorage.removeItem('accessToken');
           // 处理成功登出的逻辑，例如重定向到登录页面
-          fetchData();
           navigate('/react/signin'); // 在 useEffect 中调用 navigate
         } else {
           // 处理登出失败的情况
