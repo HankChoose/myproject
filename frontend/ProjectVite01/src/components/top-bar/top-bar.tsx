@@ -6,12 +6,14 @@ import { useTopbar } from '../../TopbarContext';
 import React, { useState, useEffect } from 'react';
 import {baseUrl} from '../../constants';
 import Cookies from 'js-cookie';
+import axios, { AxiosResponse } from 'axios';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { BsPersonUp,BsPerson,BsPersonFill,BsHouseDoor,BsHouseFill,BsSearchHeart,BsPersonFillDash,BsPersonVcard,BsSendPlusFill} from "react-icons/bs";
 
 export interface TopBarProps {
     className?: string;
 }
+
 
 /**
  * This component was created using Codux's Default new component template.
@@ -55,18 +57,19 @@ export const TopBar = ({ className }: TopBarProps) => {
         console.error('Access token is undefined or null.');
         }
     };
-    const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
+   
     const navigate = useNavigate();
     const handleLogout = async () => {
       const token = localStorage.getItem('accessToken');
+      const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
       const apiUrl = `${baseUrl}/accounts/logout/`;
       try {
         // 向服务器发送登出请求
         const response = await fetch(apiUrl, {
-          method: 'POST',
+          method: 'GET',
           headers: {
-              'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
               'Content-Type': 'application/json',
+              'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
           },
         });
 
