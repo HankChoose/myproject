@@ -62,6 +62,11 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         setShowPassword(!showPassword);
     };
     
+    const forceUpdate = () => {
+      // 这里使用了一个空对象，因为 React 需要一个对象引用来判断是否需要重新渲染
+      // 你也可以使用其他方式创建一个新的引用
+      Object.assign({}, { dummyKey: Math.random() });
+    };
     const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
     const navigate = useNavigate();
     //-------------------------------------------------------->>handleSignIn
