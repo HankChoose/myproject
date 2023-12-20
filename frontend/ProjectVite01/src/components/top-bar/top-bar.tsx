@@ -20,7 +20,7 @@ export interface TopBarProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const TopBar = ({ className }: TopBarProps) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(false);
 
     useEffect(() => {
       fetchData();
@@ -44,7 +44,7 @@ export const TopBar = ({ className }: TopBarProps) => {
                 if (response.ok) {
                     const data = await response.json();
                     console.log('fetchData_data',data);
-                    setUser(data);
+                    setUser(true);
                 } else {
                 // 处理请求失败的情况
                 console.error('Failed to fetch user data:', response.status, response.statusText);
@@ -76,7 +76,7 @@ export const TopBar = ({ className }: TopBarProps) => {
         if (response.ok) {
           localStorage.removeItem('accessToken');
           // 处理成功登出的逻辑，例如重定向到登录页面
-          setUser(null);
+          setUser(false);
           navigate('/react/signin'); // 在 useEffect 中调用 navigate
         } else {
           // 处理登出失败的情况
