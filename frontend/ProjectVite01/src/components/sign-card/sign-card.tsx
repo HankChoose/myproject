@@ -281,17 +281,17 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
             if (formType === 'signin') {
                 handleSignIn(values);
             } else if (formType === 'signup') {
-                /*
+               
                 checkEmailExistence(values);
                 if (emailExistAfter === true) {
                     // 邮箱存在的情况下的处理逻辑
                     console.log('Hank:Email exists!');
                 } else {
                     console.log('Hank:Email not exists!');
+                    handleSignUp(values);
                     
                 } 
-                */
-                handleSignUp(values);
+            
                     
             } else if (formType === 'resetpw') {
                 handleResetPassword(values);
