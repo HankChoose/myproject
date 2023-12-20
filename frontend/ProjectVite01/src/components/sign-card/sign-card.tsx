@@ -114,7 +114,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
     
     };
 
-    //-------------------------------------------------------->>handleSignUp
+    //------------------------------------------------------->handleSignUp
     const handleSignUp =async (values: FormikValues) => {
         // Logic for handling sign-up form submission
         console.log('Handling sign-up form submission:', values);
@@ -166,7 +166,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         }
     };
 
-    //heckEmailExistence
+    //------------------------------------------------------>heckEmailExistence
     const checkEmailExistence = async (values: FormikValues) => {
         const apiUrl = `${baseUrl}/check-email-exist/${values.email}/`;
         try {
@@ -199,7 +199,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         }
     };
 
-    //-------------------------------------------------------->handleResetPassword
+    //------------------------------------------------------>handleResetPassword
     const handleResetPassword =async (values: FormikValues) => {
         // Logic for handling reset password form submission
         console.log('Handling reset password form submission:', values);
@@ -282,16 +282,8 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                 handleSignIn(values);
             } else if (formType === 'signup') {
                
-                checkEmailExistence(values);
-                if (emailExistAfter === true) {
-                    // 邮箱存在的情况下的处理逻辑
-                    console.log('Hank:Email exists!');
-                } else {
-                    console.log('Hank:Email not exists!');
-                    handleSignUp(values);
-                    
-                } 
-            
+               
+                handleSignUp(values);
                     
             } else if (formType === 'resetpw') {
                 handleResetPassword(values);
