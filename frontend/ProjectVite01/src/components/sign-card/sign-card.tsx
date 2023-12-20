@@ -186,7 +186,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                 // 执行下一步操作...
                 const emailExists = false;/* 模拟请求返回的值 */ 
                  setEmailExistenceStatus(emailExists ? 'The email already in use. click Forgot my password of Sign in to verify the email' : 'OK,Email can be used');
-                 handleSignUp(values);
+                 //handleSignUp(values);
             } else {
                 // 数据尚未加载或加载过程中的处理逻辑
                 console.log('Loading data...');
@@ -280,7 +280,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                 handleSignIn(values);
             } else if (formType === 'signup') {
                 checkEmailExistence(values);
-
+                console.log('checkEmailExistence:', checkEmailExistence);
             } else if (formType === 'resetpw') {
                 handleResetPassword(values);
             }
