@@ -56,7 +56,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
     const [showPassword, setShowPassword] = useState(false);
     const [loginStatus, setLoginStatus] = useState<string | null>(null);
     const [emailExistenceStatus, setEmailExistenceStatus] = useState<string | null>(null);
-    
+    const [emailExistAfter, setemailExistAfter] = useState(false);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -166,7 +166,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
         }
     };
 
-   
+    //heckEmailExistence
     const checkEmailExistence = async (values: FormikValues) => {
         const apiUrl = `${baseUrl}/check-email-exist/${values.email}/`;
         try {
@@ -179,14 +179,16 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                 // 执行下一步操作...
                 const emailExists = true;/* 模拟请求返回的值 */ 
                 setEmailExistenceStatus(emailExists ? 'The email already in use. click Forgot my password of Sign in to verify the email' : 'OK,Email can be used');
+                setemailExistAfter(emailExists);
             } else if (exists === false) {
                 // 邮箱不存在的情况下的处理逻辑
                 console.log('Email does not exist!');
                 // 执行下一步操作...
                 // 执行下一步操作...
                 const emailExists = false;/* 模拟请求返回的值 */ 
-                 setEmailExistenceStatus(emailExists ? 'The email already in use. click Forgot my password of Sign in to verify the email' : 'OK,Email can be used');
-                 //handleSignUp(values);
+                setEmailExistenceStatus(emailExists ? 'The email already in use. click Forgot my password of Sign in to verify the email' : 'OK,Email can be used');
+                setemailExistAfter(emailExists);
+                //handleSignUp(values);
             } else {
                 // 数据尚未加载或加载过程中的处理逻辑
                 console.log('Loading data...');
@@ -280,7 +282,13 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                 handleSignIn(values);
             } else if (formType === 'signup') {
                 checkEmailExistence(values);
-                console.log('checkEmailExistence:', checkEmailExistence);
+                if (emailExistAfter === true) {
+                    // 邮箱存在的情况下的处理逻辑
+                    console.log('Hank:Email exists!');
+                } else {
+                    console.log('Hank:Email not exists!');
+                }   handleSignUp(values);
+                    
             } else if (formType === 'resetpw') {
                 handleResetPassword(values);
             }
