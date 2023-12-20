@@ -99,6 +99,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                     const loginSuccess = true;/* 模拟请求返回的值 */ 
                     setLoginStatus(loginSuccess ? 'Login successful' : 'Email or password is incorrect');
                     // 在这里进行你的其他操作，比如存储在本地存储中
+                    forceUpdate();
                     navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
                 } else {
                     console.error('Login failed');

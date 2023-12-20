@@ -32,7 +32,12 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         // 在组件加载时发送请求
         fetchData();
     }, []);
-
+    
+    const forceUpdate = () => {
+      // 这里使用了一个空对象，因为 React 需要一个对象引用来判断是否需要重新渲染
+      // 你也可以使用其他方式创建一个新的引用
+      Object.assign({}, { dummyKey: Math.random() });
+    };
     const fetchData = async () => {
         // 获取保存在本地存储中的令牌
         const token = localStorage.getItem('accessToken');
