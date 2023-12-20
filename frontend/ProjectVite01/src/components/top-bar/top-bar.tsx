@@ -24,7 +24,7 @@ export const TopBar = ({ className }: TopBarProps) => {
 
     useEffect(() => {
       fetchData();
-    }, []);
+    });
 
 
     const fetchData = async () => {
@@ -76,7 +76,7 @@ export const TopBar = ({ className }: TopBarProps) => {
         if (response.ok) {
           localStorage.removeItem('accessToken');
           // 处理成功登出的逻辑，例如重定向到登录页面
-          forceUpdate();
+
           navigate('/react/signin'); // 在 useEffect 中调用 navigate
         } else {
           // 处理登出失败的情况
@@ -87,12 +87,7 @@ export const TopBar = ({ className }: TopBarProps) => {
       }
     };
 
-    const forceUpdate = () => {
-      // 这里使用了一个空对象，因为 React 需要一个对象引用来判断是否需要重新渲染
-      // 你也可以使用其他方式创建一个新的引用
-      Object.assign({}, { dummyKey: Math.random() });
-    };
-    
+   
     return <div className={classNames(styles.root, className)}>
     
     <div className={classNames(styles.toRow)}>
