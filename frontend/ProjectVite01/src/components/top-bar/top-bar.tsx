@@ -76,7 +76,7 @@ export const TopBar = ({ className }: TopBarProps) => {
         if (response.ok) {
           localStorage.removeItem('accessToken');
           // 处理成功登出的逻辑，例如重定向到登录页面
-          navigate('/react/singin'); // 在 useEffect 中调用 navigate
+          navigate('/react/signin'); // 在 useEffect 中调用 navigate
         } else {
           // 处理登出失败的情况
           console.error('Logout failed');
@@ -100,7 +100,7 @@ export const TopBar = ({ className }: TopBarProps) => {
     </div>
     <Link to="/react/testlink"> T </Link>
     <div  className={classNames(styles.toRowUser)}>
-
+      <Link to="/react/userapply"><BsSendPlusFill />Demand</Link>
       {user ? (
           // 用户已登录，显示账户信息和登出按钮
           <>
@@ -111,8 +111,6 @@ export const TopBar = ({ className }: TopBarProps) => {
           // 用户未登录，显示登录按钮或登录表单
           <Link to="/react/signin"><BsPersonUp />Sign In</Link>
         )}
-
-        <Link to="/react/userapply"><BsSendPlusFill />Demand</Link>
     </div>
     
   </div>;
