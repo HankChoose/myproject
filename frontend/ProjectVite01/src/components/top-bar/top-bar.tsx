@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 import axios, { AxiosResponse } from 'axios';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { BsPersonUp,BsPerson,BsPersonFill,BsHouseDoor,BsHouseFill,BsSearchHeart,BsPersonFillDash,BsPersonVcard,BsSendPlusFill} from "react-icons/bs";
+import { useAuth } from '../../AuthContext';
 
 export interface TopBarProps {
     className?: string;
@@ -20,7 +21,7 @@ export interface TopBarProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const TopBar = ({ className }: TopBarProps) => {
-    const [user, setUser] = useState(false);
+    const { isLoggedIn, signIn, signOut } = useAuth();
 
     useEffect(() => {
       fetchData();
@@ -44,7 +45,7 @@ export const TopBar = ({ className }: TopBarProps) => {
                 if (response.ok) {
                     const data = await response.json();
                     console.log('fetchData_data',data);
-                    setUser(true);
+                   
                 } else {
                 // 处理请求失败的情况
                 console.error('Failed to fetch user data:', response.status, response.statusText);
@@ -76,7 +77,7 @@ export const TopBar = ({ className }: TopBarProps) => {
         if (response.ok) {
           localStorage.removeItem('accessToken');
           // 处理成功登出的逻辑，例如重定向到登录页面
-          setUser(false);
+         
           navigate('/react/signin'); // 在 useEffect 中调用 navigate
         } else {
           // 处理登出失败的情况
@@ -103,7 +104,7 @@ export const TopBar = ({ className }: TopBarProps) => {
     <Link to="/react/testlink"> T </Link>
     <div  className={classNames(styles.toRowUser)}>
       <Link to="/react/userapply"><BsSendPlusFill />Demand</Link>
-      {user ? (
+      {isLoggedIn ?  (
           // 用户已登录，显示账户信息和登出按钮
           <>
           <Link to="/react/signin"  onClick={handleLogout}><BsPersonFillDash />Log Out</Link>
