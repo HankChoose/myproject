@@ -159,6 +159,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                 localStorage.setItem('accessToken', response2.data.token);
                 console.log('response2.data.token',response2.data.token);
                 // 在这里进行你的其他操作，比如存储在本地存储中
+                signIn();
                 navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
                
             } else {

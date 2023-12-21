@@ -64,6 +64,9 @@ RUN npm install redux react-redux
 RUN npm install formik yup
 RUN npm install react-table
 RUN npm install --save-dev @types/react-table
+RUN npm install react-modal
+RUN npm install --save-dev @types/react-modal
+
 
 # 构建React应用
 RUN npm run build
@@ -103,6 +106,8 @@ RUN npm install redux react-redux
 RUN npm install formik yup
 RUN npm install react-table
 RUN npm install --save-dev @types/react-table
+RUN npm install react-modal
+RUN npm install --save-dev @types/react-modal
 
 # 构建React应用
 RUN npm run build
