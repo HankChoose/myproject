@@ -138,9 +138,9 @@ export const UserProfile = ({ className }: UserProfileProps) => {
             
                     <td>Username:</td>
                     <td>
-                     <div className={classNames(styles.FormRow)}>
+                     <div>
                         {editing ? (
-                        <div>
+                        <div  className={classNames(styles.FormRow)}>
                         <input
                             type="text"
                             value={username}
@@ -158,8 +158,8 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                         </Button>{' '}
                         </div>
                     ) : (
-                        <div>
-                        <span className={classNames(styles.FixedWidthSpan)}>{firstusername}</span>
+                        <div className={classNames(styles.FormRow)}>
+                        <span>{firstusername}</span>
                        
                         <Button variant="primary" size="sm"onClick={handleEdit}>
                         Edit
