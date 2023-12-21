@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import styles from './App.module.scss';
+import { AuthProvider } from './AuthContext';
 
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { Home } from './components/home/home';
@@ -39,6 +40,7 @@ const store = createStore(rootReducer);
 function App() {
 
     return (
+        <AuthProvider>
         <div className={styles.root}>
             <Router>
                 <div className={styles.AppTop}>
@@ -80,11 +82,8 @@ function App() {
                 </div>
 
             </Router>
-
-
-
         </div>
-
+       </AuthProvider>
     );
 
 }
