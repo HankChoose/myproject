@@ -140,7 +140,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                     <td>
                      <div>
                         {editing ? (
-                        <div  className={classNames(styles.FormRow2)}>
+                        <div  className={classNames(styles.FormRow)}>
                         <input
                             type="text"
                             value={username}
