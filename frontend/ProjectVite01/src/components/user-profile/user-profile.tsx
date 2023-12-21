@@ -159,7 +159,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                         </div>
                     ) : (
                         <div>
-                        <span  className="fixed-width-span">{firstusername}</span>
+                        <span className={classNames(styles.FixedWidthSpan)}>{firstusername}</span>
                        
                         <Button variant="primary" size="sm"onClick={handleEdit}>
                         Edit
