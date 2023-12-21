@@ -129,8 +129,8 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                 <Table striped bordered hover>
                 <thead>
                     <tr>
-                     <th style={{ width: '200px' }}>Header 1</th>
-                     <th style={{ width: '200px' }}>Header 2</th>
+                     <th style={{ width: '150px' }}>Header 1</th>
+                     <th >Header 2</th>
                     </tr>
                 </thead>
                 <tbody>
