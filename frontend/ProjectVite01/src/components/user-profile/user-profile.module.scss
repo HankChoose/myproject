@@ -33,7 +33,7 @@
 }
 
 .fixed-width-span {
-    width: 100px; /* 设置固定宽度，根据需求调整 */
+    width: 150px; /* 设置固定宽度，根据需求调整 */
     display: inline-block; /* 使 span 元素能够接受 width 属性 */
     overflow: hidden; /* 隐藏溢出的内容，可根据需要调整 */
     white-space: nowrap; /* 防止文字换行，可根据需要调整 */
