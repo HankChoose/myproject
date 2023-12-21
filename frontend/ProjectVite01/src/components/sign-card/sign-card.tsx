@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Routes, Link, useNavigate} from 'react-
 import axios, { AxiosResponse } from 'axios';
 import Cookies from 'js-cookie';
 import { baseUrl } from '../../constants';
-
+import { useAuth } from '../../AuthContext';
 export interface SignCardProps {
     className?: string;
     formType?: 'signin' | 'signup' | 'resetpw';
@@ -57,6 +57,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
     const [loginStatus, setLoginStatus] = useState<string | null>(null);
     const [emailExistenceStatus, setEmailExistenceStatus] = useState<string | null>(null);
     const [emailExistAfter, setemailExistAfter] = useState(false);
+     const { isLoggedIn, signIn, signOut } = useAuth();
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -100,7 +101,7 @@ export const SignCard = ({ className, formType = 'signin' }: SignCardProps) => {
                     const loginSuccess = true;/* 模拟请求返回的值 */ 
                     setLoginStatus(loginSuccess ? 'Login successful' : 'Email or password is incorrect');
                     // 在这里进行你的其他操作，比如存储在本地存储中
-
+                    signIn();
                     navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
                 } else {
                     console.error('Login failed');
