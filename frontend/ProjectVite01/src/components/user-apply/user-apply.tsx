@@ -2,7 +2,8 @@ import classNames from 'classnames';
 import styles from './user-apply.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
-import React, { useRef, useState, Component } from 'react';
+import React, { useContext,useRef, useEffect, useState, Component } from 'react';
+
 import { useSelector, useDispatch } from "react-redux";
 import { updateName, updateEmail } from "../../actions/userInfoActions";
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
@@ -54,8 +55,15 @@ export const UserApply = ({ className }: UserApplyProps) => {
 
     const userInfo = useSelector((state: RootState) => state.userInfo);
     const dispatch = useDispatch();
-
+    const { isLoggedIn, signIn, signOut } = useAuth();
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // 在组件渲染时检查isLoggedIn状态，如果为false，则打开modal
+    useEffect(() => {
+        if (!isLoggedIn) {
+        setIsModalOpen(true);
+        }
+    }, [isLoggedIn]);
     
     const openModal = () => {
         setIsModalOpen(true);
