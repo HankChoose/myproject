@@ -97,10 +97,13 @@ export const UserApply = ({ className }: UserApplyProps) => {
 
     const handleLinkClick = () => {
         // 如果未登录，打开 modal，否则跳转到下一页
+        console.log("isLoggedIn:", isLoggedIn);
         if (!isLoggedIn) {
+            console.log("openModal:openModal");
             openModal();
         } else {
-        // 在这里可以使用编程式导航，或者使用 Link 跳转
+            // 在这里可以使用编程式导航，或者使用 Link 跳转
+            console.log("navigate:/react/userapply2");
             navigate('/react/userapply2'); 
         }
     };
