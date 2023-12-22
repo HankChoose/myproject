@@ -10,7 +10,6 @@ import { baseUrl } from '../../constants';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-modal';
 import { SignCard } from '../sign-card/sign-card';
-import { SignCardSmall } from '../sign-card-small/sign-card-small';
 
 export interface UserApplyProps {
     className?: string;
@@ -23,6 +22,30 @@ type RootState = {
         email: string;
     };
 };
+
+// 在组件外部定义模态框的样式
+const modalStyles = {
+  overlay: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(203, 196, 223, 0.5)', // 背景颜色，可根据需要修改
+        
+        },
+  content: {
+ 
+    top: 'auto',
+    left: 'auto',
+    right: 'auto',
+    bottom: 'auto',
+    //border: 'none', // 移除边框
+    //background: 'transparent', // 设定透明背景
+    padding: 0, // 移除默认 padding
+    borderRadius: 0, // 可以根据需要设置圆角
+  },
+};
+
+
 /**
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
@@ -91,9 +114,12 @@ export const UserApply = ({ className }: UserApplyProps) => {
                 isOpen={isModalOpen}
                 onRequestClose={closeModal}
                 contentLabel="登录模态框"
+                ariaHideApp={false}
+                shouldCloseOnOverlayClick={false}
+               className="custom-modal"
             >
                 {/* 在模态框中渲染 Login 组件 */}
-                <SignCardSmall onLogin={handleLogin} />
+                <SignCard onLogin={handleLogin} />
             </Modal>
  
         </div>
