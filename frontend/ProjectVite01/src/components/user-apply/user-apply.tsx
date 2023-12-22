@@ -110,8 +110,8 @@ export const UserApply = ({ className }: UserApplyProps) => {
                 isOpen={isModalOpen}
                 onRequestClose={closeModal}
                 contentLabel="Modal Dialog"
-                ariaHideApp={false}
-                shouldCloseOnOverlayClick={false}
+                ariaHideApp={true}
+                shouldCloseOnOverlayClick={true}
                 style={modalStyles} // 设置模态框的样式
             >
                 {/* 在模态框中渲染 Login 组件 */}
