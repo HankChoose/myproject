@@ -95,8 +95,9 @@ export const UserApply = ({ className }: UserApplyProps) => {
         console.log("userInfo:", userInfo);
     };
 
-    const handleLinkClick = () => {
+    const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         // 如果未登录，打开 modal，否则跳转到下一页
+        event.preventDefault();
         console.log("isLoggedIn:", isLoggedIn);
         if (!isLoggedIn) {
             console.log("openModal:openModal");
