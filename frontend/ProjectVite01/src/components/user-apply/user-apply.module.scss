@@ -13,14 +13,16 @@
 }
 
 
-//$modal-background-color: rgba(203, 196, 223, 0.5);
-
+$modal-background-color: rgba(203, 196, 223, 0.5);
+.custom-modal-overlay {
+    background-color: rgba(203, 196, 223, 0.5);
+}
 .custom-modal {
   &__overlay {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(203, 196, 223, 0.5);
+    background-color: $modal-background-color;
   }
 
   &__content {
