@@ -57,6 +57,7 @@ export const UserApply = ({ className }: UserApplyProps) => {
     const dispatch = useDispatch();
     const { isLoggedIn, signIn, signOut } = useAuth();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const navigate = useNavigate();
 
     // 在组件渲染时检查isLoggedIn状态，如果为false，则打开modal
     useEffect(() => {
@@ -94,6 +95,16 @@ export const UserApply = ({ className }: UserApplyProps) => {
         console.log("userInfo:", userInfo);
     };
 
+    const handleLinkClick = () => {
+        // 如果未登录，打开 modal，否则跳转到下一页
+        if (!isLoggedIn) {
+            openModal();
+        } else {
+        // 在这里可以使用编程式导航，或者使用 Link 跳转
+            navigate('/react/userapply2'); 
+        }
+    };
+
 
     return <div className={classNames(styles.root, className)}>
         <div className={classNames(styles.flowImage)}></div>
@@ -110,10 +121,9 @@ export const UserApply = ({ className }: UserApplyProps) => {
             </div>
             <div className={classNames(styles.FormRow)}></div>
             <div className={classNames(styles.FormRow)}></div>
-            <div className={classNames(styles.FormRow)}><Link to="/react/userapply2"><Button variant="primary">Next page</Button>{' '}</Link></div>
+            <div className={classNames(styles.FormRow)}><Link to="/react/userapply2" onClick={handleLinkClick}><Button variant="primary">Next page</Button>{' '}</Link></div>
         </div>
         <div>
-            <button onClick={openModal}>提交需求</button>
             <Modal
                 isOpen={isModalOpen}
                 onRequestClose={closeModal}
