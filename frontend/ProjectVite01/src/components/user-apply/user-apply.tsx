@@ -30,6 +30,7 @@ const modalStyles = {
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: 'rgba(203, 196, 223, 0.5)', // 背景颜色，可根据需要修改
+            zIndex: 1000, // 调整 overlay 的 z-index
             },
     content: {
     
