@@ -6,9 +6,10 @@ import React, { useRef, useState, Component } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { updateName, updateEmail } from "../../actions/userInfoActions";
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
-import {baseUrl} from '../../constants';
+import { baseUrl } from '../../constants';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-modal';
+import { useAuth } from '../../AuthContext';
 import { SignCard } from '../sign-card/sign-card';
 
 export interface UserApplyProps {
@@ -23,14 +24,12 @@ type RootState = {
     };
 };
 
-// 在组件外部定义模态框的样式
 const modalStyles = {
     overlay: {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: 'rgba(203, 196, 223, 0.5)', // 背景颜色，可根据需要修改
-            
             },
     content: {
     
@@ -45,6 +44,7 @@ const modalStyles = {
     },
 };
 
+
 /**
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
@@ -53,9 +53,9 @@ export const UserApply = ({ className }: UserApplyProps) => {
 
     const userInfo = useSelector((state: RootState) => state.userInfo);
     const dispatch = useDispatch();
-	
-	const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -64,13 +64,12 @@ export const UserApply = ({ className }: UserApplyProps) => {
         setIsModalOpen(false);
     };
 
-    const handleLogin = (username: string, password: string) => {
+    const handleLogin = (username: String, password: String) => {
         // 在这里处理登录逻辑，可以向服务器发送请求等
         console.log('登录成功', username);
         // 在登录成功后，关闭模态框
         closeModal();
     };
-
 
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(updateName(e.target.value));
@@ -87,40 +86,36 @@ export const UserApply = ({ className }: UserApplyProps) => {
     };
 
 
-    return 
-    <div className={classNames(styles.root, className)}>
+    return <div className={classNames(styles.root, className)}>
         <div className={classNames(styles.flowImage)}></div>
         <div className={classNames(styles.FormRow)}></div>
-        <div className={styles.FromArea}> 
+        <div className={styles.FromArea}>
             <div className={classNames(styles.FormRow)}>
-                <Form.Control type="text"  placeholder="Name" value={userInfo.name} onChange={handleNameChange} /> 
+                <Form.Control type="text" placeholder="Name" value={userInfo.name} onChange={handleNameChange} />
             </div>
             <div className={classNames(styles.FormRow)}></div>
             <div className={classNames(styles.FormRow)}></div>
-             
+
             <div className={classNames(styles.FormRow)}>
                 <Form.Control type="text" placeholder="Email" value={userInfo.email} onChange={handleEmailChange} />
             </div>
             <div className={classNames(styles.FormRow)}></div>
             <div className={classNames(styles.FormRow)}></div>
-            <div className={classNames(styles.FormRow)}>
-            <Link to="/react/userapply2"><Button variant="primary">Next page</Button>{' '}</Link>
-            <a href="https://zhiyouyuec.com"><Button variant="primary">Cancel</Button></a>   
-            </div>
+            <div className={classNames(styles.FormRow)}><Link to="/react/userapply2"><Button variant="primary">Next page</Button>{' '}</Link></div>
         </div>
         <div>
             <button onClick={openModal}>提交需求</button>
             <Modal
                 isOpen={isModalOpen}
                 onRequestClose={closeModal}
-                contentLabel="登录模态框"
+                contentLabel="Modal Dialog"
                 ariaHideApp={false}
                 shouldCloseOnOverlayClick={false}
                 style={modalStyles} // 设置模态框的样式
             >
                 {/* 在模态框中渲染 Login 组件 */}
-                <SignCard onLogin={handleLogin} />
+               <SignCard onLogin={handleLogin} />
             </Modal>
-        </div> 
+        </div>
     </div>;
 };

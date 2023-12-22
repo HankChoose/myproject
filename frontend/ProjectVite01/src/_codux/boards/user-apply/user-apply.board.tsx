@@ -4,8 +4,10 @@ import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from '../../../reducers/rootReducer'; // 导入根 reducer
-const store = createStore(rootReducer); // 创建 Redux store
+import Modal from 'react-modal';
 import { AuthProvider } from '../../../AuthContext';
+
+const store = createStore(rootReducer); // 创建 Redux store
 
 export default createBoard({
     name: 'UserApply',
@@ -13,8 +15,8 @@ export default createBoard({
     isSnippet: true,
     environmentProps: {
         canvasHeight: 946,
-        windowWidth: 1328,
+        windowWidth: 1318,
         canvasWidth: 768,
-        windowHeight: 573
+        windowHeight: 504
     }
 });
