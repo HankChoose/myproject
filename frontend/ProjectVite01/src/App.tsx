@@ -33,6 +33,7 @@ import { TestLink } from './components/test-link/test-link';
 import { TestNavigate } from './components/test-navigate/test-navigate';
 import { UserApply4 } from './components/user-apply-4/user-apply-4';
 import { TestChangePW } from './components/test-change-pw/test-change-pw';
+import { TestRequest } from './components/test-request/test-request';
 //import { TopbarProvider } from './TopbarContext';
 // 导入根 reducer
 const store = createStore(rootReducer);
@@ -41,49 +42,51 @@ function App() {
 
     return (
         <AuthProvider>
-        <div className={styles.root}>
-            <Router>
-                <div className={styles.AppTop}>
-                    <TopBar />
-                </div>
-                <div className={styles.App}>
-                    <Routes>
-                        <Route path="/react" element={<Home />} />
-                        <Route path="/react/userapply" element={<Provider store={store}><UserApply /></Provider>} />
-                        <Route path="/react/userapply2" element={<Provider store={store}><UserApply2 /></Provider>} />
-                        <Route path="/react/userapply3" element={<Provider store={store}><UserApply3 /></Provider>} />
-                        <Route path="/react/userapply4" element={<UserApply4 />} />
-                        <Route path="/react/signin" element={<SignCard formType="signin" />} />
-                        <Route path="/react/signup" element={<SignCard formType="signup" />} />
-                        <Route path="/react/resetpw" element={<SignCard formType="resetpw" />} />
-                        <Route path="/react/checkemail" element={<TestCheckEmail />} />
-                        <Route path="/react/checkemail2" element={<TestCheckEmail2 />} />
-                        <Route path="/react/testaxiospost" element={<TestAxiosPost />} />
-                        <Route path="/react/testaxiospost2" element={<TestAxiosPost2 />} />
-                        <Route path="/react/testaxiospost3" element={<TestAxiosPost3 />} />
-                        <Route path="/react/testtoken" element={<TestToken />} />
-                        <Route path="/react/testlist" element={<TestList />} />
-                        <Route path="/react/testlink" element={<TestLink />} />
-                        <Route path="/react/userprofile" element={<UserProfile />} />
-                        <Route path="/react/userapplycontent/:id" element={<UserApplyContent />} />
-                        <Route path="/react/testlisdatatable" element={<TestListDataTable />} />
-                        <Route path="/react/testnavigate" element={<TestNavigate />} />
-                        <Route path="/react/testchangepw" element={<TestChangePW />} />
-                        <Route path="/react/page1" element={<Page1 />}>
-                            <Route path="test1" element={<Test1 />} />
-                            <Route path="test2" element={<Test2 />} />
-                        </Route>
-                        <Route path="/react/page2" element={<Page2 />}>
-                            <Route path="test3" element={<Test3 />} />
-                            <Route path="test4" element={<Test4 />} />
-                        </Route>
-                    </Routes>
+            <div className={styles.root}>
+                <Router>
+                    <div className={styles.AppTop}>
+                        <TopBar />
+                    </div>
+                    <div className={styles.App}>
+                        <Routes>
+                            <Route path="/react" element={<Home />} />
+                            <Route path="/react/signin" element={<SignCard formType="signin" />} />
+                            <Route path="/react/signup" element={<SignCard formType="signup" />} />
+                            <Route path="/react/userapply" element={<Provider store={store}><UserApply /></Provider>} />
+                            <Route path="/react/userapply2" element={<Provider store={store}><UserApply2 /></Provider>} />
+                            <Route path="/react/userapply3" element={<Provider store={store}><UserApply3 /></Provider>} />
+                            <Route path="/react/userapply4" element={<UserApply4 />} />
+                            <Route path="/react/userprofile" element={<UserProfile />} />
+                            <Route path="/react/checkemail" element={<TestCheckEmail />} />
+                            <Route path="/react/checkemail2" element={<TestCheckEmail2 />} />
+                            <Route path="/react/userapplycontent/:id" element={<UserApplyContent />} />
+                            <Route path="/react/resetpw" element={<SignCard formType="resetpw" />} />
+                            <Route path="/react/testtoken" element={<TestToken />} />
+                            <Route path="/react/testlist" element={<TestList />} />
+                            <Route path="/react/testlink" element={<TestLink />} />
+                            <Route path="/react/testnavigate" element={<TestNavigate />} />
+                            <Route path="/react/testchangepw" element={<TestChangePW />} />
+                            <Route path="/react/testaxiospost" element={<TestAxiosPost />} />
+                            <Route path="/react/testaxiospost2" element={<TestAxiosPost2 />} />
+                            <Route path="/react/testaxiospost3" element={<TestAxiosPost3 />} />                   
+                            <Route path="/react/testrequest" element={<TestRequest />} />
+                            <Route path="/react/testlisdatatable" element={<TestListDataTable />} />
+                            <Route path="/react/page1" element={<Page1 />}>
+                                <Route path="test1" element={<Test1 />} />
+                                <Route path="test2" element={<Test2 />} />
+                            </Route>
+                            <Route path="/react/page2" element={<Page2 />}>
+                                <Route path="test3" element={<Test3 />} />
+                                <Route path="test4" element={<Test4 />} />
+                            </Route>
+                        </Routes>
 
-                </div>
+                    </div>
 
-            </Router>
-        </div>
-       </AuthProvider>
+                </Router>
+            </div>
+            
+        </AuthProvider>
     );
 
 }

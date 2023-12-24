@@ -62,7 +62,9 @@ export const UserApply = ({ className }: UserApplyProps) => {
     // 在组件渲染时检查isLoggedIn状态，如果为false，则打开modal
     useEffect(() => {
         if (!isLoggedIn) {
-        setIsModalOpen(true);
+            setIsModalOpen(true);
+        }else{
+            
         }
     }, [isLoggedIn]);
     

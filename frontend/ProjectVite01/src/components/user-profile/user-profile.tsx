@@ -53,8 +53,8 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                     console.log('fetchData_data',data);
                     setUserData(data);
                 } else {
-                // 处理请求失败的情况
-                console.error('Failed to fetch user data:', response.status, response.statusText);
+                  // 处理请求失败的情况
+                  console.error('Failed to fetch user data:', response.status, response.statusText);
                 }
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -129,8 +129,8 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                 <Table striped bordered hover>
                 <thead>
                     <tr>
-                     <th style={{ width: '150px' }}>Header 1</th>
-                     <th >Header 2</th>
+                     <th style={{ width: '150px' }}>Item</th>
+                     <th >Content</th>
                     </tr>
                 </thead>
                 <tbody>
