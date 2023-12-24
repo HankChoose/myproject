@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import styles from './test-request.module.scss';
-import React, { useEffect } from 'react';
-import apiService from '../../apiService';
+import React, { useEffect, useState} from 'react';
+import  {fetch_data_token_get} from '../../apiService';
 import {baseUrl} from '../../constants';
 
 export interface TestRequestProps {
@@ -18,7 +18,7 @@ export const TestRequest = ({ className }: TestRequestProps) => {
         // 执行fetch_data_by_token请求
         const apiUrl = `${baseUrl}/user-profile/`;
         try {
-            const { data, error } = await apiService.fetch_data_token_get(apiUrl);
+            const { data, error } = await fetch_data_token_get(apiUrl);
             console.log('fetch_data_token_get response data:', data);
             console.log('fetch_data_token_get response data:', error);
         } catch (error) {
