@@ -20,11 +20,11 @@ export const TestRequest = ({ className }: TestRequestProps) => {
         // 执行fetch_data_by_token请求
         try {
             await fetchData();
-            console.log('fetch_data_token_get response data:', data);
-            console.log('fetch_data_token_get response data:', error);
+            console.log('handle_fetch_data_token_get fetchData data:', data);
+            console.log('handle_fetch_data_token_get fetchData error:', error);
         } catch (error) {
             // 处理错误
-            console.error('handle_fetch_data_token_get:', error);
+            console.error('handle_fetch_data_token_get error:', error);
         }
     };
     return <div className={classNames(styles.root, className)}>
