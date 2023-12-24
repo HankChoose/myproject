@@ -9,13 +9,15 @@ import { BrowserRouter as Router, Route, Routes, Link, useNavigate} from 'react-
 const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
 const token = localStorage.getItem('accessToken');
 
-const [data, setData] = useState(null);
-const [error, setError] = useState<string | null>(null);
-//const [loading, setLoading] = useState(true);
-//const [hastoken, gettoken] = useState(true);
 
 /////////////////////////////////////////////////fetch_data_token_get for /user-profile/
 const fetch_data_token_get = async (url:string) => {
+
+  const [data, setData] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+  //const [loading, setLoading] = useState(true);
+  //const [hastoken, gettoken] = useState(true);
+  
   if (token) {
     const config_fetch_data_token_get = {
       method: 'GET',
