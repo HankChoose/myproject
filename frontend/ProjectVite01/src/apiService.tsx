@@ -11,44 +11,48 @@ const token = localStorage.getItem('accessToken');
 
 
 /////////////////////////////////////////////////fetch_data_token_get for /user-profile/
-const fetch_data_token_get = async (url:string) => {
+const fetch_data_token_get = (url:string) => {
 
   const [data, setData] = useState(null);
   const [error, setError] = useState<string | null>(null);
   //const [loading, setLoading] = useState(true);
   //const [hastoken, gettoken] = useState(true);
   
-  if (token) {
-    const config_fetch_data_token_get = {
-      method: 'GET',
-      headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Token ${token}`,
-          }
-    };
-    try {
-      const response = await fetch(`${baseUrl}${url}`, config_fetch_data_token_get);
-      if (response.ok) {
-          const data = await response.json();
-          console.log('fetch_data_token_get',data);
-          setData(data);
-      } else {
-        // 处理请求失败的情况
-        console.error('Failed to fetch user data:', response.status, response.statusText);
-        setError("Failed to fetch user data:"+response.status+","+response.statusText);
+  const fetchData = async () => {
+    if (token) {
+      const config_fetch_data_token_get = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Token ${token}`,
+            }
+      };
+      try {
+        const response = await fetch(`${baseUrl}${url}`, config_fetch_data_token_get);
+        if (response.ok) {
+            const data = await response.json();
+            console.log('fetch_data_token_get',data);
+            setData(data);
+        } else {
+          // 处理请求失败的情况
+          console.error('Failed to fetch user data:', response.status, response.statusText);
+          setError("Failed to fetch user data:"+response.status+","+response.statusText);
+        }
+        
+      } catch (error) {
+          console.error('Error fetching user data:', error);
+          //throw error;
+          setError("Error fetching user data::"+error);
       }
-      
-    } catch (error) {
-        console.error('Error fetching user data:', error);
-        //throw error;
-        setError("Error fetching user data::"+error);
+    } else {
+      // 处理令牌不存在的情况
+      console.error('Access token is undefined or null.');
+      setError("Access token is undefined or null.");
     }
-  } else {
-    // 处理令牌不存在的情况
-    console.error('Access token is undefined or null.');
-    setError("Access token is undefined or null.");
-  }
-  return { data, error};
+
+  };
+  
+  return { data, error,fetchData};
 };
 
-export { fetch_data_token_get};
+export { fetch_data_token_get };
