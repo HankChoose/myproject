@@ -14,18 +14,19 @@ export interface TestRequestProps {
  */
 export const TestRequest = ({ className }: TestRequestProps) => {
     useEffect(() => {
+        // GET 请求示例
+        const fetchData = async () => {
+        try {
+            console.log('GET response data:', "responseData");
+        } catch (error) {
+            // 处理错误
+            console.error('Error fetching data:', error);
+        }
+        };
         fetchData();
     }, []);
    
-    // GET 请求示例
-    const fetchData = async () => {
-    try {
-        console.log('GET response data:', "responseData");
-    } catch (error) {
-        // 处理错误
-        console.error('Error fetching data:', error);
-    }
-    };
+    
 
     const handle_fetch_data_token_get = async () => {
         // 执行fetch_data_by_token请求
