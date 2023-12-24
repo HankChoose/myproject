@@ -13,7 +13,7 @@ export interface TestRequestProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const TestRequest = ({ className }: TestRequestProps) => {
-    const apiUrl = 'user-profile/';
+    const apiUrl = '/user-profile/';
     const { data, error,fetchData} = fetch_data_token_get(apiUrl);
     
     const handle_fetch_data_token_get = async () => {
