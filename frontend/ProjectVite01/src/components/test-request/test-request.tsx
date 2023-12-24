@@ -31,8 +31,8 @@ export const TestRequest = ({ className }: TestRequestProps) => {
     const handle_fetch_data_token_get = async () => {
         // 执行fetch_data_by_token请求
         const apiUrl = `${baseUrl}/user-profile/`;
+        const { data, error } = await apiService.fetch_data_token_get(apiUrl);
         try {
-            const { data, error } = await apiService.fetch_data_token_get(apiUrl);
             console.log('fetch_data_token_get response data:', data);
             console.log('fetch_data_token_get response data:', error);
         } catch (error) {
