@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Route, Routes, Link, useNavigate} from 'react-
 
 
 const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
-const token = localStorage.getItem('accessToken');
 
 const handleError = (error:any) => {
   // 处理错误，例如显示一个错误提示或者进行其他操作
@@ -15,7 +14,7 @@ const handleError = (error:any) => {
   throw error;
 };
 /////////////////////////////////////////////////fetch_data_token_get for /user-profile/
-const fetch_data_token_get = async (url:string) => {
+const fetch_data_token_get = async (url:string,token:any) => {
   if (token) {
       const config_fetch_data_token_get = {
         method: 'GET',

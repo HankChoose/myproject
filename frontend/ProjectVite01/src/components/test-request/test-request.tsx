@@ -14,12 +14,12 @@ export interface TestRequestProps {
  */
 export const TestRequest = ({ className }: TestRequestProps) => {
     
-    
+    const token = localStorage.getItem('accessToken');
     const handle_fetch_data_token_get = async () => {
         // 执行fetch_data_by_token请求
         const apiUrl = '/user-profile/';
         try {
-            const data = await fetch_data_token_get(apiUrl);
+            const data = await fetch_data_token_get(apiUrl,token);
             console.log('GET Response:', data);
         } catch (error) {
             // 处理错误
