@@ -43,6 +43,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         try {
             const data = await fetch_data_token_get(apiUrl,token);
             console.log('fetchData radioesponse:', data);
+            setUserData(data);
         } catch (error) {
             // 处理错误
             console.error('fetchData error:',error);
@@ -83,6 +84,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         try {
             const data = await fetch_data_token_post(apiUrl,token,username);
             console.log('handleChangeUsername radioesponse:', data);
+            
         } catch (error) {
             // 处理错误
             console.error('fhandleChangeUsername error:',error);
