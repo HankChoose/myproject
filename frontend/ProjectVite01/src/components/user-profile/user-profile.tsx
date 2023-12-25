@@ -2,10 +2,8 @@ import classNames from 'classnames';
 import styles from './user-profile.module.scss';
 import axios from 'axios';
 import React, { useState ,useEffect} from 'react';
-import {baseUrl} from '../../constants';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
-import Cookies from 'js-cookie';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
@@ -15,7 +13,6 @@ import { fetch_data_token_get, fetch_data_token_post } from '../../apiService';
 export interface UserProfileProps {
     className?: string;
 }
-const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
 
 export const UserProfile = ({ className }: UserProfileProps) => {
     interface UserData {
