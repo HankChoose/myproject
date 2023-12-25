@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import styles from './test-request.module.scss';
 import React, { useEffect, useState} from 'react';
-import  {fetch_data_token_get} from '../../apiService';
+import { fetch_data_token_get } from '../../apiService';
 import {baseUrl} from '../../constants';
 
 export interface TestRequestProps {
@@ -13,15 +13,14 @@ export interface TestRequestProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const TestRequest = ({ className }: TestRequestProps) => {
-    const apiUrl = '/user-profile/';
-    const { data, error,fetchData} = fetch_data_token_get(apiUrl);
+    
     
     const handle_fetch_data_token_get = async () => {
         // 执行fetch_data_by_token请求
+        const apiUrl = '/user-profile/';
         try {
-            await fetchData();
-            console.log('handle_fetch_data_token_get fetchData data:', data);
-            console.log('handle_fetch_data_token_get fetchData error:', error);
+            const data = await fetch_data_token_get(apiUrl);
+            console.log('GET Response:', data);
         } catch (error) {
             // 处理错误
             console.error('handle_fetch_data_token_get error:', error);
