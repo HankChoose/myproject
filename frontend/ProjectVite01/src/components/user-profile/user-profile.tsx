@@ -39,7 +39,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
     const fetchData = async () => {
         // 获取保存在本地存储中的令牌
         const token = localStorage.getItem('accessToken');
-        const apiUrl = `${baseUrl}/user-profile/`;
+        const apiUrl = `/user-profile/`;
         try {
             const data = await fetch_data_token_get(apiUrl,token);
             console.log('fetchData radioesponse:', data);
@@ -79,7 +79,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
 
     const handleChangeUsername = async () => {
         const token = localStorage.getItem('accessToken');
-        const apiUrl = `${baseUrl}/user-change-username/`;
+        const apiUrl = `/user-change-username/`;
         try {
             const data = await fetch_data_token_post(apiUrl,token,username);
             console.log('handleChangeUsername radioesponse:', data);
