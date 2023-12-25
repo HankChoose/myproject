@@ -94,4 +94,4 @@ const fetch_data_token_post = async (url:string,token:any,username:string) => {
 
 };
 
-export { fetch_data_token_get,fetch_data_token_post };
+export { fetch_data_token_get, fetch_data_token_post };

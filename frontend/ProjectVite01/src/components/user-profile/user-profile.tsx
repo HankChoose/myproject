@@ -10,6 +10,8 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 
+import { fetch_data_token_get, fetch_data_token_post } from '../../apiService';
+
 export interface UserProfileProps {
     className?: string;
 }
@@ -38,30 +40,12 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         // 获取保存在本地存储中的令牌
         const token = localStorage.getItem('accessToken');
         const apiUrl = `${baseUrl}/user-profile/`;
-        if (token) {
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
-                        'Content-Type': 'application/json',
-                },
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log('fetchData_data',data);
-                    setUserData(data);
-                } else {
-                  // 处理请求失败的情况
-                  console.error('Failed to fetch user data:', response.status, response.statusText);
-                }
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        } else {
-        // 处理令牌不存在的情况
-        console.error('Access token is undefined or null.');
+        try {
+            const data = await fetch_data_token_get(apiUrl,token);
+            console.log('fetchData radioesponse:', data);
+        } catch (error) {
+            // 处理错误
+            console.error('fetchData error:',error);
         }
     };
 
@@ -96,17 +80,14 @@ export const UserProfile = ({ className }: UserProfileProps) => {
     const handleChangeUsername = async () => {
         const token = localStorage.getItem('accessToken');
         const apiUrl = `${baseUrl}/user-change-username/`;
-        const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Token ${token}`,
-                },
-                body: JSON.stringify({ new_username: username }),
-            });
-
-        const data = await response.json();
-        console.log(data);  // Handle the response from the server
+        try {
+            const data = await fetch_data_token_post(apiUrl,token,username);
+            console.log('handleChangeUsername radioesponse:', data);
+        } catch (error) {
+            // 处理错误
+            console.error('fhandleChangeUsername error:',error);
+        }
+        
     };
 
     return (
