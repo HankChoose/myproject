@@ -1,13 +1,11 @@
 import classNames from 'classnames';
 import styles from './user-profile.module.scss';
-import axios from 'axios';
 import React, { useState ,useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Table from 'react-bootstrap/Table';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
-
 import { fetch_data_token_get, fetch_data_token_post } from '../../apiService';
 
 export interface UserProfileProps {
@@ -26,6 +24,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
     const [editing, setEditing] = useState(false);
     //const [editable, setEditable] = useState(false);
     const [username, setUsername] = useState(''); // Initial username
+    const token = localStorage.getItem('accessToken');
 
     useEffect(() => {
         // 在组件加载时发送请求
@@ -35,11 +34,11 @@ export const UserProfile = ({ className }: UserProfileProps) => {
    
     const fetchData = async () => {
         // 获取保存在本地存储中的令牌
-        const token = localStorage.getItem('accessToken');
+        
         const apiUrl = `/user-profile/`;
         try {
             const data = await fetch_data_token_get(apiUrl,token);
-            console.log('fetchData radioesponse:', data);
+            console.log('fetchData response:', data);
             setUserData(data);
         } catch (error) {
             // 处理错误
@@ -76,7 +75,6 @@ export const UserProfile = ({ className }: UserProfileProps) => {
     const firstEmail = userData.length > 0 ? userData[0].email : null;
 
     const handleChangeUsername = async () => {
-        const token = localStorage.getItem('accessToken');
         const apiUrl = `/user-change-username/`;
         try {
             const data = await fetch_data_token_post(apiUrl,token,username);
