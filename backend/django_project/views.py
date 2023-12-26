@@ -124,7 +124,7 @@ def user_auth_token(request):
 
 @method_decorator(login_required, name='dispatch')
 class UserProfileView(APIView):
-     authentication_classes = [TokenAuthentication]
+    authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
     def get(self, request, *args, **kwargs):
@@ -136,6 +136,7 @@ class UserProfileView(APIView):
             # 其他字段...
         }
         return Response(user_info)
+
 
 @method_decorator(csrf_protect, name='dispatch')
 class UserProfileView2(APIView):
