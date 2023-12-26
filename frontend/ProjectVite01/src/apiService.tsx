@@ -17,7 +17,10 @@ const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token Cross-Site Requ
 const handleError = (error:any) => {
   // 处理错误，例如显示一个错误提示或者进行其他操作
   console.error('API Request Error:', error);
-  throw error;
+  
+  // You can return a specific value or object here
+  const errorResponse = { error: true, message: 'An error occurred during the API request.' };
+  return errorResponse;
 };
 
 /////////////////////////////////////////////////fetch_data_token_get for /user-profile/

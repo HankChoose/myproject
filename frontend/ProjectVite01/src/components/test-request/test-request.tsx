@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import styles from './test-request.module.scss';
 import React, { useEffect, useState} from 'react';
 import { fetch_data_token_get } from '../../apiService';
-import {baseUrl} from '../../constants';
 
 export interface TestRequestProps {
     className?: string;

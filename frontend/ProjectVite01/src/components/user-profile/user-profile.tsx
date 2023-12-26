@@ -78,7 +78,7 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         const apiUrl = `/user-change-username/`;
         try {
             const data = await fetch_data_token_post(apiUrl,token,username);
-            console.log('handleChangeUsername radioesponse:', data);
+            console.log('handleChangeUsername response:', data);
             
         } catch (error) {
             // 处理错误
