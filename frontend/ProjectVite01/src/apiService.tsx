@@ -19,7 +19,7 @@ const handleError = (error:any) => {
   console.error('API Request Error:', error);
   
   // You can return a specific value or object here
-  const errorResponse = { error: true, message: 'An error occurred during the API request.' };
+  const errorResponse = { error: true, message: error };
   return errorResponse;
 };
 

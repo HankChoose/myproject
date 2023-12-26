@@ -19,7 +19,11 @@ export const TestRequest = ({ className }: TestRequestProps) => {
         const apiUrl = '/user-profile/';
         try {
             const data = await fetch_data_token_get(apiUrl,token);
-            console.log('GET Response:', data);
+            if (data.error){
+                console.log('GET Response data.message:', data.message);
+            }else{
+                 console.log('GET Response:', data);
+            }
         } catch (error) {
             // 处理错误
             console.error('handle_fetch_data_token_get error:', error);
