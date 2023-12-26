@@ -33,6 +33,7 @@ const fetch_data_token_get = async (url:string,token:any) => {
     };
     try {
       const response = await fetch(`${baseUrl}${url}`, config_fetch_data_token_get);
+      console.log(console_title + ' response:', response);
       if (response.ok) {
           const data = await response.json();
           console.log(console_title+'response data',data);

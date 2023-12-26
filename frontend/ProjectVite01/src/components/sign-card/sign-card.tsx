@@ -13,7 +13,7 @@ import { useAuth } from '../../AuthContext';
 export interface SignCardProps {
     className?: string;
     formType?: 'signin' | 'signup' | 'resetpw';
-    onLogin?: (email: string, password: string) => void; // Specify void as the return type
+    
 }
 
 const validationSchemaSignin = Yup.object().shape({
@@ -52,14 +52,14 @@ const validationSchemaResetpw = Yup.object().shape({
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
-export const SignCard = ({ className, formType = 'signin', onLogin}: SignCardProps) => {
+export const SignCard = ({ className, formType = 'signin'}: SignCardProps) => {
 
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [loginStatus, setLoginStatus] = useState<string | null>(null);
     const [emailExistenceStatus, setEmailExistenceStatus] = useState<string | null>(null);
     const [emailExistAfter, setemailExistAfter] = useState(false);
-     const { isLoggedIn, signIn, signOut } = useAuth();
+    const { isLoggedIn, signIn, signOut } = useAuth();
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -104,12 +104,7 @@ export const SignCard = ({ className, formType = 'signin', onLogin}: SignCardPro
                     setLoginStatus(loginSuccess ? 'Login successful' : 'Email or password is incorrect');
                     // 在这里进行你的其他操作，比如存储在本地存储中
                     signIn();
-                    if (onLogin) {
-                        onLogin(values.email,values.password);
-                    } else {
-                        // Handle the case where onLogin is not defined, if needed
-                        console.error('onLogin is not defined');
-                    }
+                   
                     navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
                 } else {
                     console.error('Login failed');
@@ -168,12 +163,7 @@ export const SignCard = ({ className, formType = 'signin', onLogin}: SignCardPro
                 console.log('response2.data.token',response2.data.token);
                 // 在这里进行你的其他操作，比如存储在本地存储中
                 signIn();
-                if (onLogin) {
-                    onLogin(values.email,values.password);
-                } else {
-                    // Handle the case where onLogin is not defined, if needed
-                    console.error('onLogin is not defined');
-                }
+                
                 navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
                
             } else {
@@ -239,12 +229,7 @@ export const SignCard = ({ className, formType = 'signin', onLogin}: SignCardPro
             const response = await axios.post(apiUrl, userData,config);
             if (response.status === 200) {
                 console.log('Password reset email sent:', response.data);
-                if (onLogin) {
-                    onLogin(values.email,values.password);
-                } else {
-                    // Handle the case where onLogin is not defined, if needed
-                    console.error('onLogin is not defined');
-                }
+               
             } else {
                 console.error('Password reset email sent failed');
             }  
