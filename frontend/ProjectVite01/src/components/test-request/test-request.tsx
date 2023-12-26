@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import styles from './test-request.module.scss';
 import React, { useEffect, useState} from 'react';
-import { fetch_data_token_get,fetch_data_token_post,axios_type_data_post } from '../../apiService';
+import { fetch_data_token_get,fetch_data_token_post,axios_form_data_post, axios_json_data_post } from '../../apiService';
 
 export interface TestRequestProps {
     className?: string;
@@ -42,7 +42,7 @@ export const TestRequest = ({ className }: TestRequestProps) => {
             // 添加要发送给Django的数据
         };
         try {
-            const data = await axios_type_data_post(apiUrl,userData,'multipart/form-data');
+            const data = await axios_form_data_post(apiUrl,userData,'multipart/form-data');
             if (data.error){
                 console.log('GET Response data.message:', data.message);
             }else{
@@ -63,7 +63,7 @@ export const TestRequest = ({ className }: TestRequestProps) => {
             // 添加要发送给Django的数据
         };
         try {
-            const data = await axios_type_data_post(apiUrl,userData,'application/json');
+            const data = await axios_json_data_post(apiUrl,userData);
             if (data.error){
                 console.log('GET Response data.message:', data.message);
             }else{
