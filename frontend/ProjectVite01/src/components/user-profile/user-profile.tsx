@@ -38,7 +38,11 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         const apiUrl = `/user-profile/`;
         try {
             const data = await fetch_data_token_get(apiUrl,token);
-            console.log('fetchData response:', data);
+            if (data.error){
+                console.log('fetchData response data.message:', data.message);
+            }else{
+                console.log('fetchData response:', data);
+            }
             setUserData(data);
         } catch (error) {
             // 处理错误
@@ -78,7 +82,12 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         const apiUrl = `/user-change-username/`;
         try {
             const data = await fetch_data_token_post(apiUrl,token,username);
-            console.log('handleChangeUsername response:', data);
+            if (data.error){
+                console.log('handleChangeUsername response data.message:', data.message);
+            }else{
+                console.log('handleChangeUsername response:', data);
+            }
+            
             
         } catch (error) {
             // 处理错误

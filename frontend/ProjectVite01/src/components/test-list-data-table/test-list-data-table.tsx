@@ -43,9 +43,9 @@ export const TestListDataTable = ({ className }: TestListDataTableProps) => {
             try {
                 const response = await fetch(apiUrl, {
                     method: 'GET',
-                    headers: {
-                        'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
+                    headers: { 
                         'Content-Type': 'application/json',
+                         'Authorization': `Token ${token}`,  // 注意这里的格式，应为 `Token ${token}`
                     },
                 });
 
