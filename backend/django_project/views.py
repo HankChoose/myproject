@@ -34,7 +34,6 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes, renderer_classes
 from rest_framework.renderers import JSONRenderer
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.authentication import TokenAuthentication
 
 
 from .serializers import UserSerializer, UserDemandSerializer
@@ -124,18 +123,11 @@ def user_auth_token(request):
 
 @method_decorator(csrf_protect, name='dispatch')
 class UserProfileView(APIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
-
     def get(self, request, *args, **kwargs):
-        user = request.user
-        # 在这里可以根据需要构造用户信息的字典
-        user_info = {
-            'username': user.username,
-            'email': user.email,
-            # 其他字段...
-        }
-        return Response(user_info)
+        user_email = request.user.email
+        user_profiles = User.objects.filter(email=user_email)
+        serializer = UserSerializer(user_profiles, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @method_decorator(csrf_protect, name='dispatch')
