@@ -123,7 +123,7 @@ def user_auth_token(request):
 
 
 @method_decorator(login_required, name='dispatch')
-class UserProfileView(APIView):
+class UserProfileView3(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
