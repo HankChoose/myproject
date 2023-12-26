@@ -107,7 +107,7 @@ export const SignCard = ({ className, formType = 'signin'}: SignCardProps) => {
         console.log('Handling sign-up form submission:', values);
         // Add code to submit data for sign-up
 
-        const apiUrl = `accounts/signup/`;
+        const apiUrl = `/accounts/signup/`;
       
         // Split the email address at the "@" symbol
         const parts = values.email.split('@');
@@ -149,7 +149,7 @@ export const SignCard = ({ className, formType = 'signin'}: SignCardProps) => {
 
     //------------------------------------------------------>heckEmailExistence
     const checkEmailExistence = async (values: FormikValues) => {
-        const apiUrl = `check-email-exist/${values.email}/`; 
+        const apiUrl = `/check-email-exist/${values.email}/`; 
         try {
             const data = await axios_json_data_get(apiUrl);
             if (data.error){
