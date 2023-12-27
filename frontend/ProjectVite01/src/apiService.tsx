@@ -201,7 +201,7 @@ const axios_json_data_get = async (url:string) => {
         },
   };
   try {
-    const response = await axios.post(`${baseUrl}${url}`,config_axios_json_data_get);
+    const response = await axios.get(`${baseUrl}${url}`,config_axios_json_data_get);
     if (response.status === 200) {
         console.log(console_title+ 'response data',response.data);
         return response.data;
