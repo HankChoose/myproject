@@ -133,13 +133,21 @@ export const SignCard = ({ className, formType = 'signin'}: SignCardProps) => {
                     password: values.password,
                     // 添加要发送给Django的数据
                 };
-                const response2 = await axios_json_data_post(apiUrl2,userData2);
-                console.log('Login2 OK',response2.data);
-                localStorage.setItem('accessToken', response2.data.token);
-                console.log('response2.data.token',response2.data.token);
-                // 在这里进行你的其他操作，比如存储在本地存储中
-                signIn();
-                navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
+
+                const data2 = await axios_json_data_post(apiUrl2,userData2);
+                if (data2.error){
+                    console.log('GET Response signup get token fail data.message:', data.message);
+                    const loginSuccess = false;/* 模拟请求返回的值 */ 
+                   
+                }else{
+                    console.log('GET Response signup get token OK:', data2);
+                    localStorage.setItem('accessToken', data2.token);
+                    console.log('GET Response.data2.token',data2.token);
+                    // 在这里进行你的其他操作，比如存储在本地存储中
+                    signIn();
+                    navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
+                }
+
             }
         } catch (error) {
             // 处理错误
