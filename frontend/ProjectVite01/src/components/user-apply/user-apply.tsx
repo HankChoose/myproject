@@ -7,11 +7,11 @@ import React, { useContext,useRef, useEffect, useState, Component } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { updateName, updateEmail } from "../../actions/userInfoActions";
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
-import { baseUrl } from '../../constants';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-modal';
 import { useAuth } from '../../AuthContext';
 import { SignCard } from '../sign-card/sign-card';
+import { fetch_data_token_get, fetch_data_token_post } from '../../apiService';
 
 export interface UserApplyProps {
     className?: string;
@@ -51,11 +51,18 @@ const modalStyles = {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const UserApply = ({ className }: UserApplyProps) => {
-
+    interface UserData {
+        id: string;
+        username: string;
+        email: string;
+        // 其他属性...
+    }
     const userInfo = useSelector((state: RootState) => state.userInfo);
     const dispatch = useDispatch();
+    const [userData, setUserData] = useState<UserData[]>([]);
     const { isLoggedIn, signIn, signOut } = useAuth();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const token = localStorage.getItem('accessToken');
     const navigate = useNavigate();
 
     // 在组件渲染时检查isLoggedIn状态，如果为false，则打开modal
@@ -63,9 +70,28 @@ export const UserApply = ({ className }: UserApplyProps) => {
         if (!isLoggedIn) {
             setIsModalOpen(true);
         }else{
-            
+           fetchData();   
         }
     }, [isLoggedIn]);
+
+    const fetchData = async () => {
+        // 获取保存在本地存储中的令牌
+
+        const apiUrl = `/user-profile/`;
+        try {
+            const data = await fetch_data_token_get(apiUrl, token);
+            if (data.error) {
+                console.log('fetchData response data.message:', data.message);
+            } else {
+                console.log('fetchData response:', data);
+            }
+            setUserData(data);
+        } catch (error) {
+            // 处理错误
+            console.error('fetchData error:', error);
+        }
+    };
+
     
     const openModal = () => {
         setIsModalOpen(true);
@@ -110,19 +136,21 @@ export const UserApply = ({ className }: UserApplyProps) => {
         }
     };
 
+    const firstusername = userData.length > 0 ? userData[0].username : undefined;
+    const firstEmail = userData.length > 0 ? userData[0].email : undefined;
 
     return <div className={classNames(styles.root, className)}>
         <div className={classNames(styles.flowImage)}></div>
         <div className={classNames(styles.FormRow)}></div>
         <div className={styles.FromArea}>
             <div className={classNames(styles.FormRow)}>
-                <Form.Control type="text" placeholder="Name" value={userInfo.name} onChange={handleNameChange} />
+                <Form.Control type="text" placeholder={firstusername} value={userInfo.name} onChange={handleNameChange} />
             </div>
             <div className={classNames(styles.FormRow)}></div>
             <div className={classNames(styles.FormRow)}></div>
 
             <div className={classNames(styles.FormRow)}>
-                <Form.Control type="text" placeholder="Email" value={userInfo.email} onChange={handleEmailChange} />
+                <Form.Control type="text" placeholder={firstEmail}  value={userInfo.email} onChange={handleEmailChange} />
             </div>
             <div className={classNames(styles.FormRow)}></div>
             <div className={classNames(styles.FormRow)}></div>
