@@ -67,10 +67,14 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
                         value={userInfo2.applytype} 
                         className={classNames(styles.Input)} 
                         onChange={handleApplytypeChange}>
-                        <option value="React">React</option>
                         <option value="Django">Django</option>
+                        <option value="Flask">Flask</option>
+                        <option value="FastAPI">FastAPI</option>
+                        <option value="Flutter">Flutter</option>
+                        <option value="React">React</option>
+                        <option value="SpringBoot">SpringBoot</option>
                         <option value="Web">Web</option>
-                        <option value="Nginx">Nginx</option>
+                        
                     </Form.Select>
                 </div>
             <div className={classNames(styles.FormRow)}> </div>
