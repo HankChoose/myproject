@@ -164,7 +164,7 @@ export const UserApply = ({ className }: UserApplyProps) => {
                         type="text"
                         placeholder={firstusername}
                         value={userInfo.name}
-                        readOnly={true}
+                       
                         onChange={handleNameChange}
                     />
                 </div>
@@ -176,7 +176,7 @@ export const UserApply = ({ className }: UserApplyProps) => {
                         type="text"
                         placeholder={firstEmail}
                         value={userInfo.email}
-                        readOnly={true}
+                        //readOnly={true}
                         onChange={handleEmailChange}
                     />
                 </div>
