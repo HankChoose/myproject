@@ -85,6 +85,21 @@ export const UserApply = ({ className }: UserApplyProps) => {
                 console.log('fetchData response:', data);
             }
             setUserData(data);
+            if (firstusername) {
+                // 调用navigate函数
+                dispatch(updateName(firstusername));
+            } else {
+                // 处理redirectLink为undefined的情况，例如给出一个默认值或者采取其他逻辑
+                console.error('firstusername is undefined');
+            }
+
+            if (firstEmail) {
+                // 调用navigate函数
+            dispatch(updateEmail(firstEmail));
+            } else {
+                // 处理redirectLink为undefined的情况，例如给出一个默认值或者采取其他逻辑
+                console.error('firstEmail is undefined');
+            }
         } catch (error) {
             // 处理错误
             console.error('fetchData error:', error);
@@ -138,21 +153,7 @@ export const UserApply = ({ className }: UserApplyProps) => {
     const firstusername = userData.length > 0 ? userData[0].username : undefined;
     const firstEmail = userData.length > 0 ? userData[0].email : undefined;
     
-    if (firstusername) {
-        // 调用navigate函数
-        dispatch(updateName(firstusername));
-    } else {
-        // 处理redirectLink为undefined的情况，例如给出一个默认值或者采取其他逻辑
-        console.error('firstusername is undefined');
-    }
-
-    if (firstEmail) {
-        // 调用navigate函数
-       dispatch(updateEmail(firstEmail));
-    } else {
-        // 处理redirectLink为undefined的情况，例如给出一个默认值或者采取其他逻辑
-        console.error('firstEmail is undefined');
-    }
+    
 
     return (
         <div className={classNames(styles.root, className)}>
