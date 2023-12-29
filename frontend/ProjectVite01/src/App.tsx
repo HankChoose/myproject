@@ -60,7 +60,7 @@ function App() {
                             <Route path="/react/checkemail" element={<TestCheckEmail />} />
                             <Route path="/react/checkemail2" element={<TestCheckEmail2 />} />
                             <Route path="/react/userapplycontent/:id" element={<UserApplyContent />} />
-                            <Route path="/react/resetpw" element={<SignCard formType="resetpw" />} />
+                            <Route path="/react/resetpw" element={<SignCard formType="resetpw"  redirectLink='/react/userprofile'/>} />
                             <Route path="/react/testtoken" element={<TestToken />} />
                             <Route path="/react/testlist" element={<TestList />} />
                             <Route path="/react/testlink" element={<TestLink />} />

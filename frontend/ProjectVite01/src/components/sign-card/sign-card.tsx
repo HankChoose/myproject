@@ -12,6 +12,7 @@ export interface SignCardProps {
     className?: string;
     formType?: 'signin' | 'signup' | 'resetpw';
     onLogin?: (email: string, password: string) => void; // Specify void as the return type
+    redirectLink?: string | undefined;
 }
 
 const validationSchemaSignin = Yup.object().shape({
@@ -50,7 +51,7 @@ const validationSchemaResetpw = Yup.object().shape({
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
-export const SignCard = ({ className, formType = 'signin', onLogin}: SignCardProps) => {
+export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin }: SignCardProps) => {
 
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -97,7 +98,13 @@ export const SignCard = ({ className, formType = 'signin', onLogin}: SignCardPro
                     // Handle the case where onLogin is not defined, if needed
                     console.error('onLogin is not defined');
                 }
-                navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
+                if (redirectLink) {
+                    // 调用navigate函数
+                    navigate(redirectLink);
+                } else {
+                    // 处理redirectLink为undefined的情况，例如给出一个默认值或者采取其他逻辑
+                    console.error('redirectLink is undefined');
+                }
             }
         } catch (error) {
             // 处理错误
@@ -157,7 +164,13 @@ export const SignCard = ({ className, formType = 'signin', onLogin}: SignCardPro
                         // Handle the case where onLogin is not defined, if needed
                         console.error('onLogin is not defined');
                     }
-                    navigate('/react/userprofile'); // 在 useEffect 中调用 navigate
+                    if (redirectLink) {
+                        // 调用navigate函数
+                        navigate(redirectLink);
+                    } else {
+                        // 处理redirectLink为undefined的情况，例如给出一个默认值或者采取其他逻辑
+                        console.error('redirectLink is undefined');
+                    }
                 }
 
             }

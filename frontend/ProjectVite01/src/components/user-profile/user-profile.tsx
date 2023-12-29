@@ -65,7 +65,6 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         setEditing(false);
     };
 
-   
     const firstusername = userData.length > 0 ? userData[0].username : undefined;
     const firstEmail = userData.length > 0 ? userData[0].email : null;
 

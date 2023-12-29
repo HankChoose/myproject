@@ -2,10 +2,10 @@ import classNames from 'classnames';
 import styles from './user-apply.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
-import React, { useContext,useRef, useEffect, useState, Component } from 'react';
+import React, { useContext, useRef, useEffect, useState, Component } from 'react';
 
-import { useSelector, useDispatch } from "react-redux";
-import { updateName, updateEmail } from "../../actions/userInfoActions";
+import { useSelector, useDispatch } from 'react-redux';
+import { updateName, updateEmail } from '../../actions/userInfoActions';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-modal';
@@ -27,14 +27,13 @@ type RootState = {
 
 const modalStyles = {
     overlay: {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'rgba(203, 196, 223, 0.5)', // 背景颜色，可根据需要修改
-            zIndex: 1000, // 调整 overlay 的 z-index
-            },
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(203, 196, 223, 0.5)', // 背景颜色，可根据需要修改
+        zIndex: 1000, // 调整 overlay 的 z-index
+    },
     content: {
-    
         top: 'auto',
         left: 'auto',
         right: 'auto',
@@ -69,8 +68,8 @@ export const UserApply = ({ className }: UserApplyProps) => {
     useEffect(() => {
         if (!isLoggedIn) {
             setIsModalOpen(true);
-        }else{
-           fetchData();   
+        } else {
+            fetchData();
         }
     }, [isLoggedIn]);
 
@@ -92,7 +91,6 @@ export const UserApply = ({ className }: UserApplyProps) => {
         }
     };
 
-    
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -110,64 +108,80 @@ export const UserApply = ({ className }: UserApplyProps) => {
 
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(updateName(e.target.value));
-        console.log("Name is:", e.target.value);
+        console.log('Name is:', e.target.value);
     };
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(updateEmail(e.target.value));
-        console.log("Email is:", e.target.value);
+        console.log('Email is:', e.target.value);
     };
 
     const handleSubmission = () => {
-        console.log("userInfo:", userInfo);
+        console.log('userInfo:', userInfo);
     };
 
     const handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         // 如果未登录，打开 modal，否则跳转到下一页
         event.preventDefault();
-        console.log("isLoggedIn:", isLoggedIn);
+        console.log('isLoggedIn:', isLoggedIn);
         if (!isLoggedIn) {
-            console.log("openModal:openModal");
+            console.log('openModal:openModal');
             openModal();
         } else {
             // 在这里可以使用编程式导航，或者使用 Link 跳转
-            console.log("navigate:/react/userapply2");
-            navigate('/react/userapply2'); 
+            console.log('navigate:/react/userapply2');
+            navigate('/react/userapply2');
         }
     };
 
     const firstusername = userData.length > 0 ? userData[0].username : undefined;
     const firstEmail = userData.length > 0 ? userData[0].email : undefined;
 
-    return <div className={classNames(styles.root, className)}>
-        <div className={classNames(styles.flowImage)}></div>
-        <div className={classNames(styles.FormRow)}></div>
-        <div className={styles.FromArea}>
-            <div className={classNames(styles.FormRow)}>
-                <Form.Control type="text" placeholder={firstusername} value={userInfo.name} onChange={handleNameChange} />
-            </div>
+    return (
+        <div className={classNames(styles.root, className)}>
+            <div className={classNames(styles.flowImage)}></div>
             <div className={classNames(styles.FormRow)}></div>
-            <div className={classNames(styles.FormRow)}></div>
+            <div className={styles.FromArea}>
+                <div className={classNames(styles.FormRow)}>
+                    <Form.Control
+                        type="text"
+                        placeholder={firstusername}
+                        value={userInfo.name}
+                        onChange={handleNameChange}
+                    />
+                </div>
+                <div className={classNames(styles.FormRow)}></div>
+                <div className={classNames(styles.FormRow)}></div>
 
-            <div className={classNames(styles.FormRow)}>
-                <Form.Control type="text" placeholder={firstEmail}  value={userInfo.email} onChange={handleEmailChange} />
+                <div className={classNames(styles.FormRow)}>
+                    <Form.Control
+                        type="text"
+                        placeholder={firstEmail}
+                        value={userInfo.email}
+                        onChange={handleEmailChange}
+                    />
+                </div>
+                <div className={classNames(styles.FormRow)}></div>
+                <div className={classNames(styles.FormRow)}></div>
+                <div className={classNames(styles.FormRow)}>
+                    <Link to="/react/userapply2" onClick={handleLinkClick}>
+                        <Button variant="primary">Next page</Button>{' '}
+                    </Link>
+                </div>
             </div>
-            <div className={classNames(styles.FormRow)}></div>
-            <div className={classNames(styles.FormRow)}></div>
-            <div className={classNames(styles.FormRow)}><Link to="/react/userapply2" onClick={handleLinkClick}><Button variant="primary">Next page</Button>{' '}</Link></div>
+            <div>
+                <Modal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                    contentLabel="Modal Dialog"
+                    ariaHideApp={true}
+                    shouldCloseOnOverlayClick={true}
+                    style={modalStyles} // 设置模态框的样式
+                >
+                    {/* 在模态框中渲染 Login 组件 */}
+                    <SignCard redirectLink="/react/userapply" onLogin={handleLogin} />
+                </Modal>
+            </div>
         </div>
-        <div>
-            <Modal
-                isOpen={isModalOpen}
-                onRequestClose={closeModal}
-                contentLabel="Modal Dialog"
-                ariaHideApp={true}
-                shouldCloseOnOverlayClick={true}
-                style={modalStyles} // 设置模态框的样式
-            >
-                {/* 在模态框中渲染 Login 组件 */}
-               <SignCard onLogin={handleLogin} />
-            </Modal>
-        </div>
-    </div>;
+    );
 };
