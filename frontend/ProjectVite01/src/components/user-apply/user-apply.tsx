@@ -70,7 +70,7 @@ export const UserApply = ({ className }: UserApplyProps) => {
             setIsModalOpen(true);
         } else {
             fetchData();
-            initialdispatch();
+           
         }
     }, [isLoggedIn]);
 
@@ -134,6 +134,7 @@ export const UserApply = ({ className }: UserApplyProps) => {
             // 在这里可以使用编程式导航，或者使用 Link 跳转
             console.log('navigate:/react/userapply2');
             navigate('/react/userapply2');
+            initialdispatch();
         }
     };
 
