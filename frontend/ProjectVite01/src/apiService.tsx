@@ -23,6 +23,41 @@ const handleError = (error:any) => {
   return errorResponse;
 };
 
+
+/*
+//////////////////////////////////////fetch_data_token_get
+'Content-Type': 'application/json',
+1. /user-profile/
+2.
+*/
+const fetch_data_csrf_get = async (url:string) => {
+  const console_title='fetch_data_csrf_get';
+  const config_fetch_data_csrf_get = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': csrfToken ?? '', // Use an empty string if csrfToken is undefined
+      }
+  };
+  try {
+    const response = await fetch(`${baseUrl}${url}`, config_fetch_data_csrf_get);
+    console.log(console_title + ' response:', response);
+    if (response.ok) {
+        const data = await response.json();
+        console.log(console_title+'response data',data);
+        return data;
+    } else {
+      // 处理请求失败的情况
+      console.error(console_title+' response data error:', response.status, response.statusText);
+      return handleError(console_title+' response data error:'+response.status +response.statusText);
+      
+    }  
+  } catch (error) {
+      console.error(console_title+' error:', error);
+      return handleError(console_title+' error:'+ error);     
+  }
+};
+
 /*
 //////////////////////////////////////fetch_data_token_get
 'Content-Type': 'application/json',
@@ -220,4 +255,4 @@ const axios_json_data_get = async (url:string) => {
   }
 };
 
-export { fetch_data_token_get, fetch_data_token_post , axios_form_data_post, axios_json_data_post ,axios_json_data_get };
+export { fetch_data_token_get, fetch_data_token_post , axios_form_data_post, axios_json_data_post ,axios_json_data_get , fetch_data_csrf_get};

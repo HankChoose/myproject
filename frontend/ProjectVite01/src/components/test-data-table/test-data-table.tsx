@@ -136,19 +136,19 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                 {/* 表头 */}
                 <thead>
                     <tr>
-                        <th style={{ width: '80px' }}  className={styles.handpoint} onClick={() => handleSortChange('id')} >ID
+                        <th style={{ width: '80px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('id')} >ID
                             {sortedField === 'id' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
-                        <th style={{ width: '150px' }} className={styles.handpoint} onClick={() => handleSortChange('demand_type')}>Type
+                        <th style={{ width: '150px' , textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('demand_type')}>Type
                             {sortedField === 'demand_type' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
-                        <th style={{ width: '450px' }}  className={styles.handpoint} onClick={() => handleSortChange('demand_description')}>Title
+                        <th style={{ width: '450px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('demand_description')}>Content
                             {sortedField === 'demand_description' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
-                        <th style={{ width: '150px' }} className={styles.handpoint} onClick={() => handleSortChange('username')}>Username
+                        <th style={{ width: '150px', textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('username')}>Username
                             {sortedField === 'username' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
-                        <th className={styles.handpoint} onClick={() => handleSortChange('email')}>Email
+                        <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>Email
                             {sortedField === 'email' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
                        
