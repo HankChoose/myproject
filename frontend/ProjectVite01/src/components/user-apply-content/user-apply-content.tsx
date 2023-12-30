@@ -37,7 +37,6 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
     const fetchData = async () => {
         // 获取保存在本地存储中的令牌
 
-        const apiUrl = `/user-profile/`;
         try {
             const data = await fetch_data_token_get(apiUrl, token);
             if (data.error) {
