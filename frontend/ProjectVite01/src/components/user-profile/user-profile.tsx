@@ -2,10 +2,7 @@ import classNames from 'classnames';
 import styles from './user-profile.module.scss';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Table from 'react-bootstrap/Table';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
+import {Button, Card,Table,ListGroup} from 'react-bootstrap';
 import { fetch_data_token_get, fetch_data_token_post } from '../../apiService';
 
 export interface UserProfileProps {
