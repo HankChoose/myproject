@@ -62,7 +62,7 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
         <Card style={{ width: '60vw' }}>
                 <Card.Body>
                     <Card.Title>
-                        <h1>{firstid }</h1>
+                   
                     </Card.Title>
                     <Card.Text></Card.Text>
                 </Card.Body>
