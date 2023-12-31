@@ -99,7 +99,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
             <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.demand_type}</td>
-                <td><a href={`userapplycontent/${item.id}`} target="_blank" rel="noopener noreferrer">
+                <td><a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
                        {item.demand_description}
                     </a></td>
                 <td>{item.username}</td>
