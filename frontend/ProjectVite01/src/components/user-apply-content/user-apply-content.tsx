@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import {Button, Card,Table,ListGroup} from 'react-bootstrap';
 
 import React, { useState, useEffect } from 'react';
-import { fetch_data_token_get, fetch_data_token_post } from '../../apiService';
+import { fetch_data_csrf_get } from '../../apiService';
 
 export interface UserApplyContentProps {
     className?: string;
@@ -16,7 +16,6 @@ export interface UserApplyContentProps {
  */
 export const UserApplyContent = ({ className }: UserApplyContentProps) => {
     const {id}= useParams();
-    const token = localStorage.getItem('accessToken');
     const apiUrl = `/user-apply-content/${id}`;
     const [applyData, setApplyData] = useState<ApplyData[]>([]);
     
@@ -38,7 +37,7 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
         // 获取保存在本地存储中的令牌
 
         try {
-            const data = await fetch_data_token_get(apiUrl, token);
+            const data = await fetch_data_csrf_get(apiUrl);
             if (data.error) {
                 console.log('fetchData response data.message:', data.message);
             } else {
