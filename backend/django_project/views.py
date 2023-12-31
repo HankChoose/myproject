@@ -207,7 +207,7 @@ class UserDemandListAPIView2(generics.ListAPIView):
 class UserDemandContentAPIView(generics.ListAPIView):
     # serializer_class = UserDemandSerializer
     def get(self, request, id):
-        user_email = request.user.email
+        # user_email = request.user.email
         user_demands = UserDemand.objects.filter(id=id)
         serializer = UserDemandSerializer(user_demands, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
