@@ -102,8 +102,8 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         console.log("imageInfo.userInfo2:",userInfo2);
         
         } else {
-            setPreviewUrl(null);
-            setSelectedFile(null);
+            //setPreviewUrl(null);
+            //setSelectedFile(null);
         }
     };
 
