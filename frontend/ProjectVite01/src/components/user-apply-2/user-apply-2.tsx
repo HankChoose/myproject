@@ -166,7 +166,7 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
                     <li key={index}>
                         <strong>File Name:</strong> {image.fileName}
                         <br />
-                        <strong>File Size:</strong> {image.fileSize/1024} M
+                        <strong>File Size:</strong> {image.fileSize/1048576} M
                         {/* You can also display other properties as needed */}
                         <br />
                         <strong>File:</strong> {image.file.name}
