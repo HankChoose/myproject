@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import React, { useRef, useState, Component, ChangeEvent } from 'react';
 import { useSelector, useDispatch } from "react-redux";
+import { connect } from 'react-redux';
 import { addImage } from '../../actions/userInfo2Actions';
 import { updateApplytype, updateRequirements } from "../../actions/userInfo2Actions";
 import axios from "axios";
@@ -100,6 +101,8 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         };
         addImage(imageInfo);
         console.log("imageInfo is:", imageInfo);
+        console.log("imageInfo.userInfo2:",userInfo2);
+        console.log("imageInfo.userInfo2.uploadedImages:",userInfo2.uploadedImages);
 
         } else {
             setPreviewUrl(null);
