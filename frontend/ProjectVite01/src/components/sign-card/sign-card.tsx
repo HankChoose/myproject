@@ -195,7 +195,7 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
                 console.log('Email exists!');
                 // 执行下一步操作...
                 const emailExists = true;/* 模拟请求返回的值 */ 
-                setEmailExistenceStatus(emailExists ? 'The email already in use. click Forgot my password of Sign in to verify the email' : 'OK,Email can be used');
+                setEmailExistenceStatus(emailExists ? 'The email already in use. click Forgot my password of Sign in to verify the email' : '');
                 setemailExistAfter(emailExists);
             } else if (exists === false) {
                 // 邮箱不存在的情况下的处理逻辑
@@ -203,7 +203,7 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
                 // 执行下一步操作...
                 // 执行下一步操作...
                 const emailExists = false;/* 模拟请求返回的值 */ 
-                setEmailExistenceStatus(emailExists ? 'The email already in use. click Forgot my password of Sign in to verify the email' : 'OK,Email can be used');
+                setEmailExistenceStatus(emailExists ? 'The email already in use. click Forgot my password of Sign in to verify the email' : '');
                 setemailExistAfter(emailExists);
                 //handleSignUp(values);
             } else {
