@@ -159,6 +159,21 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
                 <input type="file" accept=".png, .jpg, .jpeg, .gif, .bmp, .tiff, .tif, .svg"  onChange={handleFileChange} />
 
             </div>
+             <div>
+                <h2>Uploaded Images</h2>
+                <ul>
+                    {userInfo2.uploadedImages.length > 0 && userInfo2.uploadedImages.map((image:any, index) => (
+                    <li key={index}>
+                        <strong>File Name:</strong> {image.fileName}
+                        <br />
+                        <strong>File Size:</strong> {image.fileSize} bytes
+                        {/* You can also display other properties as needed */}
+                        <br />
+                        <strong>File:</strong> {image.file.name}
+                    </li>
+                    ))}
+                </ul>
+            </div>
             <div className={classNames(styles.FormRow)}> </div>
             <div className={classNames(styles.FormRow)}> </div>
             <div className={classNames(styles.FormRow)}>

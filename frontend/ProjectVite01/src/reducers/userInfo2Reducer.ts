@@ -19,6 +19,14 @@ const userInfo2Reducer = (state = initialState2, action: MyAction) => {
       return { ...state, requirements: action.payload };
     
     case 'ADD_IMAGE':
+      
+      // Check if the maximum number of images has been reached
+      if (state.uploadedImages.length >= 3) {
+        // If limit reached, do not add the new image
+        return state;
+      }
+
+      // If not at the limit, add the new image to the array
       return {
         ...state,
         uploadedImages: [...state.uploadedImages, action.payload],
