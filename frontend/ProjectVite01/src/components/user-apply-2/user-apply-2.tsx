@@ -3,8 +3,7 @@ import styles from './user-apply-2.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import React, { useRef, useState, Component, ChangeEvent } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { connect } from 'react-redux';
+import { useSelector, useDispatch , connect } from "react-redux";
 import { addImage } from '../../actions/userInfo2Actions';
 import { updateApplytype, updateRequirements } from "../../actions/userInfo2Actions";
 import axios from "axios";
@@ -38,7 +37,7 @@ type RootState2 = {
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
-export const UserApply2 = ({ className}: UserApply2Props) => {
+export const UserApply2 = ({ className}: UserApply2Props,{ uploadedImages, addImage }: {uploadedImages: any[], addImage: Function }) => {
 
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -102,8 +101,7 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         addImage(imageInfo);
         console.log("imageInfo is:", imageInfo);
         console.log("imageInfo.userInfo2:",userInfo2);
-        console.log("imageInfo.userInfo2.uploadedImages:",userInfo2.uploadedImages);
-
+        
         } else {
             setPreviewUrl(null);
             setSelectedFile(null);
@@ -178,3 +176,5 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
 
     </div>;
 };
+
+export default connect(null, { addImage })(UserApply2);
