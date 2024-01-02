@@ -83,15 +83,6 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
             return;
         }
 
-        // 读取文件并生成缩略图
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setPreviewUrl(reader.result as string);
-        };
-
-        reader.readAsDataURL(file);
-        setSelectedFile(file);
-
         const imageInfo = {
             file,
             fileName: file.name,
@@ -100,10 +91,19 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         dispatch(addImage(imageInfo));
         console.log("imageInfo is:", imageInfo);
         console.log("imageInfo.userInfo2:",userInfo2);
+
+        // 读取文件并生成缩略图
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setPreviewUrl(reader.result as string);
+        };
+
+        reader.readAsDataURL(file);
+        setSelectedFile(file);
         
         } else {
-            //setPreviewUrl(null);
-            //setSelectedFile(null);
+            setPreviewUrl(null);
+            setSelectedFile(null);
         }
     };
 
