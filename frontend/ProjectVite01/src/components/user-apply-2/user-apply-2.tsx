@@ -1,16 +1,15 @@
 import classNames from 'classnames';
 import styles from './user-apply-2.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import React, { useRef, useState, Component, ChangeEvent } from 'react';
+import {Button,Form }from 'react-bootstrap';
+
 import { useSelector, useDispatch , connect } from "react-redux";
-import { addImage } from '../../actions/userInfo2Actions';
-import { updateApplytype, updateRequirements } from "../../actions/userInfo2Actions";
+import { addImage, updateApplytype, updateRequirements } from "../../actions/userInfo2Actions";
+
 import axios from "axios";
+import React, { useRef, useState, Component, ChangeEvent } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import {baseUrl} from '../../constants';
-import Form from 'react-bootstrap/Form';
 
 export interface UserApply2Props {
     className?: string;
@@ -37,7 +36,7 @@ type RootState2 = {
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
-export const UserApply2 = ({ className}: UserApply2Props,{ uploadedImages, addImage }: {uploadedImages: any[], addImage: Function }) => {
+export const UserApply2 = ({ className}: UserApply2Props) => {
 
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -98,7 +97,7 @@ export const UserApply2 = ({ className}: UserApply2Props,{ uploadedImages, addIm
             fileName: file.name,
             fileSize: file.size,
         };
-        addImage(imageInfo);
+        dispatch(addImage(imageInfo));
         console.log("imageInfo is:", imageInfo);
         console.log("imageInfo.userInfo2:",userInfo2);
         
@@ -176,5 +175,3 @@ export const UserApply2 = ({ className}: UserApply2Props,{ uploadedImages, addIm
 
     </div>;
 };
-
-export default connect(null, { addImage })(UserApply2);
