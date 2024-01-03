@@ -121,8 +121,9 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         dispatch(removeImage(index));
     };
 
-    const handleRotateImage = (index: number) => {
-        dispatch(rotateImage(index));
+    const handleRotateImage = (index: number, degrees: number) => {
+        dispatch(rotateImage(index,degrees));
+        console.log("index:",index,"degrees:",degrees);
     };
 
     const handleUpload = () => {
@@ -181,13 +182,13 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
                             <img
                                 src={image.filePreviewUrl}
                                 alt="Preview"
-                                style={{ maxWidth: '100%', maxHeight: '200px' }}
+                                style={{ maxWidth: '100%', maxHeight: '200px',transform: `rotate(${(image.rotation * Math.PI) / 180}rad)` }}
                             />
                         ) : (
                             <div className={classNames(styles.myImage)}></div>
                         )}
                         <button onClick={() => handleRemoveImage(index)}>Remove</button>
-                        <button onClick={() => handleRotateImage(index)}>Rotate</button>
+                        <button onClick={() => handleRotateImage(index, 90)}>Rotate 90°</button>
                         <br />
                         <strong>File Name:</strong> {image.fileName}
                         <br />

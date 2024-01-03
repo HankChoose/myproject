@@ -1,11 +1,4 @@
-
-export interface ImageInfo {
-  file: File;
-  fileName: string;
-  fileSize: number;
-  filePreviewUrl: string;
-  rotation?: number; // 可选的 rotation 属性
-}
+import {ImageInfo } from './typesAction';
 
 export const updateApplytype = (applytype: string) => ({
   type: "UPDATE_APPLYTYPE",
@@ -36,7 +29,13 @@ export const removeImage = (index: number) => ({
   payload: index,
 });
 
-export const rotateImage = (index: number) => ({
-  type: 'ROTATE_IMAGE',
-  payload: index,
-});
+
+export const rotateImage = (index: number, degrees: number) => {
+  return {
+    type: 'ROTATE_IMAGE',
+    payload: {
+      index,
+      degrees,
+    },
+  };
+};

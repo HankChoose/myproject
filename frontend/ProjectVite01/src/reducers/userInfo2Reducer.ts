@@ -1,6 +1,8 @@
+import {ImageInfo,ImageReducerState } from '../actions/typesAction';
+
 const MAX_IMAGES = 3;
 
-const initialState2 = {
+const initialState2: ImageReducerState = {
   applytype: "",
   requirements: "",
   uploadedImages: [],
@@ -12,7 +14,7 @@ type MyAction = {
   payload: any; // 你可以根据需要指定更具体的类型
 };
 
-const userInfo2Reducer = (state = initialState2, action: MyAction) => {
+const userInfo2Reducer = (state: ImageReducerState = initialState2, action: MyAction) => {
   switch (action.type) { 
 
     case "UPDATE_APPLYTYPE":
@@ -54,15 +56,20 @@ const userInfo2Reducer = (state = initialState2, action: MyAction) => {
         ...state,
         uploadedImages: state.uploadedImages.filter((_, index) => index !== action.payload),
       };
-    /*
+
     case 'ROTATE_IMAGE':
+      const { index, degrees } = action.payload;
+      const rotatedImages = [...state.uploadedImages];
+      const currentRotation = rotatedImages[index]?.rotation || 0; // 处理 undefined
+      rotatedImages[index] = {
+        ...rotatedImages[index],
+        rotation: (currentRotation + degrees) % 360,
+      };
       return {
         ...state,
-        uploadedImages: state.uploadedImages.map((image, index) =>
-          index === action.payload ? { ...image, rotation: (image.rotation || 0) + 90 } : image
-        ),
+        uploadedImages: rotatedImages,
       };
-    */
+   
     default:
       return state;
   }
