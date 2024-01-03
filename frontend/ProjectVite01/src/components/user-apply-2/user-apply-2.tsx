@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button,Form }from 'react-bootstrap';
 
 import { useSelector, useDispatch , connect } from "react-redux";
-import { addImage, updateApplytype, updateRequirements } from "../../actions/userInfo2Actions";
+import { addImage,resetImages, updateApplytype, updateRequirements } from "../../actions/userInfo2Actions";
 
 import axios from "axios";
 import React, { useRef, useState, Component, ChangeEvent } from 'react';
@@ -65,42 +65,52 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         const files = event.target.files;
 
         if (files && files.length > 0) {
-        const file = files[0];
+            const file = files[0];
 
-        // 检查文件类型
-        const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/bmp', 'image/tiff', 'image/tif', 'image/svg'];
-        if (!allowedTypes.includes(file.type)) {
-            alert('Please select a valid image file bmp,gif,png,svg,tif/tiff or jpeg/jpg');
-            return;
-        }
+            // 检查文件大小
+            const maxSize = 3 * 1024 * 1024; // 3MB
+            // 检查文件类型
+            const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif', 'image/bmp', 'image/tiff', 'image/tif', 'image/svg'];
+            
+            if (!allowedTypes.includes(file.type)) {
+                alert('Please select a valid image file bmp,gif,png,svg,tif/tiff or jpeg/jpg');
+                return;
 
-        // 检查文件大小
-        const maxSize = 3 * 1024 * 1024; // 3MB
-        if (file.size > maxSize) {
-            alert('File size cannot more than 3MB');
-            setPreviewUrl(null);
-            setSelectedFile(null);
-            return;
-        }
+            }else if (file.size > maxSize){
+                alert('File size cannot more than 3MB');
+                //setPreviewUrl(null);
+                //setSelectedFile(null);
+                return;
+            }else{
 
-        const imageInfo = {
-            file,
-            fileName: file.name,
-            fileSize: file.size,
-        };
-        dispatch(addImage(imageInfo));
-        console.log("imageInfo is:", imageInfo);
-        console.log("imageInfo.userInfo2:",userInfo2);
+                // 读取文件并生成缩略图
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setPreviewUrl(reader.result as string);
+                    console.log("previewUrlpreviewUrlpreviewUrlpreviewUr000000:",previewUrl);
+                    console.log("reader.result as string000000:",reader.result as string);
+                
+                    const imageInfo = {
+                        file,
+                        fileName: file.name,
+                        fileSize: file.size,
+                        filePreviewUrl:reader.result as string,
+                    };
 
-        // 读取文件并生成缩略图
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setPreviewUrl(reader.result as string);
-        };
+                    //dispatch(resetImages());
+                    dispatch(addImage(imageInfo));
+                    console.log("imageInfo is:", imageInfo);
+                    console.log("userInfo2-01:",userInfo2);
+                    console.log("userInfo2-02:",userInfo2);
+                };
 
-        reader.readAsDataURL(file);
-        setSelectedFile(file);
-        
+                reader.readAsDataURL(file);
+                setSelectedFile(file);
+                console.log("previewUrlpreviewUrlpreviewUrlpreviewUrl1111:",previewUrl);
+                console.log("reader.result as string11111:",reader.result as string);
+                
+            }
+
         } else {
             setPreviewUrl(null);
             setSelectedFile(null);
@@ -153,26 +163,33 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
                         
                     </Form.Select>
                 </div>
-            <div className={classNames(styles.FormRow)}> </div>
-            {previewUrl && <img src={previewUrl} alt="Preview" style={{ maxWidth: '100%', maxHeight: '200px' }} />}
+            <div className={classNames(styles.FormRow)}></div>
+            
             <div>
-                <input type="file" accept=".png, .jpg, .jpeg, .gif, .bmp, .tiff, .tif, .svg"  onChange={handleFileChange} />
-
-            </div>
-             <div>
-                <h2>Uploaded Images</h2>
                 <ul>
-                    {userInfo2.uploadedImages.length > 0 && userInfo2.uploadedImages.map((image:any, index) => (
+                    {userInfo2.uploadedImages.map((image:any, index) => (
                     <li key={index}>
+                         {image.filePreviewUrl !== null ? (
+                            <img
+                                src={image.filePreviewUrl}
+                                alt="Preview"
+                                style={{ maxWidth: '100%', maxHeight: '200px' }}
+                            />
+                        ) : (
+                            <div className={classNames(styles.myImage)}></div>
+                        )}
+                        <br />
                         <strong>File Name:</strong> {image.fileName}
                         <br />
-                        <strong>File Size:</strong> {image.fileSize/1048576} M
+                        <strong>File Size:</strong> {image.fileSize/1048576} MB
                         {/* You can also display other properties as needed */}
-                        <br />
-                        <strong>File:</strong> {image.file.name}
+                        
                     </li>
                     ))}
                 </ul>
+            </div>
+            <div>
+                 <h3>Uploaded Images</h3> <input type="file" accept=".png, .jpg, .jpeg, .gif, .bmp, .tiff, .tif, .svg"  onChange={handleFileChange} />
             </div>
             <div className={classNames(styles.FormRow)}> </div>
             <div className={classNames(styles.FormRow)}> </div>

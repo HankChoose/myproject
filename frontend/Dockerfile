@@ -66,6 +66,10 @@ RUN npm install react-table
 RUN npm install --save-dev @types/react-table
 RUN npm install react-modal
 RUN npm install --save-dev @types/react-modal
+RUN npm install react-dropzone
+RUN npm install react-beautiful-dnd
+RUN npm install react react-dom react-dnd react-dnd-html5-backend
+
 
 
 # 构建React应用
@@ -108,6 +112,9 @@ RUN npm install react-table
 RUN npm install --save-dev @types/react-table
 RUN npm install react-modal
 RUN npm install --save-dev @types/react-modal
+RUN npm install react-dropzone
+RUN npm install react-beautiful-dnd
+RUN npm install react react-dom react-dnd react-dnd-html5-backend
 
 # 构建React应用
 RUN npm run build
