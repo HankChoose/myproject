@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button,Form }from 'react-bootstrap';
 
 import { useSelector, useDispatch , connect } from "react-redux";
-import { addImage,resetImages, updateApplytype, updateRequirements } from "../../actions/userInfo2Actions";
+import { addImage,resetImages,removeImage, rotateImage,updateApplytype, updateRequirements } from "../../actions/userInfo2Actions";
 
 import axios from "axios";
 import React, { useRef, useState, Component, ChangeEvent } from 'react';
@@ -117,6 +117,14 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
         }
     };
 
+    const handleRemoveImage = (index: number) => {
+        dispatch(removeImage(index));
+    };
+
+    const handleRotateImage = (index: number) => {
+        dispatch(rotateImage(index));
+    };
+
     const handleUpload = () => {
         // 在这里执行上传逻辑，例如使用fetch或axios发送文件到服务器
 
@@ -178,6 +186,8 @@ export const UserApply2 = ({ className}: UserApply2Props) => {
                         ) : (
                             <div className={classNames(styles.myImage)}></div>
                         )}
+                        <button onClick={() => handleRemoveImage(index)}>Remove</button>
+                        <button onClick={() => handleRotateImage(index)}>Rotate</button>
                         <br />
                         <strong>File Name:</strong> {image.fileName}
                         <br />

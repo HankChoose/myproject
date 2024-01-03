@@ -1,12 +1,6 @@
 const MAX_IMAGES = 3;
 
-interface ImageReducerState {
-  applytype: string;
-  requirements: string;
-  uploadedImages: string[]; // 用于存储待上传图片文件的数组
-}
-
-const initialState2: ImageReducerState = {
+const initialState2 = {
   applytype: "",
   requirements: "",
   uploadedImages: [],
@@ -18,8 +12,9 @@ type MyAction = {
   payload: any; // 你可以根据需要指定更具体的类型
 };
 
-const userInfo2Reducer = (state: ImageReducerState = initialState2, action: MyAction) => {
+const userInfo2Reducer = (state = initialState2, action: MyAction) => {
   switch (action.type) { 
+
     case "UPDATE_APPLYTYPE":
       return { ...state, applytype: action.payload };
     
@@ -54,6 +49,20 @@ const userInfo2Reducer = (state: ImageReducerState = initialState2, action: MyAc
       uploadedImages.splice(endIndex, 0, removed);
       return { ...state, uploadedImages };
 
+    case 'REMOVE_IMAGE':
+      return {
+        ...state,
+        uploadedImages: state.uploadedImages.filter((_, index) => index !== action.payload),
+      };
+    /*
+    case 'ROTATE_IMAGE':
+      return {
+        ...state,
+        uploadedImages: state.uploadedImages.map((image, index) =>
+          index === action.payload ? { ...image, rotation: (image.rotation || 0) + 90 } : image
+        ),
+      };
+    */
     default:
       return state;
   }

@@ -45,12 +45,15 @@ const modalStyles = {
     },
 };
 
+
 /**
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const UserApply = ({ className }: UserApplyProps) => {
-    interface UserData {
+
+    // 设置应用根元素
+   interface UserData {
         id: string;
         username: string;
         email: string;
@@ -160,7 +163,7 @@ export const UserApply = ({ className }: UserApplyProps) => {
             console.error('firstEmail is undefined');
         }
     };
-
+    const rootElement = document.getElementById('root');
     return (
         <div className={classNames(styles.root, className)}>
             <div className={classNames(styles.flowImage)}></div>
@@ -203,6 +206,7 @@ export const UserApply = ({ className }: UserApplyProps) => {
                     ariaHideApp={true}
                     shouldCloseOnOverlayClick={true}
                     style={modalStyles} // 设置模态框的样式
+                   
                 >
                     {/* 在模态框中渲染 Login 组件 */}
                     <SignCard redirectLink="/react/userapply" onLogin={handleLogin} />
