@@ -76,7 +76,7 @@ const userInfo2Reducer = (state: ImageReducerState = initialState2, action: MyAc
     case 'SET_MAIN_IMAGE':
       return {
         ...state,
-        mainImageId: action.payload.imageId,
+        mainImageId: action.payload.index,
       };
    
     default:
