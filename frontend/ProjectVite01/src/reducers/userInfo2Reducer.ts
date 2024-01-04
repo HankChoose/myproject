@@ -1,6 +1,6 @@
 import {ImageInfo,ImageReducerState } from '../actions/typesAction';
 
-const MAX_IMAGES = 3;
+//const MAX_IMAGES = 3;
 
 const initialState2: ImageReducerState = {
   applytype: "",
@@ -26,16 +26,18 @@ const userInfo2Reducer = (state: ImageReducerState = initialState2, action: MyAc
     case 'ADD_IMAGE':
       
       // Check if the maximum number of images has been reached
+      /*
       if (state.uploadedImages.length >= 3) {
-        // If limit reached, do not add the new image
+        //If limit reached, do not add the new image
         return state;
       }
+      */
 
       // If not at the limit, add the new image to the array
       return {
         ...state,
-        //uploadedImages: [...state.uploadedImages, action.payload],
-        uploadedImages: [...state.uploadedImages, action.payload].slice(0, MAX_IMAGES),
+        uploadedImages: [...state.uploadedImages, action.payload],
+        //uploadedImages: [...state.uploadedImages, action.payload].slice(0, MAX_IMAGES),
       };
     
     case 'RESET_IMAGES':

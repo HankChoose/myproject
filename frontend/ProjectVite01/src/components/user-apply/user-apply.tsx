@@ -193,6 +193,7 @@ export const UserApply = ({ className }: UserApplyProps) => {
                 <div className={classNames(styles.FormRow)}></div>
                 <div className={classNames(styles.FormRow)}></div>
                 <div className={classNames(styles.FormRow)}>
+                    <a href="https://zhiyouyuec.com"> <Button variant="primary">Cancel</Button>{' '}</a>
                     <Link to="/react/userapply2" onClick={handleLinkClick}>
                         <Button variant="primary">Next page</Button>{' '}
                     </Link>

@@ -118,9 +118,8 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             </Table>
             <div className={classNames(styles.FormRow)}> </div>
              <div className={classNames(styles.FormRow)}>  
-                <Button variant="primary"  onClick={handleSubmission}>Submit</Button>
                 <Link to="/react/userapply2"><Button variant="primary">Previous page</Button></Link>
-               
+                <Button variant="primary"  onClick={handleSubmission}>Submit</Button>
             </div>         
           
         </div>
