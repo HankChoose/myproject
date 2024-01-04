@@ -82,6 +82,8 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
 
     const handleSetMianImage = (index: number) => {
         dispatch(setMainImage(index));
+        console.log('index:', index);
+        console.log('mainImageIndex:', mainImageIndex);
     };
 
     const handleRemoveImage = (index: number) => {
