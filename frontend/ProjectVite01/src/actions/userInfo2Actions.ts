@@ -31,7 +31,7 @@ export const removeImage = (index: number) => ({
 
 export const setMainImage = (index: number) => ({
   type: 'SET_MAIN_IMAGE',
-  payload: { index },
+  payload: index,
 });
 
 
