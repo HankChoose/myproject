@@ -29,6 +29,11 @@ export const removeImage = (index: number) => ({
   payload: index,
 });
 
+export const setMainImage = (index: number) => ({
+  type: 'SET_MAIN_IMAGE',
+  payload: { index },
+});
+
 
 export const rotateImage = (index: number, degrees: number) => {
   return {

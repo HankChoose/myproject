@@ -12,4 +12,5 @@ export interface ImageReducerState {
   applytype: string;
   requirements: string;
   uploadedImages: ImageInfo[],
+  mainImageId: number,
 }

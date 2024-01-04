@@ -5,6 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useSelector, useDispatch, connect } from 'react-redux';
 import {
     addImage,
+    setMainImage,
     resetImages,
     removeImage,
     rotateImage,
@@ -47,6 +48,7 @@ type RootState2 = {
             filePreviewUrl: null | string;
             rotation: number;
         }[];
+        mainImageId: number;
     };
 };
 
@@ -69,6 +71,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
     console.log('userInfo2-1:', userInfo2);
 
     const dispatch = useDispatch();
+    const mainImageIndex = useSelector((state: RootState2) => state.userInfo2.mainImageId);
 
     if (userInfo2.applytype === null || userInfo2.applytype === '') {
         userInfo2.applytype = 'React';
@@ -76,6 +79,45 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
     } else {
         console.log('Applytype has value is:', userInfo2.applytype);
     }
+
+    const handleSetMianImage = (index: number) => {
+        dispatch(setMainImage(index));
+    };
+
+    const handleRemoveImage = (index: number) => {
+        dispatch(removeImage(index));
+    };
+
+    const handleRotateImage = (index: number, degrees: number) => {
+        dispatch(rotateImage(index, degrees));
+        console.log('index:', index, 'degrees:', degrees);
+    };
+
+    const handleThumbnailHover = (image: any) => {
+        setSelectedImage(image);
+        console.log('handleThumbnailHover0000:');
+    };
+
+    const handleThumbnailLeave = () => {
+        setSelectedImage(null);
+        console.log('handleThumbnailLeave11111:');
+    };
+
+    const handleThumbnailClick = (image: any) => {
+        setSelectedImage(image);
+    };
+
+    const handleLargePictureClose = () => {
+        setSelectedImage(null);
+    };
+
+    const handlePrevImage = () => {
+        setSelectedImageIndex((prevIndex) => (prevIndex - 1 + userInfo2.uploadedImages.length) % userInfo2.uploadedImages.length);
+    };
+
+    const handleNextImage = () => {
+        setSelectedImageIndex((prevIndex) => (prevIndex + 1) % userInfo2.uploadedImages.length);
+    };
 
     const handleApplytypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(updateApplytype(e.target.value));
@@ -170,44 +212,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
             setSelectedFile(null);
         }
     };
-
-    const handleRemoveImage = (index: number) => {
-        dispatch(removeImage(index));
-    };
-
-    const handleRotateImage = (index: number, degrees: number) => {
-        dispatch(rotateImage(index, degrees));
-        console.log('index:', index, 'degrees:', degrees);
-    };
-
-    const handleThumbnailHover = (image: any) => {
-        setSelectedImage(image);
-        console.log('handleThumbnailHover0000:');
-    };
-
-    const handleThumbnailLeave = () => {
-        setSelectedImage(null);
-        console.log('handleThumbnailLeave11111:');
-    };
-
-    const handleThumbnailClick = (image: any) => {
-        setSelectedImage(image);
-    };
-
-    const handleLargePictureClose = () => {
-        setSelectedImage(null);
-    };
-
-    const handlePrevImage = () => {
-        setSelectedImageIndex((prevIndex) => (prevIndex - 1 + userInfo2.uploadedImages.length) % userInfo2.uploadedImages.length);
-    };
-
-    const handleNextImage = () => {
-        setSelectedImageIndex((prevIndex) => (prevIndex + 1) % userInfo2.uploadedImages.length);
-    };
-
-
-   
+    /*
     const handleUpload = () => {
         // 在这里执行上传逻辑，例如使用fetch或axios发送文件到服务器
 
@@ -232,7 +237,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                 });
         }
     };
-
+    */
     return (
         <div className={classNames(styles.root, className)}>
             <div className={classNames(styles.flowImage2)}></div>
@@ -261,7 +266,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         {userInfo2.uploadedImages.map((image: any, index) => (
                             <li key={index}>
                                 {image.filePreviewUrl !== null ? (
-                                    <div className={styles.thumbnailContainer}>
+                                    <div className={index === mainImageIndex ? styles.thumbnailContainerMain:styles.thumbnailContainer}>
                                         <img
                                             src={image.filePreviewUrl}
                                             alt="Preview"
@@ -313,7 +318,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                                     <div className={styles.thumbnailIcon}>
                                         <AiFillHome
                                             title="Set to mian picture"
-                                            onClick={() => handleRemoveImage(index)}
+                                            onClick={() => handleSetMianImage(index)}
                                         />
                                     </div>
                                     <div className={styles.thumbnailIcon}>

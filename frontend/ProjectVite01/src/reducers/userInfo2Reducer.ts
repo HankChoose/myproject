@@ -6,6 +6,7 @@ const initialState2: ImageReducerState = {
   applytype: "",
   requirements: "",
   uploadedImages: [],
+  mainImageId: 0,
 };
 
 // 定义 action 类型
@@ -70,6 +71,12 @@ const userInfo2Reducer = (state: ImageReducerState = initialState2, action: MyAc
       return {
         ...state,
         uploadedImages: rotatedImages,
+      };
+
+    case 'SET_MAIN_IMAGE':
+      return {
+        ...state,
+        mainImageId: action.payload.imageId,
       };
    
     default:

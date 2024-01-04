@@ -99,6 +99,31 @@
   align-items: center;
 }
 
+.thumbnailContainerMain {
+  border: 3px solid gold; /* 设置金边的宽度和颜色 */
+  padding: 5px; /* 可选：设置内边距以增加金边的显示效果 */
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 150px; /* 调整缩略图高度 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.thumbnailIcon > svg {
+  cursor: pointer;
+  font-size: 16px;
+  color: #121212e1;
+  transition: color 0.3s ease; /* 添加颜色过渡效果 */
+}
+
+.thumbnailIcon > svg:hover {
+  color: blue; /* 悬停时的颜色 */
+}
+
+
 .largeImageContainer {
   position: fixed;
   top: 10%;
@@ -167,16 +192,4 @@
   color: blue; /* 悬停时的颜色 */
 }
 
-
-
-.thumbnailIcon > svg {
-  cursor: pointer;
-  font-size: 16px;
-  color: #121212e1;
-  transition: color 0.3s ease; /* 添加颜色过渡效果 */
-}
-
-.thumbnailIcon > svg:hover {
-  color: blue; /* 悬停时的颜色 */
-}
 
