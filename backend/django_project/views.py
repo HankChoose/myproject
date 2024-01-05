@@ -1,7 +1,7 @@
 
 
 import json
-from .models import UserDemand
+from .models import UserApply
 
 from allauth.account.models import EmailAddress, EmailConfirmation
 from allauth.account.views import ConfirmEmailView, LoginView
@@ -37,7 +37,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from .models import UserApply
 from .serializers import UserApplySerializer
 
-from .serializers import UserSerializer, UserDemandSerializer
+from .serializers import UserSerializer, UserApplySerializer
 import os
 from django.conf import settings
 
