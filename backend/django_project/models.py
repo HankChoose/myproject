@@ -29,7 +29,7 @@ class UserApply(models.Model):
     main_image_id = models.IntegerField()
     image_path = models.CharField(max_length=555)
     apply_time = models.DateTimeField(
-        default=timezone.now, blank=True, auto_now_add=True)
+        default=timezone.now, blank=True)
     comment = models.CharField(max_length=555)
     comment2 = models.CharField(max_length=555)
 
