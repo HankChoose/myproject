@@ -37,13 +37,13 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const apiUrl = 'https://zhiyouyuec.com/user-apply-create/';
+    const apiUrl = 'https://zhiyouyuec.com/user-demand-create/';
 
     const userData = {
         username: 'hank2',
         email: 'choose_last@163.com',
-        apply_type: 'AAA',
-        apply_description: 'ABC'
+        demand_type: 'AAA',
+        demand_description: 'ABC'
     };
     
     /*
@@ -78,8 +78,8 @@ export const TestAxiosPost = ({ className }: TestAxiosPostProps) => {
     const userData = {
         username: 'hank',
         email: 'hankchenv@gmail.com',
-        apply_type: 'aaa',
-        apply_description: '123435666asdf',
+        demand_type: 'aaa',
+        demand_description: '123435666asdf',
      
     };
     */

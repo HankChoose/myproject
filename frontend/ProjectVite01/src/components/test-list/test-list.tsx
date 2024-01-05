@@ -20,8 +20,8 @@ export interface TestListProps {
 export const TestList = ({ className }: TestListProps) => {
     interface data {
         id: string;
-        apply_type: string;
-        apply_description: string;
+        demand_type: string;
+        demand_description: string;
         username: string;
         email: string;
         // 其他属性...
@@ -84,7 +84,7 @@ export const TestList = ({ className }: TestListProps) => {
     const fetchData = async () => {
         // 获取保存在本地存储中的令牌
         const token = localStorage.getItem('accessToken');
-        const apiUrl = `${baseUrl}/user-apply-list/`;
+        const apiUrl = `${baseUrl}/user-demand-list/`;
 
         if (token) {
             try {
@@ -164,8 +164,8 @@ export const TestList = ({ className }: TestListProps) => {
                             />
                         </td>
                         <td>{item.id}</td>
-                        <td>{item.apply_type}</td>
-                        <td>{item.apply_description}</td>
+                        <td>{item.demand_type}</td>
+                        <td>{item.demand_description}</td>
                         <td>{item.username}</td>
                         <td>{item.email}</td>
                         <td>

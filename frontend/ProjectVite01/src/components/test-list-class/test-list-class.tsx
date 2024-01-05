@@ -26,7 +26,7 @@ class TestListClass extends Component<{}, TestListClassState> {
   componentDidMount() {
     // 在组件加载时获取数据
     const token = localStorage.getItem('accessToken');
-    const apiUrl = `${baseUrl}/user-apply-list/`;
+    const apiUrl = `${baseUrl}/user-demand-list/`;
     if (token) {
       try {
           const response = fetch(apiUrl, {
