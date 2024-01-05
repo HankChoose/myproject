@@ -186,41 +186,23 @@ class CheckUserAPIView(APIView):
 
 
 # -------------------------------------------->For UserApply
-
-
-@api_view(['POST'])
-# @permission_classes([IsAuthenticated])
 def upload_user_apply(request):
-    user_info = request.data.get('userInfo')
-    user_info_2 = request.data.get('userInfo2')
-
+    username = request.data.get('username')
+    email = request.data.get('email')
+    applytype = request.data.get('applytype')
+    requirements = request.data.get('requirements')
+    mainImageId = request.data.get('mainImageId')
     # 处理其他信息保存到数据库
     user_apply = UserApply.objects.create(
-        username=user_info['username'],
-        email=user_info['email'],
-        apply_type=user_info_2['applytype'],
-        requirements=user_info_2['requirements'],
-        main_image_id=user_info_2['mainImageId']
+        username=username,
+        email=email,
+        apply_type=applytype,
+        requirements=requirements,
+        main_image_id=mainImageId
     )
 
-    # 处理文件上传
-    uploaded_images = user_info_2['uploadedImages']
-    for idx, uploaded_image in enumerate(uploaded_images, start=1):
-        file = uploaded_image['file']
-        if file:
-            file_name = f"{user_apply.id}_image_{idx}.jpg"  # 生成唯一的文件名
-            save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', file_name)
-
-            with open(save_path, 'wb') as destination:
-                for chunk in file.chunks():
-                    destination.write(chunk)
-
-            # 假设你有一个字段存储文件路径
-            user_apply.image_path = save_path
-            user_apply.save()
-
     # 返回主图 ID
-    return Response({'message': 'Data uploaded successfully', 'mainImageId': main_image_id})
+    return Response({'message': 'Data uploaded successfully', 'username': username, 'email': email, 'applytype': applytype, 'requirements': requirements, 'mainImageId': mainImageId})
 
 
 class UserApplyCreateView(generics.CreateAPIView):
