@@ -187,11 +187,11 @@ class CheckUserAPIView(APIView):
 
 # -------------------------------------------->For UserApply
 def upload_user_apply(request):
-    username = request.data.get('username')
-    email = request.data.get('email')
-    applytype = request.data.get('applytype')
-    requirements = request.data.get('requirements')
-    mainImageId = request.data.get('mainImageId')
+    username = request.POST.get('username')
+    email = request.POST.get('email')
+    applytype = request.POST.get('applytype')
+    requirements = request.POST.get('requirements')
+    mainImageId = request.POST.get('mainImageId')
     # 处理其他信息保存到数据库
     user_apply = UserApply.objects.create(
         username=username,
