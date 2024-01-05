@@ -50,10 +50,10 @@ def upload_user_apply(request):
 
     # 处理其他信息保存到数据库
     user_apply = UserApply.objects.create(
-        name=user_info['name'],
+        name=user_info['username'],
         email=user_info['email'],
         apply_type=user_info_2['applytype'],
-        requirements=user_info_2['requirements'],
+        requirements=user_info_2['apply_description'],
         main_image_id=user_info_2['mainImageId']
     )
 
