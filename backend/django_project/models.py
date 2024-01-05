@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class User1(models.Model):
@@ -27,8 +28,10 @@ class UserApply(models.Model):
     requirements = models.TextField()
     main_image_id = models.IntegerField()
     image_path = models.CharField(max_length=555)
-    apply_time = models.DateTimeField(auto_now_add=True)
-    apply_time_updated = models.DateTimeField(auto_now=True)
+    apply_time = models.DateTimeField(
+        default=timezone.now, blank=True, auto_now_add=True)
+    apply_time_updated = models.DateTimeField(
+        default=timezone.now, blank=True, auto_now=True)
     comment = models.CharField(max_length=555)
     comment2 = models.CharField(max_length=555)
 
