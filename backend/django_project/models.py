@@ -30,8 +30,8 @@ class UserApply(models.Model):
     image_path = models.CharField(max_length=555)
     apply_time = models.DateTimeField(
         default=timezone.now, blank=True)
-    comment = models.CharField(max_length=555)
-    comment2 = models.CharField(max_length=555)
+    comment = models.TextField(default='default comment')
+    comment2 = models.TextField(default='default comment2')
 
     def __str__(self):
         return self.username
