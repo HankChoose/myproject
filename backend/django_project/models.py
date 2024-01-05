@@ -30,8 +30,6 @@ class UserApply(models.Model):
     image_path = models.CharField(max_length=555)
     apply_time = models.DateTimeField(
         default=timezone.now, blank=True, auto_now_add=True)
-    apply_time_updated = models.DateTimeField(
-        default=timezone.now, blank=True, auto_now=True)
     comment = models.CharField(max_length=555)
     comment2 = models.CharField(max_length=555)
 
