@@ -157,7 +157,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
         } else {
             // 如果输入为空，阻止导航，并进行一些处理，例如显示错误消息
             event.preventDefault();
-            alert({requirementErrorMessage});
+            alert(requirementErrorMessage);
             console.log('Navigation not allowed - input is empty');
         }
     };
