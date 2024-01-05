@@ -3,6 +3,8 @@ import styles from './user-apply-2.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Form } from 'react-bootstrap';
 import { useSelector, useDispatch, connect } from 'react-redux';
+import { useFormik, FormikValues } from 'formik';
+import * as Yup from 'yup';
 import {
     addImage,
     setMainImage,
@@ -60,7 +62,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
+    const [textInput, setTextInput] = useState('');
 
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
@@ -72,7 +74,8 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
 
     const dispatch = useDispatch();
     const mainImageIndex = useSelector((state: RootState2) => state.userInfo2.mainImageId);
-
+    const  requirementErrorMessage="Between 10 and 2000 characters, cannot contain special characters such as --";
+    
     if (userInfo2.applytype === null || userInfo2.applytype === '') {
         userInfo2.applytype = 'React';
         console.log('Applytype set to:', 'React');
@@ -127,8 +130,36 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
     };
 
     const handleRequirementsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(updateRequirements(e.target.value));
+        
         console.log('Requirements is:', e.target.value);
+        const newValue = e.target.value;
+        console.log('Requirements newValue is:', newValue); 
+        dispatch(updateRequirements(e.target.value));
+       
+        // 在这里进行字符数和特殊字符串的检查
+        if (newValue.length >= 10 && newValue.length <= 2000 && !newValue.includes('--')) {
+            setTextInput(newValue);
+            console.log('Requirements textInput0 is:', newValue); 
+            
+        }else{
+            setTextInput(""); 
+            console.log('Requirements textInput1 is:', ""); 
+        }
+        // 根据输入是否为空动态设置CSS类
+  
+    };
+    const inputClassName = textInput === '' ? 'RequirementError' : ''; 
+
+    const handleNextPageClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        if (textInput !== '') {
+            // 在这里可以进行其他处理，如果需要的话
+            console.log('Navigation allowed');
+        } else {
+            // 如果输入为空，阻止导航，并进行一些处理，例如显示错误消息
+            event.preventDefault();
+            alert({requirementErrorMessage});
+            console.log('Navigation not allowed - input is empty');
+        }
     };
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -175,30 +206,18 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         filePreviewUrl: reader.result as string,
                     };
 
-                    const isDefaultPlaceholder = userInfo2.uploadedImages.some(
-                        (placeholder) =>
-                            placeholder.file === null && placeholder.filePreviewUrl === null
-                    );
-                    console.log('isDefaultPlaceholder:', isDefaultPlaceholder);
-
+                   
                     // 检查已上传的图片数量是否超过3张
                     const uploadedImagesCount = userInfo2.uploadedImages.filter(
                         (image) => image.file !== null || image.filePreviewUrl !== null
                     ).length;
                     if (uploadedImagesCount >= 3) {
                         // 提示用户删除一张图片以腾出空间
-                        alert('已上传的图片数量已超过3张,请删除一张图片以腾出空间');
+                        alert('The number of pictures cannot exceed 3. Please delete any picture and upload a new picture.');
                         return;
                     }
 
-                    if (!isDefaultPlaceholder) {
-                        // 执行上传操作，将新图片添加到 uploadedImages 数组
-                        dispatch(addImage(imageInfo)); // 这里假设你使用了Redux来管理状态，addImage 是一个 action creator
-                    } else {
-                        // 提示用户选择有效的图片，因为新上传的图片是默认占位图片
-                        alert('无法添加更多图片或新图片不符合条件');
-                    }
-
+                    dispatch(addImage(imageInfo)); // 这里假设你使用了Redux来管理状态，addImage 是一个 action creator
                     console.log('imageInfo is:', imageInfo);
                     console.log('userInfo2-01:', userInfo2);
                     console.log('userInfo2-02:', userInfo2);
@@ -240,6 +259,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
         }
     };
     */
+ 
     return (
         <div className={classNames(styles.root, className)}>
             <div className={classNames(styles.flowImage2)}></div>
@@ -261,8 +281,9 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         <option value="Web">Web</option>
                     </Form.Select>
                 </div>
+                <div className={classNames(styles.FormRowSmall)}></div>
+                <h4>Uploaded Images:</h4>
                 <div className={classNames(styles.FormRow)}></div>
-
                 <div>
                     <ul className={styles.imageGrid}>
                         {userInfo2.uploadedImages.map((image: any, index) => (
@@ -357,7 +378,6 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                     </ul>
                 </div>
                 <div>
-                    <h3>Uploaded Images</h3>
                     <input
                         type="file"
                         accept=".png, .jpg, .jpeg, .gif, .bmp, .tiff, .tif, .svg"
@@ -372,16 +392,21 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         rows={3}
                         placeholder="Requirements"
                         value={userInfo2.requirements}
-                        onChange={handleRequirementsChange}
+                        onChange={handleRequirementsChange} 
+                        className={inputClassName}
                     />
+                  
                 </div>
-                <div className={classNames(styles.FormRow)}> </div>
+                <div className={classNames(styles.FormRow)}>
+                  {textInput === '' && <p className={classNames(styles.RequirementErrorMessage)}>{requirementErrorMessage}</p>}
+                </div>
+
                 <div className={classNames(styles.FormRow)}> </div>
                 <div className={classNames(styles.FormRow)}>
                     <Link to="/react/userapply">
                         <Button variant="primary">Previous page</Button>
                     </Link>
-                    <Link to="/react/userapply3">
+                    <Link to="/react/userapply3"  onClick={handleNextPageClick}>
                         <Button variant="primary">Next page</Button>
                     </Link>
                 </div>
