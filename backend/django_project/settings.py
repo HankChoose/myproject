@@ -18,6 +18,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+# Set to an appropriate size (e.g., 10MB)
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 10
 
 LOGGING = {
     'version': 1,
