@@ -23,8 +23,8 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
         id: string;
         username: string;
         email: string;
-        demand_type: string;
-		demand_description: string;
+        apply_type: string;
+		apply_description: string;
         // 其他属性...
     }
 
@@ -53,8 +53,8 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
     const firstid = applyData.length > 0 ? applyData[0].id : undefined;
     const firstusername = applyData.length > 0 ? applyData[0].username : undefined;
     const firstEmail = applyData.length > 0 ? applyData[0].email : null;
-    const firstdemand_type = applyData.length > 0 ? applyData[0].demand_type  : undefined;
-    const firstdemand_description = applyData.length > 0 ? applyData[0].demand_description : null;
+    const firstapply_type = applyData.length > 0 ? applyData[0].apply_type  : undefined;
+    const firstapply_description = applyData.length > 0 ? applyData[0].apply_description : null;
 
     return <div className={classNames(styles.root, className)}>
         <h2>User Apply Content ID: {id}</h2>
@@ -94,11 +94,11 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
                                 </tr>
                                 <tr>
                                     <td>Type:</td>
-                                    <td>{firstdemand_type}</td>
+                                    <td>{firstapply_type}</td>
                                 </tr>
                                  <tr>
                                     <td>Content:</td>
-                                    <td>{firstdemand_description}</td>
+                                    <td>{firstapply_description}</td>
                                 </tr>
                             </tbody>
                         </Table>

@@ -11,8 +11,8 @@ import { FcUp, FcDown } from 'react-icons/fc';
 
 interface Data {
     id: string;
-    demand_type: string;
-    demand_description: string;
+    apply_type: string;
+    apply_description: string;
     username: string;
     email: string;
     [key: string]: string; // 允许使用字符串索引
@@ -37,10 +37,10 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
     // 过滤数据
     const filteredData = data.filter((item: Data) => {
         return (
-            item.demand_description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.apply_description.toLowerCase().includes(searchTerm.toLowerCase()) ||
             item.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
             item.email.toLowerCase().includes(searchTerm.toLowerCase()) || 
-            item.demand_type.toLowerCase().includes(searchTerm.toLowerCase())
+            item.apply_type.toLowerCase().includes(searchTerm.toLowerCase())
             // 添加其他属性的搜索条件...
         );
     });
@@ -98,9 +98,9 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
         return currentData.map((item) => (
             <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.demand_type}</td>
+                <td>{item.apply_type}</td>
                 <td><a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
-                       {item.demand_description}
+                       {item.apply_description}
                     </a></td>
                 <td>{item.username}</td>
                 <td>{item.email}</td>
@@ -139,11 +139,11 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                         <th style={{ width: '80px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('id')} >ID
                             {sortedField === 'id' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
-                        <th style={{ width: '150px' , textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('demand_type')}>Type
-                            {sortedField === 'demand_type' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
+                        <th style={{ width: '150px' , textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('apply_type')}>Type
+                            {sortedField === 'apply_type' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
-                        <th style={{ width: '450px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('demand_description')}>Content
-                            {sortedField === 'demand_description' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
+                        <th style={{ width: '450px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('apply_description')}>Content
+                            {sortedField === 'apply_description' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
                         <th style={{ width: '150px', textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('username')}>Username
                             {sortedField === 'username' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView, PasswordResetView
-from .views import UserDemandContentAPIView, UserProfileView, UserProfileView2, UserDemandCreateView, UserDemandListAPIView, UserDemandListAPIView2, CheckUserAPIView, CustomConfirmEmailView, UserTokenView
+from .views import UserApplyContentAPIView, UserProfileView, UserProfileView2, UserApplyCreateView, UserApplyListAPIView, UserApplyListAPIView2, CheckUserAPIView, CustomConfirmEmailView, UserTokenView
 from . import views
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -35,15 +35,15 @@ urlpatterns = [
          views.CheckEmailExistView, name='check_email_exist'),
     path('check_user/', CheckUserAPIView.as_view(), name='check_user'),
 
-    path('user-demand-create/', UserDemandCreateView.as_view(),
-         name='user_demand_create'),
-    path('user-demand-list/', UserDemandListAPIView.as_view(),
-         name='user_demand_list'),
-    path('user-demand-list2/', UserDemandListAPIView2.as_view(),
-         name='user_demand_list2'),
+    path('user-apply-create/', UserApplyCreateView.as_view(),
+         name='user_apply_create'),
+    path('user-apply-list/', UserApplyListAPIView.as_view(),
+         name='user_apply_list'),
+    path('user-apply-list2/', UserApplyListAPIView2.as_view(),
+         name='user_apply_list2'),
 
     path("user-apply-content/<int:id>",
-         UserDemandContentAPIView.as_view(), name="user_demand_content"),
+         UserApplyContentAPIView.as_view(), name="user_apply_content"),
 
 
     path('receive-data/', views.Receive_data, name='receive_data'),

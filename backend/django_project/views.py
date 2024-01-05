@@ -220,43 +220,43 @@ class CheckUserAPIView(APIView):
             return Response({'exists': False}, status=status.HTTP_200_OK)
 
 
-# -------------------------------------------->For UserDemand
+# -------------------------------------------->For UserApply
 
-class UserDemandCreateView(generics.CreateAPIView):
-    queryset = UserDemand.objects.all()
-    serializer_class = UserDemandSerializer
+class UserApplyCreateView(generics.CreateAPIView):
+    queryset = UserApply.objects.all()
+    serializer_class = UserApplySerializer
 
 
-class UserDemandListAPIView(generics.ListAPIView):
-    # serializer_class = UserDemandSerializer
+class UserApplyListAPIView(generics.ListAPIView):
+    # serializer_class = UserApplySerializer
 
     def get(self, request, *args, **kwargs):
         user_email = request.user.email
-        user_demands = UserDemand.objects.filter(email=user_email)
-        serializer = UserDemandSerializer(user_demands, many=True)
+        user_apply = UserApply.objects.filter(email=user_email)
+        serializer = UserApplySerializer(user_apply, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class UserDemandListAPIView2(generics.ListAPIView):
-    queryset = UserDemand.objects.all()
-    serializer_class = UserDemandSerializer
+class UserApplyListAPIView2(generics.ListAPIView):
+    queryset = UserApply.objects.all()
+    serializer_class = UserApplySerializer
 
 
-class UserDemandContentAPIView(generics.ListAPIView):
-    # serializer_class = UserDemandSerializer
+class UserApplyContentAPIView(generics.ListAPIView):
+    # serializer_class = UserApplySerializer
     def get(self, request, id):
         # user_email = request.user.email
-        user_demands = UserDemand.objects.filter(id=id)
-        serializer = UserDemandSerializer(user_demands, many=True)
+        user_apply = UserApply.objects.filter(id=id)
+        serializer = UserApplySerializer(user_apply, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     '''
-    def user_demand_content(request, demand_type):
-    # user_demands = get_object_or_404(UserDemand, demand_type=demand_type)
-    user_demands = UserDemand.objects.filter(demand_type=demand_type)
-    serializer = UserDemandSerializer(user_demands, many=True)
+    def user_apply_content(request, apply_type):
+    # user_applys = get_object_or_404(UserApply, apply_type=apply_type)
+    user_applys = UserApply.objects.filter(apply_type=apply_type)
+    serializer = UserApplySerializer(user_applys, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
-    # return Response(user_demands, status=status.HTTP_200_OK)
+    # return Response(user_applys, status=status.HTTP_200_OK)
     
     # If the entry does not exist, render an error page
     if content is None:
