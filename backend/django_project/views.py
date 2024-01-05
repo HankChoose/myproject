@@ -194,8 +194,16 @@ def upload_user_apply(request):
     email = request.POST.get('email', '')
     applytype = request.POST.get('applytype', '')
     requirements = request.POST.get('requirements', '')
+    mainImageId = request.POST.get('mainImageId', 0)
 
     # 处理其他文本数据的逻辑...
+    user_apply = UserApply.objects.create(
+        username=username,
+        email=email,
+        apply_type=applytype,
+        requirements=requirements,
+        main_image_id=mainImageId
+    )
 
     # 获取文件数据
     # 'uploadedImages'应该与前端formData.append的键名一致
@@ -205,12 +213,18 @@ def upload_user_apply(request):
         # 处理每个上传的文件
         file_name = f"{username}_image_{idx}.jpg"  # 生成唯一的文件名
         save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', file_name)
-
         with open(save_path, 'wb') as destination:
             for chunk in uploaded_image.chunks():
                 destination.write(chunk)
 
         # 处理文件上传后的逻辑，例如将文件路径保存到数据库
+        # user_file = user_apply.objects.create(username=username, file_path=f'uploads/{file_name}')
+
+            # 假设你有一个字段存储文件路径
+        user_apply.image_path = save_path
+        user_apply.save()
+
+        # 处理其他信息保存到数据库
 
     return JsonResponse({'message': 'Data uploaded successfully'})
 
