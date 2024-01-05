@@ -80,7 +80,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                 `uploadedImages[${index}].filePreviewUrl`,
                   String(uploadedImages.filePreviewUrl)
             );
-            formData.append(`uploadedImages[${index}].rotation`, uploadedImages.rotation.toString());
+            formData.append(`uploadedImages[${index}].rotation`, String(uploadedImage.rotation || 0));
         });
 
         // 添加其他字段
