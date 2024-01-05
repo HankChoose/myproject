@@ -199,7 +199,7 @@ def upload_user_apply(request):
         username=user_info['username'],
         email=user_info['email'],
         apply_type=user_info_2['applytype'],
-        requirements=user_info_2['apply_description'],
+        requirements=user_info_2['requirements'],
         main_image_id=user_info_2['mainImageId']
     )
 
