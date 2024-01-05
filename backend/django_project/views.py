@@ -34,9 +34,47 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes, renderer_classes
 from rest_framework.renderers import JSONRenderer
 from rest_framework.permissions import AllowAny, IsAuthenticated
-
+from .models import UserApply
+from .serializers import UserApplySerializer
 
 from .serializers import UserSerializer, UserDemandSerializer
+import os
+from django.conf import settings
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def upload_user_apply(request):
+    user_info = request.data.get('userInfo')
+    user_info_2 = request.data.get('userInfo2')
+
+    # 处理其他信息保存到数据库
+    user_apply = UserApply.objects.create(
+        name=user_info['name'],
+        email=user_info['email'],
+        apply_type=user_info_2['applytype'],
+        requirements=user_info_2['requirements'],
+        main_image_id=user_info_2['mainImageId']
+    )
+
+    # 处理文件上传
+    uploaded_images = user_info_2['uploadedImages']
+    for idx, uploaded_image in enumerate(uploaded_images, start=1):
+        file = uploaded_image['file']
+        if file:
+            file_name = f"{user_apply.id}_image_{idx}.jpg"  # 生成唯一的文件名
+            save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', file_name)
+
+            with open(save_path, 'wb') as destination:
+                for chunk in file.chunks():
+                    destination.write(chunk)
+
+            # 假设你有一个字段存储文件路径
+            user_apply.image_path = save_path
+            user_apply.save()
+
+    # 返回主图 ID
+    return Response({'message': 'Data uploaded successfully', 'mainImageId': main_image_id})
 
 
 @api_view(['POST'])

@@ -17,15 +17,16 @@ class User2(models.Model):
         return self.email
 
 
-class UserDemand(models.Model):
+class UserApply(models.Model):
     # 使用AutoField定义自动增长的ID字段
     # id = models.AutoField(primary_key=True)
 
     username = models.CharField(max_length=255)
     email = models.EmailField()
-    demand_type = models.CharField(max_length=255)
-    demand_description = models.TextField()
-    imagePath = models.CharField(max_length=255)
+    apply_type = models.CharField(max_length=255)
+    requirements = models.TextField()
+    main_image_id = models.IntegerField()
+    image_path = models.CharField(max_length=555)
 
     def __str__(self):
         return self.username

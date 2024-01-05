@@ -15,6 +15,7 @@ urlpatterns = [
     path('encyclopedia/', include("encyclopedia.urls")),
     path('accounts/', include('allauth.urls')),
 
+    path('upload-user-apply/', views.upload_user_apply, name='upload_user_apply'),
     path('check-verification-status2/',
          views.check_verification_status, name='check_verification_status'),
     path('resend-verification-email/',

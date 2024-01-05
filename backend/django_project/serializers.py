@@ -1,6 +1,6 @@
 from rest_framework import serializers
 # from .models import User
-from .models import UserDemand
+from .models import UserApply
 # Adjust the import based on your User model
 from django.contrib.auth.models import User
 
@@ -19,7 +19,7 @@ class UserSerializer(serializers.ModelSerializer):
 '''
 
 
-class UserDemandSerializer(serializers.ModelSerializer):
+class UserApplySerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserDemand
+        model = UserApply
         fields = '__all__'

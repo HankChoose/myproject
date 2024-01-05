@@ -71,7 +71,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             body: JSON.stringify(requestData),
         };
 
-        const apiUrl = `${baseUrl}/user-demand-create/`;
+        const apiUrl = `${baseUrl}/upload-user-apply/`;
         
         try {
             const response = await axios.post(apiUrl, requestData,config);
