@@ -43,7 +43,7 @@ from django.conf import settings
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def upload_user_apply(request):
     user_info = request.data.get('userInfo')
     user_info_2 = request.data.get('userInfo2')
