@@ -20,10 +20,10 @@ from django.utils.decorators import method_decorator
 from django.http import HttpResponseServerError, HttpResponse
 from django.db import connection
 from django.conf import settings
-from django.views.decorators.csrf import csrf_exempt, csrf_protect, require_POST
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404
-
+from django.views.decorators.http import require_POST
 
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken, obtain_auth_token
