@@ -15,7 +15,7 @@ urlpatterns = [
     path('encyclopedia/', include("encyclopedia.urls")),
     path('accounts/', include('allauth.urls')),
 
-    path('upload-user-apply/', views.upload_user_apply, name='upload_user_apply'),
+
     path('check-verification-status2/',
          views.check_verification_status, name='check_verification_status'),
     path('resend-verification-email/',
@@ -35,6 +35,8 @@ urlpatterns = [
          views.CheckEmailExistView, name='check_email_exist'),
     path('check_user/', CheckUserAPIView.as_view(), name='check_user'),
 
+
+    path('upload-user-apply/', views.upload_user_apply, name='upload_user_apply'),
     path('user-apply-create/', UserApplyCreateView.as_view(),
          name='user_apply_create'),
     path('user-apply-list/', UserApplyListAPIView.as_view(),
