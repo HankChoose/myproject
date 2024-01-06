@@ -218,52 +218,51 @@ def upload_file(request):
 
 
 @require_POST
-def upload_user_apply(request):
+def upload_file(request):
+    if request.method == 'POST':
+        # uploaded_file = ""
+        original_filename = ""
+        new_filename = ""
+        save_path = ""
 
-    # 获取文本数据
-    username = request.POST.get('username', '')
-    email = request.POST.get('email', '')
-    applytype = request.POST.get('applytype', '')
-    requirements = request.POST.get('requirements', '')
-    mainImageId = request.POST.get('mainImageId', 0)
+        # 获取文本数据
+        username = request.POST.get('username', '')
+        email = request.POST.get('email', '')
+        applytype = request.POST.get('applytype', '')
+        requirements = request.POST.get('requirements', '')
+        mainImageId = request.POST.get('mainImageId', 0)
 
-    # 处理其他文本数据的逻辑...
-    user_apply = UserApply.objects.create(
-        username=username,
-        email=email,
-        apply_type=applytype,
-        requirements=requirements,
-        main_image_id=mainImageId
-    )
+        # 处理其他文本数据的逻辑...
+        user_apply = UserApply.objects.create(
+            username=username,
+            email=email,
+            apply_type=applytype,
+            requirements=requirements,
+            main_image_id=mainImageId
+        )
 
-    # uploaded_file = ""
-    original_filename = ""
-    new_filename = ""
-    save_path = ""
-    # 获取文件数据
-    uploaded_images = request.FILES.getlist('uploadedImages')
-    for idx, uploaded_image in enumerate(uploaded_images, start=1):
-        # Extract the original file name and extension
-        original_filename, extension = os.path.splitext(
-            uploaded_image.name)
-        # Generate a new filename with date prefix and index suffix
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        new_filename = f"{timestamp}_{original_filename}_image_{idx}{extension}"
+        uploaded_images = request.FILES.getlist('uploadedImages')
+        for idx, uploaded_image in enumerate(uploaded_images, start=1):
+            # Extract the original file name and extension
+            original_filename, extension = os.path.splitext(
+                uploaded_image.name)
+            # Generate a new filename with date prefix and index suffix
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            new_filename = f"{timestamp}_{original_filename}_image_{idx}{extension}"
 
-        # uploaded_file = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
-        save_path = os.path.join(
-            settings.MEDIA_ROOT, 'uploads', new_filename)
+            # uploaded_file = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
+            save_path = os.path.join(
+                settings.MEDIA_ROOT, 'uploads', new_filename)
 
-        # Save the file to the specified directory
-        with open(save_path, 'wb+') as destination:
-            for chunk in uploaded_image.chunks():
-                destination.write(chunk)
-        user_apply.image_path = save_path
-        user_apply.save()
-
-        # 处理其他信息保存到数据库
-
+            # Save the file to the specified directory
+            with open(save_path, 'wb+') as destination:
+                for chunk in uploaded_image.chunks():
+                    destination.write(chunk)
+            user_apply.image_path = save_path
+            user_apply.save()
         return JsonResponse({'message': 'Data uploaded successfully', 'original_filename': original_filename, 'new_filename': new_filename, 'save_path': save_path})
+
+    return JsonResponse({'error': 'Invalid request.'}, status=400)
 
 
 class UserApplyCreateView(generics.CreateAPIView):
