@@ -192,6 +192,8 @@ class CheckUserAPIView(APIView):
 @csrf_exempt
 def upload_file(request):
     if request.method == 'POST':
+        uploaded_file = ""
+        save_path = ""
         uploaded_images = request.FILES.getlist('uploadedImages')
         for idx, uploaded_image in enumerate(uploaded_images, start=1):
             uploaded_file = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
