@@ -65,32 +65,30 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         formData.append('email', userInfo.email);
         formData.append('applytype', userInfo2.applytype);
         formData.append('requirements', userInfo2.requirements);
+        /*
         if (userInfo2.uploadedImages[0].file) {
             formData.append(`uploadedImages[0].file`, userInfo2.uploadedImages[0].file);
         }
-        /*
+        */
         // 添加文件字段
-        userInfo2.uploadedImages.forEach((uploadedImages, index) => {
-            // 如果有文件，则添加到 FormData 中
-            if (uploadedImages.file) {
-                formData.append(`uploadedImages[${index}].file`, uploadedImages.file);
+        userInfo2.uploadedImages.forEach((uploadedImage, index) => {
+            // If there is a file, append it to FormData
+            if (uploadedImage.file) {
+                formData.append(`uploadedImages[${index}].file`, uploadedImage.file);
             }
 
-            // 添加其他字段
-            formData.append(`uploadedImages[${index}].fileName`, uploadedImages.fileName);
-            formData.append(`uploadedImages[${index}].fileSize`, String(uploadedImages.fileSize));
-            formData.append(
-                `uploadedImages[${index}].filePreviewUrl`,
-                  String(uploadedImages.filePreviewUrl)
-            );
-            formData.append(`uploadedImages[${index}].rotation`, uploadedImages.rotation.toString());
-        });         */
+            // Append other fields
+            formData.append(`uploadedImages[${index}].fileName`, uploadedImage.fileName);
+            formData.append(`uploadedImages[${index}].fileSize`, String(uploadedImage.fileSize));
+            formData.append(`uploadedImages[${index}].filePreviewUrl`, String(uploadedImage.filePreviewUrl));
+            formData.append(`uploadedImages[${index}].rotation`, uploadedImage.rotation.toString());
+        });       
         // 添加其他字段
         formData.append('mainImageId', userInfo2.mainImageId.toString());
         
         // Logging the FormData entries
         formData.forEach((value, key) => {
-            console.log(key, value);
+            console.log('formData['+key+']', value);
         });
         /*
         // 发送请求
