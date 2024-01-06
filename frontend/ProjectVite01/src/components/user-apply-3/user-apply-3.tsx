@@ -78,13 +78,14 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             formData.append(`uploadedImages[${index}].fileSize`, String(uploadedImages.fileSize));
             formData.append(
                 `uploadedImages[${index}].filePreviewUrl`,
-                  String(uploadedImages.filePreviewUrl)
+                String(uploadedImages.filePreviewUrl)
             );
             formData.append(`uploadedImages[${index}].rotation`, String(uploadedImages.rotation || 0));
         });
-
+      
         // 添加其他字段
         formData.append('mainImageId', userInfo2.mainImageId.toString());
+        console.log('formData:', formData);
         // 发送请求
         axios.post(`${baseUrl}/upload-user-apply/`, formData, {
             headers: {
