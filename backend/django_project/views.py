@@ -217,46 +217,50 @@ def upload_file(request):
     return JsonResponse({'error': 'Invalid request.'}, status=400)
 
 
-@require_POST
-def upload_user_apply(request):
-    # 获取文本数据
-    username = request.POST.get('username', '')
-    email = request.POST.get('email', '')
-    applytype = request.POST.get('applytype', '')
-    requirements = request.POST.get('requirements', '')
-    mainImageId = request.POST.get('mainImageId', 0)
+def upload_file(request):
+    if request.method == 'POST':
+        uploaded_files_info = []
+        save_path = ""
 
-    # 处理其他文本数据的逻辑...
-    user_apply = UserApply.objects.create(
-        username=username,
-        email=email,
-        apply_type=applytype,
-        requirements=requirements,
-        main_image_id=mainImageId
-    )
+        for idx in range(len(request.FILES.getlist('uploadedImages'))):
+            uploaded_image = request.FILES.getlist('uploadedImages')[idx]
 
-    # 获取文件数据
-    # 'uploadedImages'应该与前端formData.append的键名一致
-    uploaded_images = request.FILES.getlist('uploadedImages')
+            # Extract information from the uploaded image object
+            file_name = request.POST.get(f'uploadedImages[{idx}][fileName]')
+            file_size = request.POST.get(f'uploadedImages[{idx}][fileSize]')
+            file_preview_url = request.POST.get(
+                f'uploadedImages[{idx}][filePreviewUrl]')
+            rotation = request.POST.get(f'uploadedImages[{idx}][rotation]')
 
-    for idx, uploaded_image in enumerate(uploaded_images, start=1):
-        # 处理每个上传的文件
-        file_name = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
-        save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', file_name)
-        with open(save_path, 'wb') as destination:
-            for chunk in uploaded_image.chunks():
-                destination.write(chunk)
+            # Generate a new filename with date prefix and index suffix
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            _, extension = os.path.splitext(file_name)
+            new_filename = f"{timestamp}_{file_name}_image_{idx}{extension}"
 
-        # 处理文件上传后的逻辑，例如将文件路径保存到数据库
-        # user_file = user_apply.objects.create(username=username, file_path=f'uploads/{file_name}')
+            # Save the file to the specified directory
+            save_path = os.path.join(
+                settings.MEDIA_ROOT, 'uploads', new_filename)
 
-            # 假设你有一个字段存储文件路径
-        user_apply.image_path = save_path
-        user_apply.save()
+            with open(save_path, 'wb+') as destination:
+                for chunk in uploaded_image.chunks():
+                    destination.write(chunk)
 
-        # 处理其他信息保存到数据库
+            # Append information about the uploaded file
+            uploaded_files_info.append({
+                'fileName': file_name,
+                'fileSize': file_size,
+                'filePreviewUrl': file_preview_url,
+                'rotation': rotation,
+                'newFilename': new_filename,
+            })
 
-    return JsonResponse({'message': 'Data uploaded successfully', 'file_name': file_name, 'save_path': save_path})
+        return JsonResponse({
+            'message': 'Files uploaded successfully.',
+            'uploadedFiles': uploaded_files_info,
+            'savePath': save_path,
+        })
+
+    return JsonResponse({'error': 'Invalid request.'}, status=400)
 
 
 class UserApplyCreateView(generics.CreateAPIView):
