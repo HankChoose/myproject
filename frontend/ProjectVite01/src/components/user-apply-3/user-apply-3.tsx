@@ -65,30 +65,32 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         formData.append('email', userInfo.email);
         formData.append('applytype', userInfo2.applytype);
         formData.append('requirements', userInfo2.requirements);
-
+        if (userInfo2.uploadedImages[0].file) {
+            formData.append(`uploadedImages[0].file`, userInfo2.uploadedImages[0].file);
+        }
+        /*
         // 添加文件字段
         userInfo2.uploadedImages.forEach((uploadedImages, index) => {
-            // If there is a file, append it to FormData
+            // 如果有文件，则添加到 FormData 中
             if (uploadedImages.file) {
                 formData.append(`uploadedImages[${index}].file`, uploadedImages.file);
-            } else {
-                // Handle the case when there is no file (if needed)
-                console.log('No file selected for index', index);
             }
-            // Add other fields
+
+            // 添加其他字段
             formData.append(`uploadedImages[${index}].fileName`, uploadedImages.fileName);
             formData.append(`uploadedImages[${index}].fileSize`, String(uploadedImages.fileSize));
-            formData.append(`uploadedImages[${index}].filePreviewUrl`, String(uploadedImages.filePreviewUrl));
-            formData.append(`uploadedImages[${index}].rotation`, String(uploadedImages.rotation || 0));
-        });
+            formData.append(
+                `uploadedImages[${index}].filePreviewUrl`,
+                  String(uploadedImages.filePreviewUrl)
+            );
+            formData.append(`uploadedImages[${index}].rotation`, uploadedImages.rotation.toString());
+        });         */
         // 添加其他字段
         formData.append('mainImageId', userInfo2.mainImageId.toString());
-   
         console.log('formData:', formData);
-        
         /*
         // 发送请求
-        axios.post(`${baseUrl}/upload-user-apply/`, formData, {
+        axios.post(`${baseUrl}/upload-user-apply`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
@@ -100,8 +102,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         .catch((error) => {
             console.error('Error uploading data:', error);
         });
-        */
-    };
+        */  };
 
     return (
         <div className={classNames(styles.root, className)}>
