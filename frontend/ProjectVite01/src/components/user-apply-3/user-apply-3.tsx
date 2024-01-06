@@ -69,6 +69,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         // 添加文件字段
         userInfo2.uploadedImages.forEach((uploadedImages, index) => {
             // If there is a file, append it to FormData
+            console.log('File:', uploadedImages.file);
             if (uploadedImages.file) {
                 formData.append(`uploadedImages[${index}].file`, uploadedImages.file);
             }
