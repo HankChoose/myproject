@@ -242,7 +242,7 @@ def upload_user_apply(request):
         )
 
         uploaded_images = request.FILES.getlist('uploadedImages')
-        for idx, uploaded_image in enumerate(uploaded_images, start=1):
+        for idx, uploaded_image in enumerate(uploaded_images, start=0):
             # Extract the original file name and extension
             original_filename, extension = os.path.splitext(
                 uploaded_image.name)
@@ -258,7 +258,8 @@ def upload_user_apply(request):
             with open(save_path, 'wb+') as destination:
                 for chunk in uploaded_image.chunks():
                     destination.write(chunk)
-            user_apply.image_path = save_path
+            new_image_path = f"image_path{idx}"
+            user_apply.new_image_path = save_path
             user_apply.save()
         return JsonResponse({'message': 'Data uploaded successfully', 'original_filename': original_filename, 'new_filename': new_filename, 'save_path': save_path})
 
