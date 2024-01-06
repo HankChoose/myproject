@@ -68,20 +68,18 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
 
         // 添加文件字段
         userInfo2.uploadedImages.forEach((uploadedImages, index) => {
-            // 如果有文件，则添加到 FormData 中
+            // If there is a file, append it to FormData
             if (uploadedImages.file) {
                 formData.append(`uploadedImages[${index}].file`, uploadedImages.file);
             }
 
-            // 添加其他字段
+            // Add other fields
             formData.append(`uploadedImages[${index}].fileName`, uploadedImages.fileName);
             formData.append(`uploadedImages[${index}].fileSize`, String(uploadedImages.fileSize));
-            formData.append(
-                `uploadedImages[${index}].filePreviewUrl`,
-                String(uploadedImages.filePreviewUrl)
-            );
+            formData.append(`uploadedImages[${index}].filePreviewUrl`, String(uploadedImages.filePreviewUrl));
             formData.append(`uploadedImages[${index}].rotation`, String(uploadedImages.rotation || 0));
         });
+
       
         // 添加其他字段
         formData.append('mainImageId', userInfo2.mainImageId.toString());
