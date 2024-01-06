@@ -87,7 +87,11 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         });         */
         // 添加其他字段
         formData.append('mainImageId', userInfo2.mainImageId.toString());
-        console.log('formData:', formData);
+        
+        // Logging the FormData entries
+        formData.forEach((value, key) => {
+            console.log(key, value);
+        });
         /*
         // 发送请求
         axios.post(`${baseUrl}/upload-user-apply`, formData, {
