@@ -236,14 +236,11 @@ def upload_user_apply(request):
         main_image_id=mainImageId
     )
 
-    # 获取文件数据
-    # 'uploadedImages'应该与前端formData.append的键名一致
-    uploaded_images = request.FILES.getlist('uploadedImages')
     # uploaded_file = ""
     original_filename = ""
     new_filename = ""
     save_path = ""
-
+    # 获取文件数据
     uploaded_images = request.FILES.getlist('uploadedImages')
     for idx, uploaded_image in enumerate(uploaded_images, start=1):
         # Extract the original file name and extension
