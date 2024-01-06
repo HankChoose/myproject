@@ -90,7 +90,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         formData.forEach((value, key) => {
             console.log('formData['+key+']', value);
         });
-        /*
+     
         // 发送请求
         axios.post(`${baseUrl}/upload-user-apply`, formData, {
             headers: {
@@ -104,7 +104,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         .catch((error) => {
             console.error('Error uploading data:', error);
         });
-        */  };
+      };
 
     return (
         <div className={classNames(styles.root, className)}>

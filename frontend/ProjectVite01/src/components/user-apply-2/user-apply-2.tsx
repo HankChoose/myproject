@@ -74,7 +74,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
 
     const dispatch = useDispatch();
     const mainImageIndex = useSelector((state: RootState2) => state.userInfo2.mainImageId);
-    const  requirementErrorMessage="Between 10 and 2000 characters, cannot contain special characters such as --";
+    const requirementErrorMessage="Between 10 and 2000 characters, cannot contain special characters such as --";
     
     if (userInfo2.applytype === null || userInfo2.applytype === '') {
         userInfo2.applytype = 'React';
