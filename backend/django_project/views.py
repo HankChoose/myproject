@@ -227,11 +227,17 @@ def upload_file(request):
                 'newFilename': new_filename,
             })
 
-        return JsonResponse({
-            'message': 'Files uploaded successfully.',
-            'uploadedFiles': uploaded_files_info,
-            'savePath': save_path,
+        return JsonResponse({'message': 'File uploaded successfully.', 'file_name': file_name, 'save_path': save_path})
+        '''
+        # Append information about the uploaded file
+        uploaded_files_info.append({
+            'fileName': file_name,
+            'fileSize': file_size,
+            'filePreviewUrl': file_preview_url,
+            'rotation': rotation,
+            'newFilename': new_filename,
         })
+        '''
 
     return JsonResponse({'error': 'Invalid request.'}, status=400)
 
