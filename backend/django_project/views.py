@@ -187,6 +187,22 @@ class CheckUserAPIView(APIView):
 
 
 # -------------------------------------------->For UserApply
+
+@csrf_exempt  # For simplicity. Use a proper CSRF protection mechanism in production.
+def upload_file(request):
+    if request.method == 'POST' and request.FILES.get('file'):
+        uploaded_file = request.FILES['file']
+        save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', uploaded_file.name)
+
+        # Save the file to the specified directory
+        with open(save_path, 'wb+') as destination:
+            for chunk in uploaded_file.chunks():
+                destination.write(chunk)
+
+        return JsonResponse({'message': 'File uploaded successfully.'})
+
+    return JsonResponse({'error': 'Invalid request.'}, status=400)
+
 @require_POST
 def upload_user_apply(request):
     # 获取文本数据
