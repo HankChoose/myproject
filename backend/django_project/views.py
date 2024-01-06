@@ -196,6 +196,7 @@ def upload_file(request):
         save_path = ""
         file_name = ""
         file_size = 0
+        idx = 0
 
         for idx in range(len(request.FILES.getlist('uploadedImages'))):
             uploaded_image = request.FILES.getlist('uploadedImages')[idx]
@@ -229,7 +230,7 @@ def upload_file(request):
                 'newFilename': new_filename,
             })
 
-        return JsonResponse({'message': 'File uploaded successfully.', 'file_name': file_name, 'save_path': save_path, 'uploaded_image': uploaded_image, 'idx': idx})
+        return JsonResponse({'message': 'File uploaded successfully.', 'file_name': file_name, 'save_path': save_path, 'idx': idx})
         '''
         # Append information about the uploaded file
         uploaded_files_info.append({
