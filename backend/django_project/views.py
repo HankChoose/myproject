@@ -2,7 +2,7 @@
 
 import json
 from .models import UserApply
-
+from datetime import datetime
 from allauth.account.models import EmailAddress, EmailConfirmation
 from allauth.account.views import ConfirmEmailView, LoginView
 from allauth.account.decorators import login_required
@@ -196,9 +196,16 @@ def upload_file(request):
         save_path = ""
         uploaded_images = request.FILES.getlist('uploadedImages')
         for idx, uploaded_image in enumerate(uploaded_images, start=1):
-            uploaded_file = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
+            # Extract the original file name and extension
+            original_filename, extension = os.path.splitext(
+                uploaded_image.name)
+            # Generate a new filename with date prefix and index suffix
+            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+            new_filename = f"{timestamp}_{original_filename}_image_{idx}{extension}"
+
+            # uploaded_file = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
             save_path = os.path.join(
-                settings.MEDIA_ROOT, 'uploads', uploaded_file)
+                settings.MEDIA_ROOT, 'uploads', new_filename)
 
             # Save the file to the specified directory
             with open(save_path, 'wb+') as destination:
