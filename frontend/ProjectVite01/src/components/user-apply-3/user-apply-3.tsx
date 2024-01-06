@@ -81,7 +81,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             formData.append(`uploadedImages[${index}].fileName`, uploadedImage.fileName);
             formData.append(`uploadedImages[${index}].fileSize`, String(uploadedImage.fileSize));
             formData.append(`uploadedImages[${index}].filePreviewUrl`, String(uploadedImage.filePreviewUrl));
-            formData.append(`uploadedImages[${index}].rotation`, uploadedImage.rotation.toString());
+            formData.append(`uploadedImages[${index}].rotation`, String(uploadedImage.rotation || 0));
         });       
         // 添加其他字段
         formData.append('mainImageId', userInfo2.mainImageId.toString());
