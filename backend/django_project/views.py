@@ -226,7 +226,7 @@ def upload_user_apply(request):
 
         # 处理其他信息保存到数据库
 
-    return JsonResponse({'message': 'Data uploaded successfully'})
+    return JsonResponse({'message': 'Data uploaded successfully', 'file_name': file_name, 'save_path': save_path})
 
 
 class UserApplyCreateView(generics.CreateAPIView):
