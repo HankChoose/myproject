@@ -194,6 +194,8 @@ def upload_file(request):
     if request.method == 'POST':
         uploaded_files_info = []
         save_path = ""
+        file_name = ""
+        file_size = 0
 
         for idx in range(len(request.FILES.getlist('uploadedImages'))):
             uploaded_image = request.FILES.getlist('uploadedImages')[idx]
