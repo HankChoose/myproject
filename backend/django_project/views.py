@@ -198,7 +198,7 @@ def upload_file(request):
         for idx, uploaded_image in enumerate(uploaded_images, start=1):
             uploaded_file = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
             save_path = os.path.join(
-                settings.MEDIA_ROOT, 'uploads', uploaded_file.name)
+                settings.MEDIA_ROOT, 'uploads', uploaded_file)
 
             # Save the file to the specified directory
             with open(save_path, 'wb+') as destination:
