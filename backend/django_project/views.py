@@ -192,55 +192,27 @@ class CheckUserAPIView(APIView):
 @csrf_exempt
 def upload_file(request):
     if request.method == 'POST':
-        uploaded_files_info = []
+        uploaded_file = ""
         save_path = ""
-        file_name = ""
-        file_size = 0
-        idx = 0
-
-        for idx in range(len(request.FILES.getlist('uploadedImages'))):
-            uploaded_image = request.FILES.getlist('uploadedImages')[idx]
-
-            # Extract information from the uploaded image object
-            file_name = request.POST.get(f'uploadedImages[{idx}][fileName]')
-            file_size = request.POST.get(f'uploadedImages[{idx}][fileSize]')
-            file_preview_url = request.POST.get(
-                f'uploadedImages[{idx}][filePreviewUrl]')
-            rotation = request.POST.get(f'uploadedImages[{idx}][rotation]')
-
+        uploaded_images = request.FILES.getlist('uploadedImages')
+        for idx, uploaded_image in enumerate(uploaded_images, start=1):
+            # Extract the original file name and extension
+            original_filename, extension = os.path.splitext(
+                uploaded_image.name)
             # Generate a new filename with date prefix and index suffix
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-            _, extension = os.path.splitext(file_name)
-            new_filename = f"{timestamp}_{file_name}_image_{idx}{extension}"
+            new_filename = f"{timestamp}_{original_filename}_image_{idx}{extension}"
 
-            # Save the file to the specified directory
+            # uploaded_file = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
             save_path = os.path.join(
                 settings.MEDIA_ROOT, 'uploads', new_filename)
 
+            # Save the file to the specified directory
             with open(save_path, 'wb+') as destination:
                 for chunk in uploaded_image.chunks():
                     destination.write(chunk)
 
-            # Append information about the uploaded file
-            uploaded_files_info.append({
-                'fileName': file_name,
-                'fileSize': file_size,
-                'filePreviewUrl': file_preview_url,
-                'rotation': rotation,
-                'newFilename': new_filename,
-            })
-
-        return JsonResponse({'message': 'File uploaded successfully.', 'file_name': file_name, 'save_path': save_path, 'idx': idx})
-        '''
-        # Append information about the uploaded file
-        uploaded_files_info.append({
-            'fileName': file_name,
-            'fileSize': file_size,
-            'filePreviewUrl': file_preview_url,
-            'rotation': rotation,
-            'newFilename': new_filename,
-        })
-        '''
+        return JsonResponse({'message': 'File uploaded successfully.', 'uploaded_file': uploaded_file, 'save_path': save_path})
 
     return JsonResponse({'error': 'Invalid request.'}, status=400)
 
