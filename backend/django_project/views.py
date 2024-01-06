@@ -219,6 +219,7 @@ def upload_file(request):
 
 @require_POST
 def upload_user_apply(request):
+
     # 获取文本数据
     username = request.POST.get('username', '')
     email = request.POST.get('email', '')
@@ -238,25 +239,32 @@ def upload_user_apply(request):
     # 获取文件数据
     # 'uploadedImages'应该与前端formData.append的键名一致
     uploaded_images = request.FILES.getlist('uploadedImages')
+    uploaded_file = ""
+    save_path = ""
 
+    uploaded_images = request.FILES.getlist('uploadedImages')
     for idx, uploaded_image in enumerate(uploaded_images, start=1):
-        # 处理每个上传的文件
-        file_name = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
-        save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', file_name)
-        with open(save_path, 'wb') as destination:
+        # Extract the original file name and extension
+        original_filename, extension = os.path.splitext(
+            uploaded_image.name)
+        # Generate a new filename with date prefix and index suffix
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        new_filename = f"{timestamp}_{original_filename}_image_{idx}{extension}"
+
+        # uploaded_file = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
+        save_path = os.path.join(
+            settings.MEDIA_ROOT, 'uploads', new_filename)
+
+        # Save the file to the specified directory
+        with open(save_path, 'wb+') as destination:
             for chunk in uploaded_image.chunks():
                 destination.write(chunk)
-
-        # 处理文件上传后的逻辑，例如将文件路径保存到数据库
-        # user_file = user_apply.objects.create(username=username, file_path=f'uploads/{file_name}')
-
-            # 假设你有一个字段存储文件路径
         user_apply.image_path = save_path
         user_apply.save()
 
         # 处理其他信息保存到数据库
 
-    return JsonResponse({'message': 'Data uploaded successfully', 'file_name': file_name, 'save_path': save_path})
+        return JsonResponse({'message': 'Data uploaded successfully', 'file_name': file_name, 'save_path': save_path})
 
 
 class UserApplyCreateView(generics.CreateAPIView):
