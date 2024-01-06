@@ -188,20 +188,25 @@ class CheckUserAPIView(APIView):
 
 # -------------------------------------------->For UserApply
 
-@csrf_exempt  # For simplicity. Use a proper CSRF protection mechanism in production.
+# For simplicity. Use a proper CSRF protection mechanism in production.
+@csrf_exempt
 def upload_file(request):
-    if request.method == 'POST' and request.FILES.get('file'):
-        uploaded_file = request.FILES['file']
-        save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', uploaded_file.name)
+    if request.method == 'POST':
+        uploaded_images = request.FILES.getlist('uploadedImages')
+        for idx, uploaded_image in enumerate(uploaded_images, start=1):
+            uploaded_file = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
+            save_path = os.path.join(
+                settings.MEDIA_ROOT, 'uploads', uploaded_file.name)
 
-        # Save the file to the specified directory
-        with open(save_path, 'wb+') as destination:
-            for chunk in uploaded_file.chunks():
-                destination.write(chunk)
+            # Save the file to the specified directory
+            with open(save_path, 'wb+') as destination:
+                for chunk in uploaded_file.chunks():
+                    destination.write(chunk)
 
-        return JsonResponse({'message': 'File uploaded successfully.'})
+        return JsonResponse({'message': 'File uploaded successfully.', 'uploaded_file': uploaded_file, 'save_path': save_path})
 
     return JsonResponse({'error': 'Invalid request.'}, status=400)
+
 
 @require_POST
 def upload_user_apply(request):
@@ -227,7 +232,7 @@ def upload_user_apply(request):
 
     for idx, uploaded_image in enumerate(uploaded_images, start=1):
         # 处理每个上传的文件
-        file_name = f"{username}_image_{idx}.jpg"  # 生成唯一的文件名
+        file_name = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
         save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', file_name)
         with open(save_path, 'wb') as destination:
             for chunk in uploaded_image.chunks():
