@@ -202,7 +202,7 @@ def upload_file(request):
 
             # Save the file to the specified directory
             with open(save_path, 'wb+') as destination:
-                for chunk in uploaded_file.chunks():
+                for chunk in uploaded_images.chunks():
                     destination.write(chunk)
 
         return JsonResponse({'message': 'File uploaded successfully.', 'uploaded_file': uploaded_file, 'save_path': save_path})
