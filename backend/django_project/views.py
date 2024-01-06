@@ -229,7 +229,7 @@ def upload_file(request):
                 'newFilename': new_filename,
             })
 
-        return JsonResponse({'message': 'File uploaded successfully.', 'file_name': file_name, 'save_path': save_path})
+        return JsonResponse({'message': 'File uploaded successfully.', 'file_name': file_name, 'save_path': save_path, 'uploaded_image': uploaded_image, 'idx': idx})
         '''
         # Append information about the uploaded file
         uploaded_files_info.append({
