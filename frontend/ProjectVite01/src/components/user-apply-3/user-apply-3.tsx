@@ -74,7 +74,10 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         userInfo2.uploadedImages.forEach((uploadedImage, index) => {
             // If there is a file, append it to FormData
             if (uploadedImage.file) {
-                formData.append(`uploadedImages[${index}].file`, uploadedImage.file);
+                //formData.append(`uploadedImages[${index}].file`, uploadedImage.file);
+                const blob = new Blob([uploadedImage.file], { type: uploadedImage.file.type });
+                formData.append(`uploadedImages[${index}].file`, blob, uploadedImage.fileName);
+            
             }
 
             // Append other fields
