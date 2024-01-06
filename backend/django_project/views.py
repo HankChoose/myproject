@@ -239,7 +239,9 @@ def upload_user_apply(request):
     # 获取文件数据
     # 'uploadedImages'应该与前端formData.append的键名一致
     uploaded_images = request.FILES.getlist('uploadedImages')
-    uploaded_file = ""
+    # uploaded_file = ""
+    original_filename = ""
+    new_filename = ""
     save_path = ""
 
     uploaded_images = request.FILES.getlist('uploadedImages')
@@ -264,7 +266,7 @@ def upload_user_apply(request):
 
         # 处理其他信息保存到数据库
 
-        return JsonResponse({'message': 'Data uploaded successfully', 'file_name': file_name, 'save_path': save_path})
+        return JsonResponse({'message': 'Data uploaded successfully', 'original_filename': original_filename, 'new_filename': new_filename, 'save_path': save_path})
 
 
 class UserApplyCreateView(generics.CreateAPIView):
