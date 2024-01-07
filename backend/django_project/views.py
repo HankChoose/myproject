@@ -311,7 +311,8 @@ def upload_user_apply(request):
             # 处理下一个文件字段
             idx += 1
             field_name = f'uploadedImages[{idx}]'
-            user_apply.save()
+
+        user_apply.save()
 
         return JsonResponse({'message': 'Files uploaded successfully.', 'uploaded_files': uploaded_files})
     else:
