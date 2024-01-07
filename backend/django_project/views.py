@@ -1,5 +1,5 @@
 
-
+import re
 import json
 from .models import UserApply
 from datetime import datetime
@@ -41,6 +41,13 @@ from .serializers import UserApplySerializer
 from .serializers import UserSerializer, UserApplySerializer
 import os
 from django.conf import settings
+
+
+def clean_filename(filename):
+    # 使用正则表达式替换非英文、数字、_、.、&、@之外的字符为空格
+    cleaned_filename = re.sub(r'[^a-zA-Z0-9_.&@]', ' ', filename)
+    # 去除多余空格并返回
+    return cleaned_filename.strip()
 
 
 @api_view(['POST'])
@@ -233,15 +240,17 @@ def upload_file(request):
     if request.method == 'POST':
         uploaded_file = ""
         new_filename = ""
+        cleaned_filename = ""
         save_path = ""
         uploaded_images = request.FILES.getlist('uploadedImages')
         for idx, uploaded_image in enumerate(uploaded_images, start=1):
             # Extract the original file name and extension
             original_filename, extension = os.path.splitext(
                 uploaded_image.name)
+            cleaned_filename = clean_filename(original_filename)
             # Generate a new filename with date prefix and index suffix
             timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-            new_filename = f"{timestamp}_{original_filename}_image_{idx}{extension}"
+            new_filename = f"{timestamp}_{cleaned_filename}_image_{idx}{extension}"
 
             # uploaded_file = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
             save_path = os.path.join(
