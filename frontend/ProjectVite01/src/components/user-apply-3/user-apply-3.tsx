@@ -59,13 +59,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         console.log('userInfo2:', userInfo2);
 
         const formData = new FormData();
-
-        // 添加普通字段
-        formData.append('username', userInfo.name);
-        formData.append('email', userInfo.email);
-        formData.append('applytype', userInfo2.applytype);
-        formData.append('requirements', userInfo2.requirements);
-        /*
+    
         if (userInfo2.uploadedImages[0].file) {
             formData.append(`uploadedImages[0].file`, userInfo2.uploadedImages[0].file);
         }
@@ -82,7 +76,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             }
 
         });   
-        */
+ 
         if (userInfo2.uploadedImages[0].file !== null) {
             formData.append('uploadedImages[0]', userInfo2.uploadedImages[0].file);
         }
