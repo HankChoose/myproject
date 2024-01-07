@@ -282,30 +282,38 @@ def upload_user_apply(request):
             main_image_id=mainImageId
         )
 
-        uploaded_images = request.FILES.getlist('uploadedImages')
-        for idx, uploaded_image in enumerate(uploaded_images, start=0):
-            # Extract the original file name and extension
-            original_filename, extension = os.path.splitext(
-                uploaded_image.name)
-            # Generate a new filename with date prefix and index suffix
-            timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-            new_filename = f"{timestamp}_{original_filename}_image_{idx}{extension}"
+        idx = 0
+        field_name = f'uploadedImages[{idx}]'
+        while field_name in request.FILES:
+            uploaded_images = request.FILES.getlist(field_name)
+            for uploaded_image in uploaded_images:
+                # Extract the original file name and extension
+                original_filename, extension = os.path.splitext(
+                    uploaded_image.name)
+                # Generate a new filename with date prefix and index suffix
+                timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+                new_filename = f"{timestamp}_{original_filename}_image_{idx}{extension}"
 
-            # uploaded_file = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
-            save_path = os.path.join(
-                settings.MEDIA_ROOT, 'uploads', new_filename)
+                save_path = os.path.join(
+                    settings.MEDIA_ROOT, 'uploads', new_filename)
 
-            # Save the file to the specified directory
-            with open(save_path, 'wb+') as destination:
-                for chunk in uploaded_image.chunks():
-                    destination.write(chunk)
-            new_image_path = f'image_path{idx}'
-            # user_apply.new_image_path = save_path
-            setattr(user_apply, new_image_path, save_path)
-            user_apply.save()
-        return JsonResponse({'message': 'Data uploaded successfully', 'original_filename': original_filename, 'new_filename': new_filename, 'save_path': save_path, 'new_image_path': new_image_path})
+                # Save the file to the specified directory
+                with open(save_path, 'wb+') as destination:
+                    for chunk in uploaded_image.chunks():
+                        destination.write(chunk)
 
-    return JsonResponse({'error': 'Invalid request.'}, status=400)
+                new_image_path = f'image_path{idx}'
+                # user_apply.new_image_path = save_path
+                setattr(user_apply, new_image_path, save_path)
+                user_apply.save()
+
+            # 处理下一个文件字段
+            idx += 1
+            field_name = f'uploadedImages[{idx}]'
+
+            return JsonResponse({'message': 'Data uploaded successfully', 'original_filename': original_filename, 'new_filename': new_filename, 'save_path': save_path, 'new_image_path': new_image_path})
+
+        return JsonResponse({'error': 'Invalid request.'}, status=400)
 
 
 class UserApplyCreateView(generics.CreateAPIView):
