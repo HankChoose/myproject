@@ -223,6 +223,7 @@ def upload_user_apply(request):
         # uploaded_file = ""
         original_filename = ""
         new_filename = ""
+        new_image_path = ""
         save_path = ""
 
         # 获取文本数据
@@ -261,7 +262,7 @@ def upload_user_apply(request):
             new_image_path = f"image_path{idx}"
             user_apply.new_image_path = save_path
             user_apply.save()
-        return JsonResponse({'message': 'Data uploaded successfully', 'original_filename': original_filename, 'new_filename': new_filename, 'save_path': save_path})
+        return JsonResponse({'message': 'Data uploaded successfully', 'original_filename': original_filename, 'new_filename': new_filename, 'save_path': save_path, 'new_image_path': new_image_path})
 
     return JsonResponse({'error': 'Invalid request.'}, status=400)
 
