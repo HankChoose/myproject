@@ -107,15 +107,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-            },
-            onUploadProgress: (progressEvent: any) => {
-                if (progressEvent.lengthComputable) {
-                    const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-                console.log(`${percentCompleted}% completed`);
-                } else {
-                    console.log('Uploading...');
-                }
-            },
+            }
         })
         .then((response) => {
             console.log(response.data);
