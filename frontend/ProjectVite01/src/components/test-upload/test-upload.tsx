@@ -31,9 +31,9 @@ export const TestUpload = ({ className }: TestUploadProps) => {
         formData.append(`uploadedImages[${i}]`, files[i]);
     }
 
-    formData.append('applytype', 'YourApplyType');
-    formData.append('requirements', 'YourRequirements');
-    formData.append('mainImageId', 'YourMainImageId');
+    //formData.append('applytype', 'YourApplyType');
+    //formData.append('requirements', 'YourRequirements');
+    //formData.append('mainImageId', 'YourMainImageId');
 
     // Logging the FormData entries
     formData.forEach((value, key) => {
