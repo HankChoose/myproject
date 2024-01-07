@@ -189,7 +189,7 @@ class CheckUserAPIView(APIView):
 # -------------------------------------------->For UserApply
 
 # For simplicity. Use a proper CSRF protection mechanism in production.
-@csrf_exempt
+@require_POST
 def upload_file(request):
     if request.method == 'POST':
         uploaded_file = ""
