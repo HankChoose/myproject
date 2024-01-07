@@ -260,7 +260,7 @@ def upload_file(request):
 @require_POST
 def upload_user_apply(request):
     if request.method == 'POST':
-        # uploaded_file = ""
+        uploaded_files = []
         original_filename = ""
         new_filename = ""
         new_image_path = ""
@@ -282,10 +282,13 @@ def upload_user_apply(request):
             main_image_id=mainImageId
         )
 
+        # 根据前端的命名规则，假设文件字段的名字是 uploadedImages[0]、uploadedImages[1]、...
         idx = 0
         field_name = f'uploadedImages[{idx}]'
+
         while field_name in request.FILES:
             uploaded_images = request.FILES.getlist(field_name)
+
             for uploaded_image in uploaded_images:
                 # Extract the original file name and extension
                 original_filename, extension = os.path.splitext(
@@ -302,17 +305,16 @@ def upload_user_apply(request):
                     for chunk in uploaded_image.chunks():
                         destination.write(chunk)
 
-                new_image_path = f'image_path{idx}'
-                # user_apply.new_image_path = save_path
-                setattr(user_apply, new_image_path, save_path)
-                user_apply.save()
+                # 在 uploaded_files 列表中添加文件路径
+                uploaded_files.append(save_path)
 
-                # 处理下一个文件字段
+            # 处理下一个文件字段
             idx += 1
             field_name = f'uploadedImages[{idx}]'
+            user_apply.save()
 
-            return JsonResponse({'message': 'Data uploaded successfully', 'original_filename': original_filename, 'new_filename': new_filename, 'save_path': save_path, 'new_image_path': new_image_path})
-
+        return JsonResponse({'message': 'Files uploaded successfully.', 'uploaded_files': uploaded_files})
+    else:
         return JsonResponse({'error': 'Invalid request.'}, status=400)
 
 
