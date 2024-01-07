@@ -88,7 +88,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         });
      
         // 发送请求
-        axios.post(`${baseUrl}/upload-user-apply/`, formData, {
+        axios.post(`${baseUrl}/upload2/`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
