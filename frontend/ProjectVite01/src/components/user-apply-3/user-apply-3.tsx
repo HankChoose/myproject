@@ -69,7 +69,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         if (userInfo2.uploadedImages[0].file) {
             formData.append(`uploadedImages[0].file`, userInfo2.uploadedImages[0].file);
         }
-        */
+
         // 添加文件字段
         userInfo2.uploadedImages.forEach((uploadedImage, index) => {
             // If there is a file, append it to FormData
@@ -81,7 +81,19 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             
             }
 
-        });       
+        });   
+        */
+        if (userInfo2.uploadedImages[0].file !== null) {
+            formData.append('uploadedImages[0]', userInfo2.uploadedImages[0].file);
+        }
+        if (userInfo2.uploadedImages[1].file !== null) {
+            formData.append('uploadedImages[1]', userInfo2.uploadedImages[1].file);
+        }
+
+        if (userInfo2.uploadedImages[2].file !== null) {
+            formData.append('uploadedImages[2]', userInfo2.uploadedImages[2].file);
+        }
+   
         // 添加其他字段
         formData.append('mainImageId', userInfo2.mainImageId.toString());
         
