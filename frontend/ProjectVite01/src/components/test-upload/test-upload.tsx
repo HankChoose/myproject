@@ -42,7 +42,7 @@ export const TestUpload = ({ className }: TestUploadProps) => {
 
     try {
         // 发送请求到Django的上传接口
-        const response = await axios.post(`${baseUrl}/upload/`, formData, {
+        const response = await axios.post(`${baseUrl}/upload2/`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
             'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同

@@ -188,7 +188,46 @@ class CheckUserAPIView(APIView):
 
 # -------------------------------------------->For UserApply
 
-# For simplicity. Use a proper CSRF protection mechanism in production.
+@require_POST
+def upload_file2(request):
+    if request.method == 'POST':
+        uploaded_files = []
+
+        # 根据前端的命名规则，假设文件字段的名字是 uploadedImages[0]、uploadedImages[1]、...
+        idx = 0
+        field_name = f'uploadedImages[{idx}]'
+
+        while field_name in request.FILES:
+            uploaded_images = request.FILES.getlist(field_name)
+
+            for uploaded_image in uploaded_images:
+                # Extract the original file name and extension
+                original_filename, extension = os.path.splitext(
+                    uploaded_image.name)
+                # Generate a new filename with date prefix and index suffix
+                timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+                new_filename = f"{timestamp}_{original_filename}_image_{idx}{extension}"
+
+                save_path = os.path.join(
+                    settings.MEDIA_ROOT, 'uploads', new_filename)
+
+                # Save the file to the specified directory
+                with open(save_path, 'wb+') as destination:
+                    for chunk in uploaded_image.chunks():
+                        destination.write(chunk)
+
+                # 在 uploaded_files 列表中添加文件路径
+                uploaded_files.append(save_path)
+
+            # 处理下一个文件字段
+            idx += 1
+            field_name = f'uploadedImages[{idx}]'
+
+        return JsonResponse({'message': 'Files uploaded successfully.', 'uploaded_files': uploaded_files})
+    else:
+        return JsonResponse({'error': 'Invalid request.'}, status=400)
+
+
 @require_POST
 def upload_file(request):
     if request.method == 'POST':
