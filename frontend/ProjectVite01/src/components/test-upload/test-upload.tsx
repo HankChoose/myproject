@@ -10,49 +10,50 @@ export interface TestUploadProps {
 export const TestUpload = ({ className }: TestUploadProps) => {
     const [files, setFiles] = useState<File[]>([]);
     const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
+
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const selectedFiles = e.target.files!;
+        const selectedFiles = e.target.files!;
 
-    setFiles((prevFiles) => {
-        const newFiles: File[] = [];
+        setFiles((prevFiles) => {
+            const newFiles: File[] = [];
 
-        for (let i = 0; i < selectedFiles.length; i++) {
-        newFiles.push(selectedFiles[i]);
-        }
+            for (let i = 0; i < selectedFiles.length; i++) {
+                newFiles.push(selectedFiles[i]);
+            }
 
-        return newFiles;
+            return [...prevFiles, ...selectedFiles];
         });
     };
 
     const handleUpload = async () => {
-    const formData = new FormData();
+        const formData = new FormData();
 
-    for (let i = 0; i < files.length; i++) {
-        formData.append(`uploadedImages[${i}]`, files[i]);
-    }
+        for (let i = 0; i < files.length; i++) {
+            formData.append(`uploadedImages[${i}]`, files[i]);
+        }
 
-    //formData.append('applytype', 'YourApplyType');
-    //formData.append('requirements', 'YourRequirements');
-    //formData.append('mainImageId', 'YourMainImageId');
+        //formData.append('applytype', 'YourApplyType');
+        //formData.append('requirements', 'YourRequirements');
+        //formData.append('mainImageId', 'YourMainImageId');
 
-    // Logging the FormData entries
-    formData.forEach((value, key) => {
-        console.log('formData['+key+']', value);
-    });
-
-    try {
-        // 发送请求到Django的上传接口
-        const response = await axios.post(`${baseUrl}/upload2/`, formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-            'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
-        },
+        // Logging the FormData entries
+        formData.forEach((value, key) => {
+            console.log('formData['+key+']', value);
         });
 
-        console.log(response.data);
-    } catch (error) {
-        console.error('Error uploading files:', error);
-    }
+        try {
+            // 发送请求到Django的上传接口
+            const response = await axios.post(`${baseUrl}/upload2/`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+            },
+            });
+
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error uploading files:', error);
+        }
     };
 
     return (

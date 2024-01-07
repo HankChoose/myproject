@@ -307,9 +307,9 @@ def upload_user_apply(request):
                 setattr(user_apply, new_image_path, save_path)
                 user_apply.save()
 
-            # 处理下一个文件字段
-            idx += 1
-            field_name = f'uploadedImages[{idx}]'
+                # 处理下一个文件字段
+                idx += 1
+                field_name = f'uploadedImages[{idx}]'
 
             return JsonResponse({'message': 'Data uploaded successfully', 'original_filename': original_filename, 'new_filename': new_filename, 'save_path': save_path, 'new_image_path': new_image_path})
 
