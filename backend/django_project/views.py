@@ -205,8 +205,8 @@ def upload_file(request):
             new_filename = f"{timestamp}_{original_filename}_image_{idx}{extension}"
 
             # uploaded_file = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
-           # save_path = os.path.join(
-            # settings.MEDIA_ROOT, 'uploads', new_filename)
+            save_path = os.path.join(
+                settings.MEDIA_ROOT, 'uploads', new_filename)
 
             # Save the file to the specified directory
             with open(save_path, 'wb+') as destination:
