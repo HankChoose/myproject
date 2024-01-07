@@ -271,6 +271,7 @@ def upload_user_apply(request):
     if request.method == 'POST':
         uploaded_files = []
         original_filename = ""
+        cleaned_filename = ""
         new_filename = ""
         new_image_path = ""
         save_path = ""
@@ -302,9 +303,10 @@ def upload_user_apply(request):
                 # Extract the original file name and extension
                 original_filename, extension = os.path.splitext(
                     uploaded_image.name)
+                cleaned_filename = clean_filename(original_filename)
                 # Generate a new filename with date prefix and index suffix
                 timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-                new_filename = f"{timestamp}_{original_filename}_image_{idx}{extension}"
+                new_filename = f"{timestamp}_{cleaned_filename}_image_{idx}{extension}"
 
                 save_path = os.path.join(
                     settings.MEDIA_ROOT, 'uploads', new_filename)
