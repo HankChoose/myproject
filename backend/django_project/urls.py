@@ -36,6 +36,7 @@ urlpatterns = [
     path('check_user/', CheckUserAPIView.as_view(), name='check_user'),
 
     path('upload/', views.upload_file, name='upload_file'),
+    path('upload2/', views.upload_file2, name='upload_file2'),
     path('upload-user-apply/', views.upload_user_apply, name='upload_user_apply'),
     path('user-apply-create/', UserApplyCreateView.as_view(),
          name='user_apply_create'),
