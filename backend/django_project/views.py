@@ -260,7 +260,8 @@ def upload_user_apply(request):
                 for chunk in uploaded_image.chunks():
                     destination.write(chunk)
             new_image_path = f'image_path{idx}'
-            user_apply.new_image_path = save_path
+            # user_apply.new_image_path = save_path
+            setattr(user_apply, new_image_path, save_path)
             user_apply.save()
         return JsonResponse({'message': 'Data uploaded successfully', 'original_filename': original_filename, 'new_filename': new_filename, 'save_path': save_path, 'new_image_path': new_image_path})
 
