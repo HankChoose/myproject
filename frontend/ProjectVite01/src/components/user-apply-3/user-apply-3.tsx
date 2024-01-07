@@ -61,10 +61,10 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         const formData = new FormData();
 
         // 添加普通字段
-        formData.append('username', userInfo.name);
-        formData.append('email', userInfo.email);
-        formData.append('applytype', userInfo2.applytype);
-        formData.append('requirements', userInfo2.requirements);
+        //formData.append('username', userInfo.name);
+        //formData.append('email', userInfo.email);
+        //formData.append('applytype', userInfo2.applytype);
+        //formData.append('requirements', userInfo2.requirements);
 
         // 添加文件字段
         userInfo2.uploadedImages.forEach((uploadedImage, index) => {
@@ -80,7 +80,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         });   
  
         // 添加其他字段
-        formData.append('mainImageId', userInfo2.mainImageId.toString());
+        //formData.append('mainImageId', userInfo2.mainImageId.toString());
         
         // Logging the FormData entries
         formData.forEach((value, key) => {
