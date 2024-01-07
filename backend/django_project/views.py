@@ -308,6 +308,10 @@ def upload_user_apply(request):
                 # 在 uploaded_files 列表中添加文件路径
                 uploaded_files.append(save_path)
 
+            new_image_path = f'image_path{idx}'
+            # user_apply.new_image_path = save_path
+            setattr(user_apply, new_image_path, save_path)
+
             # 处理下一个文件字段
             idx += 1
             field_name = f'uploadedImages[{idx}]'
