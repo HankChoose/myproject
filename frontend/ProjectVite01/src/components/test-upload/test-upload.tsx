@@ -35,6 +35,11 @@ export const TestUpload = ({ className }: TestUploadProps) => {
     formData.append('requirements', 'YourRequirements');
     formData.append('mainImageId', 'YourMainImageId');
 
+    // Logging the FormData entries
+    formData.forEach((value, key) => {
+        console.log('formData['+key+']', value);
+    });
+
     try {
         // 发送请求到Django的上传接口
         const response = await axios.post(`${baseUrl}/upload/`, formData, {
