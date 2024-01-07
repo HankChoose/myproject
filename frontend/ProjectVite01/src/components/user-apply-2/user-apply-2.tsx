@@ -76,6 +76,15 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
     const mainImageIndex = useSelector((state: RootState2) => state.userInfo2.mainImageId);
     const requirementErrorMessage="Between 10 and 2000 characters, cannot contain special characters such as --";
     
+    useEffect(() => {
+        // 从本地存储中获取上一步输入的值
+        const storedText = localStorage.getItem('previousText');
+        if (storedText) {
+            setTextInput(storedText);
+            console.log('Current text in textarea:', textInput);
+        }
+    }, []);
+
     if (userInfo2.applytype === null || userInfo2.applytype === '') {
         userInfo2.applytype = 'React';
         console.log('Applytype set to:', 'React');
