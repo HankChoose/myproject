@@ -193,6 +193,7 @@ class CheckUserAPIView(APIView):
 def upload_file(request):
     if request.method == 'POST':
         uploaded_file = ""
+        new_filename = ""
         save_path = ""
         uploaded_images = request.FILES.getlist('uploadedImages')
         for idx, uploaded_image in enumerate(uploaded_images, start=1):
@@ -204,15 +205,15 @@ def upload_file(request):
             new_filename = f"{timestamp}_{original_filename}_image_{idx}{extension}"
 
             # uploaded_file = f"{uploaded_image}_image_{idx}.jpg"  # 生成唯一的文件名
-            save_path = os.path.join(
-                settings.MEDIA_ROOT, 'uploads', new_filename)
+           # save_path = os.path.join(
+            # settings.MEDIA_ROOT, 'uploads', new_filename)
 
             # Save the file to the specified directory
             with open(save_path, 'wb+') as destination:
                 for chunk in uploaded_image.chunks():
                     destination.write(chunk)
 
-        return JsonResponse({'message': 'File uploaded successfully.', 'uploaded_file': uploaded_file, 'save_path': save_path})
+        return JsonResponse({'message': 'File uploaded successfully.', 'new_filename': new_filename})
 
     return JsonResponse({'error': 'Invalid request.'}, status=400)
 
