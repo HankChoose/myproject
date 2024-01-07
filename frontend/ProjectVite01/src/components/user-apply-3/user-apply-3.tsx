@@ -74,17 +74,13 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         userInfo2.uploadedImages.forEach((uploadedImage, index) => {
             // If there is a file, append it to FormData
             if (uploadedImage.file) {
-                //formData.append(`uploadedImages[${index}].file`, uploadedImage.file);
-                const blob = new Blob([uploadedImage.file], { type: uploadedImage.file.type });
-                formData.append(`uploadedImages[${index}].file`, blob, uploadedImage.fileName);
+                formData.append(`uploadedImages[${index}]`, uploadedImage.file);
+                console.log('uploadedImage.file', uploadedImage.file);
+                //const blob = new Blob([uploadedImage.file], { type: uploadedImage.file.type });
+                //formData.append(`uploadedImages[${index}]`, blob, uploadedImage.fileName);
             
             }
 
-            // Append other fields
-            formData.append(`uploadedImages[${index}].fileName`, uploadedImage.fileName);
-            formData.append(`uploadedImages[${index}].fileSize`, String(uploadedImage.fileSize));
-            formData.append(`uploadedImages[${index}].filePreviewUrl`, String(uploadedImage.filePreviewUrl));
-            formData.append(`uploadedImages[${index}].rotation`, String(uploadedImage.rotation || 0));
         });       
         // 添加其他字段
         formData.append('mainImageId', userInfo2.mainImageId.toString());
