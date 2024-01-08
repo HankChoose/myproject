@@ -54,11 +54,15 @@ def get_image(request, image_info):
     # 构建图片的完整路径
     # image_path = f'app/media/uploads/{image_info}'
     full_path = os.path.join(settings.MEDIA_ROOT, image_info)
+
+    return JsonResponse({'full_path': full_path})
+    '''
     try:
         with open(full_path, 'rb') as image_file:
             return HttpResponse(image_file.read(), content_type='image/jpeg')
     except FileNotFoundError:
         return HttpResponse(status=404)
+    '''
 
 
 @api_view(['POST'])
