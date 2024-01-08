@@ -55,14 +55,13 @@ def get_image(request, image_info):
     image_path = f'uploads/{image_info}'
     full_path = os.path.join(settings.MEDIA_ROOT, image_path)
 
-    return JsonResponse({'full_path': full_path})
-    '''
+    # return JsonResponse({'full_path': full_path})
+
     try:
         with open(full_path, 'rb') as image_file:
             return HttpResponse(image_file.read(), content_type='image/jpeg')
     except FileNotFoundError:
         return HttpResponse(status=404)
-    '''
 
 
 @api_view(['POST'])
