@@ -111,10 +111,11 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                     </a></td>
                 <td>{item.username}</td>
                 <td>{item.email}</td>
-                <td>{item.image_path0}</td>
-                <td>{item.image_path1}</td>
-                <td>{item.image_path2}</td>
-                <td>{item.main_image_id}</td>
+                <td><img src={item.image_path0}/></td>
+                <td><img src={item.image_path1}/></td>
+                <td><img src={item.image_path2}/></td>
+                <td>{item.main_image_id}
+                </td>
                
             </tr>
         ));
