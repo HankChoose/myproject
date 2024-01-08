@@ -33,7 +33,7 @@ urlpatterns = [
     # path('accounts/userprofile/', views.CustomUserProfileView,name='accounts_user_profile'),
     path('check-email-exist/<str:email>/',
          views.CheckEmailExistView, name='check_email_exist'),
-    path('get_image/<str:image_info>/', views.get_image, name='get_image'),
+    path('get-image/<str:image_info>/', views.get_image, name='get_image'),
     path('check_user/', CheckUserAPIView.as_view(), name='check_user'),
 
     path('upload/', views.upload_file, name='upload_file'),
