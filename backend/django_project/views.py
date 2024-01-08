@@ -53,8 +53,7 @@ def clean_filename(filename):
 def get_image(request, image_info):
     # 构建图片的完整路径
     # image_path = f'app/media/uploads/{image_info}'
-    full_path = settings.MEDIA_ROOT/image_info
-
+    full_path = os.path.join(settings.MEDIA_ROOT, image_info)
     try:
         with open(full_path, 'rb') as image_file:
             return HttpResponse(image_file.read(), content_type='image/jpeg')
