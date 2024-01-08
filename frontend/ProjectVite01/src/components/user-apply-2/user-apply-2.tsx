@@ -76,17 +76,14 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
     const mainImageIndex = useSelector((state: RootState2) => state.userInfo2.mainImageId);
     const requirementErrorMessage="Between 10 and 2000 characters, cannot contain special characters such as --";
     
-    //const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
     useEffect(() => {
-
-        //const storedText = localStorage.getItem('previousText');
-        const textarea = document.getElementById('myTextarea') as HTMLTextAreaElement | null;
-            if (textarea) {
-            const currentText = textarea.value;
-            setTextInput(currentText);
-            console.log('Current text in textarea:', currentText);
+    // 在组件挂载后，通过引用获取 textarea 的值
+        if (textareaRef.current) {
+        const currentText = textareaRef.current.value;
+        console.log('Current text in textarea:', currentText);
         }
-    }, []);
+    }, []); // 注意：这里的空数组表示仅在组件挂载时执行
 
     if (userInfo2.applytype === null || userInfo2.applytype === '') {
         userInfo2.applytype = 'React';
@@ -401,7 +398,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                 <div className={classNames(styles.FormRow)}>
                     <Form.Control
                         as="textarea"
-                        id="myTextarea"
+                        ref={textareaRef}
                         rows={3}
                         placeholder="Requirements"
                         value={userInfo2.requirements}
