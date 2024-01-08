@@ -50,6 +50,21 @@ def clean_filename(filename):
     return cleaned_filename.strip()
 
 
+def get_image(request, image_info):
+    # 构建图片的完整路径
+    image_path = os.path.join(settings.MEDIA_ROOT, image_info)
+
+    try:
+        with open(image_path, 'rb') as image_file:
+            # 返回图片的内容
+            response = HttpResponse(
+                image_file.read(), content_type='image/jpeg')
+            return response
+    except FileNotFoundError:
+        # 如果文件未找到，返回 404
+        return HttpResponse(status=404)
+
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def user_change_username(request):
@@ -194,6 +209,7 @@ class CheckUserAPIView(APIView):
 
 
 # -------------------------------------------->For UserApply
+
 
 @require_POST
 def upload_file2(request):
