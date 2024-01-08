@@ -52,7 +52,7 @@ def clean_filename(filename):
 
 def get_image(request, image_info):
     # 构建图片的完整路径
-    image_path = f'/uploads/{image_info}'
+    image_path = f'uploads/{image_info}'
     full_path = os.path.join(settings.MEDIA_ROOT, image_path)
 
     return JsonResponse({'full_path': full_path})
