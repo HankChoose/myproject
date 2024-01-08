@@ -146,12 +146,11 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
         console.log('Requirements is:', e.target.value);
         const newValue = e.target.value;
         console.log('Requirements newValue is:', newValue); 
-        
+        dispatch(updateRequirements(e.target.value));
         // 在这里进行字符数和特殊字符串的检查
         if (newValue.length >= 10 && newValue.length <= 2000 && !newValue.includes('--')) {
             setTextInput(newValue);
             console.log('Requirements textInput0 is:', newValue); 
-            dispatch(updateRequirements(e.target.value));
             //localStorage.setItem('previousText', newValue);
             
         }else{
