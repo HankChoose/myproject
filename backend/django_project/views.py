@@ -52,16 +52,13 @@ def clean_filename(filename):
 
 def get_image(request, image_info):
     # 构建图片的完整路径
-    image_path = os.path.join(settings.MEDIA_ROOT, image_info)
+    image_path = f'app/media/uploads/{image_info}'
+    full_path = settings.MEDIA_ROOT / image_path
 
     try:
-        with open(image_path, 'rb') as image_file:
-            # 返回图片的内容
-            response = HttpResponse(
-                image_file.read(), content_type='image/jpeg')
-            return response
+        with open(full_path, 'rb') as image_file:
+            return HttpResponse(image_file.read(), content_type='image/jpeg')
     except FileNotFoundError:
-        # 如果文件未找到，返回 404
         return HttpResponse(status=404)
 
 
