@@ -104,12 +104,17 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
         return currentData.map((item) => (
             <tr key={item.id}>
                 <td>{item.id}</td>
+               
                 <td>{item.apply_type}</td>
                 <td><a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
                        {item.requirements}
                     </a></td>
                 <td>{item.username}</td>
                 <td>{item.email}</td>
+                <td>{item.image_path0}</td>
+                <td>{item.image_path1}</td>
+                <td>{item.image_path2}</td>
+                <td>{item.main_image_id}</td>
                
             </tr>
         ));
@@ -156,6 +161,22 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                         </th>
                         <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>Email
                             {sortedField === 'email' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
+                        </th>
+
+                        <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>Path0
+                           
+                        </th>
+
+                         <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>Path1
+                           
+                        </th>
+
+                         <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>Path2
+                           
+                        </th>
+
+                         <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>Main
+                           
                         </th>
                        
                         {/* 其他属性的表头... */}
