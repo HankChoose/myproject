@@ -37,10 +37,10 @@ class UserApplyMianSerializer(serializers.ModelSerializer):
 
         # Conditionally include one of the image_path fields based on main_image_id
         if main_image_id == 0:
-            data['image_path'] = instance.image_path0
+            data['image_path_mian'] = instance.image_path0
         elif main_image_id == 1:
-            data['image_path'] = instance.image_path1
+            data['image_path_mian'] = instance.image_path1
         elif main_image_id == 2:
-            data['image_path'] = instance.image_path2
+            data['image_path_mian'] = instance.image_path2
 
         return data
