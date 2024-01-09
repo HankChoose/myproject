@@ -102,15 +102,15 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
         return currentData.map((item) => (
             <tr key={item.id}>
                 <td>{item.id}</td>
-               
+                <td>{item.image_path_mian && <img src={item.image_path_mian.toString()} alt="Image" />}</td>
+              
                 <td>{item.apply_type}</td>
                 <td><a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
                        {item.requirements}
                     </a></td>
                 <td>{item.username}</td>
-                <td>{item.email}</td>
-               <td>{item.image_path_mian && <img src={item.image_path_mian.toString()} alt="Image" />}</td>
-              
+                <td>{item.apply_time.toDateString()}</td>
+               
             </tr>
         ));
     };
@@ -145,6 +145,9 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                         <th style={{ width: '80px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('id')} >ID
                             {sortedField === 'id' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
+                        <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>PathMian
+                           
+                        </th>
                         <th style={{ width: '150px' , textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('apply_type')}>Type
                             {sortedField === 'apply_type' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
@@ -154,12 +157,10 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                         <th style={{ width: '150px', textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('username')}>Username
                             {sortedField === 'username' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
-                        <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>Email
+                        <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('apply_time')}>Time
                             {sortedField === 'email' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
-                        <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>PathMian
-                           
-                        </th>
+                        
 
                        
                         {/* 其他属性的表头... */}
