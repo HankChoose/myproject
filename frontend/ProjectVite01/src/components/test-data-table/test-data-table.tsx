@@ -158,7 +158,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                             {sortedField === 'username' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
                         <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('apply_time')}>Time
-                            {sortedField === 'email' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
+                            {sortedField === 'apply_time' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
                         
 
