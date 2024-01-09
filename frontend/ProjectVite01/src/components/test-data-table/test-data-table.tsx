@@ -123,36 +123,20 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
             );
         }
         
-        {currentData.map(async (item) => {
-            // 在循环体内调用 fetchImageData
-            await fetchImageData(item.image_path_mian.toString());
-
-            return (
-              <tr key={item.id}>
+        return currentData.map((item) => (
+          
+            <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>
-                  {item.image_path_mian && (
-                    <img
-                      src={imageData || item.image_path_mian.toString()}
-                      alt="Image"
-                    />
-                  )}
-                </td>
-                <td>
-                  <a
-                    href={`userapplycontent/${item.id}`}
-                    target="_self"
-                    rel="noopener noreferrer"
-                  >
-                    {item.requirements}
-                  </a>
-                </td>
+                <td>{item.image_path_mian && <img src={item.image_path_mian.toString()} alt="Image" />}</td>
+                <td><a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
+                       {item.requirements}
+                    </a></td>
                 <td>{item.apply_type}</td>
                 <td>{item.username}</td>
                 <td>{item.apply_time.toLocaleString()}</td>
-              </tr>
-            );
-        })}
+               
+            </tr>
+        ));
     };
 
    
