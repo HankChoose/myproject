@@ -36,7 +36,7 @@ from rest_framework.decorators import api_view, permission_classes, renderer_cla
 from rest_framework.renderers import JSONRenderer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .models import UserApply
-from .serializers import UserApplySerializer
+from .serializers import UserApplySerializer, UserApplyMianSerializer
 
 from .serializers import UserSerializer, UserApplySerializer
 import os
@@ -336,7 +336,7 @@ def upload_user_apply(request):
 
             new_image_path = f'image_path{idx}'
             # user_apply.new_image_path = save_path
-            setattr(user_apply, new_image_path, save_path)
+            setattr(user_apply, new_image_path, new_filename)
 
             # 处理下一个文件字段
             idx += 1
@@ -354,7 +354,7 @@ class UserApplyCreateView(generics.CreateAPIView):
     serializer_class = UserApplySerializer
 
 
-class UserApplyListAPIView(generics.ListAPIView):
+class UserApplyUserListAPIView(generics.ListAPIView):
     # serializer_class = UserApplySerializer
 
     def get(self, request, *args, **kwargs):
@@ -364,9 +364,14 @@ class UserApplyListAPIView(generics.ListAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class UserApplyListAPIView2(generics.ListAPIView):
+class UserApplyAllListAPIView(generics.ListAPIView):
     queryset = UserApply.objects.all()
     serializer_class = UserApplySerializer
+
+
+class UserApplyMianListAPIView(generics.ListAPIView):
+    queryset = UserApply.objects.all()
+    serializer_class = UserApplyMianSerializer
 
 
 class UserApplyContentAPIView(generics.ListAPIView):

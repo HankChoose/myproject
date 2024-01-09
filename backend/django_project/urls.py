@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from allauth.account.views import LoginView, LogoutView, SignupView, PasswordChangeView, PasswordResetView
-from .views import UserApplyContentAPIView, UserProfileView, UserProfileView2, UserApplyCreateView, UserApplyListAPIView, UserApplyListAPIView2, CheckUserAPIView, CustomConfirmEmailView, UserTokenView
+from .views import UserApplyContentAPIView, UserProfileView, UserProfileView2, UserApplyCreateView, UserApplyUserListAPIView, UserApplyAllListAPIView, UserApplyMianListAPIView, CheckUserAPIView, CustomConfirmEmailView, UserTokenView
 from . import views
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -41,10 +41,12 @@ urlpatterns = [
     path('upload-user-apply/', views.upload_user_apply, name='upload_user_apply'),
     path('user-apply-create/', UserApplyCreateView.as_view(),
          name='user_apply_create'),
-    path('user-apply-list/', UserApplyListAPIView.as_view(),
-         name='user_apply_list'),
-    path('user-apply-list2/', UserApplyListAPIView2.as_view(),
-         name='user_apply_list2'),
+    path('user-apply-user-list/', UserApplyUserListAPIView.as_view(),
+         name='user_apply-user_list'),
+    path('user-apply-all-list/', UserApplyAllListAPIView2.as_view(),
+         name='user-apply-all-list'),
+    path('user-apply-mian-list/', UserApplyMianListAPIView.as_view(),
+         name='user_apply_mian_list'),
 
     path("user-apply-content/<int:id>",
          UserApplyContentAPIView.as_view(), name="user_apply_content"),

@@ -28,11 +28,11 @@ class UserApply(models.Model):
     requirements = models.TextField()
     main_image_id = models.IntegerField()
     image_path0 = models.CharField(
-        max_length=555, default='/media/uploads/defaultList.png')
+        max_length=555, default='defaultList.png')
     image_path1 = models.CharField(
-        max_length=555, default='/media/uploads/defaultList.png')
+        max_length=555, default='defaultList.png')
     image_path2 = models.CharField(
-        max_length=555, default='/media/uploads/defaultList.png')
+        max_length=555, default='defaultList.png')
     apply_time = models.DateTimeField(
         default=timezone.now, blank=True)
     comment = models.TextField(default='default comment')

@@ -23,3 +23,24 @@ class UserApplySerializer(serializers.ModelSerializer):
     class Meta:
         model = UserApply
         fields = '__all__'
+
+
+class UserApplyMianSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserApply
+        fields = ['id', 'apply_type', 'requirements', 'username',
+                  'email', 'apply_time', 'comment', 'comment2']
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        main_image_id = instance.main_image_id
+
+        # Conditionally include one of the image_path fields based on main_image_id
+        if main_image_id == 0:
+            data['image_path'] = instance.image_path0
+        elif main_image_id == 1:
+            data['image_path'] = instance.image_path1
+        elif main_image_id == 2:
+            data['image_path'] = instance.image_path2
+
+        return data
