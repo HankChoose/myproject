@@ -36,6 +36,7 @@ import { TestChangePW } from './components/test-change-pw/test-change-pw';
 import { TestRequest } from './components/test-request/test-request';
 import { TestUpload } from './components/test-upload/test-upload';
 import { TestGetImages } from './components/test-get-images/test-get-images';
+import { TestGetImages2 } from './components/test-get-images-2/test-get-images-2';
 //import { TopbarProvider } from './TopbarContext';
 // 导入根 reducer
 const store = createStore(rootReducer);
@@ -75,6 +76,7 @@ function App() {
                             <Route path="/react/testlisdatatable" element={<TestListDataTable />} />
                             <Route path="/react/testupload" element={<TestUpload />} />
                             <Route path="/react/testgetimages" element={<TestGetImages />} />
+                            <Route path="/react/testgetimages2" element={<TestGetImages2 />} />
                             <Route path="/react/page1" element={<Page1 />}>
                                 <Route path="test1" element={<Test1 />} />
                                 <Route path="test2" element={<Test2 />} />
@@ -89,9 +91,7 @@ function App() {
 
                 </Router>
             </div>
-            
-
-
+ 
         </AuthProvider>
     );
 

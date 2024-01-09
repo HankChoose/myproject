@@ -7,6 +7,7 @@ import { Table, Button } from 'react-bootstrap';
 import { FromRowRight } from '../from-row-right/from-row-right';
 import { FromRowSeparate } from '../from-row-separate/from-row-separate';
 import { FcUp, FcDown } from 'react-icons/fc';
+import { baseUrl } from '../../constants';
 
 interface Data {
   id: string;
@@ -37,6 +38,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
     const [pageSize, setPageSize] = useState(5); // 每页显示的数据量
     const [sortOrder, setSortOrder] = useState('desc'); // 'asc' 或 'desc'
     const [sortedField, setSortedField] = useState('id'); // 按照哪个字段排序
+    const [imageData, setImageData] = useState<string | null>(null);
 
     // 过滤数据
     const filteredData = data.filter((item: Data) => {
@@ -86,6 +88,28 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
         setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
     };
 
+    // Assume fetchAllImageData is defined as in the previous response
+    const fetchImageData = async (imageInfo:string) => {
+        try {
+
+            const api_url=`${baseUrl}/get-image/${imageInfo}/`
+            const response = await axios.get(`${baseUrl}/get-image/${imageInfo}/`, {
+                responseType: 'arraybuffer',
+            });
+
+            const base64Image = btoa(
+                new Uint8Array(response.data).reduce(
+                    (data, byte) => data + String.fromCharCode(byte),
+                    ''
+                )
+            );
+
+            const imageDataUrl = `data:image/jpeg;base64,${base64Image}`;
+            setImageData(imageDataUrl);
+        } catch (error) {
+            console.error('Error fetching image data:', error);
+        }
+    };
 
     const renderTableBody = () => {
         if (filteredData.length === 0) {
@@ -98,25 +122,42 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
 
             );
         }
+        
+        {currentData.map(async (item) => {
+            // 在循环体内调用 fetchImageData
+            await fetchImageData(item.image_path_mian.toString());
 
-        return currentData.map((item) => (
-            <tr key={item.id}>
+            return (
+              <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{item.image_path_mian && <img src={item.image_path_mian.toString()} alt="Image" />}</td>
-              
+                <td>
+                  {item.image_path_mian && (
+                    <img
+                      src={imageData || item.image_path_mian.toString()}
+                      alt="Image"
+                    />
+                  )}
+                </td>
+                <td>
+                  <a
+                    href={`userapplycontent/${item.id}`}
+                    target="_self"
+                    rel="noopener noreferrer"
+                  >
+                    {item.requirements}
+                  </a>
+                </td>
                 <td>{item.apply_type}</td>
-                <td><a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
-                       {item.requirements}
-                    </a></td>
                 <td>{item.username}</td>
                 <td>{item.apply_time.toLocaleString()}</td>
-               
-            </tr>
-        ));
+              </tr>
+            );
+        })}
     };
 
+   
+
     return (
-      
         <div className={classNames(styles.root)}>
             <FromRowSeparate>
                 <div>
@@ -145,14 +186,14 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                         <th style={{ width: '80px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('id')} >ID
                             {sortedField === 'id' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
-                        <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>PathMian
+                        <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('image_path_mian')}>PathMian
                            
-                        </th>
-                        <th style={{ width: '150px' , textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('apply_type')}>Type
-                            {sortedField === 'apply_type' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
                         <th style={{ width: '450px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('requirements')}>Content
                             {sortedField === 'requirements' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
+                        </th>
+                         <th style={{ width: '150px' , textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('apply_type')}>Type
+                            {sortedField === 'apply_type' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
                         <th style={{ width: '150px', textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('username')}>Username
                             {sortedField === 'username' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}

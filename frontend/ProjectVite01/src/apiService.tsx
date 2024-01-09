@@ -5,12 +5,6 @@ import axios, { AxiosResponse } from 'axios';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate} from 'react-router-dom';
 
-/*
-1.Cross-Site Request Forgery csrfToken
-2.Authorization token
-3.Content-Type 'application/json','multipart/form-data'
-4.
-*/
 
 const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token Cross-Site Request Forgery
 
@@ -22,6 +16,32 @@ const handleError = (error:any) => {
   const errorResponse = { error: true, message: error };
   return errorResponse;
 };
+
+
+/*
+//////////////////////////////////axios_json_data_post 
+responseType: 'arraybuffer'
+1. TestGetImages
+2.(`${baseUrl}/get-image/${imageInfo}/`
+*/
+const axios_image_file_get = async (url:string) => { 
+  const console_title='axios_image_file_get';
+  try {
+    const response = await axios.get(`${baseUrl}${url}`, {
+        responseType: 'arraybuffer',
+    });
+
+    return response;
+    
+  } catch (error) {
+      console.error(console_title+ ' error:', error);
+      return handleError(console_title+ ' error:'+ error);
+      
+  }
+};
+
+
+
 
 
 /*
@@ -255,4 +275,4 @@ const axios_json_data_get = async (url:string) => {
   }
 };
 
-export { fetch_data_token_get, fetch_data_token_post , axios_form_data_post, axios_json_data_post ,axios_json_data_get , fetch_data_csrf_get};
+export {axios_image_file_get, fetch_data_token_get, fetch_data_token_post , axios_form_data_post, axios_json_data_post ,axios_json_data_get , fetch_data_csrf_get};

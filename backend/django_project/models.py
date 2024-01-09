@@ -33,8 +33,11 @@ class UserApply(models.Model):
         max_length=555, default='defaultList.png')
     image_path2 = models.CharField(
         max_length=555, default='defaultList.png')
+    # apply_time = models.DateTimeField(
+    # default=timezone.now, blank=True)
     apply_time = models.DateTimeField(
-        default=timezone.now, blank=True)
+        default=timezone.localtime, blank=True
+    )
     comment = models.TextField(default='default comment')
     comment2 = models.TextField(default='default comment2')
 
