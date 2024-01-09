@@ -9,21 +9,19 @@ import { FromRowSeparate } from '../from-row-separate/from-row-separate';
 import { FcUp, FcDown } from 'react-icons/fc';
 
 interface Data {
-    id: string;
-    apply_type: string;
-    requirements: string;
-    username: string;
-    email: string;
-    main_image_id: string | number;
-	image_path0: string;
-	image_path1: string;
-	image_path2: string;
-	apply_time: Date;
-	comment: string;
-	comment2: string;
-    [key: string]: string | number | Date; // 允许使用字符串索引
-    // 其他属性...
+  id: string;
+  apply_type: string;
+  requirements: string;
+  username: string;
+  email: string;
+  image_path_main: string;
+  apply_time: Date; // Change the type to Date
+  comment: string;
+  comment2: string;
+  [key: string]: string | Date; // Adjust the index signature if needed
+  // Other properties...
 }
+
 
 export interface TestDataTableProps {
     className?: string;
@@ -111,12 +109,8 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                     </a></td>
                 <td>{item.username}</td>
                 <td>{item.email}</td>
-                <td><img src={item.image_path0}/></td>
-                <td><img src={item.image_path1}/></td>
-                <td><img src={item.image_path2}/></td>
-                <td>{item.main_image_id}
-                </td>
-               
+               <td>{item.image_path_mian && <img src={item.image_path_mian.toString()} alt="Image" />}</td>
+              
             </tr>
         ));
     };
@@ -163,22 +157,10 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                         <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>Email
                             {sortedField === 'email' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
-
-                        <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>Path0
+                        <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>PathMian
                            
                         </th>
 
-                         <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>Path1
-                           
-                        </th>
-
-                         <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>Path2
-                           
-                        </th>
-
-                         <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('email')}>Main
-                           
-                        </th>
                        
                         {/* 其他属性的表头... */}
                     </tr>

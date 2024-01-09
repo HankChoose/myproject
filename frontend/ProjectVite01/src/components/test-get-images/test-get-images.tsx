@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import styles from './test-get-images.module.scss';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { baseUrl } from '../../constants';
 
 export interface TestGetImagesProps {
     className?: string;
@@ -14,11 +15,11 @@ export interface TestGetImagesProps {
  */
 export const TestGetImages: React.FC<TestGetImagesProps> = ({ className }: TestGetImagesProps) => {
     const [imageData, setImageData] = useState<string | null>(null);
-    const imageInfo = '20240108_070912__20210715144345_image_1.jpg';
+    const imageInfo = '20240108_070912__20210715144349_image_2.jpg';
     useEffect(() => {
         const fetchImageData = async () => {
             try {
-                const response = await axios.get(`/api/get_image/${imageInfo}`, {
+                const response = await axios.get(`${baseUrl}/get-image/${imageInfo}/`, {
                     responseType: 'arraybuffer',
                 });
 
@@ -38,10 +39,28 @@ export const TestGetImages: React.FC<TestGetImagesProps> = ({ className }: TestG
 
         fetchImageData();
     }, [imageInfo]);
-
+    
+    const handleThumbnailClick = (image: any) => {
+        
+    };
     return (
         <div className={classNames(styles.root, className)}>
-            {imageData && <img src={imageData!} alt="Image" />}
+            
+            <div className={styles.thumbnailContainer}>
+                <img
+                    src={imageData!}
+                    alt="Preview"
+                    //onMouseEnter={() => handleThumbnailHover(image.filePreviewUrl)}
+                    style={{
+                        maxWidth: '90%',
+                        maxHeight: '90%',
+                        cursor: 'pointer',
+                    }}
+                    onClick={() =>
+                        handleThumbnailClick(imageData)
+                    }
+                />
+            </div>
         </div>
     );
 };

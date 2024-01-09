@@ -16,10 +16,7 @@ interface Data {
     requirements: string;
     username: string;
     email: string;
-    main_image_id: string | number;
-	image_path0: string;
-	image_path1: string;
-	image_path2: string;
+	image_path_mian: string;
 	apply_time: Date;
 	comment: string;
 	comment2: string;
@@ -28,12 +25,29 @@ interface Data {
 }
 
 const sampleData = [
-    { id: '1', apply_type: 'apply_type 1', requirements: 'Description 1', username: 'hank1', email: 'hank1@example.com' },
-    { id: '2', apply_type: 'apply_type 2', requirements: 'Description 2', username: 'Ray2', email: 'ray2@example.com' },
-    { id: '3', apply_type: 'apply_type 3', requirements: 'Description 3', username: 'hank1', email: 'hank1@example.com' },
-    { id: '4', apply_type: 'apply_type 4', requirements: 'Description 4', username: 'Ray2', email: 'ray2@example.com' },
-    { id: '5', apply_type: 'apply_type 5', requirements: 'Description 5', username: 'hank1', email: 'hank1@example.com' },
-    { id: '6', apply_type: 'apply_type 6', requirements: 'Description 6', username: 'Ray2', email: 'ray2@example.com' },
+  {
+    id: '1',
+    apply_type: 'apply_type 1',
+    requirements: 'Description 1Description 1Description 1Description 1Description 1Description 1',
+    username: 'hank1',
+    email: 'hank1@example.com',
+    image_path_main: 'apply_type 1',
+    apply_time: new Date('2024-01-09'), // Convert the date string to Date object
+    comment: 'apply_type 1',
+    comment2: 'apply_type 1'
+  },
+  {
+    id: '2',
+    apply_type: 'apply_type 2',
+    requirements: 'Description 1Description 1Description 1Description 1Description 1Description 1',
+    username: 'hank2',
+    email: 'hank1@example.com',
+    image_path_main: 'apply_type 1',
+    apply_time: new Date('2024-01-09'), // Convert the date string to Date object
+    comment: 'apply_type 1',
+    comment2: 'apply_type 1'
+  },
+  // ... other data objects
 ];
 
 export const TestListDataTable = ({ className }: TestListDataTableProps) => {
@@ -44,7 +58,7 @@ export const TestListDataTable = ({ className }: TestListDataTableProps) => {
     const [data, setData] = useState<Data[]>([]);
     const fetchData = async () => {
         // 获取保存在本地存储中的令牌
-        const apiUrl = `/user-apply-list2/`;
+        const apiUrl = `/user-apply-mian-list/`;
         try {
             const data = await fetch_data_csrf_get(apiUrl);
             if (data.error) {
@@ -61,6 +75,6 @@ export const TestListDataTable = ({ className }: TestListDataTableProps) => {
     };
 
     return <div className={classNames(styles.root, className)}> 
-        <TestDataTable data={data} />
+        <TestDataTable data={sampleData} />
     </div>;
 };
