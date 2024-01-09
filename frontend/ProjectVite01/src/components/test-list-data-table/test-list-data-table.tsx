@@ -11,44 +11,19 @@ export interface TestListDataTableProps {
 }
 
 interface Data {
-    id: string;
-    apply_type: string;
-    requirements: string;
-    username: string;
-    email: string;
-	image_path_mian: string;
-	apply_time: Date;
-	comment: string;
-	comment2: string;
-    [key: string]: string | number | Date; // 允许使用字符串索引
-    // 其他属性...
+  id: string;
+  apply_type: string;
+  requirements: string;
+  username: string;
+  email: string;
+  image_path_main: string;
+  apply_time: Date; // Change the type to Date
+  comment: string;
+  comment2: string;
+  [key: string]: string | Date; // Adjust the index signature if needed
+  // Other properties...
 }
 
-const sampleData = [
-  {
-    id: '1',
-    apply_type: 'apply_type 1',
-    requirements: 'Description 1Description 1Description 1Description 1Description 1Description 1',
-    username: 'hank1',
-    email: 'hank1@example.com',
-    image_path_main: 'apply_type 1',
-    apply_time: new Date('2024-01-09'), // Convert the date string to Date object
-    comment: 'apply_type 1',
-    comment2: 'apply_type 1'
-  },
-  {
-    id: '2',
-    apply_type: 'apply_type 2',
-    requirements: 'Description 1Description 1Description 1Description 1Description 1Description 1',
-    username: 'hank2',
-    email: 'hank1@example.com',
-    image_path_main: 'apply_type 1',
-    apply_time: new Date('2024-01-09'), // Convert the date string to Date object
-    comment: 'apply_type 1',
-    comment2: 'apply_type 1'
-  },
-  // ... other data objects
-];
 
 export const TestListDataTable = ({ className }: TestListDataTableProps) => {
     
@@ -75,6 +50,6 @@ export const TestListDataTable = ({ className }: TestListDataTableProps) => {
     };
 
     return <div className={classNames(styles.root, className)}> 
-        <TestDataTable data={sampleData} />
+        <TestDataTable data={data} />
     </div>;
 };
