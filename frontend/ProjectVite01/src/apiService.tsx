@@ -56,7 +56,7 @@ const fetch_data_csrf_get = async (url:string) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'X-CSRFToken': csrfToken ?? '', // Use an empty string if csrfToken is undefined
+      'X-CSRFToken': csrfToken || '',
       }
   };
   try {

@@ -24,13 +24,40 @@ interface Data {
   // Other properties...
 }
 
+const sampleData = [
+  {
+    id: '1',
+    apply_type: 'apply_type 1',
+    requirements: 'Description 1Description 1Description 1Description 1Description 1Description 1',
+    username: 'hank1',
+    email: 'hank1@example.com',
+    image_path_main: 'apply_type 1',
+    apply_time: new Date('2024-01-09'), // Convert the date string to Date object
+    comment: 'apply_type 1',
+    comment2: 'apply_type 1'
+  },
+  {
+    id: '2',
+    apply_type: 'apply_type 2',
+    requirements: 'Description 1Description 1Description 1Description 1Description 1Description 1',
+    username: 'hank2',
+    email: 'hank1@example.com',
+    image_path_main: 'apply_type 1',
+    apply_time: new Date('2024-01-09'), // Convert the date string to Date object
+    comment: 'apply_type 1',
+    comment2: 'apply_type 1'
+  },
+  // ... other data objects
+];
+
+
 
 export const TestListDataTable = ({ className }: TestListDataTableProps) => {
     
     useEffect(() => {
         fetchData();
     }, [])
-    const [data, setData] = useState<Data[]>([]);
+    const [data1, setData] = useState<Data[]>([]);
     const fetchData = async () => {
         // 获取保存在本地存储中的令牌
         const apiUrl = `/user-apply-mian-list/`;
@@ -50,6 +77,6 @@ export const TestListDataTable = ({ className }: TestListDataTableProps) => {
     };
 
     return <div className={classNames(styles.root, className)}> 
-        <TestDataTable data={data} />
+        <TestDataTable data={data1} />
     </div>;
 };
