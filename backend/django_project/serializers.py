@@ -29,7 +29,7 @@ class UserApplyMianSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserApply
         fields = ['id', 'apply_type', 'requirements', 'username',
-                  'email', 'apply_time', 'comment', 'comment2']
+                  'email', 'apply_time', 'comment', 'comment2', 'main_image_id']
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
