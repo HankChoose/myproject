@@ -43,7 +43,7 @@ urlpatterns = [
          name='user_apply_create'),
     path('user-apply-user-list/', UserApplyUserListAPIView.as_view(),
          name='user_apply-user_list'),
-    path('user-apply-all-list/', UserApplyAllListAPIView2.as_view(),
+    path('user-apply-all-list/', UserApplyAllListAPIView.as_view(),
          name='user-apply-all-list'),
     path('user-apply-mian-list/', UserApplyMianListAPIView.as_view(),
          name='user_apply_mian_list'),
