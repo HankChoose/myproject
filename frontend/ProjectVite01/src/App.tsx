@@ -74,7 +74,7 @@ function App() {
                             <Route path="/react/testrequest" element={<TestRequest />} />
                             <Route path="/react/testlisdatatable" element={<TestListDataTable />} />
                             <Route path="/react/testupload" element={<TestUpload />} />
-                            <Route path="/react/testgetimages" element=<TestGetImages /> />
+                            <Route path="/react/testgetimages" element={<TestGetImages />} />
                             <Route path="/react/page1" element={<Page1 />}>
                                 <Route path="test1" element={<Test1 />} />
                                 <Route path="test2" element={<Test2 />} />
