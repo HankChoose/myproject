@@ -132,7 +132,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
           
             <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>imageData</td>
+                <td>{imageData}</td>
                 <td><a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
                        {item.requirements}
                     </a></td>
