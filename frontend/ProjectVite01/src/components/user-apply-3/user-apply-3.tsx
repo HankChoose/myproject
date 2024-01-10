@@ -99,6 +99,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         })
         .then((response) => {
             console.log(response.data);
+            navigate('/react/testlisdatatable');
         })
         .catch((error) => {
             console.error('Error uploading data:', error);
@@ -140,8 +141,6 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                                 {uploadedImages.map((image, index) => (
                                     <div key={index} >
                                         <p>File Name: {image.fileName}</p>
-                                        <p>File Size: {image.fileSize}</p>
-                                        
                                     </div>
                                 ))}
                             </td>
