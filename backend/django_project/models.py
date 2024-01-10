@@ -42,20 +42,7 @@ class UserApply(models.Model):
     comment2 = models.TextField(default='default comment2')
 
     def __str__(self):
-        return {
-            'id': self.id,
-            'username': self.username,
-            'email': self.email,
-            'apply_type': self.apply_type,
-            'requirements': self.requirements,
-            'main_image_id': self.main_image_id,
-            'image_path0': self.image_path0,
-            'image_path1': self.image_path1,
-            'image_path2': self.image_path2,
-            'apply_time': self.apply_time,
-            'comment': self.comment,
-            'comment2': self.comment2,
-        }
+        return self.username
 
 
 class Book3(models.Model):

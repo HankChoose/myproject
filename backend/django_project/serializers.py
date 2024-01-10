@@ -26,21 +26,21 @@ class UserApplySerializer(serializers.ModelSerializer):
 
 
 class UserApplyMianSerializer(serializers.ModelSerializer):
+    image_path_main = serializers.SerializerMethodField()
+
+    def get_image_path_main(self, obj):
+        main_image_id = obj.main_image_id
+
+        if main_image_id == 1:
+            return obj.image_path1
+        elif main_image_id == 2:
+            return obj.image_path2
+        elif main_image_id == 3:
+            return obj.image_path3
+        else:
+            # 如果没有匹配的值，返回默认路径或者其他适当的值
+            return 'defaultPath.png'
+
     class Meta:
         model = UserApply
-        fields = ['id', 'apply_type', 'requirements', 'username',
-                  'email', 'apply_time', 'comment', 'comment2', 'main_image_id']
-
-    def to_representation(self, instance):
-        data = super().to_representation(instance)
-        main_image_id = instance.main_image_id
-
-        # Conditionally include one of the image_path fields based on main_image_id
-        if main_image_id == 0:
-            data['image_path_mian'] = instance.image_path0
-        elif main_image_id == 1:
-            data['image_path_mian'] = instance.image_path1
-        elif main_image_id == 2:
-            data['image_path_mian'] = instance.image_path2
-
-        return data
+        fields = '__all__'
