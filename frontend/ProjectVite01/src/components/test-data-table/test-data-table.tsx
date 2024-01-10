@@ -127,7 +127,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
           
             <tr key={item.id}>
                 <td>{item.id}</td>
-               <td>{item.image_path_main}</td>
+                <td>{item.image_path_main}</td>
                 <td><a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
                        {item.requirements}
                     </a></td>
@@ -170,8 +170,8 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                         <th style={{ width: '80px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('id')} >ID
                             {sortedField === 'id' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
-                        <th style={{textAlign: 'center' }}>PathMian
-                           
+                        <th style={{textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('id')} >PathMian
+                           {sortedField === 'image_path_main' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
                         <th style={{ width: '450px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('requirements')}>Content
                             {sortedField === 'requirements' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
