@@ -31,6 +31,7 @@ export default createBoard({
     Board: () => <TestDataTable data={sampleData} />,
     isSnippet: true,
     environmentProps: {
-        windowHeight: 629
+        windowHeight: 629,
+        windowWidth: 1032
     }
 });
