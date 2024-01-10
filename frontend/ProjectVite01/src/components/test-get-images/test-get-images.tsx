@@ -15,7 +15,7 @@ export interface TestGetImagesProps {
  */
 export const TestGetImages: React.FC<TestGetImagesProps> = ({ className }: TestGetImagesProps) => {
     const [imageData, setImageData] = useState<string | null>(null);
-    const imageInfo = '20240108_070912__20210715144349_image_2.jpg';
+    const imageInfo = '20240110_055037__20210715144321_image_0.jpg';
     useEffect(() => {
         const fetchImageData = async () => {
             try {
