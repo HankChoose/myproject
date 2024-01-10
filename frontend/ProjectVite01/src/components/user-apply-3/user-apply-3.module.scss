@@ -73,3 +73,13 @@
     align-content: space-around;
     overflow: visible;
 }
+
+.thumbnailContainer {
+    position: relative;
+    overflow: hidden;
+    width: 120px;
+    height: 120px; /* 调整缩略图高度 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

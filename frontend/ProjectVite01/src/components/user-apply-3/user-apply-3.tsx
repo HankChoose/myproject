@@ -136,7 +136,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
 
                          <tr>
                             <td>Image Files</td>
-                            <td> <div>
+                            <td> <div  className={styles.thumbnailContainer}>
                                 {uploadedImages.map((image, index) => (
                                     <div key={index}>
                                     <p>File Name: {image.fileName}</p>
