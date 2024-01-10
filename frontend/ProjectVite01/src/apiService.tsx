@@ -43,12 +43,11 @@ const axios_image_file_get = async (url:string) => {
 
 
 
-
 /*
 //////////////////////////////////////fetch_data_token_get
 'Content-Type': 'application/json',
 1. /user-profile/
-2.
+2.CSRF token（Cross-site request forgery token）
 */
 const fetch_data_csrf_get = async (url:string) => {
   const console_title='fetch_data_csrf_get';

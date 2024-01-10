@@ -158,10 +158,10 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                 {/* 表头 */}
                 <thead>
                     <tr>
-                        <th style={{ width: '80px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('id')} >ID
+                        <th style={{ width: '80px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('id')} ><span className={styles.TableTitleText}>ID</span>
                             {sortedField === 'id' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
-                        <th style={{textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('id')} >PathMian
+                        <th style={{textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('id')} >Images
                            {sortedField === 'image_path_main' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
                         </th>
                         <th style={{ width: '450px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('requirements')}>Content

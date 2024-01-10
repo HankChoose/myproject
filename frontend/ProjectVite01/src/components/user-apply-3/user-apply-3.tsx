@@ -48,6 +48,9 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
     const userInfo = useSelector((state: RootState) => state.userInfo);
     const userInfo2 = useSelector((state: RootState2) => state.userInfo2);
 
+    //for map
+    const { uploadedImages } = userInfo2;
+
     console.log('userInfo-1:', userInfo);
     console.log('userInfo2-1:', userInfo2);
     const dispatch = useDispatch();
@@ -127,8 +130,23 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                             <td>{userInfo2.applytype}</td>
                         </tr>
                         <tr>
-                            <td>Comment</td>
+                            <td>Content</td>
                             <td>{userInfo2.requirements}</td>
+                        </tr>
+
+                         <tr>
+                            <td>Image Files</td>
+                            <td> <div>
+                                {uploadedImages.map((image, index) => (
+                                    <div key={index}>
+                                    <p>File Name: {image.fileName}</p>
+                                    <p>File Size: {image.fileSize}</p>
+                                    <img src={image.filePreviewUrl!} alt={`Preview ${index}`} />
+                                    {/* 其他显示文件信息的元素 */}
+                                    </div>
+                                ))}
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </Table>
