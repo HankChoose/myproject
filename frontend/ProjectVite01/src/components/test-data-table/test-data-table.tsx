@@ -95,30 +95,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
         setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
     };
    
-    // Assume fetchAllImageData is defined as in the previous response
-    const fetchImageData = async (imageInfo:string) => {
-        try {
-
-            const api_url=`${baseUrl}/get-image/${imageInfo}/`
-            const response = await axios.get(`${baseUrl}/get-image/${imageInfo}/`, {
-                responseType: 'arraybuffer',
-            });
-
-            const base64Image = btoa(
-                new Uint8Array(response.data).reduce(
-                    (data, byte) => data + String.fromCharCode(byte),
-                    ''
-                )
-            );
-
-            const imageDataUrl = `data:image/jpeg;base64,${base64Image}`;
-            setImageData(imageDataUrl);
-            console.log('setImageData:', imageData);
-        } catch (error) {
-            console.error('Error fetching image data:', error);
-        }
-    };
- 
+    
     const renderTableBody = () => {
         if (filteredData.length === 0) {
             // 如果没有符合条件的数据，显示一行没有数据的行
@@ -130,9 +107,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
 
             );
         }
-        
-       
-
+ 
         return currentData.map((item) => (
 
             <tr key={item.id}>

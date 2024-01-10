@@ -16,6 +16,8 @@ export interface TestGetImagesProps {
  */
 export const TestGetImages: React.FC<TestGetImagesProps> = ({ className,imageInfo }: TestGetImagesProps) => {
     const [imageData, setImageData] = useState<string | null>(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+
     
     useEffect(() => {
         const fetchImageData = async () => {
@@ -44,6 +46,23 @@ export const TestGetImages: React.FC<TestGetImagesProps> = ({ className,imageInf
     const handleThumbnailClick = (image: any) => {
         
     };
+
+    const handleThumbnailHover = (image: any) => {
+        setSelectedImage(image);
+        console.log('handleThumbnailHover0000:');
+    };
+
+    const handleThumbnailLeave = () => {
+        setSelectedImage(null);
+        console.log('handleThumbnailLeave11111:');
+    };
+
+    
+    const handleLargePictureClose = () => {
+        setSelectedImage(null);
+    };
+
+
     return (
         <div className={classNames(styles.root, className)}>
             
@@ -51,7 +70,7 @@ export const TestGetImages: React.FC<TestGetImagesProps> = ({ className,imageInf
                 <img
                     src={imageData!}
                     alt="Preview"
-                    //onMouseEnter={() => handleThumbnailHover(image.filePreviewUrl)}
+                    onMouseEnter={() => handleThumbnailHover(imageData)}
                     style={{
                         maxWidth: '90%',
                         maxHeight: '90%',
@@ -62,6 +81,30 @@ export const TestGetImages: React.FC<TestGetImagesProps> = ({ className,imageInf
                     }
                 />
             </div>
+
+            {selectedImage && (
+                <div
+                    onMouseLeave={handleThumbnailLeave}
+                    className={styles.largeImageContainer}
+                >
+                    <img
+                        src={imageData!}
+                        alt="Selected Image"
+                        style={{
+                            maxWidth: '100%',
+                            maxHeight: '100%',
+                            cursor: 'pointer',
+
+                        }}
+                        onClick={handleLargePictureClose}
+                    />
+                    <div className={styles.fileInfoContainer}>
+                        click image to close
+                    </div>
+                      
+                </div>
+            )}
+
         </div>
     );
 };
