@@ -123,11 +123,16 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
             );
         }
         
+        currentData.map((item) => (
+            fetchImageData(item.image_path_main))
+           
+        );
+
         return currentData.map((item) => (
           
             <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>fetchImageData({item.image_path_main})</td>
+                <td>imageData</td>
                 <td><a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
                        {item.requirements}
                     </a></td>
