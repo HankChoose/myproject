@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import styles from './test-data-table.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { FromRowRight } from '../from-row-right/from-row-right';
 import { FromRowSeparate } from '../from-row-separate/from-row-separate';
@@ -39,6 +39,10 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
     const [sortOrder, setSortOrder] = useState('desc'); // 'asc' 或 'desc'
     const [sortedField, setSortedField] = useState('id'); // 按照哪个字段排序
     const [imageData, setImageData] = useState<string | null>(null);
+
+    useEffect(() => {
+        renderTableBody ();
+    }, []);
 
     // 过滤数据
     const filteredData = data.filter((item: Data) => {
