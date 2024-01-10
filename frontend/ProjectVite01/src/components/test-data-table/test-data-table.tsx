@@ -106,6 +106,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
 
             const imageDataUrl = `data:image/jpeg;base64,${base64Image}`;
             setImageData(imageDataUrl);
+            console.log('setImageData:', imageData);
         } catch (error) {
             console.error('Error fetching image data:', error);
         }
@@ -132,7 +133,19 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
           
             <tr key={item.id}>
                 <td>{item.id}</td>
-                <td>{imageData}</td>
+                <td> <div className={styles.thumbnailContainer}>
+                <img
+                    src={imageData!}
+                    alt="Preview"
+                    //onMouseEnter={() => handleThumbnailHover(image.filePreviewUrl)}
+                    style={{
+                        maxWidth: '90%',
+                        maxHeight: '90%',
+                        cursor: 'pointer',
+                    }}
+                    
+                />
+            </div></td>
                 <td><a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
                        {item.requirements}
                     </a></td>
