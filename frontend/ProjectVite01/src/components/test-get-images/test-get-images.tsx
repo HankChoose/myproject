@@ -6,6 +6,7 @@ import { baseUrl } from '../../constants';
 
 export interface TestGetImagesProps {
     className?: string;
+    imageInfo?: string;
    
 }
 
@@ -13,9 +14,9 @@ export interface TestGetImagesProps {
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
-export const TestGetImages: React.FC<TestGetImagesProps> = ({ className }: TestGetImagesProps) => {
+export const TestGetImages: React.FC<TestGetImagesProps> = ({ className,imageInfo }: TestGetImagesProps) => {
     const [imageData, setImageData] = useState<string | null>(null);
-    const imageInfo = '20240110_055037__20210715144321_image_0.jpg';
+    
     useEffect(() => {
         const fetchImageData = async () => {
             try {

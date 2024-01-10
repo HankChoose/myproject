@@ -8,6 +8,7 @@ import { FromRowRight } from '../from-row-right/from-row-right';
 import { FromRowSeparate } from '../from-row-separate/from-row-separate';
 import { FcUp, FcDown } from 'react-icons/fc';
 import { baseUrl } from '../../constants';
+import { TestGetImages } from '../test-get-images/test-get-images';
 
 interface Data {
   id: string;
@@ -133,22 +134,10 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
        
 
         return currentData.map((item) => (
-          
+
             <tr key={item.id}>
                 <td>{item.id}</td>
-                <td> <div className={styles.thumbnailContainer}>
-                <img
-                    src={imageData!}
-                    alt="Preview"
-                    //onMouseEnter={() => handleThumbnailHover(image.filePreviewUrl)}
-                    style={{
-                        maxWidth: '90%',
-                        maxHeight: '90%',
-                        cursor: 'pointer',
-                    }}
-                    
-                />
-            </div></td>
+                <td><TestGetImages imageInfo={item.image_path_main} /></td>
                 <td><a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
                        {item.requirements}
                     </a></td>
