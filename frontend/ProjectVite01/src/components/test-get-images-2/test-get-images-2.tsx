@@ -22,7 +22,8 @@ export interface TestGetImages2Props {
 export const TestGetImages2 = ({ className }: TestGetImages2Props) => {
 
     const [imageData, setImageData] = useState<string | null>(null);
-    const imageInfo = '20240108_070912__20210715144349_image_2.jpg';
+    //const imageInfo = '20240108_070912__20210715144349_image_2.jpg';
+    const imageInfo = '20240109_233329_3_image_0.jpg';
     useEffect(() => {
         
     }, [imageInfo]);

@@ -5,4 +5,7 @@ export default createBoard({
     name: 'TestGetImages2',
     Board: () => <TestGetImages2 />,
     isSnippet: true,
+    environmentProps: {
+        windowHeight: 624
+    }
 });
