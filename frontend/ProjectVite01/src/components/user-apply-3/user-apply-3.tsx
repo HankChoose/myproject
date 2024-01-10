@@ -136,16 +136,15 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
 
                          <tr>
                             <td>Image Files</td>
-                            <td> <div  className={styles.thumbnailContainer}>
+                            <td> 
                                 {uploadedImages.map((image, index) => (
-                                    <div key={index}>
-                                    <p>File Name: {image.fileName}</p>
-                                    <p>File Size: {image.fileSize}</p>
-                                    <img src={image.filePreviewUrl!} alt={`Preview ${index}`} />
-                                    {/* 其他显示文件信息的元素 */}
+                                    <div key={index}  className={styles.thumbnailContainer}>
+                                        <p>File Name: {image.fileName}</p>
+                                        <p>File Size: {image.fileSize}</p>
+                                        <img src={image.filePreviewUrl!} alt={`Preview ${index}`} />
+                                        {/* 其他显示文件信息的元素 */}
                                     </div>
                                 ))}
-                                </div>
                             </td>
                         </tr>
                     </tbody>
