@@ -87,7 +87,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
         setSortedField(field);
         setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
     };
-
+    /*
     // Assume fetchAllImageData is defined as in the previous response
     const fetchImageData = async (imageInfo:string) => {
         try {
@@ -110,7 +110,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
             console.error('Error fetching image data:', error);
         }
     };
-
+    */
     const renderTableBody = () => {
         if (filteredData.length === 0) {
             // 如果没有符合条件的数据，显示一行没有数据的行
