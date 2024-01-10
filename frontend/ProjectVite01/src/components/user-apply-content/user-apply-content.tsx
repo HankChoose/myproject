@@ -21,11 +21,16 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
     
     interface ApplyData {
         id: string;
+        apply_type: string;
+        requirements: string;
         username: string;
         email: string;
-        demand_type: string;
-		demand_description: string;
-        // 其他属性...
+        image_path_main: string;
+        apply_time: Date; // Change the type to Date
+        comment: string;
+        comment2: string;
+        [key: string]: string | Date; // Adjust the index signature if needed
+        // Other properties...
     }
 
     useEffect(() => {
@@ -53,8 +58,8 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
     const firstid = applyData.length > 0 ? applyData[0].id : undefined;
     const firstusername = applyData.length > 0 ? applyData[0].username : undefined;
     const firstEmail = applyData.length > 0 ? applyData[0].email : null;
-    const firstdemand_type = applyData.length > 0 ? applyData[0].demand_type  : undefined;
-    const firstdemand_description = applyData.length > 0 ? applyData[0].demand_description : null;
+    const firstapply_type = applyData.length > 0 ? applyData[0].apply_type  : undefined;
+    const firstrequirements = applyData.length > 0 ? applyData[0].requirements : null;
 
     return <div className={classNames(styles.root, className)}>
         <h2>User Apply Content ID: {id}</h2>
@@ -79,7 +84,7 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
                                  <tr>
                                     <td>Id:</td>
                                     <td>
-                                       
+                                       {firstid}
                                     </td>
                                 </tr>
                                 <tr>
@@ -94,11 +99,11 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
                                 </tr>
                                 <tr>
                                     <td>Type:</td>
-                                    <td>{firstdemand_type}</td>
+                                    <td>{firstapply_type}</td>
                                 </tr>
                                  <tr>
                                     <td>Content:</td>
-                                    <td>{firstdemand_description}</td>
+                                    <td>{firstrequirements}</td>
                                 </tr>
                             </tbody>
                         </Table>
