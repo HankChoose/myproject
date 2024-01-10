@@ -31,11 +31,11 @@ class UserApplyMianSerializer(serializers.ModelSerializer):
     def get_image_path_main(self, obj):
         main_image_id = obj.main_image_id
 
-        if main_image_id == 1:
+        if main_image_id == 0:
             return obj.image_path1
-        elif main_image_id == 2:
+        elif main_image_id == 1:
             return obj.image_path2
-        elif main_image_id == 3:
+        elif main_image_id == 2:
             return obj.image_path3
         else:
             # 如果没有匹配的值，返回默认路径或者其他适当的值
