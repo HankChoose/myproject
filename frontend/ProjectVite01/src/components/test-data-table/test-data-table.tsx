@@ -39,10 +39,12 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
     const [sortOrder, setSortOrder] = useState('desc'); // 'asc' 或 'desc'
     const [sortedField, setSortedField] = useState('id'); // 按照哪个字段排序
     const [imageData, setImageData] = useState<string | null>(null);
-
+    
+    /*
     useEffect(() => {
         renderTableBody ();
     }, []);
+    */
 
     // 过滤数据
     const filteredData = data.filter((item: Data) => {
@@ -128,10 +130,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
             );
         }
         
-        currentData.map((item) => (
-            fetchImageData(item.image_path_main))
-           
-        );
+       
 
         return currentData.map((item) => (
           
