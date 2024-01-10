@@ -4,8 +4,8 @@
 .thumbnailContainer {
   position: relative;
   overflow: hidden;
-  width: 150px;
-  height: 150px; /* 调整缩略图高度 */
+  width: 120px;
+  height: 120px; /* 调整缩略图高度 */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@
   position: fixed;
   top: 10%;
   left: 50%;
-  max-width: 60%;
+  max-width: 50%;
   max-height: 100%;
   transform: translateX(-50%);
   width: 70%;
