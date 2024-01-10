@@ -112,10 +112,16 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
 
             <tr key={item.id}>
                 <td>{item.id}</td>
-                <td><a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer"><TestGetImages imageInfo={item.image_path_main} /></td>
-                <td><a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
+                <td>
+                    <a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
+                            <TestGetImages imageInfo={item.image_path_main} />
+                    </a>
+                </td>
+                <td>
+                    <a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
                        {item.requirements}
-                    </a></td>
+                    </a>
+                </td>
                 <td>{item.apply_type}</td>
                 <td>{item.username}</td>
                 <td>{item.apply_time.toLocaleString()}</td>
