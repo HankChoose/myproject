@@ -115,17 +115,13 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
 
                             <tr>
                                 <td>Images:</td>
-                                <td> <TestGetImages imageInfo={firstimage_path0!}/></td>
+                                <td>
+                                <TestGetImages imageInfo={firstimage_path0!}/>
+                                <TestGetImages imageInfo={firstimage_path1!}/>
+                                <TestGetImages imageInfo={firstimage_path1!}/>
+                                </td>
                             </tr>
-                            <tr>
-                                <td>Images:</td>
-                                <td><TestGetImages imageInfo={firstimage_path1!}/></td>
-                            </tr>
-
-                            <tr>
-                                <td>Images:</td>
-                                <td><TestGetImages imageInfo={firstimage_path2!}/></td>
-                            </tr>
+ 
                         </tbody>
                     </Table>
                 </ListGroup.Item>
