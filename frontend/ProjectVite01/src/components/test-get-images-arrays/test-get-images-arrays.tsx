@@ -32,7 +32,7 @@ export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArrays
     const fetchData = async () => {
         try {
             for (const fileName of fileNames) {
-                const response = await axios.get(`${baseUrl}/get-image/${fileName}`, {
+                const response = await axios.get(`${baseUrl}/get-image/${fileName}/`, {
                     responseType: 'arraybuffer',
                 });
 
