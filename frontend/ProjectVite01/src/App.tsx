@@ -37,9 +37,11 @@ import { TestRequest } from './components/test-request/test-request';
 import { TestUpload } from './components/test-upload/test-upload';
 import { TestGetImages } from './components/test-get-images/test-get-images';
 import { TestGetImages2 } from './components/test-get-images-2/test-get-images-2';
+import { TestGetImagesArrays } from './components/test-get-images-arrays/test-get-images-arrays';
 //import { TopbarProvider } from './TopbarContext';
 // 导入根 reducer
 const store = createStore(rootReducer);
+const fileNames = ['20240110_055037_CELPIP1_image_2.jpg', '20240111_030558__20210715144328_image_1.jpg', 'defaultList.png'];
 
 function App() {
 
@@ -77,6 +79,7 @@ function App() {
                             <Route path="/react/testupload" element={<TestUpload />} />
                             <Route path="/react/testgetimages" element={<TestGetImages />} />
                             <Route path="/react/testgetimages2" element={<TestGetImages2 />} />
+                            <Route path="/react/testgetimagesarrays" element={<TestGetImagesArrays  fileNames={fileNames}/>} />
                             <Route path="/react/page1" element={<Page1 />}>
                                 <Route path="test1" element={<Test1 />} />
                                 <Route path="test2" element={<Test2 />} />
@@ -91,7 +94,8 @@ function App() {
 
                 </Router>
             </div>
- 
+            
+
         </AuthProvider>
     );
 

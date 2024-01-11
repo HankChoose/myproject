@@ -42,7 +42,7 @@ export const TestGallery = ({ className }: TestGalleryProps) => {
             showNav={true}
             showThumbnails={false}
             startIndex={1} // 设置默认显示的图片索引
-            className="custom-image-gallery" // 添加自定义的类名
+           
         />
        
     </div>;

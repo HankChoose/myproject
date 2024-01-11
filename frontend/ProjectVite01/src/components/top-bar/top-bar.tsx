@@ -70,12 +70,13 @@ export const TopBar = ({ className }: TopBarProps) => {
         <div className={classNames(styles.toRowUser)}>
             <Link to="/react/testlink"> T</Link>
             <a href="https://zhiyouyuec.com"><BsHouseFill />Home</a>
-            <Link to="/react/userapply"><BsSendPlusFill />Demand</Link>
+            <Link to="/react/userapply"><BsSendPlusFill />Post Info</Link>
             {isLoggedIn ? (
                 // 用户已登录，显示账户信息和登出按钮
                 <>
-                    <Link to="/react/signin" onClick={handleLogout}><BsPersonFillDash />Log Out</Link>
                     <Link to="/react/userprofile"><BsPersonVcard />My Account</Link>
+                    <Link to="/react/signin" onClick={handleLogout}><BsPersonFillDash />Log Out</Link>
+                    
                 </>
             ) : (
                 // 用户未登录，显示登录按钮或登录表单
