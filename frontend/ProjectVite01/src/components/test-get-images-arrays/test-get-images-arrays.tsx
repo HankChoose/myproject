@@ -21,8 +21,8 @@ export interface TestGetImagesArraysProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArraysProps) => {
-    
-    const imageUrls: string[] = [];
+    const [imageUrls, setImageUrls] = useState<string[]>([]);
+
     const imageFiles: File[] = [];
     useEffect(() => {
         
@@ -31,6 +31,8 @@ export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArrays
 
     const fetchData = async () => {
         try {
+            const urls: string[] = [];
+
             for (const fileName of fileNames) {
                 const response = await axios.get(`${baseUrl}/get-image/${fileName}/`, {
                     responseType: 'arraybuffer',
@@ -38,38 +40,16 @@ export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArrays
 
                 const base64Image = btoa(
                     new Uint8Array(response.data).reduce(
-                    (data, byte) => data + String.fromCharCode(byte),
-                    ''
+                        (data, byte) => data + String.fromCharCode(byte),
+                        ''
                     )
                 );
 
                 const imageDataUrl = `data:image/jpeg;base64,${base64Image}`;
-                imageUrls.push(imageDataUrl);
-
-                // Convert base64 to a Blob
-                const byteCharacters = atob(base64Image);
-                const byteArrays = [];
-                for (let offset = 0; offset < byteCharacters.length; offset += 512) {
-                    const slice = byteCharacters.slice(offset, offset + 512);
-                    const byteNumbers = new Array(slice.length);
-                    for (let i = 0; i < slice.length; i++) {
-                    byteNumbers[i] = slice.charCodeAt(i);
-                    }
-                    const byteArray = new Uint8Array(byteNumbers);
-                    byteArrays.push(byteArray);
-                }
-                const blob = new Blob(byteArrays, { type: 'image/jpeg' });
-
-                // Create a File object with the specified name
-                const file = new File([blob], fileName, { type: 'image/jpeg' });
-                imageFiles.push(file);
+                urls.push(imageDataUrl);
             }
 
-            // Now, you have an array of image URLs (imageUrls) and an array of File objects (imageFiles)
-            // You can do further processing or save the File objects as needed
-
-            // For example, save the first image file using FileSaver.js
-            //saveAs(imageFiles[0], 'first_image.jpg');
+            setImageUrls(urls);
         } catch (error) {
             console.error('Error fetching image data:', error);
         }
@@ -79,11 +59,11 @@ export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArrays
     return <div className={classNames(styles.root, className)}>
     <div>
         {imageUrls.map((imageUrl, index) => (
-            <div key={index}>
-                <img src={imageUrl} alt={`Preview ${index}`} />
-                {/* 其他显示文件信息的元素 */}
-            </div>
-        ))}
+                <div key={index}>
+                    <img src={imageUrl} alt={`Preview ${index}`} />
+                    {/* Other elements to display file information */}
+                </div>
+            ))}
     </div>
     
     
