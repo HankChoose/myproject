@@ -25,9 +25,10 @@ export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArrays
     const imageUrls: string[] = [];
     const imageFiles: File[] = [];
     useEffect(() => {
+        
         fetchData();
     }, [fileNames]);
-    
+
     const fetchData = async () => {
         try {
             for (const fileName of fileNames) {
@@ -74,17 +75,21 @@ export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArrays
         }
     }
     
-    fetchData();
+    
     return <div className={classNames(styles.root, className)}>
-
-        <div>
-            {imageUrls.map((imageUrl, index) => (
-                <div key={index}>
-                    <img src={imageUrl} alt={`Preview ${index}`} />
-                    {/* Other elements to display file information */}
-                </div>
-            ))}
-        </div>
-  
+    <div>
+      
+             <div>
+                {imageUrls.map((imageUrl, index) => (
+                    <div key={index}>
+                        <img src={imageUrl} alt={`Preview ${index}`} />
+                        {/* Other elements to display file information */}
+                    </div>
+                ))}
+            </div>
+   
+    </div>
+    
+    
     </div>;
 };
