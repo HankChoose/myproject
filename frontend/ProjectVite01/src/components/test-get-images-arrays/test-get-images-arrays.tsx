@@ -31,49 +31,45 @@ export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArrays
 
     const fetchData = async () => {
         try {
-        
+            for (const fileName of fileNames) {
+                const response = await axios.get(`${baseUrl}/get-image/${fileName}`, {
+                    responseType: 'arraybuffer',
+                });
 
-        // Fetch multiple images (in this example, fetching 3 images)
-        for (let i = 0; i < fileNames.length; i++) {
-            const response = await axios.get(`${baseUrl}/get-image/${fileNames}`, {
-                responseType: 'arraybuffer',
-            });
-
-            const base64Image = btoa(
-                new Uint8Array(response.data).reduce(
+                const base64Image = btoa(
+                    new Uint8Array(response.data).reduce(
                     (data, byte) => data + String.fromCharCode(byte),
                     ''
-                )
-            );
+                    )
+                );
 
-            const imageDataUrl = `data:image/jpeg;base64,${base64Image}`;
-            imageUrls.push(imageDataUrl);
+                const imageDataUrl = `data:image/jpeg;base64,${base64Image}`;
+                imageUrls.push(imageDataUrl);
 
-            // Convert base64 to a Blob
-            const byteCharacters = atob(base64Image);
-            const byteArrays = [];
-            for (let offset = 0; offset < byteCharacters.length; offset += 512) {
-                const slice = byteCharacters.slice(offset, offset + 512);
-                const byteNumbers = new Array(slice.length);
-                for (let i = 0; i < slice.length; i++) {
+                // Convert base64 to a Blob
+                const byteCharacters = atob(base64Image);
+                const byteArrays = [];
+                for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+                    const slice = byteCharacters.slice(offset, offset + 512);
+                    const byteNumbers = new Array(slice.length);
+                    for (let i = 0; i < slice.length; i++) {
                     byteNumbers[i] = slice.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    byteArrays.push(byteArray);
                 }
-                const byteArray = new Uint8Array(byteNumbers);
-                byteArrays.push(byteArray);
+                const blob = new Blob(byteArrays, { type: 'image/jpeg' });
+
+                // Create a File object with the specified name
+                const file = new File([blob], fileName, { type: 'image/jpeg' });
+                imageFiles.push(file);
             }
-            const blob = new Blob(byteArrays, { type: 'image/jpeg' });
 
-            // Create a File object with a unique name for each image
-            const fileName = `image_${i}.jpg`;
-            const file = new File([blob], fileName, { type: 'image/jpeg' });
-            imageFiles.push(file);
-        }
+            // Now, you have an array of image URLs (imageUrls) and an array of File objects (imageFiles)
+            // You can do further processing or save the File objects as needed
 
-        // Now, you have an array of image URLs (imageUrls) and an array of File objects (imageFiles)
-        // You can do further processing or save the File objects as needed
-
-        // For example, save the first image file using FileSaver.js
-        //saveAs(imageFiles[0], 'first_image.jpg');
+            // For example, save the first image file using FileSaver.js
+            //saveAs(imageFiles[0], 'first_image.jpg');
         } catch (error) {
             console.error('Error fetching image data:', error);
         }
