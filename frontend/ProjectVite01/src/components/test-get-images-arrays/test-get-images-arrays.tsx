@@ -35,7 +35,7 @@ export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArrays
 
         // Fetch multiple images (in this example, fetching 3 images)
         for (let i = 0; i < fileNames.length; i++) {
-            const response = await axios.get(`${baseUrl}/get-image/fileNames[${i}]/`, {
+            const response = await axios.get(`${baseUrl}/get-image/${fileNames}`, {
                 responseType: 'arraybuffer',
             });
 
