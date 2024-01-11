@@ -78,9 +78,9 @@ export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArrays
     
     return <div className={classNames(styles.root, className)}>
     <div>
-        {imageFiles.map((image, index) => (
+        {imageUrls.map((imageUrl, index) => (
             <div key={index}>
-                <img src={imageUrls[index]} alt={`Preview ${index}`} />
+                <img src={imageUrl} alt={`Preview ${index}`} />
                 {/* 其他显示文件信息的元素 */}
             </div>
         ))}
