@@ -25,10 +25,9 @@ export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArrays
     const imageUrls: string[] = [];
     const imageFiles: File[] = [];
     useEffect(() => {
-        
         fetchData();
     }, [fileNames]);
-
+    
     const fetchData = async () => {
         try {
             for (const fileName of fileNames) {
@@ -75,7 +74,7 @@ export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArrays
         }
     }
     
-    
+    fetchData();
     return <div className={classNames(styles.root, className)}>
 
         <div>
