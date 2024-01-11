@@ -1,8 +1,15 @@
 import classNames from 'classnames';
 import styles from './test-get-images-arrays.module.scss';
-import { saveAs } from 'file-saver';
 import axios from 'axios';
+import React, { useRef, useState, Component, ChangeEvent, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { baseUrl } from '../../constants';
+
+import { MdDelete } from 'react-icons/md';
+import { FaArrowRotateRight } from 'react-icons/fa6';
+import { LuExpand } from 'react-icons/lu';
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { AiFillHome } from "react-icons/ai";
 
 export interface TestGetImagesArraysProps {
     className?: string;
@@ -17,6 +24,10 @@ export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArrays
     
     const imageUrls: string[] = [];
     const imageFiles: File[] = [];
+    useEffect(() => {
+        
+        fetchData();
+    }, [fileNames]);
 
     const fetchData = async () => {
         try {
@@ -63,11 +74,10 @@ export const TestGetImagesArrays = ({ className,fileNames }: TestGetImagesArrays
 
         // For example, save the first image file using FileSaver.js
         //saveAs(imageFiles[0], 'first_image.jpg');
-    } catch (error) {
-        console.error('Error fetching image data:', error);
+        } catch (error) {
+            console.error('Error fetching image data:', error);
+        }
     }
-};    
-    
     
     
     return <div className={classNames(styles.root, className)}>
