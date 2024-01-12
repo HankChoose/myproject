@@ -41,6 +41,13 @@ class UserApplyMianSerializer(serializers.ModelSerializer):
             # 如果没有匹配的值，返回默认路径或者其他适当的值
             return 'defaultPath.png'
 
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        # Format the apply_time before returning the representation
+        representation['apply_time'] = instance.apply_time.strftime(
+            '%Y-%m-%d %H:%M:%S')
+        return representation
+
     class Meta:
         model = UserApply
         fields = '__all__'
