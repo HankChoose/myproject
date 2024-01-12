@@ -96,13 +96,14 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
 
         return imageArray;
     }
-
+    
+    /*
     const imageNameArray = processImages(applyData[0].main_image_id, applyData[0].image_path0, applyData[0].image_path1, applyData[0].image_path2);
     console.log(imageNameArray);
     imageNameArray.forEach((value, key) => {
 	    console.log('imageNameArray['+key+']', value);
     });	
-    
+    */
     const firstid = applyData.length > 0 ? applyData[0].id : undefined;
     const firstusername = applyData.length > 0 ? applyData[0].username : undefined;
     const firstEmail = applyData.length > 0 ? applyData[0].email : null;
@@ -157,7 +158,7 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
                             <tr>
                                 <td>Images:</td>
                                 <td>
-                                     <TestGetImagesArrays  fileNames={imageNameArray}/>
+                                     <TestGetImagesArrays  fileNames={fileNames}/>
                                 </td>
                             </tr>
 
