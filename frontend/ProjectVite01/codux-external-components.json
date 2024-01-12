@@ -98,6 +98,12 @@
                 "filePath": "react-icons/io",
                 "exportName": "IoMdClose",
                 "name": "IoMdClose"
+            },
+
+            {
+                "filePath": "react-icons/fa",
+                "exportName": "FaSearch",
+                "name": "FaSearch"
             }
         ]
     }

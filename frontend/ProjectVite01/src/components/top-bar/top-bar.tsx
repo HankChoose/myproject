@@ -9,6 +9,7 @@ import Cookies from 'js-cookie';
 import axios, { AxiosResponse } from 'axios';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { BsPersonUp, BsPerson, BsPersonFill, BsHouseDoor, BsHouseFill, BsSearchHeart, BsPersonFillDash, BsPersonVcard, BsSendPlusFill } from "react-icons/bs";
+import { FaSearch } from "react-icons/fa";
 import { useAuth } from '../../AuthContext';
 
 
@@ -70,6 +71,7 @@ export const TopBar = ({ className }: TopBarProps) => {
         <div className={classNames(styles.toRowUser)}>
             <Link to="/react/testlink"> T</Link>
             <a href="https://zhiyouyuec.com"><BsHouseFill />Home</a>
+            <Link to="/react/testlisdatatable"><FaSearch />Search</Link>
             <Link to="/react/userapply"><BsSendPlusFill />Post Info</Link>
             {isLoggedIn ? (
                 // 用户已登录，显示账户信息和登出按钮
