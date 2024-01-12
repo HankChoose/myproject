@@ -113,9 +113,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
             <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>
-                    <a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
-                            <TestGetImages imageInfo={item.image_path_main} />
-                    </a>
+                    <TestGetImages imageInfo={item.image_path_main} />
                 </td>
                 <td>
                     <a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
