@@ -69,6 +69,8 @@ RUN npm install --save-dev @types/react-modal
 RUN npm install react-dropzone
 RUN npm install react-beautiful-dnd
 RUN npm install image-size
+RUN npm install file-saver
+RUN npm i --save-dev @types/file-saver
 RUN npm install react react-dom react-dnd react-dnd-html5-backend
 
 
@@ -116,6 +118,8 @@ RUN npm install --save-dev @types/react-modal
 RUN npm install react-dropzone
 RUN npm install react-beautiful-dnd
 RUN npm install image-size
+RUN npm install file-saver
+RUN npm i --save-dev @types/file-saver
 RUN npm install react react-dom react-dnd react-dnd-html5-backend
 
 # 构建React应用
