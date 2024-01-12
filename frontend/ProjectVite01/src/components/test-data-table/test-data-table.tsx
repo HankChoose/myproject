@@ -56,7 +56,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
 
         return formattedDate;
     };
-
+    
     // 过滤数据
     const filteredData = data.filter((item: Data) => {
         return (
@@ -134,7 +134,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                 </td>
                 <td>{item.apply_type}</td>
                 <td>{item.username}</td>
-                <td>formatDate({item.apply_time.toLocaleString()})</td>
+                <td>{item.apply_time.toLocaleString()}</td>
                
             </tr>
         ));
