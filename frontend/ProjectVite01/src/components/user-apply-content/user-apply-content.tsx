@@ -115,6 +115,9 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
 	    console.log('imageNameArray['+key+']', value);
     });
 
+     // Filter out null values from imageNameArray
+    const filteredImageArray = imageNameArray.filter((value) => value !== null);
+
     return <div className={classNames(styles.root, className)}>
         <h2>User Apply Content ID: {id}</h2>
         <Card style={{ width: '60vw' }}>
@@ -141,6 +144,22 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
                                     {firstid}
                                 </td>
                             </tr>
+                           
+                            <tr>
+                                <td>Type:</td>
+                                <td>{firstapply_type}</td>
+                            </tr>
+                            <tr>
+                                <td>Images:</td>
+                                <td>
+                                     <TestGetImagesArrays  fileNames={filteredImageArray  as string[]}/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Content:</td>
+                                <td>{firstrequirements}</td>
+                            </tr>
+
                             <tr>
                                 <td>Username:</td>
                                 <td>
@@ -150,21 +169,6 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
                             <tr>
                                 <td>Email:</td>
                                 <td>{firstEmail}</td>
-                            </tr>
-                            <tr>
-                                <td>Type:</td>
-                                <td>{firstapply_type}</td>
-                            </tr>
-                            <tr>
-                                <td>Content:</td>
-                                <td>{firstrequirements}</td>
-                            </tr>
-
-                            <tr>
-                                <td>Images:</td>
-                                <td>
-                                     <TestGetImagesArrays  fileNames={imageNameArray}/>
-                                </td>
                             </tr>
 
                         </tbody>
