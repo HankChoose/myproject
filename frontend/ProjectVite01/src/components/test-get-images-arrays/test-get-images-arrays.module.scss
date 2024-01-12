@@ -128,15 +128,53 @@
   top: 10%;
   left: 50%;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 100%vh;
   transform: translateX(-50%);
   width: 70%;
   height: 80%;
   background-color: rgb(0, 0, 0, 0.8);
+  opacity: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+
+.largeImageContent {
+  flex-grow: 1; /* 让内容部分占据剩余空间 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.largeImageButtons {
+  display: flex;
+  justify-content: space-between; // 让按钮分别位于左右两端
+  position: absolute;
+  bottom: 10px; // 距离底部的距离
+  width: 100%; // 宽度占满父容器
+  padding: 0 20px; // 左右边距
+}
+
+.largeImageButtons button {
+  margin: 0 5px;
+}
+
+.buttonStyle {
+  // 按钮的样式
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.buttonStyle:hover {
+  background-color: #45a049;
 }
 
 .buttonsContainer {
