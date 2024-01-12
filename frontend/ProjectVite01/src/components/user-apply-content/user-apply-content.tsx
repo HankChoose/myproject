@@ -61,7 +61,7 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
         }
     };
 
-    function processImages(main_image_id: number, image_path0: string, image_path1: string, image_path2: string) {
+    function processImages(main_image_id: number, image_path0: string  | null, image_path1: string  | null, image_path2: string  | null) {
     // 创建一个空数组，用于存放处理后的图片路径
         let imageArray = [];
 
@@ -97,19 +97,23 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
         return imageArray;
     }
     
-  
-    const imageNameArray = processImages(applyData[0].main_image_id, applyData[0].image_path0, applyData[0].image_path1, applyData[0].image_path2);
-    console.log(imageNameArray);
-    imageNameArray.forEach((value, key) => {
-	    console.log('imageNameArray['+key+']', value);
-    });	
+  	
 
     const firstid = applyData.length > 0 ? applyData[0].id : undefined;
     const firstusername = applyData.length > 0 ? applyData[0].username : undefined;
     const firstEmail = applyData.length > 0 ? applyData[0].email : null;
     const firstapply_type = applyData.length > 0 ? applyData[0].apply_type : undefined;
     const firstrequirements = applyData.length > 0 ? applyData[0].requirements : null;
-
+    const firstmain_image_id = applyData.length > 0 ? applyData[0].main_image_id : 0;
+    const firstimage_path0 = applyData.length > 0 ? applyData[0].image_path0 : null;
+    const firstimage_path1 = applyData.length > 0 ? applyData[0].image_path1 : null;
+    const firstimage_path2 = applyData.length > 0 ? applyData[0].image_path2 : null;
+    
+    const imageNameArray = processImages(firstmain_image_id, firstimage_path0, firstimage_path1, firstimage_path2);
+    console.log(imageNameArray);
+    imageNameArray.forEach((value, key) => {
+	    console.log('imageNameArray['+key+']', value);
+    });
 
     return <div className={classNames(styles.root, className)}>
         <h2>User Apply Content ID: {id}</h2>
@@ -159,7 +163,7 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
                             <tr>
                                 <td>Images:</td>
                                 <td>
-                                     <TestGetImagesArrays  fileNames={fileNames}/>
+                                     <TestGetImagesArrays  fileNames={imageNameArray}/>
                                 </td>
                             </tr>
 
