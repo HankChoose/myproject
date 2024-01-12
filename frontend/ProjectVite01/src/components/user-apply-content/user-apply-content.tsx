@@ -138,13 +138,7 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Id:</td>
-                                <td>
-                                    {firstid}
-                                </td>
-                            </tr>
-                           
+
                             <tr>
                                 <td>Type:</td>
                                 <td>{firstapply_type}</td>
