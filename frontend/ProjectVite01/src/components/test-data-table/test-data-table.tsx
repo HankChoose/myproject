@@ -47,6 +47,16 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
     }, []);
     */
 
+    const formatDate = (inputDate:string) => {
+        // 创建一个新的Date对象
+        const dateObject = new Date(inputDate);
+
+        // 使用内置的toLocaleString函数将日期格式化为字符串
+        const formattedDate = dateObject.toLocaleString();
+
+        return formattedDate;
+    };
+
     // 过滤数据
     const filteredData = data.filter((item: Data) => {
         return (
@@ -124,7 +134,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                 </td>
                 <td>{item.apply_type}</td>
                 <td>{item.username}</td>
-                <td>{item.apply_time.toLocaleString()}</td>
+                <td>formatDate({item.apply_time.toLocaleString()})</td>
                
             </tr>
         ));
