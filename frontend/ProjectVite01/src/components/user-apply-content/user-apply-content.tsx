@@ -28,14 +28,14 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
         email: string;
         apply_type: string;
         requirements: string;
-        main_image_id: string;
+        main_image_id: number;
         image_path0: string;
         image_path1: string;
         image_path2: string;
         apply_time: Date; // Change the type to Date
         comment: string;
         comment2: string;
-        [key: string]: string | Date; // Adjust the index signature if needed
+        [key: string]: string | Date | number; // Adjust the index signature if needed
         // Other properties...
     }
 
@@ -61,19 +61,19 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
         }
     };
 
-    function processImages(main_image_id: string, image_path0: string, image_path1: string, image_path2: string) {
+    function processImages(main_image_id: number, image_path0: string, image_path1: string, image_path2: string) {
     // 创建一个空数组，用于存放处理后的图片路径
         let imageArray = [];
 
         // 根据 main_image_id 的值确定数组的顺序
         switch (main_image_id) {
-            case "0":
+            case 0:
                 imageArray.push(image_path0);
                 break;
-            case "1":
+            case 1:
                 imageArray.push(image_path1);
                 break;
-            case "2":
+            case 2:
                 imageArray.push(image_path2);
                 break;
             default:
@@ -97,19 +97,20 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
         return imageArray;
     }
     
-    /*
+  
     const imageNameArray = processImages(applyData[0].main_image_id, applyData[0].image_path0, applyData[0].image_path1, applyData[0].image_path2);
     console.log(imageNameArray);
     imageNameArray.forEach((value, key) => {
 	    console.log('imageNameArray['+key+']', value);
     });	
-    */
+
     const firstid = applyData.length > 0 ? applyData[0].id : undefined;
     const firstusername = applyData.length > 0 ? applyData[0].username : undefined;
     const firstEmail = applyData.length > 0 ? applyData[0].email : null;
     const firstapply_type = applyData.length > 0 ? applyData[0].apply_type : undefined;
     const firstrequirements = applyData.length > 0 ? applyData[0].requirements : null;
- 
+
+
     return <div className={classNames(styles.root, className)}>
         <h2>User Apply Content ID: {id}</h2>
         <Card style={{ width: '60vw' }}>
