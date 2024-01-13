@@ -2497,11 +2497,13 @@ select.form-control {
 .space-between-container {
   display: flex;
   justify-content: space-between; /* 或者使用 justify-content: space-around; */
+  width: 100%;
 }
 
 .box {
   width: calc(33.33% - 20px); /* 计算每个盒子的宽度，减去间距 */
   margin-right: 20px; /* 右边间距 */
+  box-sizing: border-box; /* 盒模型设置 */
 }
 
 /* 最后一个盒子不需要右边间距 */
