@@ -41,6 +41,11 @@
     text-align: center;
     align-items: center;
     justify-content: space-between;
+
+     .searchInput,
+    .pageSizeSelect {
+        width: 48%; /* Set width for each input */
+    }
   }
 
 

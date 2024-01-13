@@ -103,47 +103,6 @@ export const TestDataGrid = ({ className, data }: TestDataGridProps) => {
         setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
     };
 
-    const renderTableBody = () => {
-        if (filteredData.length === 0) {
-            // 如果没有符合条件的数据，显示一行没有数据的行
-            return (
-                <tr>
-                    <td colSpan={4}>No matching data found</td>
-                    {/* 如果有更多的列，需要根据实际列数调整 colSpan */}
-                </tr>
-            );
-        }
-
-        return currentData.map((item) => (
-            <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>
-                    <a
-                        href={`userapplycontent/${item.id}`}
-                        target="_self"
-                        rel="noopener noreferrer"
-                    >
-                        <TestGetImages imageInfo={item.image_path_main} />
-                    </a>
-                </td>
-                <td>
-                    <a
-                        href={`userapplycontent/${item.id}`}
-                        target="_self"
-                        rel="noopener noreferrer"
-                    >
-                        {item.requirements.length > 35
-                            ? `${item.requirements.slice(0, 35)}...`
-                            : item.requirements}
-                    </a>
-                </td>
-                <td>{item.apply_type}</td>
-                <td>{item.username}</td>
-                <td>{item.apply_time.toLocaleString()}</td>
-            </tr>
-        ));
-    };
-
     const renderCard = (item: Data) => (
         <div key={item.id} className={classNames(styles.card)}>
             <div>{item.id}</div>
@@ -191,7 +150,7 @@ export const TestDataGrid = ({ className, data }: TestDataGridProps) => {
 
             <div className={classNames(styles.root)}>
                 {filteredData.length === 0 ? (
-                    <div>No matching data found</div>
+                    <div className={classNames(styles.card)}>No matching data found</div>
                 ) : (
                     currentData.map((item) => renderCard(item))
                 )}
