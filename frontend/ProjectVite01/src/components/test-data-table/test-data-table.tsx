@@ -4,8 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
-import { FromRowRight } from '../from-row-right/from-row-right';
-import { FromRowSeparate } from '../from-row-separate/from-row-separate';
 import { FcUp, FcDown } from 'react-icons/fc';
 import { baseUrl } from '../../constants';
 import { TestGetImages } from '../test-get-images/test-get-images';
@@ -141,7 +139,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
 
     return (
         <div className={classNames(styles.root)}>
-            <FromRowSeparate>
+            <div className={classNames(styles.formRowSeparate)}>
                 <div>
                     <input
                         type="text"
@@ -161,7 +159,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                         <option value="20">20</option>
                     </select>
                 </div>
-            </FromRowSeparate>
+            </div>
 
             {/* 表格 */}
             <Table striped bordered hover>
@@ -237,7 +235,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
             </Table>
 
             {/* 分页组件 */}
-            <div>
+            <div className={styles.pagination}>
                 {Array.from({ length: Math.ceil(filteredData.length / pageSize) }).map(
                     (_, index) => (
                         <button key={index} onClick={() => handlePageChange(index + 1)}>

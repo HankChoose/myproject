@@ -82,9 +82,9 @@ export const TestListDataTable = ({ className }: TestListDataTableProps) => {
     };
 
     return <div className={classNames(styles.root, className)}>
-
-        <button onClick={toggleViewMode}>切换视图模式</button>
-        {viewMode === 'list' ? <TestDataTable data={data1} /> : <TestDataGrid data={data1} />}
-      
+                <div className={classNames(styles.formRowRight)}>
+                    <button onClick={toggleViewMode}>切换视图模式</button>
+                    {viewMode === 'list' ? <TestDataTable data={data1} /> : <TestDataGrid data={data1} />}
+                </div>; 
     </div>;
 };

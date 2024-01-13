@@ -4,8 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
-import { FromRowRight } from '../from-row-right/from-row-right';
-import { FromRowSeparate } from '../from-row-separate/from-row-separate';
+
 import { FcUp, FcDown } from 'react-icons/fc';
 import { baseUrl } from '../../constants';
 import { TestGetImages } from '../test-get-images/test-get-images';
@@ -164,24 +163,24 @@ export const TestDataGrid = ({ className, data }: TestDataGridProps) => {
 
     return (
         <div className={classNames(styles.root)}>
-      <FromRowSeparate>
-        <div className={styles.searchInput}>
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+         <div className={classNames(styles.formRowSeparate)}>
+            <div className={styles.searchInput}>
+            <input
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            </div>
+            <div className={styles.pageSizeSelect}>
+            <label>Page Size</label>
+            <select onChange={(e) => handlePageSizeChange(Number(e.target.value))} value={pageSize}>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+            </div>
         </div>
-        <div className={styles.pageSizeSelect}>
-          <label>Page Size</label>
-          <select onChange={(e) => handlePageSizeChange(Number(e.target.value))} value={pageSize}>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-          </select>
-        </div>
-      </FromRowSeparate>
 
       <div className={classNames(styles.root)}>
         {filteredData.length === 0 ? (
