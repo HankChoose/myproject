@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import styles from './test-data-table.module.scss';
+import styles from './test-data-grid.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
@@ -25,13 +25,16 @@ interface Data {
 }
 
 
-export interface TestDataTableProps {
+export interface TestDataGridProps {
     className?: string;
     data: Data[];
 }
 
-
-export const TestDataTable = ({ className, data }: TestDataTableProps) => {
+/**
+ * This component was created using Codux's Default new component template.
+ * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
+ */
+export const TestDataGrid = ({ className, data }: TestDataGridProps) => {
     // 状态管理
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
@@ -140,70 +143,61 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
         ));
     };
 
-   
+    const renderCard = (item: Data) => (
+        <div key={item.id} className={classNames(styles.card)}>
+        <div>{item.id}</div>
+        <div>
+            <a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
+            <TestGetImages imageInfo={item.image_path_main} />
+            </a>
+        </div>
+        <div>
+            <a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
+            {item.requirements}
+            </a>
+        </div>
+        <div>{item.apply_type}</div>
+        <div>{item.username}</div>
+        <div>{item.apply_time.toLocaleString()}</div>
+        </div>
+    );
 
     return (
         <div className={classNames(styles.root)}>
-            <FromRowSeparate>
-                <div>
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        value={searchTerm}
-                        onChange={e => setSearchTerm(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Page Size</label>
-                    <select onChange={(e) => handlePageSizeChange(Number(e.target.value))} value={pageSize}>
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                    </select>
-                </div>
-            </FromRowSeparate>
-
-            {/* 表格 */}
-            <Table striped bordered hover>
-                {/* 表头 */}
-                <thead>
-                    <tr>
-                        <th style={{ width: '80px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('id')} ><span className={styles.TableTitleText}>ID</span>
-                            {sortedField === 'id' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
-                        </th>
-                        <th style={{textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('id')} >Images
-                           {sortedField === 'image_path_main' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
-                        </th>
-                        <th style={{ width: '450px', textAlign: 'center' }}  className={styles.handpoint} onClick={() => handleSortChange('requirements')}><span className={styles.TableTitleText}>Content</span>
-                            {sortedField === 'requirements' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
-                        </th>
-                         <th style={{ width: '150px' , textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('apply_type')}><span className={styles.TableTitleText}>Type</span>
-                            {sortedField === 'apply_type' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
-                        </th>
-                        <th style={{ width: '150px', textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('username')}><span className={styles.TableTitleText}>Username</span>
-                            {sortedField === 'username' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
-                        </th>
-                        <th style={{textAlign: 'center' }} className={styles.handpoint} onClick={() => handleSortChange('apply_time')}><span className={styles.TableTitleText}>Time</span>
-                            {sortedField === 'apply_time' && (<span>{sortOrder === 'asc' ? <FcUp /> : <FcDown />}</span>)}
-                        </th>
-                        
-
-                       
-                        {/* 其他属性的表头... */}
-                    </tr>
-                </thead>
-                {/* 表格内容 */}
-                <tbody>{renderTableBody()}</tbody>
-            </Table>
-
-            {/* 分页组件 */}
-            <div>
-                {Array.from({ length: Math.ceil(filteredData.length / pageSize) }).map((_, index) => (
-                    <button key={index} onClick={() => handlePageChange(index + 1)}>
-                        {index + 1}
-                    </button>
-                ))}
-            </div>
+      <FromRowSeparate>
+        <div className={styles.searchInput}>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
-    );
+        <div className={styles.pageSizeSelect}>
+          <label>Page Size</label>
+          <select onChange={(e) => handlePageSizeChange(Number(e.target.value))} value={pageSize}>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+        </div>
+      </FromRowSeparate>
+
+      <div className={classNames(styles.root)}>
+        {filteredData.length === 0 ? (
+          <div>No matching data found</div>
+        ) : (
+          currentData.map((item) => renderCard(item))
+        )}
+      </div>
+
+      <div className={styles.pagination}>
+        {Array.from({ length: Math.ceil(filteredData.length / pageSize) }).map((_, index) => (
+          <button key={index} onClick={() => handlePageChange(index + 1)}>
+            {index + 1}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
 };

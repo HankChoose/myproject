@@ -1,0 +1,84 @@
+// test-data-table.module.scss
+
+// test-data-grid.module.scss
+
+// test-data-grid.module.scss
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; // Adjust the gap between cards
+
+  .card {
+    width: calc(33.33% - 20px); // Adjust the card width based on your design
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    // Additional styling for your card
+  }
+
+  // Add styling for other elements as needed
+  .searchInput,
+  .pageSizeSelect {
+    margin-bottom: 10px;
+  }
+
+  .pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+}
+
+
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.gridItem {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+
+.TableArea {
+
+  text-align: center;
+  align-items: center;
+  border: 0px solid black;
+  position: fixed;
+  top: 4em;
+  width: 800px;
+
+}
+
+
+.handpoint {
+    cursor: pointer;
+    background-color: #3498db;
+
+}
+
+.tableheader {
+  background-color: #3498db; /* 设置表头背景颜色为蓝色 */
+}
+
+
+th {
+    text-align: center; /* 水平居中 */
+    vertical-align: middle; /* 垂直居中 */
+}
+
+
+.TableTitleText {
+  color: #f7f0f0ef; // 这里使用十六进制颜色码，可以根据需要更改
+}
