@@ -22,3 +22,18 @@
     justify-content: space-between;
   }
 
+  .buttonStyle {
+  // 按钮的样式
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.buttonStyle:hover {
+  background-color: #45a049;
+}
+

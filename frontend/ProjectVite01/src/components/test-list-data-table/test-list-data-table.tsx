@@ -85,8 +85,8 @@ export const TestListDataTable = ({ className }: TestListDataTableProps) => {
 
     return <div className={classNames(styles.root)}>
                 <div>
-                    <button onClick={toggleViewMode}>
-                     {viewMode === 'list' ? <FaListUl />:  <BiSolidGrid />}
+                    <button className={styles.buttonStyle} onClick={toggleViewMode}>
+                     {viewMode === 'list' ?  <BiSolidGrid />: <FaListUl />}
                     </button>
                     {viewMode === 'list' ? <TestDataTable data={data1} /> : <TestDataGrid data={data1} />}
                 </div>
