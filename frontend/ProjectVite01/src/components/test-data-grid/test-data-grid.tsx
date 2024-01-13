@@ -200,9 +200,9 @@ export const TestDataGrid = ({ className, data }: TestDataGridProps) => {
             <div className={styles.pagination}>
                 {Array.from({ length: Math.ceil(filteredData.length / pageSize) }).map(
                     (_, index) => (
-                        <button key={index} onClick={() => handlePageChange(index + 1)}>
+                        <Button variant="primary" key={index} onClick={() => handlePageChange(index + 1)}>
                             {index + 1}
-                        </button>
+                        </Button>
                     )
                 )}
             </div>

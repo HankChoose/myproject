@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
+
+
 import { FcUp, FcDown } from 'react-icons/fc';
 import { baseUrl } from '../../constants';
 import { TestGetImages } from '../test-get-images/test-get-images';
@@ -238,9 +240,9 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
             <div className={styles.pagination}>
                 {Array.from({ length: Math.ceil(filteredData.length / pageSize) }).map(
                     (_, index) => (
-                        <button key={index} onClick={() => handlePageChange(index + 1)}>
+                        <Button variant="primary"  key={index} onClick={() => handlePageChange(index + 1)}>
                             {index + 1}
-                        </button>
+                        </Button>
                     )
                 )}
             </div>
