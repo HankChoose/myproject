@@ -78,6 +78,8 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
     const userInfo = useSelector((state: RootState) => state.userInfo);
     const userInfo2 = useSelector((state: RootState2) => state.userInfo2);
 
+    const uploadHint = "Can transfer 3 pictures, each less than 3 MB and image type is bmp,gif,png,svg,tif/tiff or jpeg/jpg'."
+
     console.log('userInfo-1:', userInfo);
     console.log('userInfo2-1:', userInfo2);
 
@@ -112,12 +114,10 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
         dispatch(removeImage(index));
     };
 
-     const handleRotateLargeImage = () => {
+     const handleRotateLargeImage = (index: number, degrees: number) => {
         if (selectedImage) {
-            setSelectedImage({
-                ...selectedImage,
-                rotation: (selectedImage.rotation || 0) + 90,
-            });
+           dispatch(rotateImage(index, degrees));
+           console.log('index:', index, 'degrees:', degrees);
         }
     };
 
@@ -313,9 +313,6 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                 <div className={classNames(styles.FormRowSmall)}></div>
                 <h4>Uploaded Images:</h4>
                 <div className={classNames(styles.FormRow)}>
-                    3 pictures can be uploaded.
-                    Image size is less than 3MB.
-                    The image type is bmp,gif,png,svg,tif/tiff or jpeg/jpg'.
                 </div>
                 <div>
                     <ul className={styles.imageGrid}>
@@ -366,7 +363,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                                             <FaArrowRight onClick={handleNextImage} />
                                         </div>
                                         <div className={styles.largeImageButtons}>
-                                        <button className={styles.buttonStyle} onClick={handleRotateLargeImage}> 
+                                        <button className={styles.buttonStyle} onClick={() => handleRotateLargeImage(index, 90)}> 
                                             <FaArrowRotateRight/>
                                         </button>
                                         <button className={styles.buttonStyle} onClick={handleLargePictureClose}>
@@ -424,7 +421,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         onChange={handleFileChange}
                     />
                 </div>
-                <div className={classNames(styles.FormRow)}> </div>
+                <div className={classNames(styles.FormRow)}>{uploadHint}</div>
                 <div className={classNames(styles.FormRow)}> </div>
                 <div className={classNames(styles.FormRow)}>
                     <Form.Control
