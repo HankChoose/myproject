@@ -10,19 +10,18 @@ import { baseUrl } from '../../constants';
 import { TestGetImages } from '../test-get-images/test-get-images';
 
 interface Data {
-  id: string;
-  apply_type: string;
-  requirements: string;
-  username: string;
-  email: string;
-  image_path_main: string;
-  apply_time: Date; // Change the type to Date
-  comment: string;
-  comment2: string;
-  [key: string]: string | Date; // Adjust the index signature if needed
-  // Other properties...
+    id: string;
+    apply_type: string;
+    requirements: string;
+    username: string;
+    email: string;
+    image_path_main: string;
+    apply_time: Date; // Change the type to Date
+    comment: string;
+    comment2: string;
+    [key: string]: string | Date; // Adjust the index signature if needed
+    // Other properties...
 }
-
 
 export interface TestDataGridProps {
     className?: string;
@@ -42,14 +41,14 @@ export const TestDataGrid = ({ className, data }: TestDataGridProps) => {
     const [sortOrder, setSortOrder] = useState('desc'); // 'asc' 或 'desc'
     const [sortedField, setSortedField] = useState('id'); // 按照哪个字段排序
     const [imageData, setImageData] = useState<string | null>(null);
-    
+
     /*
     useEffect(() => {
         renderTableBody ();
     }, []);
     */
 
-    const formatDate = (inputDate:string) => {
+    const formatDate = (inputDate: string) => {
         // 创建一个新的Date对象
         const dateObject = new Date(inputDate);
 
@@ -58,13 +57,13 @@ export const TestDataGrid = ({ className, data }: TestDataGridProps) => {
 
         return formattedDate;
     };
-    
+
     // 过滤数据
     const filteredData = data.filter((item: Data) => {
         return (
             item.requirements.toLowerCase().includes(searchTerm.toLowerCase()) ||
             item.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.email.toLowerCase().includes(searchTerm.toLowerCase()) || 
+            item.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
             item.apply_type.toLowerCase().includes(searchTerm.toLowerCase())
             // 添加其他属性的搜索条件...
         );
@@ -72,18 +71,15 @@ export const TestDataGrid = ({ className, data }: TestDataGridProps) => {
 
     // 排序数据
     const sortedData = [...filteredData].sort((a, b) => {
-
         if (sortedField === 'id') {
-        // 如果是 id 字段，以数字形式比较
-        const compareValue = parseInt(a[sortedField], 10)-parseInt(b[sortedField], 10);
-        return sortOrder === 'asc' ? compareValue : -compareValue;
-      } else {
-        // 其他字段按字符形式比较
-         const compareValue = String(a[sortedField]).localeCompare(String(b[sortedField]));
-         return sortOrder === 'asc' ? compareValue : -compareValue;
-      }
-       
-        
+            // 如果是 id 字段，以数字形式比较
+            const compareValue = parseInt(a[sortedField], 10) - parseInt(b[sortedField], 10);
+            return sortOrder === 'asc' ? compareValue : -compareValue;
+        } else {
+            // 其他字段按字符形式比较
+            const compareValue = String(a[sortedField]).localeCompare(String(b[sortedField]));
+            return sortOrder === 'asc' ? compareValue : -compareValue;
+        }
     });
 
     // 分页数据
@@ -104,10 +100,9 @@ export const TestDataGrid = ({ className, data }: TestDataGridProps) => {
     // 处理排序变化
     const handleSortChange = (field: string) => {
         setSortedField(field);
-        setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
+        setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
     };
-   
-    
+
     const renderTableBody = () => {
         if (filteredData.length === 0) {
             // 如果没有符合条件的数据，显示一行没有数据的行
@@ -116,87 +111,101 @@ export const TestDataGrid = ({ className, data }: TestDataGridProps) => {
                     <td colSpan={4}>No matching data found</td>
                     {/* 如果有更多的列，需要根据实际列数调整 colSpan */}
                 </tr>
-
             );
         }
- 
-        return currentData.map((item) => (
 
+        return currentData.map((item) => (
             <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>
-                    <a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
-                            <TestGetImages imageInfo={item.image_path_main} />
+                    <a
+                        href={`userapplycontent/${item.id}`}
+                        target="_self"
+                        rel="noopener noreferrer"
+                    >
+                        <TestGetImages imageInfo={item.image_path_main} />
                     </a>
                 </td>
                 <td>
-                    <a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
-                       {item.requirements.length > 30 ? `${item.requirements.slice(0, 30)}...` : item.requirements}
+                    <a
+                        href={`userapplycontent/${item.id}`}
+                        target="_self"
+                        rel="noopener noreferrer"
+                    >
+                        {item.requirements.length > 30
+                            ? `${item.requirements.slice(0, 30)}...`
+                            : item.requirements}
                     </a>
                 </td>
                 <td>{item.apply_type}</td>
                 <td>{item.username}</td>
                 <td>{item.apply_time.toLocaleString()}</td>
-               
             </tr>
         ));
     };
 
     const renderCard = (item: Data) => (
         <div key={item.id} className={classNames(styles.card)}>
-        <div>{item.id}</div>
-        <div>
-            <a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
-            <TestGetImages imageInfo={item.image_path_main} />
-            </a>
-        </div>
-        <div>
-            <a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
-            {item.requirements}
-            </a>
-        </div>
-        <div>{item.apply_type}</div>
-        <div>{item.username}</div>
-        <div>{item.apply_time.toLocaleString()}</div>
+            <div>{item.id}</div>
+            <div>
+                <a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
+                    <TestGetImages imageInfo={item.image_path_main} />
+                </a>
+            </div>
+            <div>
+                <a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
+                    {item.requirements.length > 30
+                            ? `${item.requirements.slice(0, 30)}...`
+                            : item.requirements}
+                </a>
+            </div>
+            <div>{item.apply_type}</div>
+            <div>{item.username}</div>
+            <div>{item.apply_time.toLocaleString()}</div>
         </div>
     );
 
     return (
         <div className={classNames(styles.root)}>
-         <div className={classNames(styles.formRowSeparate)}>
-            <div className={styles.searchInput}>
-            <input
-                type="text"
-                placeholder="Search..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
+            <div className={classNames(styles.formRowSeparate)}>
+                <div className={styles.searchInput}>
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+                <div className={styles.pageSizeSelect}>
+                    <label>Page Size</label>
+                    <select
+                        onChange={(e) => handlePageSizeChange(Number(e.target.value))}
+                        value={pageSize}
+                    >
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                    </select>
+                </div>
             </div>
-            <div className={styles.pageSizeSelect}>
-            <label>Page Size</label>
-            <select onChange={(e) => handlePageSizeChange(Number(e.target.value))} value={pageSize}>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-            </select>
+
+            <div className={classNames(styles.root)}>
+                {filteredData.length === 0 ? (
+                    <div>No matching data found</div>
+                ) : (
+                    currentData.map((item) => renderCard(item))
+                )}
+            </div>
+
+            <div className={styles.pagination}>
+                {Array.from({ length: Math.ceil(filteredData.length / pageSize) }).map(
+                    (_, index) => (
+                        <button key={index} onClick={() => handlePageChange(index + 1)}>
+                            {index + 1}
+                        </button>
+                    )
+                )}
             </div>
         </div>
-
-      <div className={classNames(styles.root)}>
-        {filteredData.length === 0 ? (
-          <div>No matching data found</div>
-        ) : (
-          currentData.map((item) => renderCard(item))
-        )}
-      </div>
-
-      <div className={styles.pagination}>
-        {Array.from({ length: Math.ceil(filteredData.length / pageSize) }).map((_, index) => (
-          <button key={index} onClick={() => handlePageChange(index + 1)}>
-            {index + 1}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
+    );
 };
