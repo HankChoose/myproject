@@ -6,6 +6,8 @@ import axios from 'axios';
 import { TestDataTable } from '../test-data-table/test-data-table';
 import { fetch_data_csrf_get } from '../../apiService';
 import { TestDataGrid } from '../test-data-grid/test-data-grid';
+import { BiSolidGrid } from 'react-icons/bi';
+import { FaListUl } from 'react-icons/fa';
 
 export interface TestListDataTableProps {
     className?: string;
@@ -83,7 +85,12 @@ export const TestListDataTable = ({ className }: TestListDataTableProps) => {
 
     return <div className={classNames(styles.root)}>
                 <div>
-                    <button onClick={toggleViewMode}>切换视图模式</button>
+                    
+                    {viewMode === 'list' ? (
+                        <FaListUl />
+                    ) : (
+                        <BiSolidGrid />
+                    )}
                     {viewMode === 'list' ? <TestDataTable data={data1} /> : <TestDataGrid data={data1} />}
                 </div>
         </div>

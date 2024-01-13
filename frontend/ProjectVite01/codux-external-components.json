@@ -104,6 +104,18 @@
                 "filePath": "react-icons/fa",
                 "exportName": "FaSearch",
                 "name": "FaSearch"
+            },
+
+            {
+                "filePath": "react-icons/bi",
+                "exportName": "BiSolidGrid",
+                "name": "BiSolidGrid"
+            },
+
+            {
+                "filePath": "react-icons/fa",
+                "exportName": "FaListUl",
+                "name": "FaListUl"
             }
         ]
     }
