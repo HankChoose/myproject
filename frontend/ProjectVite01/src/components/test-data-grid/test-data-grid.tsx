@@ -132,8 +132,8 @@ export const TestDataGrid = ({ className, data }: TestDataGridProps) => {
                         target="_self"
                         rel="noopener noreferrer"
                     >
-                        {item.requirements.length > 30
-                            ? `${item.requirements.slice(0, 30)}...`
+                        {item.requirements.length > 35
+                            ? `${item.requirements.slice(0, 35)}...`
                             : item.requirements}
                     </a>
                 </td>
@@ -154,8 +154,8 @@ export const TestDataGrid = ({ className, data }: TestDataGridProps) => {
             </div>
             <div>
                 <a href={`userapplycontent/${item.id}`} target="_self" rel="noopener noreferrer">
-                    {item.requirements.length > 30
-                            ? `${item.requirements.slice(0, 30)}...`
+                    {item.requirements.length > 35
+                            ? `${item.requirements.slice(0, 35)}...`
                             : item.requirements}
                 </a>
             </div>

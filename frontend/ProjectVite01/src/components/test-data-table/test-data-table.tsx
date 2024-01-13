@@ -127,7 +127,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                         target="_self"
                         rel="noopener noreferrer"
                     >
-                        {item.requirements.length > 30 ? `${item.requirements.slice(0, 30)}...` : item.requirements}
+                        {item.requirements.length > 35 ? `${item.requirements.slice(0, 35)}...` : item.requirements}
                     </a>
                 </td>
                 <td>{item.apply_type}</td>
