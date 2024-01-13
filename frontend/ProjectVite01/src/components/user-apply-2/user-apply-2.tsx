@@ -5,6 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useSelector, useDispatch, connect } from 'react-redux';
 import { useFormik, FormikValues } from 'formik';
 import * as Yup from 'yup';
+import { IoMdDownload,IoMdClose } from 'react-icons/io';
 import {
     addImage,
     setMainImage,
@@ -54,13 +55,21 @@ type RootState2 = {
     };
 };
 
+interface ImageInfo {
+    file: File | null;
+    fileName: string;
+    fileSize: number;
+    filePreviewUrl: string | null;
+    rotation: number;
+}
+
 /**
  * This component was created using Codux's Default new component template.
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const UserApply2 = ({ className }: UserApply2Props) => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState<ImageInfo | null>(null);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
     const [textInput, setTextInput] = useState('');
 
@@ -101,6 +110,15 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
 
     const handleRemoveImage = (index: number) => {
         dispatch(removeImage(index));
+    };
+
+     const handleRotateLargeImage = () => {
+        if (selectedImage) {
+            setSelectedImage({
+                ...selectedImage,
+                rotation: (selectedImage.rotation || 0) + 90,
+            });
+        }
     };
 
     const handleRotateImage = (index: number, degrees: number) => {
@@ -294,7 +312,11 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                 </div>
                 <div className={classNames(styles.FormRowSmall)}></div>
                 <h4>Uploaded Images:</h4>
-                <div className={classNames(styles.FormRow)}></div>
+                <div className={classNames(styles.FormRow)}>
+                    3 pictures can be uploaded.
+                    Image size is less than 3MB.
+                    The image type is bmp,gif,png,svg,tif/tiff or jpeg/jpg'.
+                </div>
                 <div>
                     <ul className={styles.imageGrid}>
                         {userInfo2.uploadedImages.map((image: any, index) => (
@@ -338,13 +360,20 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                                             }}
                                             onClick={handleLargePictureClose}
                                         />
-                                        <div className={styles.fileInfoContainer}>
-                                            click image to close
-                                        </div>
+                                       
                                          <div className={styles.navigationArrows}>
                                             <FaArrowLeft onClick={handlePrevImage} />
                                             <FaArrowRight onClick={handleNextImage} />
                                         </div>
+                                        <div className={styles.largeImageButtons}>
+                                        <button className={styles.buttonStyle} onClick={handleRotateLargeImage}> 
+                                            <FaArrowRotateRight/>
+                                        </button>
+                                        <button className={styles.buttonStyle} onClick={handleLargePictureClose}>
+                                            <IoMdClose/>
+                                        </button>
+                                        
+                                    </div>
                                     </div>
                                 )}
 
@@ -402,7 +431,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         as="textarea"
                         ref={textareaRef}
                         rows={3}
-                        placeholder="Requirements"
+                        placeholder="Content"
                         value={userInfo2.requirements}
                         onChange={handleRequirementsChange} 
                         className={inputClassName}

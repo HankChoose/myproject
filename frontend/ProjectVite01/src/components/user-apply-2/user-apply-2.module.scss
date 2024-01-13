@@ -149,6 +149,36 @@
   flex-direction: column;
 }
 
+.largeImageButtons {
+  display: flex;
+  justify-content: space-between; // 让按钮分别位于左右两端
+  position: absolute;
+  bottom: 10px; // 距离底部的距离
+  width: 100%; // 宽度占满父容器
+  padding: 0 20px; // 左右边距
+}
+
+.largeImageButtons button {
+  margin: 0 5px;
+}
+
+.buttonStyle {
+  // 按钮的样式
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.buttonStyle:hover {
+  background-color: #45a049;
+}
+
+
+
 .buttonsContainer {
   //margin: 2em;
   padding: 0.5em 1.2em;
