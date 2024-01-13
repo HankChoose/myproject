@@ -64,13 +64,13 @@ export const TopBar = ({ className }: TopBarProps) => {
                     <span className={classNames(styles.logoWord)}></span>
                 </div>
             </a>
-           
+            <a href="https://zhiyouyuec.com"><BsHouseFill />Home</a>
 
         </div>
         
         <div className={classNames(styles.toRowUser)}>
 
-            <a href="https://zhiyouyuec.com"><BsHouseFill />Home</a>
+           
             <Link to="/react/testlisdatatable"><FaSearch />Search</Link>
             <Link to="/react/userapply"><BsSendPlusFill />Post Info</Link>
             {isLoggedIn ? (
