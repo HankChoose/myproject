@@ -69,7 +69,7 @@ export const TopBar = ({ className }: TopBarProps) => {
         </div>
         
         <div className={classNames(styles.toRowUser)}>
-            <Link to="/react/testlink"> T</Link>
+
             <a href="https://zhiyouyuec.com"><BsHouseFill />Home</a>
             <Link to="/react/testlisdatatable"><FaSearch />Search</Link>
             <Link to="/react/userapply"><BsSendPlusFill />Post Info</Link>
