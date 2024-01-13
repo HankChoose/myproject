@@ -2493,6 +2493,23 @@ select.form-control {
   z-index: 1000;
 }
 
+
+.space-between-container {
+  display: flex;
+  justify-content: space-between; /* 或者使用 justify-content: space-around; */
+}
+
+.box {
+  width: calc(33.33% - 20px); /* 计算每个盒子的宽度，减去间距 */
+  margin-right: 20px; /* 右边间距 */
+}
+
+/* 最后一个盒子不需要右边间距 */
+.box:last-child {
+  margin-right: 0;
+}
+
+
 .mean-container {
   position: relative;
 }
