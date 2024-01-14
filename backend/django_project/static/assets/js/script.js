@@ -1,7 +1,7 @@
 jQuery(function ($) {
     'use strict';
     // Mean menu
-    jQuery('.mean-menu').meanmenu({
+    jQuery('.mean-menu1').meanmenu({
         meanScreenWidth: "600"
     });
 
