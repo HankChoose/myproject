@@ -2,7 +2,7 @@ jQuery(function ($) {
     'use strict';
     // Mean menu
     jQuery('.mean-menu').meanmenu({
-        meanScreenWidth: "1"
+        meanScreenWidth: "30000"
     });
 
     // Sticky navbar
