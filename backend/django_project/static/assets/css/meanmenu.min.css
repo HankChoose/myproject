@@ -281,7 +281,7 @@ a.meanmenu-reveal {
 }
 
 /* Responsive Style */
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 1px) {
     .mobile-nav {
         display: block;
         position: relative;
@@ -308,6 +308,6 @@ a.meanmenu-reveal {
         display: none;
     }
     .main-nav {
-        display: block !important;
+        display: none !important;
     }
 }
