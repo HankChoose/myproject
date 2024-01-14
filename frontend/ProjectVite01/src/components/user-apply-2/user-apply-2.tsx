@@ -78,14 +78,14 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
     const userInfo = useSelector((state: RootState) => state.userInfo);
     const userInfo2 = useSelector((state: RootState2) => state.userInfo2);
 
-    const uploadHint = "Can transfer 3 pictures, each less than 3 MB and image type is bmp,gif,png,svg,tif/tiff or jpeg/jpg'."
-
+    const uploadHint = "Can upload 3 pictures, each less than 3 MB"
+    const requirementErrorMessage="Between 10 and 2000 characters, cannot contain special characters such as --";
+    
     console.log('userInfo-1:', userInfo);
     console.log('userInfo2-1:', userInfo2);
 
     const dispatch = useDispatch();
     const mainImageIndex = useSelector((state: RootState2) => state.userInfo2.mainImageId);
-    const requirementErrorMessage="Between 10 and 2000 characters, cannot contain special characters such as --";
     
     const textareaRef = useRef<HTMLTextAreaElement | null>(null);
     useEffect(() => {
@@ -421,7 +421,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         onChange={handleFileChange}
                     />
                 </div>
-                <div className={classNames(styles.FormRow)}>{uploadHint}</div>
+                <div className={classNames(styles.FormRow)}><span className={classNames(styles.uploadHintText)}>{uploadHint}</span></div>
                 <div className={classNames(styles.FormRow)}> </div>
                 <div className={classNames(styles.FormRow)}>
                     <Form.Control
