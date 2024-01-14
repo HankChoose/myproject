@@ -102,8 +102,6 @@ urlpatterns = [
     path("tnginx", views.tnginx, name="tnginx"),
     path("tgit", views.tgit, name="tgit"),
     path("faqs", views.faqs, name="faqs"),
-    path("contactus", views.contactus, name="contactus"),
-    path("aboutus", views.aboutus, name="aboutus"),
-
+    path("myterms", views.myterms, name="myterms"),
 
 ]

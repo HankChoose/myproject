@@ -632,12 +632,8 @@ def tdocker(request):
     return render(request, 'tdocker.html')
 
 
-def aboutus(request):
-    return render(request, 'aboutus.html')
-
-
-def contactus(request):
-    return render(request, 'contactus.html')
+def myterms(request):
+    return render(request, 'myterms.html')
 
 
 def faqs(request):
