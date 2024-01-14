@@ -305,7 +305,7 @@ a.meanmenu-reveal {
         padding: 15px 15px 0 0;
     }
     .mobile-nav nav .navbar-nav .nav-item a i {
-        display: none;
+        display: block;
     }
     .main-nav {
         display: block !important;
