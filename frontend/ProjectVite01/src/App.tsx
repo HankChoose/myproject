@@ -57,8 +57,8 @@ function App() {
                     <div className={styles.App}>
                         <Routes>
                             <Route path="/react" element={<Home />} />
-                            <Route path="/react/aboutus" element={ <ContactUs />} />
-                            <Route path="/react/contactus" element={<TestCheckEmail />} />
+                            <Route path="/react/aboutus" element={ <AboutUS />} />
+                            <Route path="/react/contactus" element={<ContactUs />} />
                             <Route path="/react/signin" element={<SignCard formType="signin" redirectLink='/react/userprofile' />} />
                             <Route path="/react/signup" element={<SignCard formType="signup" redirectLink='/react/userprofile' />} />
                             <Route path="/react/resetpw" element={<SignCard formType="resetpw" redirectLink='/react/userprofile' />} />
