@@ -308,6 +308,6 @@ a.meanmenu-reveal {
         display: none;
     }
     .main-nav {
-        display: none !important;
+        display: block !important;
     }
 }
