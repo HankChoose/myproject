@@ -1,5 +1,5 @@
 /*************** MEDIA VARIABLE ***************/
-@media only screen and (max-width: 1px) {
+@media only screen and (max-width: 20000px) {
   .p-tb-100 {
     padding-top: 50px;
     padding-bottom: 50px;
