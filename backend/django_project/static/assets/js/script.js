@@ -1,5 +1,5 @@
 jQuery(function ($) {
-    'use strict';
+    //'use strict';
     // Mean menu
     var windowWidth = $(window).width();
 
