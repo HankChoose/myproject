@@ -74,212 +74,351 @@
                                 <div class="agile_header_right">
                                     <ul>
                                         <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a
-                                                href="mailto:zhiyouyuec@gmail.com"><img
+                                                href="mailto:hankchenv@gmail.com"><img
                                                     src="{% static 'assets/images/self/mail.png' %}"
-                                                    alt="" />zhiyouyuec@gmail.com</a></li>
+                                                    alt="" />hankchenv@gmail.com</a></li>
                                     </ul>
                                 </div>
+                                <!--
+                                <div class="topbar-action-item cart-option-dropdown">
+                                    <a href="#" class="cartbtn">
+                                        <i class="flaticon-shopping-cart"></i>
+                                        <span>Cart</span>
+                                        <span class="topbar-action-counter">02</span>
+                                    </a>
 
+
+                                    <div class="cart-modal">
+                                        <div class="cart-close-btn close-btn">
+                                            <i class="flaticon-close"></i>
+                                        </div>
+                                        <div class="cart-modal-products">
+                                            <div class="cart-modal-product">
+                                                <div class="cart-product-info">
+                                                    <a href="single-shop.html">
+                                                        <div class="cart-product-thumb">
+                                                            <img src="{% static 'assets/images/products/p11.png' %}"
+                                                                alt="product">
+                                                        </div>
+                                                        <div class="cart-product-details">
+                                                            <h3>Stylish Chair</h3>
+                                                            <p>Price: <span>$200.0</span></p>
+                                                            <p>Qty: <span>2 pcs</span></p>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="cart-product-remove">
+                                                    <a href="#">
+                                                        <i class="flaticon-delete"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="cart-modal-product">
+                                                <div class="cart-product-info">
+                                                    <a href="single-shop.html">
+                                                        <div class="cart-product-thumb">
+                                                            <img src="{% static 'assets/images/products/product-15.png' %}"
+                                                                alt="product">
+                                                        </div>
+                                                        <div class="cart-product-details">
+                                                            <h3>Furnished Sofa</h3>
+                                                            <p>Price: <span>$300.0</span></p>
+                                                            <p>Qty: <span>1 pc</span></p>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="cart-product-remove">
+                                                    <a href="#">
+                                                        <i class="flaticon-delete"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cart-details">
+                                            <div class="cart-total-box">
+                                                <div class="cart-total-item">
+                                                    <h4>Subtotal</h4>
+                                                    <p>$500.0</p>
+                                                </div>
+                                                <div class="cart-total-item">
+                                                    <h4>Vat <span>(2%)</span></h4>
+                                                    <p>$40.0</p>
+                                                </div>
+                                                <div class="cart-total-item">
+                                                    <h4>Total</h4>
+                                                    <p>$540.0</p>
+                                                </div>
+                                            </div>
+                                            <a href="cart.html" class="btn main-btn full-width">Add To Cart</a>
+                                            <a href="checkout.html"
+                                                class="btn main-btn full-width main-btn-bgless">Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="main-nav">
+        <div class="navbar-area">
             <div class="container">
-                <nav class="navbar navbar-expand-md navbar-light">
+                <div class="mobile-nav">
 
-                    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
-                        <ul class="navbar-nav mx-auto">
-                            <li class="nav-item">
-                                <a href="/" class="nav-link">Home</a>
-                            </li>
+                    <a href="index.html" class="mobile-brand d-lg-none">
+                        <img src="{% static 'assets/images/self/logohead.png' %}" alt="logohead">
+                        <img src="{% static 'assets/images/self/logo.png' %}" alt="logo" class="logo">
+                    </a>
+                    <div class="navbar-option">
+                        <div class="navbar-option-item d-none mobile-nav-sidebar">
+                            <a href="#" class="mobile-option-dot">
+                                <i class="flaticon-more"></i>
+                            </a>
 
-                            <li class="nav-item">
-                                <a href="#" class="nav-link dropdown-toggle">Services</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="/pd" class="nav-link">Planning and Design</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/qwb" class="nav-link">Quick Website Building</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/cbs" class="nav-link">Custom built site</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/pi" class="nav-link">Performance
-                                            improvement</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/fi" class="nav-link">Function implementation </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/fe" class="nav-link">Function extension</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/sh" class="nav-link">Security hardening</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link dropdown-toggle">Technology</a>
-                                <ul class="dropdown-menu">
+                            <div class="mobile-option-dropdown">
 
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link dropdown-toggle">Web Framework</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="/wfd" class="nav-link">Django</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/wffastapi" class="nav-link">FastAPI</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/wfflask" class="nav-link">Flask</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/wfflutter" class="nav-link">Flutter</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/wfspringboot" class="nav-link">SpringBoot</a>
-                                            </li>
+                                <div class="navbar-option-item">
+                                    <a href="login.html">
+                                        <i class="flaticon-user"></i>
+                                    </a>
+                                </div>
+                                <div class="navbar-option-item dropdown">
+                                    <button type="button" id="search2" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i class="flaticon-search"></i>
+                                    </button>
+                                    <div class="dropdown-menu mobile-search" aria-labelledby="search2">
+                                        <form>
+                                            <input type="text" class="form-control" placeholder="Search product">
+                                            <button class="btn main-btn" type="submit">Search</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="navbar-option-item">
+                                    <a href="wishlist.html" class="navbar-add-cart">
+                                        <i class="flaticon-like"></i>
+                                        <span class="topbar-action-counter">05</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link dropdown-toggle">Database</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="/dbmysql" class="nav-link">MySql</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/dbsqlsever" class="nav-link">SQL Server</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/dboracle" class="nav-link">Oracle</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/dbpostgresql" class="nav-link">PostgreSQL</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/dbmongodb" class="nav-link">MongoDB</a>
-                                            </li>
+                        <div class="navbar-option-item d-none d-lg-none d-md-block">
+                            <a href="login.html">
+                                <i class="flaticon-user"></i>
+                            </a>
+                        </div>
+                        <div class="navbar-option-item d-none d-lg-none d-md-block">
+                            <button type="button" id="search1" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="flaticon-search"></i>
+                            </button>
+                            <div class="dropdown-menu mobile-search" aria-labelledby="search1">
+                                <form>
+                                    <input type="text" class="form-control" placeholder="Search product">
+                                    <button class="btn main-btn" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </div>
 
-                                        </ul>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link dropdown-toggle">Frontend Technologies</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="/fdscss" class="nav-link">CSS/SCSS</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/fdhtml" class="nav-link">HTML</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/fdbootstrap" class="nav-link">Bootstrap</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/fdjavascript" class="nav-link">JavaScript</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/fdtypescript" class="nav-link">TypeScript</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/fdreact" class="nav-link">React</a>
-                                            </li>
-
-                                        </ul>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link dropdown-toggle">Backend Technologies</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="/bdjava" class="nav-link">Java</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/bdc" class="nav-link">C#</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/bdpython" class="nav-link">Python</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/bdphp" class="nav-link">PHP</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="/bdnotejs" class="nav-link">Node.js</a>
-                                            </li>
-
-                                        </ul>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a href="/tdocker" class="nav-link">Docker</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/tnginx" class="nav-link">Nginx</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/tgit" class="nav-link">Git/GitHub</a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link dropdown-toggle">Support</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="/faqs" class="nav-link">FAQ's</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="/react/contactus" class="nav-link">Contact us</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/react/aboutus" class="nav-link">About Us</a>
-                            </li>
-
-                        </ul>
 
                     </div>
+                </div>
+            </div>
+            <div class="main-nav">
+                <div class="container">
+                    <nav class="navbar navbar-expand-md navbar-light">
 
-                    <div class="topbar-item topbar-item-rightside">
-                        <div class="topbar-action">
-                            <div class="topbar-action-item">
-                                <a href="/react/testlisdatatable">
-                                    <i class="flaticon-search"></i>
-                                    <span>Search</span>
-                                </a>
-                            </div>
+                        <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                            <ul class="navbar-nav mx-auto">
+                                <li class="nav-item">
+                                    <a href="/" class="nav-link">Home</a>
+                                </li>
 
-                            <div class="topbar-action-item">
-                                <a href="/react/signin">
-                                    <i class="flaticon-user"></i>
-                                    <span>Account</span>
-                                </a>
-                            </div>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link dropdown-toggle">Services</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a href="/pd" class="nav-link">Planning and Design</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/qwb" class="nav-link">Quick Website Building</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/cbs" class="nav-link">Custom built site</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/pi" class="nav-link">Performance
+                                                improvement</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/fi" class="nav-link">Function implementation </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/fe" class="nav-link">Function extension</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/sh" class="nav-link">Security hardening</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link dropdown-toggle">Technology</a>
+                                    <ul class="dropdown-menu">
 
-                            <div class="topbar-action-item">
-                                <a href="/react/userapply">
-                                    <i class="flaticon-message"></i>
-                                    <span>Post Info</span>
-                                </a>
-                            </div>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link dropdown-toggle">Web Framework</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="/wfd" class="nav-link">Django</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/wffastapi" class="nav-link">FastAPI</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/wfflask" class="nav-link">Flask</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/wfflutter" class="nav-link">Flutter</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/wfspringboot" class="nav-link">SpringBoot</a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link dropdown-toggle">Database</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="/dbmysql" class="nav-link">MySql</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/dbsqlsever" class="nav-link">SQL Server</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/dboracle" class="nav-link">Oracle</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/dbpostgresql" class="nav-link">PostgreSQL</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/dbmongodb" class="nav-link">MongoDB</a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link dropdown-toggle">Frontend Technologies</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="/fdscss" class="nav-link">CSS/SCSS</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/fdhtml" class="nav-link">HTML</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/fdbootstrap" class="nav-link">Bootstrap</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/fdjavascript" class="nav-link">JavaScript</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/fdtypescript" class="nav-link">TypeScript</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/fdreact" class="nav-link">React</a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link dropdown-toggle">Backend Technologies</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="/bdjava" class="nav-link">Java</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/bdc" class="nav-link">C#</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/bdpython" class="nav-link">Python</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/bdphp" class="nav-link">PHP</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/bdnotejs" class="nav-link">Node.js</a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="/tdocker" class="nav-link">Docker</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/tnginx" class="nav-link">Nginx</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/tgit" class="nav-link">Git/GitHub</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link dropdown-toggle">Support</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item">
+                                            <a href="/faqs" class="nav-link">FAQ's</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/contactus" class="nav-link">Contact us</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/aboutus" class="nav-link">About Us</a>
+                                </li>
+
+                            </ul>
 
                         </div>
-                    </div>
 
-                </nav>
+                        <div class="topbar-item topbar-item-rightside">
+                            <div class="topbar-action">
+                                <div class="topbar-action-item">
+                                    <a href="/react/testlisdatatable">
+                                        <i class="flaticon-search"></i>
+                                        <span>Search</span>
+                                    </a>
+                                </div>
+
+                                <div class="topbar-action-item">
+                                    <a href="/react/signin">
+                                        <i class="flaticon-user"></i>
+                                        <span>Account</span>
+                                    </a>
+                                </div>
+
+                                <div class="topbar-action-item">
+                                    <a href="/react/userapply">
+                                        <i class="flaticon-message"></i>
+                                        <span>Post Info</span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
-
 
     <header class="header header-bg-gradient overflow-hidden">
         <div class="container position-relative">
@@ -294,27 +433,27 @@
         <div class="container">
             <div class="partner-carousel owl-carousel">
                 <div class="item">
-                    <a href="2222.html">
+                    <a href="contact.html">
                         <img src="{% static 'assets/images/partner/partner-1.png' %}" alt="partner">
                     </a>
                 </div>
                 <div class="item">
-                    <a href="2222.html">
+                    <a href="contact.html">
                         <img src="{% static 'assets/images/partner/partner-2.png' %}" alt="partner">
                     </a>
                 </div>
                 <div class="item">
-                    <a href="2222.html">
+                    <a href="contact.html">
                         <img src="{% static 'assets/images/partner/partner-3.png' %}" alt="partner">
                     </a>
                 </div>
                 <div class="item">
-                    <a href="2222.html">
+                    <a href="contact.html">
                         <img src="{% static 'assets/images/partner/partner-4.png' %}" alt="partner">
                     </a>
                 </div>
                 <div class="item">
-                    <a href="2222.html">
+                    <a href="contact.html">
                         <img src="{% static 'assets/images/partner/partner-5.png' %}" alt="partner">
                     </a>
                 </div>
@@ -329,9 +468,9 @@
                 <div class="col-sm-6 pb-30">
                     <div class="reach-us-card reach-us-card-1">
                         <h3>Connect Us</h3>
-                        <p>Need help? Call <a href="tel:587-936-1806">+1 587-936-1806</a> <br> We always ready to help.
+                        <p>Need help? Call <a href="tel:00910-395-5297">+910-395-5297</a> <br> We always ready to help.
                         </p>
-                        <a href="/react/contactus" class="redirect-link">Contact Us</a>
+                        <a href="contact.html" class="redirect-link">Contact Us</a>
                     </div>
                 </div>
                 <div class="col-sm-6 pb-30">
@@ -358,8 +497,26 @@
                                     <img src="{% static 'assets/images/self/logo.png' %}" alt="logo"></a>
                             </div>
                             <div class="footer-details">
-                                <p>Share technical experience to get develop better products.</p>
-
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua.</p>
+                                <ul class="footer-payment-list">
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'assets/images/american-express-sign.png' %}"
+                                                alt="payment">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'assets/images/cirrus.png' %}" alt="payment">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img src="{% static 'assets/images/mastercard.png' %}" alt="payment">
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -370,13 +527,20 @@
                             </div>
                             <ul class="footer-details footer-list">
                                 <li>
-                                    <a href="/react/contactus">Contact Us</a>
+                                    <a href="contact.html">Contact Us</a>
                                 </li>
                                 <li>
-                                    <a href="/myterms">Terms & Conditions</a>
+                                    <a href="terms-conditions.html">Terms & Conditions</a>
                                 </li>
-
-
+                                <li>
+                                    <a href="privacy-policy.html">Privacy & Policy</a>
+                                </li>
+                                <li>
+                                    <a href="blogs-grid.html">Latest Blogs</a>
+                                </li>
+                                <li>
+                                    <a href="shops-grid.html">Our Latest Shops</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -387,13 +551,20 @@
                             </div>
                             <ul class="footer-details footer-list">
                                 <li>
-                                    <a href="/faqs">FAQ</a>
+                                    <a href="faqs.html">FAQ</a>
                                 </li>
                                 <li>
-                                    <a href="/react/testlisdatatable">Info Tracking</a>
+                                    <a href="order-tracking.html">Order Tracking</a>
                                 </li>
-
-
+                                <li>
+                                    <a href="login.html">Authentication</a>
+                                </li>
+                                <li>
+                                    <a href="cart.html">My Cart</a>
+                                </li>
+                                <li>
+                                    <a href="wishlist.html">My Wishlist</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -404,13 +575,20 @@
                             </div>
                             <ul class="footer-details footer-list">
                                 <li>
-                                    <a href="/react/testlisdatatable">Search Page</a>
+                                    <a href="shops-grid.html">New Arrivals</a>
                                 </li>
                                 <li>
-                                    <a href="/react/aboutus">About Us</a>
+                                    <a href="about-us.html">About Us</a>
                                 </li>
-
-
+                                <li>
+                                    <a href="404.html">404 Error Page</a>
+                                </li>
+                                <li>
+                                    <a href="coming-soon-page.html">Coming Soon Page</a>
+                                </li>
+                                <li>
+                                    <a href="search-page.html">Search Page</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -421,8 +599,8 @@
             <div class="footer-lower">
                 <div class="footer-lower-item">
                     <div class="footer-copyright-text">
-                        <p>Copyright &copy; 2022 ZYY All rights reserved.<a target="_blank"
-                                href="https://www.zhiyouyuec.com/"></a></p>
+                        <p>Copyright &copy; 2021.Company name All rights reserved.<a target="_blank"
+                                href="http://www.cssmoban.com/"></a></p>
                     </div>
                 </div>
                 <div class="footer-lower-item">
