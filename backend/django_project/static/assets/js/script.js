@@ -1,9 +1,13 @@
 jQuery(function ($) {
     'use strict';
     // Mean menu
-    jQuery('.mean-menu').meanmenu({
-        meanScreenWidth: "1800"
-    });
+    var windowWidth = $(window).width();
+
+    if (windowWidth < 1800) {  // 根据需要调整条件
+        $('.mean-menu').meanmenu({
+            meanScreenWidth: "1800"
+        });
+    }
 
     // Sticky navbar
     $(window).on('scroll', function() {
