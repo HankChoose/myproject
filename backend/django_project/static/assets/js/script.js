@@ -5,13 +5,13 @@ jQuery(function ($) {
     var screenWidth = window.innerWidth || document.documentElement.clientWidth;
 
     // 自定义条件：在屏幕宽度小于某个值时才启用 MeanMenu 控制
-    if (screenWidth < 200) {  // 根据需要调整条件
+    //if (screenWidth < 200) {  // 根据需要调整条件
         // 初始化 MeanMenu 插件
-        $('.mean-menu').meanmenu({
-            meanScreenWidth: "200",  // 根据需要调整
+        //$('.mean-menu').meanmenu({
+            //meanScreenWidth: "200",  // 根据需要调整
             // 其他配置选项...
-        });
-    }
+        //});
+   //}
 
     // Sticky navbar
     $(window).on('scroll', function() {
