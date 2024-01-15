@@ -1678,7 +1678,7 @@ select.form-control {
 .main-nav {
   margin: auto;
   position: relative;
-  display: block;
+  display: none;
   background-color: transparent;
 }
 
