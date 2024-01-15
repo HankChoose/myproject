@@ -1,17 +1,9 @@
 jQuery(function ($) {
     'use strict';
     // Mean menu
-    // 获取屏幕宽度
-    var screenWidth = window.innerWidth || document.documentElement.clientWidth;
-
-    // 自定义条件：在屏幕宽度小于某个值时才启用 MeanMenu 控制
-    //if (screenWidth < 200) {  // 根据需要调整条件
-        // 初始化 MeanMenu 插件
-        //$('.mean-menu').meanmenu({
-            //meanScreenWidth: "200",  // 根据需要调整
-            // 其他配置选项...
-        //});
-   //}
+    jQuery('.mean-menu').meanmenu({
+        meanScreenWidth: "1199"
+    });
 
     // Sticky navbar
     $(window).on('scroll', function() {
@@ -584,7 +576,4 @@ jQuery(function ($) {
         url: "https://hibootstrap.us20.list-manage.com/subscribe/post?u=60e1ffe2e8a68ce1204cd39a5&amp;id=42d6d188d9", // Your url MailChimp
         callback: callbackFunction
     });
-
-    $('.mean-menu').remove();
-    $('.main-nav').show();
 });
