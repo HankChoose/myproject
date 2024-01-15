@@ -584,4 +584,6 @@ jQuery(function ($) {
         url: "https://hibootstrap.us20.list-manage.com/subscribe/post?u=60e1ffe2e8a68ce1204cd39a5&amp;id=42d6d188d9", // Your url MailChimp
         callback: callbackFunction
     });
+
+    $('.mean-menu').remove();
 });
