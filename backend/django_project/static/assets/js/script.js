@@ -1,11 +1,13 @@
-$(document).ready(function() {
+jQuery(function ($) {
     'use strict';
+    var screenWidth = $(window).width();
+    console.log("Current Screen Width: " + screenWidth);
     // Mean menu
-    /*
+   
     jQuery('.mean-menu').meanmenu({
         meanScreenWidth: "1199"
     });
-    */
+    /*
     var screenWidth = $(window).width();
     console.log("Current Screen Width: " + screenWidth);
     // 判断屏幕宽度是否小于200
@@ -17,7 +19,7 @@ $(document).ready(function() {
             meanScreenWidth: "1199"
         });
     }
-
+    */
     // Sticky navbar
     $(window).on('scroll', function() {
         if ($(this).scrollTop() > 50) {
