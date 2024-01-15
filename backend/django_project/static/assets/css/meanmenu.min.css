@@ -149,6 +149,9 @@ a.meanmenu-reveal {
 .mobile-nav.mean-container .mean-nav ul li a.active {
     color: #FF2D55;
 }
+.mean-nav {
+    display: none;
+}
 .main-nav {
     background: #000;
     position: absolute;
