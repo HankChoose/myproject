@@ -586,5 +586,5 @@ jQuery(function ($) {
     });
 
     $('.mean-menu').remove();
-    $('.main-menu').show();
+    $('.main-nav').show();
 });
