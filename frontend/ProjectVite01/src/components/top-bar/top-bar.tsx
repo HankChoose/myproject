@@ -24,7 +24,9 @@ export interface TopBarProps {
  */
 export const TopBar = ({ className }: TopBarProps) => {
     const { isLoggedIn, signIn, signOut } = useAuth();
-
+    useEffect(() => {
+        document.title = 'Zhiyouyuec';
+    }, []);
     const navigate = useNavigate();
     const handleLogout = async () => {
         const token = localStorage.getItem('accessToken');
