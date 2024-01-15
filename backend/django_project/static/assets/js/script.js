@@ -5,7 +5,7 @@ jQuery(function ($) {
     // Mean menu
    
     jQuery('.mean-menu').meanmenu({
-        meanScreenWidth: "1199"
+        meanScreenWidth: "600"
     });
     /*
     var screenWidth = $(window).width();
