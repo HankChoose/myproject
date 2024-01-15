@@ -1,9 +1,17 @@
 jQuery(function ($) {
     'use strict';
     // Mean menu
-    jQuery('.mean-menu').meanmenu({
-        meanScreenWidth: "200"
-    });
+    // 获取屏幕宽度
+    var screenWidth = window.innerWidth || document.documentElement.clientWidth;
+
+    // 自定义条件：在屏幕宽度小于某个值时才启用 MeanMenu
+    if (screenWidth < 600) {  // 根据需要调整条件
+        // 初始化 MeanMenu 插件，但不隐藏原始导航
+        $('.your-menu-selector').meanmenu({
+            meanScreenWidth: "600"  // 根据需要调整
+            // 其他配置选项...
+        });
+    }
 
     // Sticky navbar
     $(window).on('scroll', function() {
