@@ -1,4 +1,4 @@
-jQuery(function ($) {
+$(document).ready(function() {
     'use strict';
     // Mean menu
     /*
