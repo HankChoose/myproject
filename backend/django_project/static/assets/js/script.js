@@ -1,9 +1,22 @@
 jQuery(function ($) {
     'use strict';
     // Mean menu
+    /*
     jQuery('.mean-menu').meanmenu({
         meanScreenWidth: "1199"
     });
+    */
+    var screenWidth = $(window).width();
+    console.log("Current Screen Width: " + screenWidth);
+    // 判断屏幕宽度是否小于200
+    if (screenWidth < 200) {
+        // 应用 meanmenu 插件
+
+        console.log("Current Screen Widths creenWidth < 200: " + screenWidth);
+        $('.mean-menu').meanmenu({
+            meanScreenWidth: "1199"
+        });
+    }
 
     // Sticky navbar
     $(window).on('scroll', function() {
