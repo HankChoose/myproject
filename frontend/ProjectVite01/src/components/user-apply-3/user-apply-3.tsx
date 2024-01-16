@@ -141,7 +141,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                         </tr>
                         <tr>
                             <td>Content</td>
-                            <td><div>{decodeHTMLformattedRequirements}</div></td>
+                            <td><div>{sanitizedRequirements}</div></td>
                         </tr>
 
                          <tr>
