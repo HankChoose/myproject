@@ -149,9 +149,11 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                         </tr>
                         <tr>
                             <td>Content</td>
-                            <td><div style={{ whiteSpace: 'pre-line' }}>
-                                {userInfo2.requirements}
-                            </div></td>
+                            <td>
+                                <div style={{ whiteSpace: 'pre-line' }}>
+                                    {userInfo2.requirements}
+                                </div>
+                            </td>
                         </tr>
 
                          <tr>

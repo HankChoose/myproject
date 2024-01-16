@@ -151,7 +151,11 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
                             </tr>
                             <tr>
                                 <td>Content:</td>
-                                <td><div dangerouslySetInnerHTML={{ __html: {firstrequirements} }} /></td>
+                                <td>
+                                    <div style={{ whiteSpace: 'pre-line' }}>
+                                        {firstrequirements}
+                                    </div>
+                                </td>
                             </tr>
 
                             <tr>
