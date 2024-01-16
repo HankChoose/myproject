@@ -110,17 +110,16 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
 
     const sanitizeAndPreserveNewlines = (htmlString: string) => {
         // Sanitize the HTML content using DOMPurify
-        const sanitizedContent = DOMPurify.sanitize(htmlString);
+        const sanitizedContent = DOMPurify.sanitize(htmlString, {
+            ALLOWED_TAGS: ['input', 'section'],
+        });
 
         // Preserve \n characters
         const preservedNewlines = sanitizedContent.replace(/\n/g, '<br>');
 
         return preservedNewlines;
     };
-    const decodeHTML = (htmlString: string): string => {
-        const doc = new DOMParser().parseFromString(htmlString, 'text/html');
-        return doc.documentElement.textContent || "";
-    };
+    
     const formattedRequirements = sanitizeAndPreserveNewlines(userInfo2.requirements);
     return (
         <div className={classNames(styles.root, className)}>
