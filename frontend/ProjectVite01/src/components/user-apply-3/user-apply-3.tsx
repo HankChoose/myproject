@@ -108,7 +108,9 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         });
       };
 
-    const formattedRequirements = DOMPurify.sanitize(userInfo2.requirements);
+    const formattedRequirements = DOMPurify.sanitize(userInfo2.requirements, {
+        ALLOWED_TAGS: ['br', 'b', 'i', 'u', 'strong', 'em', 'a'],
+    });
     const decodeHTML = (htmlString: string): string => {
         const doc = new DOMParser().parseFromString(htmlString, 'text/html');
         return doc.documentElement.textContent || "";
