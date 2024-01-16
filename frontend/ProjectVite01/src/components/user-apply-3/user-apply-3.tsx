@@ -3,7 +3,7 @@ import styles from './user-apply-3.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import React, { useRef, useState, Component, ChangeEvent } from 'react';
-import DOMPurify from 'dompurify';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { updateApplytype, updateRequirements } from '../../actions/userInfo2Actions';
 import axios from 'axios';
@@ -108,8 +108,8 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         });
       };
 
-    const sanitizedRequirements = DOMPurify.sanitize(userInfo2.requirements);
-    console.log('sanitizedRequirements:',sanitizedRequirements);
+    const formattedRequirements = userInfo2.requirements.replace(/\n/g, '<br>');
+   
     return (
         <div className={classNames(styles.root, className)}>
             <div className={classNames(styles.flowImage3)}></div>
@@ -136,7 +136,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                         </tr>
                         <tr>
                             <td>Content</td>
-                            <td><div dangerouslySetInnerHTML={{ __html: sanitizedRequirements }} /></td>
+                            <td><div style={{ whiteSpace: 'pre-line' }}>{formattedRequirements}</div></td>
                         </tr>
 
                          <tr>
