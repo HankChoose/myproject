@@ -5,8 +5,7 @@ import axios, { AxiosResponse } from 'axios';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate} from 'react-router-dom';
 
-
-
+const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token Cross-Site Request Forgery
 
 const handleError = (error:any) => {
   // 处理错误，例如显示一个错误提示或者进行其他操作
