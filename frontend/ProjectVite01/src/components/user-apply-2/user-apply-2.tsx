@@ -79,7 +79,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
     const userInfo2 = useSelector((state: RootState2) => state.userInfo2);
 
     const uploadHint = "Can upload 3 pictures, each less than 3 MB"
-    const requirementErrorMessage="Between 10 and 2000 characters.";
+    const requirementErrorMessage="Between 10 and 10000 characters.";
     
     console.log('userInfo-1:', userInfo);
     console.log('userInfo2-1:', userInfo2);
@@ -164,7 +164,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
         console.log('Requirements newValue is:', newValue); 
         dispatch(updateRequirements(e.target.value));
         // 在这里进行字符数和特殊字符串的检查
-        if (newValue.length >= 10 && newValue.length <= 20000) {
+        if (newValue.length >= 10 && newValue.length <= 10000) {
             setTextInput(newValue);
             console.log('Requirements textInput0 is:', newValue); 
             //localStorage.setItem('previousText', newValue);
