@@ -108,15 +108,20 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         });
       };
 
-    const formattedRequirements = DOMPurify.sanitize(userInfo2.requirements, {
-        ALLOWED_TAGS: ['br', 'b', 'i', 'u', 'strong', 'em', 'a'],
-    });
+    const sanitizeAndPreserveNewlines = (htmlString: string) => {
+        // Sanitize the HTML content using DOMPurify
+        const sanitizedContent = DOMPurify.sanitize(htmlString);
+
+        // Preserve \n characters
+        const preservedNewlines = sanitizedContent.replace(/\n/g, '<br>');
+
+        return preservedNewlines;
+    };
     const decodeHTML = (htmlString: string): string => {
         const doc = new DOMParser().parseFromString(htmlString, 'text/html');
         return doc.documentElement.textContent || "";
     };
-    console.log('formattedRequirements:',formattedRequirements);
-    const decodeHTMLformattedRequirements = decodeHTML(formattedRequirements);
+    const formattedRequirements = sanitizeAndPreserveNewlines(userInfo2.requirements);
     return (
         <div className={classNames(styles.root, className)}>
             <div className={classNames(styles.flowImage3)}></div>
