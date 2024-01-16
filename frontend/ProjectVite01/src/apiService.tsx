@@ -49,7 +49,7 @@ const axios_image_file_get = async (url:string) => {
 2.CSRF token（Cross-site request forgery token）
 */
 const fetch_data_csrf_get = async (url:string) => {
-  const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token Cross-Site Request Forgery
+  //const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token Cross-Site Request Forgery
   const console_title='fetch_data_csrf_get';
   const config_fetch_data_csrf_get = {
     method: 'GET',
@@ -174,7 +174,7 @@ const fetch_data_token_post = async (url:string,token:any,username:string) => {
 2.
 */
 const axios_form_data_post = async (url:string,userData:any,contentType:string) => { 
-  const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token Cross-Site Request Forgery
+  //const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token Cross-Site Request Forgery
   const console_title='axios_form_data_post';
   const config_axios_form_data_post  = {
       method: 'POST',
@@ -210,7 +210,7 @@ const axios_form_data_post = async (url:string,userData:any,contentType:string) 
 2./accounts/password/reset/
 */
 const axios_json_data_post = async (url:string,userData:any) => { 
-  const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token Cross-Site Request Forgery
+  //const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token Cross-Site Request Forgery
   const console_title='axios_json_data_post';
   const config_axios_json_data_post  = {
       method: 'POST',
@@ -248,7 +248,7 @@ const axios_json_data_post = async (url:string,userData:any) => {
 2./accounts/password/reset/
 */
 const axios_json_data_get = async (url:string) => { 
-  const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token Cross-Site Request Forgery
+  //const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token Cross-Site Request Forgery
   const console_title='axios_json_data_get';
   const config_axios_json_data_get  = {
       method: 'GET',
