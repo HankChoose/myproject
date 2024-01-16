@@ -20,6 +20,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserApplySerializer(serializers.ModelSerializer):
+    formatted_requirements = serializers.ReadOnlyField()
+
     class Meta:
         model = UserApply
         fields = '__all__'

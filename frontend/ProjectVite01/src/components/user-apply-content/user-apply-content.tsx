@@ -151,7 +151,7 @@ export const UserApplyContent = ({ className }: UserApplyContentProps) => {
                             </tr>
                             <tr>
                                 <td>Content:</td>
-                                <td>{firstrequirements}</td>
+                                <td><div dangerouslySetInnerHTML={{ __html: {firstrequirements} }} /></td>
                             </tr>
 
                             <tr>

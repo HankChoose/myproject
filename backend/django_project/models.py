@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.template.defaultfilters import linebreaks
 
 
 class User1(models.Model):
@@ -40,6 +41,9 @@ class UserApply(models.Model):
     )
     comment = models.TextField(default='default comment')
     comment2 = models.TextField(default='default comment2')
+
+    def formatted_requirements(self):
+        return linebreaks(self.requirements)
 
     def __str__(self):
         return self.username
