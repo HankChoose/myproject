@@ -39,6 +39,8 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
     const [sortedField, setSortedField] = useState('id'); // 按照哪个字段排序
     const [imageData, setImageData] = useState<string | null>(null);
 
+    const sortHintText = "Table headers are clickable for sorting";
+   
     /*
     useEffect(() => {
         renderTableBody ();
@@ -148,7 +150,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                         placeholder="Search..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                    />
+                    /> <span className={classNames(styles.sortHintText )}>{sortHintText }</span>
                 </div>
                 <div>
                     <label>Page Size</label>
