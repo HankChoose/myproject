@@ -55,6 +55,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
     console.log('userInfo2-1:', userInfo2);
     const dispatch = useDispatch();
     const navigate = useNavigate(); // 在<Router>组件内使用useNavigate
+    
 
     const handleSubmission = async () => {
         const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token
@@ -106,6 +107,8 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         });
       };
 
+    const firstrequirements = userInfo2.requirements 
+
     return (
         <div className={classNames(styles.root, className)}>
             <div className={classNames(styles.flowImage3)}></div>
@@ -132,7 +135,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                         </tr>
                         <tr>
                             <td>Content</td>
-                            <td>{userInfo2.requirements}</td>
+                            <td><div dangerouslySetInnerHTML={{ __html: {firstrequirements} }} /></td>
                         </tr>
 
                          <tr>
