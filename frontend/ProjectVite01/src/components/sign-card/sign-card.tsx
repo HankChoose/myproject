@@ -146,7 +146,7 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
                     password: values.password,
                     // 添加要发送给Django的数据
                 };
-
+                console.log('Handling sign-up form userData2:', userData2);
                 const data2 = await axios_json_data_post(apiUrl2,userData2);
                 if (data2.error){
                     console.log('GET Response signup get token fail data.message:', data.message);
