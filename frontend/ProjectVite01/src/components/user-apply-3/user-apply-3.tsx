@@ -109,7 +109,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
       };
 
     const formattedRequirements = userInfo2.requirements.replace(/\n/g, '<br>');
-   
+    console.log('formattedRequirements:',formattedRequirements);
     return (
         <div className={classNames(styles.root, className)}>
             <div className={classNames(styles.flowImage3)}></div>
