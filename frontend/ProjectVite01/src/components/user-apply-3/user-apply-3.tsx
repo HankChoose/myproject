@@ -109,6 +109,10 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
       };
 
     const formattedRequirements = userInfo2.requirements.replace(/\n/g, '<br>');
+    const decodeHTML = (htmlString: string): string => {
+        const doc = new DOMParser().parseFromString(htmlString, 'text/html');
+        return doc.documentElement.textContent || "";
+    };
     console.log('formattedRequirements:',formattedRequirements);
     return (
         <div className={classNames(styles.root, className)}>
@@ -136,7 +140,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                         </tr>
                         <tr>
                             <td>Content</td>
-                            <td><div dangerouslySetInnerHTML={{ __html: formattedRequirements }} /></td>
+                            <td><div dangerouslySetInnerHTML={{ __html: decodeHTML(formattedRequirements) }} /></td>
                         </tr>
 
                          <tr>
