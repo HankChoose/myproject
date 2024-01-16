@@ -136,7 +136,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                         </tr>
                         <tr>
                             <td>Content</td>
-                            <td><div style={{ whiteSpace: 'pre-line' }}>{formattedRequirements}</div></td>
+                            <td><div dangerouslySetInnerHTML={{ __html: formattedRequirements }} /></td>
                         </tr>
 
                          <tr>
