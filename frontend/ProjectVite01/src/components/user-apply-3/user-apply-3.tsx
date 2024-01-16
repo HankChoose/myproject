@@ -45,6 +45,8 @@ type RootState2 = {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const UserApply3 = ({ className }: UserApply3Props) => {
+
+    const [requirements, setRequirements] = useState('');
     const userInfo = useSelector((state: RootState) => state.userInfo);
     const userInfo2 = useSelector((state: RootState2) => state.userInfo2);
 
@@ -106,8 +108,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             console.error('Error uploading data:', error);
         });
       };
-
-    const firstrequirements = userInfo2.requirements 
+    const formattedRequirements = requirements.replace(/\n/g, '<br>');
 
     return (
         <div className={classNames(styles.root, className)}>
@@ -135,7 +136,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                         </tr>
                         <tr>
                             <td>Content</td>
-                            <td><div dangerouslySetInnerHTML={{ __html: {firstrequirements} }} /></td>
+                            <td><div dangerouslySetInnerHTML={{ __html: formattedRequirements }} /></td>
                         </tr>
 
                          <tr>
