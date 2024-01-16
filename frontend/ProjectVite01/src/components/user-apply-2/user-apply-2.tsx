@@ -164,7 +164,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
         console.log('Requirements newValue is:', newValue); 
         dispatch(updateRequirements(e.target.value));
         // 在这里进行字符数和特殊字符串的检查
-        if (newValue.length >= 10 && newValue.length <= 2000) {
+        if (newValue.length >= 10 && newValue.length <= 20000) {
             setTextInput(newValue);
             console.log('Requirements textInput0 is:', newValue); 
             //localStorage.setItem('previousText', newValue);
