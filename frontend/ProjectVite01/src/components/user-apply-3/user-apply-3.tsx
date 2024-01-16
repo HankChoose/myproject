@@ -46,7 +46,6 @@ type RootState2 = {
  */
 export const UserApply3 = ({ className }: UserApply3Props) => {
 
-    const [requirements, setRequirements] = useState('');
     const userInfo = useSelector((state: RootState) => state.userInfo);
     const userInfo2 = useSelector((state: RootState2) => state.userInfo2);
 
@@ -109,8 +108,8 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         });
       };
 
-    const sanitizedRequirements = DOMPurify.sanitize(requirements);
-
+    const sanitizedRequirements = DOMPurify.sanitize(userInfo2.requirements);
+    console.log('sanitizedRequirements:',sanitizedRequirements);
     return (
         <div className={classNames(styles.root, className)}>
             <div className={classNames(styles.flowImage3)}></div>
