@@ -141,7 +141,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                         </tr>
                         <tr>
                             <td>Content</td>
-                            <td><div dangerouslySetInnerHTML={{ __html: decodeHTMLformattedRequirements }} /></td>
+                            <td><div dangerouslySetInnerHTML={{ __html: formattedRequirements }} /></td>
                         </tr>
 
                          <tr>
