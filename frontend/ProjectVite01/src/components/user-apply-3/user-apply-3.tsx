@@ -3,7 +3,7 @@ import styles from './user-apply-3.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import React, { useRef, useState, Component, ChangeEvent } from 'react';
-
+import DOMPurify from 'dompurify';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateApplytype, updateRequirements } from '../../actions/userInfo2Actions';
 import axios from 'axios';
@@ -108,13 +108,13 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         });
       };
 
-    const formattedRequirements = userInfo2.requirements.replace(/\n/g, '<br>');
+    const sanitizedRequirements = DOMPurify.sanitize(userInfo2.requirements);
     const decodeHTML = (htmlString: string): string => {
         const doc = new DOMParser().parseFromString(htmlString, 'text/html');
         return doc.documentElement.textContent || "";
     };
-    console.log('formattedRequirements:',formattedRequirements);
-    const decodeHTMLformattedRequirements = decodeHTML(formattedRequirements);
+    console.log('formattedRequirements:',sanitizedRequirements);
+    const decodeHTMLformattedRequirements = decodeHTML(sanitizedRequirements);
     return (
         <div className={classNames(styles.root, className)}>
             <div className={classNames(styles.flowImage3)}></div>
@@ -141,7 +141,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                         </tr>
                         <tr>
                             <td>Content</td>
-                            <td><div style={{ whiteSpace: 'pre-line' }}>{decodeHTMLformattedRequirements}</div></td>
+                            <td><div>{decodeHTMLformattedRequirements}</div></td>
                         </tr>
 
                          <tr>
