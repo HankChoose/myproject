@@ -3,7 +3,7 @@ import styles from './user-apply-3.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import React, { useRef, useState, Component, ChangeEvent } from 'react';
-
+import DOMPurify from 'dompurify';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateApplytype, updateRequirements } from '../../actions/userInfo2Actions';
 import axios from 'axios';
@@ -108,7 +108,8 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
             console.error('Error uploading data:', error);
         });
       };
-    const formattedRequirements = requirements.replace(/\n/g, '<br>');
+
+    const sanitizedRequirements = DOMPurify.sanitize(requirements);
 
     return (
         <div className={classNames(styles.root, className)}>
@@ -136,7 +137,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                         </tr>
                         <tr>
                             <td>Content</td>
-                            <td><div dangerouslySetInnerHTML={{ __html: formattedRequirements }} /></td>
+                            <td><div dangerouslySetInnerHTML={{ __html: sanitizedRequirements }} /></td>
                         </tr>
 
                          <tr>
