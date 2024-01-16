@@ -108,13 +108,13 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
         });
       };
 
-    const sanitizedRequirements = DOMPurify.sanitize(userInfo2.requirements);
+    const formattedRequirements = DOMPurify.sanitize(userInfo2.requirements);
     const decodeHTML = (htmlString: string): string => {
         const doc = new DOMParser().parseFromString(htmlString, 'text/html');
         return doc.documentElement.textContent || "";
     };
-    console.log('formattedRequirements:',sanitizedRequirements);
-    const decodeHTMLformattedRequirements = decodeHTML(sanitizedRequirements);
+    console.log('formattedRequirements:',formattedRequirements);
+    const decodeHTMLformattedRequirements = decodeHTML(formattedRequirements);
     return (
         <div className={classNames(styles.root, className)}>
             <div className={classNames(styles.flowImage3)}></div>
@@ -141,7 +141,7 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
                         </tr>
                         <tr>
                             <td>Content</td>
-                            <td><div>{sanitizedRequirements}</div></td>
+                            <td><div dangerouslySetInnerHTML={{ __html: decodeHTML(decodeHTMLformattedRequirements) }} /></td>
                         </tr>
 
                          <tr>
