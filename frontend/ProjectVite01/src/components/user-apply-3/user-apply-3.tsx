@@ -111,7 +111,8 @@ export const UserApply3 = ({ className }: UserApply3Props) => {
     const sanitizeAndPreserveNewlines = (htmlString: string) => {
         // Sanitize the HTML content using DOMPurify
         const sanitizedContent = DOMPurify.sanitize(htmlString, {
-            ALLOWED_TAGS: ['input', 'section'],
+            ALLOWED_TAGS: ['input', 'section', 'option'],
+            ALLOWED_ATTR: ['value'],
         });
 
         // Preserve \n characters
