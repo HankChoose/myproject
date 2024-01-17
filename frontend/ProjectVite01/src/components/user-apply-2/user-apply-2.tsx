@@ -308,7 +308,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         <option value="React">React</option>
                         <option value="SpringBoot">SpringBoot</option>
                         <option value="Web">WebProgramming</option>
-                        <option value="PostgreSQL">RDBMS</option>
+                        <option value="PostgreSQL">SQL</option>
                         <option value="PostgreSQL">NoSQL</option>
                        
                     </Form.Select>

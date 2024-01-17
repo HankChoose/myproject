@@ -58,7 +58,7 @@ urlpatterns = [
     path('register/', views.Register, name='register'),
     path('register2/', views.Register2, name='register2'),
 
-    path('accounts/signup/', SignupView.as_view(),
+    path('accounts/signup/', csrf_exempt(SignupView.as_view()),
          name='account_signup'),
     path('accounts/login/', LoginView.as_view(), name='account_login'),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
