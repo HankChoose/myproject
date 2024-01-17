@@ -2,11 +2,29 @@ import classNames from 'classnames';
 import styles from './user-profile.module.scss';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Card,Table,ListGroup} from 'react-bootstrap';
+import { Button, Card, Table, ListGroup } from 'react-bootstrap';
+import { TestDataGrid } from '../test-data-grid/test-data-grid';
+import { BiSolidGrid } from 'react-icons/bi';
+import { FaListUl } from 'react-icons/fa';
 import { fetch_data_token_get, fetch_data_token_post } from '../../apiService';
+import { TestDataTable } from '../test-data-table/test-data-table';
 
 export interface UserProfileProps {
     className?: string;
+}
+
+interface Data {
+    id: string;
+    apply_type: string;
+    requirements: string;
+    username: string;
+    email: string;
+    image_path_main: string;
+    apply_time: Date; // Change the type to Date
+    comment: string;
+    comment2: string;
+    [key: string]: string | Date; // Adjust the index signature if needed
+    // Other properties...
 }
 
 export const UserProfile = ({ className }: UserProfileProps) => {
@@ -17,15 +35,22 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         // 其他属性...
     }
     const [userData, setUserData] = useState<UserData[]>([]);
+    const [userDataList, setUserDataList] = useState<Data[]>([]);
     const [isVerified, setIsVerified] = useState(false);
     const [editing, setEditing] = useState(false);
     //const [editable, setEditable] = useState(false);
     const [username, setUsername] = useState(''); // Initial username
     const token = localStorage.getItem('accessToken');
 
+    const [viewMode, setViewMode] = useState('list'); // 初始视图模式为列表
+    const toggleViewMode = () => {
+        setViewMode((prevMode) => (prevMode === 'list' ? 'grid' : 'list'));
+    };
+
     useEffect(() => {
         // 在组件加载时发送请求
         fetchData();
+        fetchDataList();
     }, []);
 
     const fetchData = async () => {
@@ -43,6 +68,23 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         } catch (error) {
             // 处理错误
             console.error('fetchData error:', error);
+        }
+    };
+
+    const fetchDataList = async () => {
+        // 获取保存在本地存储中的令牌
+        const apiUrl = `/user-apply-user-list/`;
+        try {
+            const data = await fetch_data_token_get(apiUrl, token);
+            if (data.error) {
+                console.log('fetchDataList response data.message:', data.message);
+            } else {
+                console.log('fetchDataList response:', data);
+            }
+            setUserDataList(data);
+        } catch (error) {
+            // 处理错误
+            console.error('fetchDataList error:', error);
         }
     };
 
@@ -155,6 +197,31 @@ export const UserProfile = ({ className }: UserProfileProps) => {
                                 <tr>
                                     <td colSpan={2}>
                                         <Card.Link href="#">My Post</Card.Link>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={2}>
+                                        <div>
+                                            <button
+                                                className={styles.buttonStyle}
+                                                onClick={toggleViewMode}
+                                            >
+                                                {viewMode === 'list' ? (
+                                                    <>
+                                                        <BiSolidGrid /> Grid View
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <FaListUl /> List View
+                                                    </>
+                                                )}
+                                            </button>
+                                            {viewMode === 'list' ? (
+                                                <TestDataTable data={userDataList} />
+                                            ) : (
+                                                <TestDataGrid data={userDataList} />
+                                            )}
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
