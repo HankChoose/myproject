@@ -8,6 +8,7 @@ import { fetch_data_csrf_get } from '../../apiService';
 import { TestDataGrid } from '../test-data-grid/test-data-grid';
 import { BiSolidGrid } from 'react-icons/bi';
 import { FaListUl } from 'react-icons/fa';
+import { isLogVisible } from '../../constants';
 
 export interface TestListDataTableProps {
     className?: string;

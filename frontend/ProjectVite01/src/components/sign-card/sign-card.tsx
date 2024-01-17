@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate} from 'react-router-dom';
 import { useAuth } from '../../AuthContext';
 import {  axios_form_data_post, axios_json_data_post,axios_json_data_get  } from '../../apiService';
+import { isLogVisible,isLogErrorVisible } from '../../constants';
 
 export interface SignCardProps {
     className?: string;
@@ -85,9 +86,15 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
                 const loginSuccess = false;/* 模拟请求返回的值 */ 
                 setLoginStatus(loginSuccess ? 'Login successful' : 'Email or password is incorrect');
             }else{
-                console.log('GET Response sign OK:', data);
+                if (isLogVisible) {
+                    console.log('GET Response sign OK:', data);
+                }
+               
                 localStorage.setItem('accessToken', data.token);
-                console.log('GET Response.data.token',data.token);
+                if (isLogVisible) {
+                    console.log('GET Response.data.token',data.token);
+                }
+                
                 const loginSuccess = true;/* 模拟请求返回的值 */ 
                 setLoginStatus(loginSuccess ? 'Login successful' : 'Email or password is incorrect');
                 // 在这里进行你的其他操作，比如存储在本地存储中
@@ -96,7 +103,10 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
                     onLogin(values.email,values.password);
                 } else {
                     // Handle the case where onLogin is not defined, if needed
-                    console.error('onLogin is not defined');
+                    if (isLogErrorVisible) {
+                        console.error('onLogin is not defined');
+                    }
+                    
                 }
                 if (redirectLink) {
                     // 调用navigate函数
@@ -117,7 +127,10 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
     //------------------------------------------------------->handleSignUp
     const handleSignUp =async (values: FormikValues) => {
         // Logic for handling sign-up form submission
-        console.log('Handling sign-up form submission:', values);
+        if (isLogVisible) {
+            console.log('Handling sign-up form submission:', values);
+        }
+        
         // Add code to submit data for sign-up
 
         const apiUrl = `/accounts/signup/`;
@@ -132,7 +145,11 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
             password2: values.password,
             // 添加要发送给Django的数据
         };
-        console.log('Handling sign-up form userData:', userData);
+
+        if (isLogVisible) {
+            console.log('Handling sign-up form userData:', userData);
+        }
+        
 
         try {
             const data = await axios_form_data_post(apiUrl,userData,'multipart/form-data');
@@ -146,6 +163,7 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
                     password: values.password,
                     // 添加要发送给Django的数据
                 };
+                
                 console.log('Handling sign-up form userData2:', userData2);
                 const data2 = await axios_json_data_post(apiUrl2,userData2);
                 if (data2.error){
@@ -153,9 +171,15 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
                     const loginSuccess = false;/* 模拟请求返回的值 */ 
                    
                 }else{
-                    console.log('GET Response signup get token OK:', data2);
+                    if (isLogVisible) {
+                        console.log('GET Response signup get token OK:', data2);
+                    }
+                    
                     localStorage.setItem('accessToken', data2.token);
-                    console.log('GET Response.data2.token',data2.token);
+                    if (isLogVisible) {
+                       console.log('GET Response.data2.token',data2.token);
+                    }
+                    
                     // 在这里进行你的其他操作，比如存储在本地存储中
                     signIn();
                     if (onLogin) {

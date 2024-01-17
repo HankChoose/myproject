@@ -22,6 +22,8 @@ import { LuExpand } from 'react-icons/lu';
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { AiFillHome } from "react-icons/ai";
 
+import { isLogVisible } from '../../constants';
+
 import axios from 'axios';
 import React, { useRef, useState, Component, ChangeEvent, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
@@ -307,9 +309,12 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         <option value="Flutter">Flutter</option>
                         <option value="React">React</option>
                         <option value="SpringBoot">SpringBoot</option>
-                        <option value="Web">WebProgramming</option>
+                        <option value="WebProgramming">WebProgramming</option>
                         <option value="PostgreSQL">SQL</option>
                         <option value="PostgreSQL">NoSQL</option>
+                        <option value="Unix">Unix</option>
+                        <option value="Linux">Linux</option>
+                        <option value="Ruby">Ruby</option>
                        
                     </Form.Select>
                 </div>

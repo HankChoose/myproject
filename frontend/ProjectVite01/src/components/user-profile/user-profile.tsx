@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { Button, Card, Table, ListGroup } from 'react-bootstrap';
 import { fetch_data_token_get, fetch_data_token_post } from '../../apiService';
-
+import { isLogVisible } from '../../constants';
 export interface UserProfileProps {
     className?: string;
 }
@@ -80,9 +80,14 @@ export const UserProfile = ({ className }: UserProfileProps) => {
         try {
             const data = await fetch_data_token_post(apiUrl, token, username);
             if (data.error) {
-                console.log('handleChangeUsername response data.message:', data.message);
+                if (isLogVisible) {
+                    console.log('handleChangeUsername response data.message:', data.message);
+                }
             } else {
+                if (isLogVisible) {
                 console.log('handleChangeUsername response:', data);
+                }
+                
             }
         } catch (error) {
             // 处理错误

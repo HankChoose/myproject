@@ -7,7 +7,7 @@ import { Table, Button } from 'react-bootstrap';
 
 
 import { FcUp, FcDown } from 'react-icons/fc';
-import { baseUrl } from '../../constants';
+import { isLogVisible } from '../../constants';
 import { TestGetImages } from '../test-get-images/test-get-images';
 
 interface Data {
