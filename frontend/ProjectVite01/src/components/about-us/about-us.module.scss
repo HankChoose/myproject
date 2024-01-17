@@ -71,8 +71,9 @@
 .people01 {
     background-image: url('../../assets/images/self/self2.png');
     /* 图片路径 */
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
+    background-size: 150px 150x; // 设置背景图片大小为 200x200 像素
     background-repeat: no-repeat;
     /* 图标不重复 */
     text-align: start;
@@ -82,4 +83,49 @@
     justify-content: start;
     align-content: center;
     position: relative;
+}
+
+.people02 {
+    background-image: url('../../assets/images/self/mike.png');
+    /* 图片路径 */
+    background-size: 150px 150px; // 设置背景图片大小为 200x200 像素
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+
+    /* 图标不重复 */
+    text-align: start;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: start;
+    align-content: center;
+    position: relative;
+}
+
+.people03 {
+    background-image: url('../../assets/images/self/founder.png');
+    /* 图片路径 */
+    background-size: 150px 150px; // 设置背景图片大小为 200x200 像素
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+
+    /* 图标不重复 */
+    text-align: start;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: start;
+    align-content: center;
+    position: relative;
+}
+
+.FormRowSmall {
+    border: 0px solid black;
+    display: flex;
+    height: 25px;
+    width: auto;
+    text-align: center;
+    align-items: center;
 }
