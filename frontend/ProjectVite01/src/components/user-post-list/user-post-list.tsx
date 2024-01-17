@@ -1,15 +1,15 @@
 import classNames from 'classnames';
-import styles from './test-list-data-table.module.scss';
+import styles from './user-post-list.module.scss';
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TestDataTable } from '../test-data-table/test-data-table';
-import { fetch_data_csrf_get } from '../../apiService';
+import { fetch_data_token_get } from '../../apiService';
 import { TestDataGrid } from '../test-data-grid/test-data-grid';
 import { BiSolidGrid } from 'react-icons/bi';
 import { FaListUl } from 'react-icons/fa';
 
-export interface TestListDataTableProps {
+export interface UserPostListProps {
     className?: string;
 }
 
@@ -27,61 +27,41 @@ interface Data {
     // Other properties...
 }
 
-const sampleData = [
-    {
-        id: '1',
-        apply_type: 'apply_type 1',
-        requirements: 'Description 1Description 1Description 1Description 1Description 1Description 1',
-        username: 'hank1',
-        email: 'hank1@example.com',
-        image_path_main: 'apply_type 1',
-        apply_time: new Date('2024-01-09'), // Convert the date string to Date object
-        comment: 'apply_type 1',
-        comment2: 'apply_type 1'
-    },
-    {
-        id: '2',
-        apply_type: 'apply_type 2',
-        requirements: 'Description 1Description 1Description 1Description 1Description 1Description 1',
-        username: 'hank2',
-        email: 'hank1@example.com',
-        image_path_main: 'apply_type 1',
-        apply_time: new Date('2024-01-09'), // Convert the date string to Date object
-        comment: 'apply_type 1',
-        comment2: 'apply_type 1'
-    },
-    // ... other data objects
-];
-
-export const TestListDataTable = ({ className }: TestListDataTableProps) => {
+/**
+ * This component was created using Codux's Default new component template.
+ * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
+ */
+export const UserPostList = ({ className }: UserPostListProps) => {
     const [data1, setData] = useState<Data[]>([]);
     const [viewMode, setViewMode] = useState('list'); // 初始视图模式为列表
     const toggleViewMode = () => {
         setViewMode(prevMode => (prevMode === 'list' ? 'grid' : 'list'));
     };
 
-    useEffect(() => {
-        fetchData();
-    }, [])
-    
+    const token = localStorage.getItem('accessToken');
 
-    const fetchData = async () => {
+    useEffect(() => {
+        fetchDataList();
+    }, [])
+   
+    
+    const fetchDataList = async () => {
         // 获取保存在本地存储中的令牌
-        const apiUrl = `/user-apply-mian-list/`;
+        const apiUrl = `/user-apply-user-list/`;
         try {
-            const data = await fetch_data_csrf_get(apiUrl);
+            const data = await fetch_data_token_get(apiUrl, token);
             if (data.error) {
-                console.log('fetchData response data.message:', data.message);
+                console.log('fetchDataList response data.message:', data.message);
             } else {
-                console.log('fetchData response:', data);
+                console.log('fetchDataList response:', data);
             }
             setData(data);
         } catch (error) {
             // 处理错误
-            console.error('fetchData error:', error);
+            console.error('fetchDataList error:', error);
         }
-
     };
+
 
     return <div className={classNames(styles.root)}>
                 <div>

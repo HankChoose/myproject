@@ -360,7 +360,7 @@ class UserApplyUserListAPIView(generics.ListAPIView):
     def get(self, request, *args, **kwargs):
         user_email = request.user.email
         user_apply = UserApply.objects.filter(email=user_email)
-        serializer = UserApplySerializer(user_apply, many=True)
+        serializer = UserApplyMianSerializer(user_apply, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 

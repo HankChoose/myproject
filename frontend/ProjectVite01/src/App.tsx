@@ -40,13 +40,17 @@ import { TestGetImages2 } from './components/test-get-images-2/test-get-images-2
 import { TestGetImagesArrays } from './components/test-get-images-arrays/test-get-images-arrays';
 import { AboutUS } from './components/about-us/about-us';
 import { ContactUs } from './components/contact-us/contact-us';
+import { UserPostList } from './components/user-post-list/user-post-list';
 //import { TopbarProvider } from './TopbarContext';
 // 导入根 reducer
 const store = createStore(rootReducer);
-const fileNames = ['20240110_055037_CELPIP1_image_2.jpg', '20240111_030558__20210715144328_image_1.jpg', 'defaultList.png'];
+const fileNames = [
+    '20240110_055037_CELPIP1_image_2.jpg',
+    '20240111_030558__20210715144328_image_1.jpg',
+    'defaultList.png',
+];
 
 function App() {
-
     return (
         <AuthProvider>
             <div className={styles.root}>
@@ -57,19 +61,62 @@ function App() {
                     <div className={styles.App}>
                         <Routes>
                             <Route path="/react" element={<Home />} />
-                            <Route path="/react/aboutus" element={ <AboutUS />} />
+                            <Route path="/react/aboutus" element={<AboutUS />} />
                             <Route path="/react/contactus" element={<ContactUs />} />
-                            <Route path="/react/signin" element={<SignCard formType="signin" redirectLink='/react/userprofile' />} />
-                            <Route path="/react/signup" element={<SignCard formType="signup" redirectLink='/react/userprofile' />} />
-                            <Route path="/react/resetpw" element={<SignCard formType="resetpw" redirectLink='/react/userprofile' />} />
-                            <Route path="/react/userapply" element={<Provider store={store}><UserApply /></Provider>} />
-                            <Route path="/react/userapply2" element={<Provider store={store}><UserApply2 /></Provider>} />
-                            <Route path="/react/userapply3" element={<Provider store={store}><UserApply3 /></Provider>} />
+                            <Route
+                                path="/react/signin"
+                                element={
+                                    <SignCard formType="signin" redirectLink="/react/userprofile" />
+                                }
+                            />
+                            <Route
+                                path="/react/signup"
+                                element={
+                                    <SignCard formType="signup" redirectLink="/react/userprofile" />
+                                }
+                            />
+                            <Route
+                                path="/react/resetpw"
+                                element={
+                                    <SignCard
+                                        formType="resetpw"
+                                        redirectLink="/react/userprofile"
+                                    />
+                                }
+                            />
+                            <Route
+                                path="/react/userapply"
+                                element={
+                                    <Provider store={store}>
+                                        <UserApply />
+                                    </Provider>
+                                }
+                            />
+                            <Route
+                                path="/react/userapply2"
+                                element={
+                                    <Provider store={store}>
+                                        <UserApply2 />
+                                    </Provider>
+                                }
+                            />
+                            <Route
+                                path="/react/userapply3"
+                                element={
+                                    <Provider store={store}>
+                                        <UserApply3 />
+                                    </Provider>
+                                }
+                            />
                             <Route path="/react/userapply4" element={<UserApply4 />} />
                             <Route path="/react/userprofile" element={<UserProfile />} />
+                            <Route path="/react/userpostlist" element={<UserPostList />} />
                             <Route path="/react/checkemail" element={<TestCheckEmail />} />
                             <Route path="/react/checkemail2" element={<TestCheckEmail2 />} />
-                            <Route path="/react/userapplycontent/:id" element={<UserApplyContent />} />
+                            <Route
+                                path="/react/userapplycontent/:id"
+                                element={<UserApplyContent />}
+                            />
                             <Route path="/react/testtoken" element={<TestToken />} />
                             <Route path="/react/testlist" element={<TestList />} />
                             <Route path="/react/testlink" element={<TestLink />} />
@@ -83,8 +130,11 @@ function App() {
                             <Route path="/react/testupload" element={<TestUpload />} />
                             <Route path="/react/testgetimages" element={<TestGetImages />} />
                             <Route path="/react/testgetimages2" element={<TestGetImages2 />} />
-                            <Route path="/react/testgetimagesarrays" element={<TestGetImagesArrays fileNames={fileNames} />} />
-                           
+                            <Route
+                                path="/react/testgetimagesarrays"
+                                element={<TestGetImagesArrays fileNames={fileNames} />}
+                            />
+
                             <Route path="/react/page1" element={<Page1 />}>
                                 <Route path="test1" element={<Test1 />} />
                                 <Route path="test2" element={<Test2 />} />
@@ -94,15 +144,12 @@ function App() {
                                 <Route path="test4" element={<Test4 />} />
                             </Route>
                         </Routes>
-
                     </div>
-
                 </Router>
             </div>
-  
+
         </AuthProvider>
     );
-
 }
 
 export default App;
