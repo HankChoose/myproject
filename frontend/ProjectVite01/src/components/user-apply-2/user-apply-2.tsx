@@ -318,7 +318,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         <option value="Unix">Unix</option>
                         <option value="Linux">Linux</option>
                         <option value="Ruby">Ruby</option>
-                        <option value="Others">thers</option>
+                        <option value="Others">Others</option>
                        
                     </Form.Select>
                 </div>
