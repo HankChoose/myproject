@@ -303,15 +303,17 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         className={classNames(styles.Input)}
                         onChange={handleApplytypeChange}
                     >
+                        <option value="AWS">AWS</option>
                         <option value="Django">Django</option>
+                        <option value="Docker">Dockero</option>
                         <option value="Flask">Flask</option>
                         <option value="FastAPI">FastAPI</option>
                         <option value="Flutter">Flutter</option>
                         <option value="React">React</option>
                         <option value="SpringBoot">SpringBoot</option>
                         <option value="WebProgramming">WebProgramming</option>
-                        <option value="PostgreSQL">SQL</option>
-                        <option value="PostgreSQL">NoSQL</option>
+                        <option value="SQL">SQL</option>
+                        <option value="NoSQL">NoSQL</option>
                         <option value="Unix">Unix</option>
                         <option value="Linux">Linux</option>
                         <option value="Ruby">Ruby</option>
