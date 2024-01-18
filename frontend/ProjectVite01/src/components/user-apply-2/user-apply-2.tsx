@@ -80,7 +80,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
     const userInfo = useSelector((state: RootState) => state.userInfo);
     const userInfo2 = useSelector((state: RootState2) => state.userInfo2);
 
-    const uploadHint = "Can upload 3 pictures, each less than 3 MB"
+    const uploadHint = "Can upload 3 pictures and type bmp,gif,png,svg,jpeg/jpg,each less than 3 MB."
     const requirementErrorMessage="Between 10 and 20000 characters.";
     
     console.log('userInfo-1:', userInfo);
