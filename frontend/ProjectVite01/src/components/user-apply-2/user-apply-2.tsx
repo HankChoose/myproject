@@ -305,7 +305,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                     >
                         <option value="AWS">AWS</option>
                         <option value="Django">Django</option>
-                        <option value="Docker">Dockero</option>
+                        <option value="Docker">Docker</option>
                         <option value="Flask">Flask</option>
                         <option value="FastAPI">FastAPI</option>
                         <option value="Flutter">Flutter</option>
