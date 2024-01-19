@@ -304,6 +304,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         onChange={handleApplytypeChange}
                     >
                         <option value="AWS">AWS</option>
+                        <option value="Cloud">Cloud</option>
                         <option value="Django">Django</option>
                         <option value="Docker">Docker</option>
                         <option value="Flask">Flask</option>
@@ -320,6 +321,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         <option value="Linux">Linux</option>
                         <option value="Ruby">Ruby</option>
                         <option value="Others">Others</option>
+
                        
                     </Form.Select>
                 </div>
