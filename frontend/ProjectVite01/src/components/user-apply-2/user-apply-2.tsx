@@ -313,6 +313,7 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
                         <option value="SpringBoot">SpringBoot</option>
                         <option value="Nodejs">Nodejs</option>
                         <option value="WebProgramming">WebProgramming</option>
+                        <option value="REST">REST</option>
                         <option value="SQL">SQL</option>
                         <option value="NoSQL">NoSQL</option>
                         <option value="Unix">Unix</option>
