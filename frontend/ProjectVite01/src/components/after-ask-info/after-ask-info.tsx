@@ -10,8 +10,8 @@ export interface AfterAskInfoProps {
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const AfterAskInfo = ({ className }: AfterAskInfoProps) => {
-    const aferaskinfo="The message has been sent successfully!";
+    const aferaskinfo="The message has been sent successfully, return to ";
     return <div className={classNames(styles.root, className)}>
-        {aferaskinfo}
+        {aferaskinfo}<a href="https://zhiyouyuec.com">Home</a>
     </div>;
 };
