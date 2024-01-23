@@ -49,8 +49,8 @@ def user_ask_info(request):
         username = request.POST.get('username', '')
         email = request.POST.get('email', '')
         phone = request.POST.get('phone', '')
-        askInfo = request.POST.get('askInfo', '')
-        #uploaded_file = request.FILES.get('file', None)
+        askInfo = request.POST.get('message', '')
+        # uploaded_file = request.FILES.get('file', None)
 
         # 创建 UserAsk 对象并保存到数据库
         user_ask = UserAsk(
