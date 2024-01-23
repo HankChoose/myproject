@@ -51,6 +51,7 @@ export const AskInfo = ({ className }: AskInfoProps) => {
     }
     const [userData, setUserData] = useState<UserData[]>([]);
     const token = localStorage.getItem('accessToken');
+    const navigate = useNavigate();
     useEffect(() => {
         // 在组件挂载后，通过引用获取 textarea 的值
         fetchData();
@@ -104,7 +105,7 @@ export const AskInfo = ({ className }: AskInfoProps) => {
 
     //------------------------------------------------------->handleAskInfo
     const handleAskInfo =async (values: FormikValues) => {
-        const navigate = useNavigate();
+        
         // Logic for handling sign-up form submission
         const apiUrl = `/user-ask-info/`;
       
