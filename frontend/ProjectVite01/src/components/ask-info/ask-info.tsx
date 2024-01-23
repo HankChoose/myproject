@@ -67,7 +67,7 @@ export const AskInfo = ({ className }: AskInfoProps) => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            //handleAskInfo(values);
+            handleAskInfo(values);
         },
     });
 
@@ -124,7 +124,7 @@ export const AskInfo = ({ className }: AskInfoProps) => {
                 console.log('GET Response AskInfo failed data.message:', data.message);
             }else{
                 console.log('GET Response AskInfo OK:', data);
-                
+
             }
         } catch (error) {
             // 处理错误
