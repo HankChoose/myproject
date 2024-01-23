@@ -12,6 +12,8 @@ export interface AfterAskInfoProps {
 export const AfterAskInfo = ({ className }: AfterAskInfoProps) => {
     const aferaskinfo="The message has been sent successfully, return to ";
     return <div className={classNames(styles.root, className)}>
+        <div className={classNames(styles.FormRow)}></div>
+        <div className={classNames(styles.FormRow)}></div>
         {aferaskinfo}<a href="https://zhiyouyuec.com">Home</a>
-    </div>;
+        </div>;
 };
