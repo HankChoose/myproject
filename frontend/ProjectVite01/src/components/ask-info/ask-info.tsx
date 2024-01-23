@@ -223,7 +223,7 @@ export const AskInfo = ({ className }: AskInfoProps) => {
                                 id="message" 
                                 name="message" 
                                 rows={4}
-                                cols={42}
+                                cols={38}
                                 onChange={formik.handleChange}
                                 onBlur={(e) => {
                                     formik.handleBlur(e);
