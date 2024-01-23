@@ -49,6 +49,27 @@ class UserApply(models.Model):
         return self.username
 
 
+class UserApplyAsk(models.Model):
+    # 使用AutoField定义自动增长的ID字段
+    # id = models.AutoField(primary_key=True)
+
+    username = models.CharField(max_length=255)
+    email = models.EmailField()
+    phone = models.CharField(max_length=255)
+    apply_type = models.CharField(max_length=255)
+    askInfo = models.TextField()
+    # apply_time = models.DateTimeField(
+    # default=timezone.now, blank=True)
+    ask_time = models.DateTimeField(
+        default=timezone.localtime, blank=True
+    )
+    comment = models.TextField(default='default comment')
+    comment2 = models.TextField(default='default comment2')
+
+    def __str__(self):
+        return self.username
+
+
 class Book3(models.Model):
     title3 = models.CharField(max_length=100)
     author3 = models.CharField(max_length=100)
