@@ -24,7 +24,7 @@ export const AboutUS = ({ className }: AboutUSProps) => {
              <div className={classNames(styles.imagesdiv)}><span className={classNames(styles.people03)}></span></div>
              <div className={classNames(styles.FormRowSmall)}></div> 
              <div>Haiwei Chen</div>
-             <div>Founder of Website</div>
+             <div>Manager</div>
             <div>Email:zhiyouyuec@gmail.com</div>
             <div>Phone:+1 587-598-6489</div>
           
@@ -34,17 +34,17 @@ export const AboutUS = ({ className }: AboutUSProps) => {
              <div className={classNames(styles.imagesdiv)}><span className={classNames(styles.people02)}></span></div>
              <div className={classNames(styles.FormRowSmall)}></div>
              <div>Matt Jones</div>
-             <div>Website Content Manager</div>
+             <div>Content Manager</div>
             <div>Email:zhiyouyuec@gmail.com</div>
             <div>Phone:+1 587-938-8221</div>
         </div>
 
          <div className={classNames(styles.card)}>
             
-              <div className={classNames(styles.imagesdiv)}><span className={classNames(styles.people01)}></span></div>
+            <div className={classNames(styles.imagesdiv)}><span className={classNames(styles.people01)}></span></div>
             <div className={classNames(styles.FormRowSmall)}></div>
             <div>Hank (Haiyin) Chen</div>
-            <div>Developers of this Website</div>
+            <div>Developer</div>
             <div>Email:hankchenv@gmail.com</div>
             <div>Phone:+1 587-936-1806</div>
         </div>
