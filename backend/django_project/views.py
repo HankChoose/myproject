@@ -35,12 +35,40 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes, renderer_classes
 from rest_framework.renderers import JSONRenderer
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from .models import UserApply
+from .models import UserApply, UserAsk
 from .serializers import UserApplySerializer, UserApplyMianSerializer
 
 from .serializers import UserSerializer, UserApplySerializer
 import os
 from django.conf import settings
+
+
+def user_ask_info(request):
+    if request.method == 'POST':
+        # 从请求中获取表单数据和文件数据
+        username = request.POST.get('username', '')
+        email = request.POST.get('email', '')
+        phone = request.POST.get('phone', '')
+        askInfo = request.POST.get('askInfo', '')
+        #uploaded_file = request.FILES.get('file', None)
+
+        # 创建 UserAsk 对象并保存到数据库
+        user_ask = UserAsk(
+            username=username,
+            email=email,
+            phone=phone,
+            askInfo=askInfo,
+            # 你可能需要根据需要修改其他字段的处理
+        )
+        user_ask.save()
+
+        # 在这里可以进行其他处理，例如保存文件、发送邮件等
+
+        # 返回成功的响应
+        return JsonResponse({'status': 'success', 'message': 'Data successfully received and saved to the database.'})
+    else:
+        # 如果请求方法不是POST，返回错误的响应
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method.'})
 
 
 def clean_filename(filename):
