@@ -65,6 +65,7 @@ function App() {
                             <Route path="/react" element={<Home />} />
                             <Route path="/react/aboutus" element={<AboutUS />} />
                             <Route path="/react/askinfo" element={ <AskInfo />} />
+                            <Route path="/react/afteraskinfo" element={ <AfterAskInfo  />} />
                             <Route path="/react/contactus" element={<ContactUs />} />
                             <Route
                                 path="/react/signin"

@@ -22,7 +22,7 @@ const validationSchema = Yup.object().shape({
   phone: Yup.string()
     .nullable()
     .matches(/^[0-9-]+$/, 'Invalid phone number')
-    .min(10, 'Phone number must be at least 5 characters')
+    .min(5, 'Phone number must be at least 5 characters')
     .max(20, 'Phone number must be 20 characters or less'),
 
   username: Yup.string()
@@ -104,6 +104,7 @@ export const AskInfo = ({ className }: AskInfoProps) => {
 
     //------------------------------------------------------->handleAskInfo
     const handleAskInfo =async (values: FormikValues) => {
+        const navigate = useNavigate();
         // Logic for handling sign-up form submission
         const apiUrl = `/user-ask-info/`;
       
@@ -124,6 +125,7 @@ export const AskInfo = ({ className }: AskInfoProps) => {
                 console.log('GET Response AskInfo failed data.message:', data.message);
             }else{
                 console.log('GET Response AskInfo OK:', data);
+                navigate("/react/afteraskinfo");
 
             }
         } catch (error) {
