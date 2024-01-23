@@ -84,6 +84,9 @@ export const AskInfo = ({ className }: AskInfoProps) => {
             }
             setUserData(data);
             // 更新 Formik 的 initialValues
+            console.log('data.email', data.email);
+            console.log('data.username', data.username);
+            
             formik.setValues({
                 ...formik.values,
                 email: data.email || '',
