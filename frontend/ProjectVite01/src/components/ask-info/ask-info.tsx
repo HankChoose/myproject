@@ -84,13 +84,13 @@ export const AskInfo = ({ className }: AskInfoProps) => {
             }
             setUserData(data);
             // 更新 Formik 的 initialValues
-            console.log('data.email', data.email);
-            console.log('data.username', data.username);
+            console.log('data[0].email', data[0].email);
+            console.log('data[0].username', data[0].username);
             
             formik.setValues({
                 ...formik.values,
-                email: data.email || '',
-                username: data.username || '',
+                email: data[0].email || '',
+                username: data[0].username || '',
                 phone: '',
                 message:  '',
                 // 添加其他字段的默认值
