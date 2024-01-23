@@ -49,7 +49,7 @@ class UserApply(models.Model):
         return self.username
 
 
-class UserApplyAsk(models.Model):
+class UserAsk(models.Model):
     # 使用AutoField定义自动增长的ID字段
     # id = models.AutoField(primary_key=True)
 
