@@ -52,8 +52,8 @@ export const AskInfo = ({ className }: AskInfoProps) => {
     const [userData, setUserData] = useState<UserData[]>([]);
     const token = localStorage.getItem('accessToken');
     useEffect(() => {
-    // 在组件挂载后，通过引用获取 textarea 的值
-    fetchData();
+        // 在组件挂载后，通过引用获取 textarea 的值
+        fetchData();
     
     }, []); // 注意：这里的空数组表示仅在组件挂载时执行
     
@@ -83,6 +83,15 @@ export const AskInfo = ({ className }: AskInfoProps) => {
                 console.log('fetchData response:', data);
             }
             setUserData(data);
+            // 更新 Formik 的 initialValues
+            formik.setValues({
+                ...formik.values,
+                email: data.email || '',
+                username: data.username || '',
+                phone: '',
+                message:  '',
+                // 添加其他字段的默认值
+            });
            
         } catch (error) {
             // 处理错误
