@@ -105,48 +105,30 @@ export const AskInfo = ({ className }: AskInfoProps) => {
     //------------------------------------------------------->handleAskInfo
     const handleAskInfo =async (values: FormikValues) => {
         // Logic for handling sign-up form submission
-        const apiUrl = `/accounts/signup/`;
+        const apiUrl = `/user-ask-info/`;
       
         // Split the email address at the "@" symbol
-        const parts = values.email.split('@');
+        //const parts = values.email.split('@');
 
         const userData = {
-            username: parts[0],
+            username: values.username,
             email: values.email,
-            password1: values.password,
-            password2: values.password,
+            phone: values.phone,
+            message: values.message,
             // 添加要发送给Django的数据
         };
 
         try {
             const data = await axios_form_data_post(apiUrl,userData,'multipart/form-data');
             if (data.error){
-                console.log('GET Response signup failed data.message:', data.message);
+                console.log('GET Response AskInfo failed data.message:', data.message);
             }else{
-                console.log('GET Response Signup OK:', data);
-                const apiUrl2 = `/user-token/`;
-                 const userData2 = {
-                    username: values.email,
-                    password: values.password,
-                    // 添加要发送给Django的数据
-                };
+                console.log('GET Response AskInfo OK:', data);
                 
-                console.log('Handling sign-up form userData2:', userData2);
-                const data2 = await axios_json_data_post(apiUrl2,userData2);
-                if (data2.error){
-                    console.log('GET Response signup get token fail data.message:', data.message);
-                    const loginSuccess = false;/* 模拟请求返回的值 */ 
-                   
-                }else{
-
-                    localStorage.setItem('accessToken', data2.token);
-
-                }
-
             }
         } catch (error) {
             // 处理错误
-            console.error('handleSignUp error:', error);
+            console.error('handleAskInfo error:', error);
         }
     };
 
