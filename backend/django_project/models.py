@@ -56,7 +56,6 @@ class UserAsk(models.Model):
     username = models.CharField(max_length=255)
     email = models.EmailField()
     phone = models.CharField(max_length=255)
-    apply_type = models.CharField(max_length=255)
     askInfo = models.TextField()
     # apply_time = models.DateTimeField(
     # default=timezone.now, blank=True)
