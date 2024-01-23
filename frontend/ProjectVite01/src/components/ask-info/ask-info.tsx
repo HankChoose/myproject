@@ -4,10 +4,10 @@ import styles from './ask-info.module.scss';
 import { useFormik, FormikValues,Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../AuthContext';
-import { axios_form_data_post, axios_json_data_post, axios_json_data_get } from '../../apiService';
+import { axios_form_data_post, axios_json_data_post, axios_json_data_get,fetch_data_token_get, fetch_data_token_post} from '../../apiService';
 
 export interface AskInfoProps {
     className?: string;
@@ -42,6 +42,21 @@ const validationSchema = Yup.object().shape({
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const AskInfo = ({ className }: AskInfoProps) => {
+    // 设置应用根元素
+    interface UserData {
+        id: string;
+        username: string;
+        email: string;
+        // 其他属性...
+    }
+    const [userData, setUserData] = useState<UserData[]>([]);
+    const token = localStorage.getItem('accessToken');
+    useEffect(() => {
+    // 在组件挂载后，通过引用获取 textarea 的值
+    fetchData();
+    
+    }, []); // 注意：这里的空数组表示仅在组件挂载时执行
+    
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -52,9 +67,81 @@ export const AskInfo = ({ className }: AskInfoProps) => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            //handleSignUp(values);
+            //handleAskInfo(values);
         },
     });
+
+    const fetchData = async () => {
+        // 获取保存在本地存储中的令牌
+
+        const apiUrl = `/user-profile/`;
+        try {
+            const data = await fetch_data_token_get(apiUrl, token);
+            if (data.error) {
+                console.log('fetchData response data.message:', data.message);
+            } else {
+                console.log('fetchData response:', data);
+            }
+            setUserData(data);
+           
+        } catch (error) {
+            // 处理错误
+            console.error('fetchData error:', error);
+        }
+    };
+
+    //------------------------------------------------------->handleAskInfo
+    const handleAskInfo =async (values: FormikValues) => {
+        // Logic for handling sign-up form submission
+        const apiUrl = `/accounts/signup/`;
+      
+        // Split the email address at the "@" symbol
+        const parts = values.email.split('@');
+
+        const userData = {
+            username: parts[0],
+            email: values.email,
+            password1: values.password,
+            password2: values.password,
+            // 添加要发送给Django的数据
+        };
+
+        try {
+            const data = await axios_form_data_post(apiUrl,userData,'multipart/form-data');
+            if (data.error){
+                console.log('GET Response signup failed data.message:', data.message);
+            }else{
+                console.log('GET Response Signup OK:', data);
+                const apiUrl2 = `/user-token/`;
+                 const userData2 = {
+                    username: values.email,
+                    password: values.password,
+                    // 添加要发送给Django的数据
+                };
+                
+                console.log('Handling sign-up form userData2:', userData2);
+                const data2 = await axios_json_data_post(apiUrl2,userData2);
+                if (data2.error){
+                    console.log('GET Response signup get token fail data.message:', data.message);
+                    const loginSuccess = false;/* 模拟请求返回的值 */ 
+                   
+                }else{
+
+                    localStorage.setItem('accessToken', data2.token);
+
+                }
+
+            }
+        } catch (error) {
+            // 处理错误
+            console.error('handleSignUp error:', error);
+        }
+    };
+
+    const firstusername = userData.length > 0 ? userData[0].username : undefined;
+    const firstEmail = userData.length > 0 ? userData[0].email : undefined;
+    //const firstusername = "zzz";
+    //const firstEmail = "eee";
 
     return (
        <div>
@@ -71,9 +158,10 @@ export const AskInfo = ({ className }: AskInfoProps) => {
                                 placeholder="Username"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                value={formik.values.username}
+                                value={formik.values.username  || firstusername || ''}
                                 className={classNames(styles.Input)}
                             />
+
                         </div>
                         <div  className={classNames(styles.FormRow)}>
                             {formik.touched.username && formik.errors.username ? (
@@ -93,9 +181,10 @@ export const AskInfo = ({ className }: AskInfoProps) => {
                                 placeholder="Email"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                value={formik.values.email}
+                                value={formik.values.email || firstEmail || ''}
                                 className={classNames(styles.Input)}
                             />
+                           
                         </div>
                         <div className={classNames(styles.FormRow)}>
                             {formik.touched.email && formik.errors.email ? (
