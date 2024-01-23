@@ -13,6 +13,7 @@ export interface AfterAskInfoProps {
 export const AfterAskInfo = ({ className }: AfterAskInfoProps) => {
     const aferaskinfo="The message has been sent successfully, return to ";
     return <div className={classNames(styles.root, className)}>
+             <div className={classNames(styles.FormRow)}></div>
             <Card style={{ width: '60vw' }}>
                 <Card.Body>
                     <Card.Title>
