@@ -116,6 +116,12 @@
                 "filePath": "react-icons/fa",
                 "exportName": "FaListUl",
                 "name": "FaListUl"
+            },
+
+            {
+                "filePath": "react-icons/ri",
+                "exportName": "RiMailSendLine",
+                "name": "RiMailSendLine"
             }
         ]
     }
