@@ -72,11 +72,6 @@ async function insertWebAISummary() {
 async function generateWordReport() {
   try {
 
-    if (typeof Word === "undefined") {
-      alert("⚠️ This function only works inside Microsoft Word.");
-      return;
-    }
-
     const inputElement = document.getElementById("inputText");
     const input = inputElement ? inputElement.value : "";
 
@@ -94,11 +89,6 @@ async function generateWordReport() {
 async function insertWordAISummary() {
   try {
 
-    if (typeof Word === "undefined") {
-      alert("⚠️ This function only works inside Microsoft Word.");
-      return;
-    }
-    
     const inputElement = document.getElementById("inputText");
     const input = inputElement ? inputElement.value : "";
 
