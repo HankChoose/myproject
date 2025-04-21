@@ -8,5 +8,6 @@ export default defineConfig({
     server: {
         host: 'zhiyouyuec.com', // 允许外部访问
         port: 3000,      // 选择一个可供外部访问的端口
+		allowedHosts: ['.zhiyouyuec.com']
     },
 });
