@@ -138,11 +138,12 @@ LOGIN_REDIRECT_URL = 'user_account'
 # ACCOUNT
 # 指定要使用的登录方法(用户名、电子邮件地址两者之一)'username_email'，'email'
 # ACCOUNT_AUTHENTICATION_METHOD ="username" | "email" | "username_email"
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_LOGIN_METHODS = {'email'}
 # 要求用户注册时必须填写email
-# ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_SIGNUP_FIELDS = ['email*',  'password1*', 'password2*']
 # 允许通过 GET 请求直接确认邮箱
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_CONFIRMATION_URL = 'custom_confirm_email'
@@ -194,8 +195,7 @@ ACCOUNT_SESSION_REMEMBER = None
 # 用户注册时是否需要用户输入两遍密码
 # ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 
-ACCOUNT_SIGNUP_FIELDS = ['email*', 'email',
-                         'username*', 'password1*', 'password2*']
+
 # 用户不能使用的用户名列表
 ACCOUNT_USERNAME_BLACKLIST = []
 # 用户名允许的最小长度的整数
