@@ -1,86 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
-			   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			   xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
-			   xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
-			   xsi:type="TaskPaneApp">
-	  <Id>12345678-90ab-cdef-1234-567890abcdef</Id>
-	  <Version>1.0.0.0</Version>
-	  <ProviderName>Divorcepath</ProviderName>
-	  <DefaultLocale>en-US</DefaultLocale>
-	  <DisplayName DefaultValue="Divorcepath Demo Add-in" />
-	  <Description DefaultValue="AI-powered divorce workflow automation demo" />
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
+           xsi:type="TaskPaneApp">
 
-	  <IconUrl DefaultValue="https://appsforoffice.microsoft.com/lib/beta/hosted/icon32.png" />
-	  <SupportUrl DefaultValue="https://zhiyouyuec.com/office-demo" />
+  <Id>12345678-90ab-cdef-1234-567890abcdef</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Divorcepath</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
 
-	  <Hosts>
-		<Host Name="Document" />
-	  </Hosts>
+  <DisplayName DefaultValue="Divorcepath Demo Add-in" />
+  <Description DefaultValue="AI-powered divorce workflow automation demo" />
+  
+  <IconUrl DefaultValue="https://zhiyouyuec.com/office-demo/icon.png" />
+  <SupportUrl DefaultValue="https://zhiyouyuec.com/office-demo" />
 
-	  <DefaultSettings>
-		<SourceLocation DefaultValue="https://zhiyouyuec.com/office-demo/taskpane.html" />
-	  </DefaultSettings>
+  <Hosts>
+    <Host Name="Document" />
+  </Hosts>
 
-	  <Permissions>ReadWriteDocument</Permissions>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://zhiyouyuec.com/office-demo/taskpane.html" />
+  </DefaultSettings>
 
-	  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0">
-		<Hosts>
-		  <Host xsi:type="Document">
-			<DesktopFormFactor>
-			  <GetStarted>
-				<Title resid="residGetStartedTitle" />
-				<Description resid="residGetStartedDesc" />
-				<LearnMoreUrl resid="residLearnMoreUrl" />
-			  </GetStarted>
-			  <FunctionFile resid="residFunctionFile" />
-			  <ExtensionPoint xsi:type="MessageReadCommandSurface">
-				<OfficeTab id="TabDefault">
-				  <Group id="msgReadGroup">
-					<Label resid="groupLabel" />
-					<Control xsi:type="Button" id="msgReadOpenPaneButton">
-					  <Label resid="paneButtonLabel" />
-					  <Supertip>
-						<Title resid="paneButtonTitle" />
-						<Description resid="paneButtonDesc" />
-					  </Supertip>
-					  <Icon>
-						<bt:Image size="16" resid="icon16" />
-						<bt:Image size="32" resid="icon32" />
-						<bt:Image size="80" resid="icon80" />
-					  </Icon>
-					  <Action xsi:type="ShowTaskpane">
-						<SourceLocation resid="residTaskPaneUrl" />
-					  </Action>
-					</Control>
-				  </Group>
-				</OfficeTab>
-			  </ExtensionPoint>
-			</DesktopFormFactor>
-		  </Host>
-		</Hosts>
+  <Permissions>ReadWriteDocument</Permissions>
 
-		<Resources>
-		  <bt:Images>
-			<bt:Image id="icon16" DefaultValue="https://appsforoffice.microsoft.com/lib/beta/hosted/icon16.png"/>
-			<bt:Image id="icon32" DefaultValue="https://appsforoffice.microsoft.com/lib/beta/hosted/icon32.png"/>
-			<bt:Image id="icon80" DefaultValue="https://appsforoffice.microsoft.com/lib/beta/hosted/icon80.png"/>
-		  </bt:Images>
-		  <bt:Urls>
-			<bt:Url id="residTaskPaneUrl" DefaultValue="https://zhiyouyuec.com/office-demo/taskpane.html" />
-			<bt:Url id="residFunctionFile" DefaultValue="https://zhiyouyuec.com/office-demo/taskpane.html" />
-			<bt:Url id="residLearnMoreUrl" DefaultValue="https://zhiyouyuec.com/office-demo" />
-		  </bt:Urls>
-		  <bt:ShortStrings>
-			<bt:String id="groupLabel" DefaultValue="Divorcepath Tools" />
-			<bt:String id="paneButtonLabel" DefaultValue="Open Demo" />
-			<bt:String id="paneButtonTitle" DefaultValue="Launch Divorcepath Demo Add-in" />
-		  </bt:ShortStrings>
-		  <bt:LongStrings>
-			<bt:String id="paneButtonDesc" DefaultValue="Open the Divorcepath demo pane to simulate workflows with AI and Zapier" />
-			<bt:String id="residGetStartedTitle" DefaultValue="Try the Divorcepath Word Add-in" />
-			<bt:String id="residGetStartedDesc" DefaultValue="A demo for AI-powered legal automation" />
-		  </bt:LongStrings>
-		</Resources>
-	  </VersionOverrides>
-	</OfficeApp>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0">
+    <Hosts>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="residGetStartedTitle" />
+            <Description resid="residGetStartedDesc" />
+            <LearnMoreUrl resid="residLearnMoreUrl" />
+          </GetStarted>
+          <FunctionFile resid="residFunctionFile" />
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="msgReadGroup">
+                <Label resid="groupLabel" />
+                <Control xsi:type="Button" id="msgReadOpenPaneButton">
+                  <Label resid="paneButtonLabel" />
+                  <Supertip>
+                    <Title resid="paneButtonTitle" />
+                    <Description resid="paneButtonDesc" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="icon16" />
+                    <bt:Image size="32" resid="icon32" />
+                    <bt:Image size="80" resid="icon80" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="residTaskPaneUrl" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <bt:Image id="icon16" DefaultValue="https://zhiyouyuec.com/office-demo/icon16.png" />
+        <bt:Image id="icon32" DefaultValue="https://zhiyouyuec.com/office-demo/icon32.png" />
+        <bt:Image id="icon80" DefaultValue="https://zhiyouyuec.com/office-demo/icon80.png" />
+      </bt:Images>
+
+      <bt:Urls>
+        <bt:Url id="residTaskPaneUrl" DefaultValue="https://zhiyouyuec.com/office-demo/taskpane.html" />
+        <bt:Url id="residFunctionFile" DefaultValue="https://zhiyouyuec.com/office-demo/taskpane.html" />
+        <bt:Url id="residLearnMoreUrl" DefaultValue="https://zhiyouyuec.com/office-demo" />
+      </bt:Urls>
+
+      <bt:ShortStrings>
+        <bt:String id="groupLabel" DefaultValue="Divorcepath Tools" />
+        <bt:String id="paneButtonLabel" DefaultValue="Open Demo" />
+        <bt:String id="paneButtonTitle" DefaultValue="Launch Divorcepath Demo Add-in" />
+      </bt:ShortStrings>
+
+      <bt:LongStrings>
+        <bt:String id="paneButtonDesc" DefaultValue="Open the Divorcepath demo pane to simulate workflows with AI and Zapier" />
+        <bt:String id="residGetStartedTitle" DefaultValue="Try the Divorcepath Word Add-in" />
+        <bt:String id="residGetStartedDesc" DefaultValue="A demo for AI-powered legal automation" />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
