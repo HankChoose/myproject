@@ -2,7 +2,7 @@ Office.onReady(() => {
   console.log("Office.js is ready");
 });
 
-const mockAI = async (text: string) => {
+const mockAI = async (text) => {
   try {
     // 模拟调用 AI API 返回摘要
     return "AI Summary:\n" + text.slice(0, 80) + "...";
@@ -12,7 +12,7 @@ const mockAI = async (text: string) => {
   }
 };
 
-const mockReport = async (text: string) => {
+const mockReport = async (text) => {
   try {
     // 模拟生成报告
     return "Divorcepath Report:\n\n" +
@@ -28,8 +28,16 @@ const mockReport = async (text: string) => {
 
 async function generateWebReport() {
   try {
-    const input = (document.getElementById("inputText") as HTMLTextAreaElement)?.value;
-    if (!input) throw new Error("Input text is empty.");
+    const inputElement = document.getElementById("inputText");
+    const input = inputElement ? inputElement.value : "";
+
+    /*
+    const inputElement = document.getElementById("inputText");
+    let input = "";
+    if (inputElement && inputElement.tagName === "TEXTAREA") {
+      input = inputElement.value;
+    }*/
+
 
     const report = await mockReport(input);
     const outputElement = document.getElementById("output");
@@ -45,8 +53,9 @@ async function generateWebReport() {
 
 async function insertWebAISummary() {
   try {
-    const input = (document.getElementById("inputText") as HTMLTextAreaElement)?.value;
-    if (!input) throw new Error("Input text is empty.");
+    
+    const inputElement = document.getElementById("inputText");
+    const input = inputElement ? inputElement.value : "";
 
     const summary = await mockAI(input);
     const outputElement = document.getElementById("output");
@@ -62,8 +71,8 @@ async function insertWebAISummary() {
 
 async function generateWordReport() {
   try {
-    const input = (document.getElementById("inputText") as HTMLTextAreaElement)?.value;
-    if (!input) throw new Error("Input text is empty.");
+    const inputElement = document.getElementById("inputText");
+    const input = inputElement ? inputElement.value : "";
 
     const report = await mockReport(input);
     await Word.run(async (context) => {
@@ -78,8 +87,8 @@ async function generateWordReport() {
 
 async function insertWordAISummary() {
   try {
-    const input = (document.getElementById("inputText") as HTMLTextAreaElement)?.value;
-    if (!input) throw new Error("Input text is empty.");
+    const inputElement = document.getElementById("inputText");
+    const input = inputElement ? inputElement.value : "";
 
     const summary = await mockAI(input);
     await Word.run(async (context) => {
@@ -94,8 +103,8 @@ async function insertWordAISummary() {
 
 async function sendZapier() {
   try {
-    const input = (document.getElementById("inputText") as HTMLTextAreaElement)?.value;
-    if (!input) throw new Error("Input text is empty.");
+    const inputElement = document.getElementById("inputText");
+    const input = inputElement ? inputElement.value : "";
 
     const result = await fetch("/zapier-webhook", {
       method: "POST",
