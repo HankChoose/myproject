@@ -6,7 +6,7 @@ import svgr from 'vite-plugin-svgr';
 export default defineConfig({
     plugins: [react(), svgr()],
     server: {
-        host: 'zhiyouyuec.com', // 允许外部访问
+        host: true, // 允许外部访问
         port: 3000,      // 选择一个可供外部访问的端口
 		//allowedHosts: ['.zhiyouyuec.com']
     },
