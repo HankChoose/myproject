@@ -1,67 +1,114 @@
 Office.onReady(() => {
-	  console.log("Office.js is ready");
-	});
+  console.log("Office.js is ready");
+});
 
-	const mockAI = async (text: string) => {
-	  // 模拟调用 AI API 返回摘要
-	  return "AI Summary:\n" + text.slice(0, 80) + "...";
-	};
+const mockAI = async (text: string) => {
+  try {
+    // 模拟调用 AI API 返回摘要
+    return "AI Summary:\n" + text.slice(0, 80) + "...";
+  } catch (error) {
+    console.error("Error in mockAI:", error);
+    return "Error generating AI summary.";
+  }
+};
 
-	const mockReport = async (text: string) => {
-	  // 模拟生成报告
-	  return "Divorcepath Report:\n\n" +
-			 "Parties were married 8 years with 2 children. " +
-			 "Income split: John $80k, Jane $40k. " +
-			 "Expected child support: $XXX.\n\n" +
-			 "Summary prepared using AI tools.";
-	};
+const mockReport = async (text: string) => {
+  try {
+    // 模拟生成报告
+    return "Divorcepath Report:\n\n" +
+      "Parties were married 8 years with 2 children. " +
+      "Income split: John $80k, Jane $40k. " +
+      "Expected child support: $XXX.\n\n" +
+      "Summary prepared using AI tools.";
+  } catch (error) {
+    console.error("Error in mockReport:", error);
+    return "Error generating report.";
+  }
+};
 
-	async function generateWebReport() {
-	  const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
-	  const report = await mockReport(input);
-	  document.getElementById("output")!.innerText = report;
-	}
+async function generateWebReport() {
+  try {
+    const input = (document.getElementById("inputText") as HTMLTextAreaElement)?.value;
+    if (!input) throw new Error("Input text is empty.");
 
-	async function insertWebAISummary() {
-	  const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
-	  const summary = await mockAI(input);
-	  document.getElementById("output")!.innerText = summary;
-	}
+    const report = await mockReport(input);
+    const outputElement = document.getElementById("output");
+    if (outputElement) {
+      outputElement.innerText = report;
+    } else {
+      console.error("Output element not found.");
+    }
+  } catch (error) {
+    console.error("Error in generateWebReport:", error);
+  }
+}
 
-	async function generateWordReport() {
-	  const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
-	  const report = await mockReport(input);
+async function insertWebAISummary() {
+  try {
+    const input = (document.getElementById("inputText") as HTMLTextAreaElement)?.value;
+    if (!input) throw new Error("Input text is empty.");
 
-	  await Word.run(async (context) => {
-		const docBody = context.document.body;
-		docBody.insertText(report, Word.InsertLocation.end);
-		await context.sync();
-	  });
-	}
+    const summary = await mockAI(input);
+    const outputElement = document.getElementById("output");
+    if (outputElement) {
+      outputElement.innerText = summary;
+    } else {
+      console.error("Output element not found.");
+    }
+  } catch (error) {
+    console.error("Error in insertWebAISummary:", error);
+  }
+}
 
-	async function insertWordAISummary() {
-	  const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
-	  const summary = await mockAI(input);
+async function generateWordReport() {
+  try {
+    const input = (document.getElementById("inputText") as HTMLTextAreaElement)?.value;
+    if (!input) throw new Error("Input text is empty.");
 
-	  await Word.run(async (context) => {
-		const docBody = context.document.body;
-		docBody.insertText(summary, Word.InsertLocation.end);
-		await context.sync();
-	  });
-	}
+    const report = await mockReport(input);
+    await Word.run(async (context) => {
+      const docBody = context.document.body;
+      docBody.insertText(report, Word.InsertLocation.end);
+      await context.sync();
+    });
+  } catch (error) {
+    console.error("Error in generateWordReport:", error);
+  }
+}
 
-	async function sendZapier() {
-	  const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
+async function insertWordAISummary() {
+  try {
+    const input = (document.getElementById("inputText") as HTMLTextAreaElement)?.value;
+    if (!input) throw new Error("Input text is empty.");
 
-	  const result = await fetch("/zapier-webhook", {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ message: input, timestamp: Date.now() }),
-	  });
+    const summary = await mockAI(input);
+    await Word.run(async (context) => {
+      const docBody = context.document.body;
+      docBody.insertText(summary, Word.InsertLocation.end);
+      await context.sync();
+    });
+  } catch (error) {
+    console.error("Error in insertWordAISummary:", error);
+  }
+}
 
-	  if (result.ok) {
-		alert("✅ Zapier Notification Sent!");
-	  } else {
-		alert("❌ Failed to send Zapier notification.");
-	  }
-	}
+async function sendZapier() {
+  try {
+    const input = (document.getElementById("inputText") as HTMLTextAreaElement)?.value;
+    if (!input) throw new Error("Input text is empty.");
+
+    const result = await fetch("/zapier-webhook", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: input, timestamp: Date.now() }),
+    });
+
+    if (result.ok) {
+      alert("✅ Zapier Notification Sent!");
+    } else {
+      alert("❌ Failed to send Zapier notification.");
+    }
+  } catch (error) {
+    console.error("Error in sendZapier:", error);
+  }
+}
