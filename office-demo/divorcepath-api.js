@@ -1,4 +1,4 @@
-模拟后端原始数据接口：
+
 module.exports = (req, res) => {
   const input = req.body.input || "Default client data";
 
