@@ -1,0 +1,30 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.useUrl = exports.UrlProvider = void 0;
+const react_1 = require("react");
+const UrlContext = (0, react_1.createContext)(undefined);
+const UrlProvider = () => {
+    const [url, setUrl] = (0, react_1.useState)('https://zhiyouyuec.com');
+    const updateUrl = (newUrl) => {
+        setUrl(newUrl);
+    };
+    const contextValue = {
+        url,
+        updateUrl,
+    };
+    return (
+    /*<UrlContext.Provider value={{ url, updateUrl }}>*/
+    <UrlContext.Provider value={contextValue}>
+
+      <h3>url: {url}</h3>
+    </UrlContext.Provider>);
+};
+exports.UrlProvider = UrlProvider;
+const useUrl = () => {
+    const context = (0, react_1.useContext)(UrlContext);
+    if (!context) {
+        throw new Error('useUrl must be used within a UrlProvider');
+    }
+    return context;
+};
+exports.useUrl = useUrl;

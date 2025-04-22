@@ -1,55 +1,69 @@
 <!DOCTYPE html>
-	<html>
-	<head>
-	  <meta charset="utf-8" />
-	  <title>Divorcepath Word Add-in</title>
-	  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
-	  <script src="./taskpane.js"></script>
-	  <style>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Divorcepath Word Add-in</title>
+	<script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+	<script src="./taskpane.js"></script>
+	<script>
+		Office.onReady(() => {
+			console.log("Office ready");
+		});
+	</script>
+	<style>
 		body {
-		  font-family: Arial, sans-serif;
-		  padding: 20px;
-		  background-color: #f6f9fc;
+			font-family: Arial, sans-serif;
+			padding: 20px;
+			background-color: #f6f9fc;
 		}
+
 		h1 {
-		  font-size: 20px;
-		  margin-bottom: 20px;
+			font-size: 20px;
+			margin-bottom: 20px;
 		}
+
 		button {
-		  display: block;
-		  width: 100%;
-		  margin-bottom: 12px;
-		  padding: 10px;
-		  background-color: #0078d4;
-		  color: white;
-		  border: none;
-		  border-radius: 6px;
-		  cursor: pointer;
-		  font-size: 14px;
+			display: block;
+			width: 100%;
+			margin-bottom: 12px;
+			padding: 10px;
+			background-color: #0078d4;
+			color: white;
+			border: none;
+			border-radius: 6px;
+			cursor: pointer;
+			font-size: 14px;
 		}
+
 		button:hover {
-		  background-color: #005a9e;
+			background-color: #005a9e;
 		}
+
 		textarea {
-		  width: 100%;
-		  height: 80px;
-		  margin-top: 10px;
-		  font-size: 14px;
+			width: 100%;
+			height: 80px;
+			margin-top: 10px;
+			font-size: 14px;
 		}
-	  </style>
-	</head>
-	<body>
-	  <h1>Divorcepath AI Demo</h1>
+	</style>
+</head>
 
-	  <label>Report Input (editable):</label>
-	  <textarea id="inputText">Jane and John divorced after 8 years of marriage. They have 2 children. John earns $80,000/year. Jane earns $40,000/year.</textarea>
+<body>
+	<h1>Divorcepath AI Demo</h1>
 
-	  <button onclick="generateWebReport()">1️⃣ Generate Web Report</button>
-	  <button onclick="generateWordReport()">2️⃣ Generate & Insert Word Report</button>
-	  <button onclick="insertWebAISummary()">3️⃣ Insert AI Summary (Web)</button>
-	  <button onclick="insertWordAISummary()">4️⃣ Insert AI Summary (Word)</button>
-	  <button onclick="sendZapier()">5️⃣ Send to Zapier</button>
+	<label for="myTextarea">Report Input (editable):</label>
+	<textarea
+		id="myTextarea">Jane and John divorced after 8 years of marriage. They have 2 children. John earns $80,000/year. Jane earns $40,000/year.</textarea>
 
-	  <div id="output" style="margin-top: 20px; color: #333;"></div>
-	</body>
-	</html>
+	<button onclick="generateWebReport()">1️⃣ Generate Web Report</button>
+	<button onclick="generateWordReport()">2️⃣ Generate & Insert Word Report</button>
+	<button onclick="insertWebAISummary()">3️⃣ Insert AI Summary (Web)</button>
+	<button onclick="insertWordAISummary()">4️⃣ Insert AI Summary (Word)</button>
+	<button onclick="sendZapier()">5️⃣ Send to Zapier</button>
+
+	<div id="output" style="margin-top: 20px; color: #333;"></div>
+</body>
+
+</html>
