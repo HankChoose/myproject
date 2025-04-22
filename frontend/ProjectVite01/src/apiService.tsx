@@ -233,9 +233,19 @@ const axios_json_data_post = async (url:string,userData:any) => {
       
     }
     
-  } catch (error) {
-      console.error(console_title+ ' error:', error);
-      return handleError(console_title+ ' error:'+ error);
+  } catch (error: unknown) {
+        // 更详细的错误信息
+        // 这里检查 error 是否为 AxiosError 类型
+        if (axios.isAxiosError(error)) {
+            console.error(console_title + ' error:', error);
+            // 打印 AxiosError 的详细信息
+            console.error('Error response data:', error.response?.data);
+            console.error('Error response status:', error.response?.status);
+        } else {
+            // 处理非 Axios 错误
+            console.error('Non-Axios error:', error);
+        }
+        return handleError(console_title + ' error:' + error);
       
   }
 };
