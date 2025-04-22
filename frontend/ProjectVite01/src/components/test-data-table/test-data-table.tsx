@@ -135,8 +135,8 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                     </a>
                 </td>
                 <td>{item.apply_type}</td>
-                <td>{item.username}</td>
-                <td>{item.apply_time.toLocaleString()}</td>
+                <td style={{ display: 'none' }}>{item.username}</td>
+                <td style={{ display: 'none' }}>{item.apply_time.toLocaleString()}</td>
             </tr>
         ));
     };
