@@ -124,73 +124,86 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
         }
     };
 
-    //------------------------------------------------------->handleSignUp
-    const handleSignUp = async (values: FormikValues) => {
-    if (isLogVisible) {
-        console.log('Handling sign-up form submission:', values);
-    }
+//------------------------------------------------------->handleSignUp
+    const handleSignUp =async (values: FormikValues) => {
+        // Logic for handling sign-up form submission
+        if (isLogVisible) {
+            console.log('Handling sign-up form submission:', values);
+        }
+        
+        // Add code to submit data for sign-up
 
-    // 提交注册数据
-    const apiUrl = `/accounts/signup/`;
-    const parts = values.email.split('@');
+        const apiUrl = `/accounts/signup/`;
+      
+        // Split the email address at the "@" symbol
+        const parts = values.email.split('@');
 
-    const userData = {
-        username: parts[0],
-        email: values.email,
-        password1: values.password,
-        password2: values.password,
+        const userData = {
+            username: parts[0],
+            email: values.email,
+            password1: values.password,
+            password2: values.password,
+            // 添加要发送给Django的数据
+        };
+
+        if (isLogVisible) {
+            console.log('Handling sign-up form userData:', userData);
+        }
+        
+
+        try {
+            const data = await axios_form_data_post(apiUrl,userData,'multipart/form-data');
+            if (data.error){
+                console.log('GET Response signup failed data.message:', data.message);
+            }else{
+                console.log('GET Response Signup OK:', data);
+                const apiUrl2 = `/user-token/`;
+                 const userData2 = {
+                    username: values.email,
+                    password: values.password,
+                    // 添加要发送给Django的数据
+                };
+                
+                console.log('Handling sign-up form userData2:', userData2);
+                const data2 = await axios_json_data_post(apiUrl2,userData2);
+                if (data2.error){
+                    console.log('GET Response signup get token fail data.message:', data.message);
+                    const loginSuccess = false;/* 模拟请求返回的值 */ 
+                   
+                }else{
+                    if (isLogVisible) {
+                        console.log('GET Response signup get token OK:', data2);
+                    }
+                    
+                    localStorage.setItem('accessToken', data2.token);
+                    if (isLogVisible) {
+                       console.log('GET Response.data2.token',data2.token);
+                    }
+                    
+                    // 在这里进行你的其他操作，比如存储在本地存储中
+                    signIn();
+                    if (onLogin) {
+                        onLogin(values.email,values.password);
+                    } else {
+                        // Handle the case where onLogin is not defined, if needed
+                        console.error('onLogin is not defined');
+                    }
+                    if (redirectLink) {
+                        // 调用navigate函数
+                        navigate(redirectLink);
+                    } else {
+                        // 处理redirectLink为undefined的情况，例如给出一个默认值或者采取其他逻辑
+                        console.error('redirectLink is undefined');
+                    }
+                }
+
+            }
+        } catch (error) {
+            // 处理错误
+            console.error('handleSignUp error:', error);
+        }
     };
 
-    if (isLogVisible) {
-        console.log('Handling sign-up form userData:', userData);
-    }
-
-    try {
-        const data = await axios_form_data_post(apiUrl, userData, 'multipart/form-data');
-        if (data.error) {
-            console.log('GET Response signup failed data.message:', data.message);
-        } else {
-            console.log('GET Response Signup OK:', data);
-
-            // 尝试获取token
-            const apiUrl2 = `/user-token/`;
-            const userData2 = {
-                username: values.email,
-                password: values.password,
-            };
-
-            console.log('Handling sign-up form userData2:', userData2);
-            console.log('User not found, proceeding with registration');
-            // 直接进入注册流程
-            const registrationResponse = await axios_form_data_post(apiUrl, userData, 'multipart/form-data');
-            if (registrationResponse.error) {
-                console.log('Registration failed:', registrationResponse.message);
-            } else {
-                console.log('Registration success:', registrationResponse);
-                // 再次尝试获取 token
-                const data2 = await axios_json_data_post(apiUrl2, userData2);
-                localStorage.setItem('accessToken', data2.token);
-                console.log('GET Response.data2.token', data2.token);
-
-                signIn();
-                if (onLogin) {
-                    onLogin(values.email, values.password);
-                } else {
-                    console.error('onLogin is not defined');
-                }
-
-                if (redirectLink) {
-                    navigate(redirectLink);
-                } else {
-                    console.error('redirectLink is undefined');
-                }
-            }
-        }
-    } catch (error) {
-        // 处理其他错误
-        console.error('handleSignUp error:', error);
-    }
-};
 
 
     //------------------------------------------------------>heckEmailExistence
