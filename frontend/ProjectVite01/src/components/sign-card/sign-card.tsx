@@ -124,7 +124,7 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
         }
     };
 
-//------------------------------------------------------->handleSignUp
+    //------------------------------------------------------->handleSignUp
     const handleSignUp =async (values: FormikValues) => {
         // Logic for handling sign-up form submission
         if (isLogVisible) {
@@ -203,8 +203,6 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
             console.error('handleSignUp error:', error);
         }
     };
-
-
 
     //------------------------------------------------------>heckEmailExistence
     const checkEmailExistence = async (values: FormikValues) => {
@@ -294,11 +292,11 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
         formType === 'signin' ? (
             <span>Need an account?</span>
         ) : (formType === 'signup' || formType === 'resetpw') ? (
-            <span>Sign Up in maintenance...</span>
+            <span>Have an account already?</span>
         ) : (
             <span />
         );
-        //Have an account already? 
+
     const linksign =
         formType === 'signin' ? (
             <Link to="/react/signup"> Sign Up </Link>
@@ -307,7 +305,7 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
         ) : (
             <span />
         );
-    
+
     const titlecard =
         formType === 'signin' ? 'Sign In' : formType === 'signup' ? 'Sign Up' : formType === 'resetpw' ? 'Reset password' : <span />;
 

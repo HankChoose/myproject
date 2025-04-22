@@ -135,8 +135,8 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                     </a>
                 </td>
                 <td>{item.apply_type}</td>
-                <td style={{ display: 'none' }}>{item.username}</td>
-                <td style={{ display: 'none' }}>{item.apply_time.toLocaleString()}</td>
+                <td>{item.username}</td>
+                <td>{item.apply_time.toLocaleString()}</td>
             </tr>
         ));
     };
@@ -211,7 +211,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                             )}
                         </th>
                         <th
-                            style={{ width: '150px', textAlign: 'center' , display: 'none'}}
+                            style={{ width: '150px', textAlign: 'center' }}
                             className={styles.handpoint}
                             onClick={() => handleSortChange('username')}
                         >
@@ -221,7 +221,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                             )}
                         </th>
                         <th
-                            style={{ textAlign: 'center', display: 'none' }}
+                            style={{ textAlign: 'center' }}
                             className={styles.handpoint}
                             onClick={() => handleSortChange('apply_time')}
                         >
