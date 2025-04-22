@@ -139,7 +139,7 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
         const parts = values.email.split('@');
 
         const userData = {
-            username: parts[0],
+            username: values.email,
             email: values.email,
             password1: values.password,
             password2: values.password,
