@@ -160,53 +160,30 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
             };
 
             console.log('Handling sign-up form userData2:', userData2);
-            try {
+            console.log('User not found, proceeding with registration');
+            // 直接进入注册流程
+            const registrationResponse = await axios_form_data_post(apiUrl, userData, 'multipart/form-data');
+            if (registrationResponse.error) {
+                console.log('Registration failed:', registrationResponse.message);
+            } else {
+                console.log('Registration success:', registrationResponse);
+                // 再次尝试获取 token
                 const data2 = await axios_json_data_post(apiUrl2, userData2);
+                localStorage.setItem('accessToken', data2.token);
+                console.log('GET Response.data2.token', data2.token);
 
-                // 如果 token 获取成功
-                if (data2 && data2.token) {
-                    localStorage.setItem('accessToken', data2.token);
-                    console.log('GET Response.data2.token', data2.token);
-
-                    signIn();
-                    if (onLogin) {
-                        onLogin(values.email, values.password);
-                    } else {
-                        console.error('onLogin is not defined');
-                    }
-
-                    if (redirectLink) {
-                        navigate(redirectLink);
-                    } else {
-                        console.error('redirectLink is undefined');
-                    }
+                signIn();
+                if (onLogin) {
+                    onLogin(values.email, values.password);
+                } else {
+                    console.error('onLogin is not defined');
                 }
-            } catch (error) {
-                console.log('User not found, proceeding with registration');
-                    // 直接进入注册流程
-                    const registrationResponse = await axios_form_data_post(apiUrl, userData, 'multipart/form-data');
-                    if (registrationResponse.error) {
-                        console.log('Registration failed:', registrationResponse.message);
-                    } else {
-                        console.log('Registration success:', registrationResponse);
-                        // 再次尝试获取 token
-                        const data2 = await axios_json_data_post(apiUrl2, userData2);
-                        localStorage.setItem('accessToken', data2.token);
-                        console.log('GET Response.data2.token', data2.token);
 
-                        signIn();
-                        if (onLogin) {
-                            onLogin(values.email, values.password);
-                        } else {
-                            console.error('onLogin is not defined');
-                        }
-
-                        if (redirectLink) {
-                            navigate(redirectLink);
-                        } else {
-                            console.error('redirectLink is undefined');
-                        }
-                    }
+                if (redirectLink) {
+                    navigate(redirectLink);
+                } else {
+                    console.error('redirectLink is undefined');
+                }
             }
         }
     } catch (error) {
