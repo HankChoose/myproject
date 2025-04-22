@@ -159,7 +159,7 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
                 console.log('GET Response Signup OK:', data);
                 const apiUrl2 = `/user-token/`;
                  const userData2 = {
-                    email: values.email,
+                    username: values.email,
                     password: values.password,
                     // 添加要发送给Django的数据
                 };

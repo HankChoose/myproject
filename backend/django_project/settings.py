@@ -138,7 +138,7 @@ LOGIN_REDIRECT_URL = 'user_account'
 # ACCOUNT
 # 指定要使用的登录方法(用户名、电子邮件地址两者之一)'username_email'，'email'
 # ACCOUNT_AUTHENTICATION_METHOD ="username" | "email" | "username_email"
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 # 要求用户注册时必须填写email
 ACCOUNT_EMAIL_REQUIRED = True
 # 允许通过 GET 请求直接确认邮箱
