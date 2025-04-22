@@ -10,6 +10,9 @@ app.use(express.static(path.join(__dirname, "src")));
 // 模拟 Divorcepath 原始数据 API
 app.post("/api/divorcepath", require("./divorcepath-api"));
 
+// 模拟ai-summary"
+app.post("/api/ai-summary", require("./ai-summary"));
+
 // 模拟 Zapier webhook
 app.post("/api/zapier", require("./zapier-webhook"));
 
