@@ -211,7 +211,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                             )}
                         </th>
                         <th
-                            style={{ width: '150px', textAlign: 'center' }}
+                            style={{ width: '150px', textAlign: 'center' , display: 'none'}}
                             className={styles.handpoint}
                             onClick={() => handleSortChange('username')}
                         >
