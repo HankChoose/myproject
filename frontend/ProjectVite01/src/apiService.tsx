@@ -216,7 +216,7 @@ const axios_json_data_post = async (url:string,userData:any) => {
       method: 'POST',
         headers: {
           'Content-Type':'application/json',
-          //'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
+          'X-CSRFToken': csrfToken, // 你的CSRF令牌的名称可能不同
         },
       body: JSON.stringify(userData),
   };
