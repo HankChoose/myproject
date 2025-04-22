@@ -2,5 +2,8 @@
   "devDependencies": {
     "@types/glob": "^8.1.0",
     "@types/office-js": "^1.0.492"
+  },
+  "dependencies": {
+    "ts-migrate": "^0.1.35"
   }
 }
