@@ -221,7 +221,7 @@ export const TestDataTable = ({ className, data }: TestDataTableProps) => {
                             )}
                         </th>
                         <th
-                            style={{ textAlign: 'center' }}
+                            style={{ textAlign: 'center', display: 'none' }}
                             className={styles.handpoint}
                             onClick={() => handleSortChange('apply_time')}
                         >
