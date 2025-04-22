@@ -210,7 +210,7 @@ const axios_form_data_post = async (url:string,userData:any,contentType:string) 
 2./accounts/password/reset/
 */
 const axios_json_data_post = async (url:string,userData:any) => { 
-  const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token Cross-Site Request Forgery
+  //const csrfToken = Cookies.get('csrftoken'); // 获取 CSRF token Cross-Site Request Forgery
   const console_title='axios_json_data_post';
   const config_axios_json_data_post  = {
       method: 'POST',
