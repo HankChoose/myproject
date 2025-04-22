@@ -294,11 +294,11 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
         formType === 'signin' ? (
             <span>Need an account?</span>
         ) : (formType === 'signup' || formType === 'resetpw') ? (
-            <span>Have an account already?</span>
+            <span>Sign Up in maintenance...</span>
         ) : (
             <span />
         );
-
+        //Have an account already? 
     const linksign =
         formType === 'signin' ? (
             <Link to="/react/signup"> Sign Up </Link>
@@ -307,7 +307,7 @@ export const SignCard = ({ className, formType = 'signin', redirectLink, onLogin
         ) : (
             <span />
         );
-
+    
     const titlecard =
         formType === 'signin' ? 'Sign In' : formType === 'signup' ? 'Sign Up' : formType === 'resetpw' ? 'Reset password' : <span />;
 
