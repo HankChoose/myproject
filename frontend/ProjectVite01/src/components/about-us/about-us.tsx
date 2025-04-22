@@ -17,9 +17,27 @@ export const AboutUS = ({ className }: AboutUSProps) => {
             We are a website dedicated to technical exchange and improvement, aiming to assist developers with common interests in achieving better designs and producing superior products. We encourage enthusiasts to share their development experiences and knowledge to foster a collaborative learning environment.
         </div>
         <div className={classNames(styles.formRowRight)}>
-            
+            Team Members:
         </div>
-       
+        <div className={classNames(styles.card)}>
+
+             <div className={classNames(styles.imagesdiv)}><span className={classNames(styles.people03)}></span></div>
+             <div className={classNames(styles.FormRowSmall)}></div> 
+             <div>Haiwei Chen</div>
+             <div>Manager</div>
+            <div>Email:zhiyouyuec@gmail.com</div>
+            <div>Phone:+1 587-598-6489</div>
+          
+        </div>
+         <div className={classNames(styles.card)}>
+             
+             <div className={classNames(styles.imagesdiv)}><span className={classNames(styles.people02)}></span></div>
+             <div className={classNames(styles.FormRowSmall)}></div>
+             <div>Matt Jones</div>
+             <div>Content Manager</div>
+            <div>Email:zhiyouyuec@gmail.com</div>
+            <div>Phone:+1 587-938-8221</div>
+        </div>
 
          <div className={classNames(styles.card)}>
             

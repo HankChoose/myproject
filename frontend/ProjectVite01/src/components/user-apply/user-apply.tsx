@@ -189,7 +189,6 @@ export const UserApply = ({ className }: UserApplyProps) => {
                         readOnly={true}
                         onChange={handleEmailChange}
                     />
-                    
                 </div>
                 <div className={classNames(styles.FormRow)}></div>
                 <div className={classNames(styles.FormRow)}></div>

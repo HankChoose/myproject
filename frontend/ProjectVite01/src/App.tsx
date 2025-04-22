@@ -41,8 +41,6 @@ import { TestGetImagesArrays } from './components/test-get-images-arrays/test-ge
 import { AboutUS } from './components/about-us/about-us';
 import { ContactUs } from './components/contact-us/contact-us';
 import { UserPostList } from './components/user-post-list/user-post-list';
-import { AfterAskInfo } from './components/after-ask-info/after-ask-info';
-import { AskInfo } from './components/ask-info/ask-info';
 //import { TopbarProvider } from './TopbarContext';
 // 导入根 reducer
 const store = createStore(rootReducer);
@@ -64,8 +62,6 @@ function App() {
                         <Routes>
                             <Route path="/react" element={<Home />} />
                             <Route path="/react/aboutus" element={<AboutUS />} />
-                            <Route path="/react/askinfo" element={ <AskInfo />} />
-                            <Route path="/react/afteraskinfo" element={ <AfterAskInfo  />} />
                             <Route path="/react/contactus" element={<ContactUs />} />
                             <Route
                                 path="/react/signin"
@@ -151,7 +147,7 @@ function App() {
                     </div>
                 </Router>
             </div>
-        
+
         </AuthProvider>
     );
 }
