@@ -13,4 +13,4 @@ const home_module_scss_1 = __importDefault(require("./home.module.scss"));
 const Home = ({ className }) => {
     return <div className={(0, classnames_1.default)(home_module_scss_1.default.root, className)}>Home</div>;
 };
-exports.Home = Home;
+export default Home; // ✅ 用 ESM 的 export default
