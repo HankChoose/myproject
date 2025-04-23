@@ -4,10 +4,10 @@ import styles from './ask-info.module.scss';
 import { useFormik, FormikValues,Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { RxEyeOpen, RxEyeClosed } from 'react-icons/rx';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../AuthContext';
-import { axios_form_data_post, axios_json_data_post, axios_json_data_get } from '../../apiService';
+import { axios_form_data_post, axios_json_data_post, axios_json_data_get,fetch_data_token_get, fetch_data_token_post} from '../../apiService';
 
 export interface AskInfoProps {
     className?: string;
@@ -22,7 +22,7 @@ const validationSchema = Yup.object().shape({
   phone: Yup.string()
     .nullable()
     .matches(/^[0-9-]+$/, 'Invalid phone number')
-    .min(10, 'Phone number must be at least 5 characters')
+    .min(5, 'Phone number must be at least 5 characters')
     .max(20, 'Phone number must be 20 characters or less'),
 
   username: Yup.string()
@@ -42,6 +42,22 @@ const validationSchema = Yup.object().shape({
  * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
  */
 export const AskInfo = ({ className }: AskInfoProps) => {
+    // 设置应用根元素
+    interface UserData {
+        id: string;
+        username: string;
+        email: string;
+        // 其他属性...
+    }
+    const [userData, setUserData] = useState<UserData[]>([]);
+    const token = localStorage.getItem('accessToken');
+    const navigate = useNavigate();
+    useEffect(() => {
+        // 在组件挂载后，通过引用获取 textarea 的值
+        fetchData();
+    
+    }, []); // 注意：这里的空数组表示仅在组件挂载时执行
+    
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -52,9 +68,77 @@ export const AskInfo = ({ className }: AskInfoProps) => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            //handleSignUp(values);
+            handleAskInfo(values);
         },
     });
+
+    const fetchData = async () => {
+        // 获取保存在本地存储中的令牌
+
+        const apiUrl = `/user-profile/`;
+        try {
+            const data = await fetch_data_token_get(apiUrl, token);
+            if (data.error) {
+                console.log('fetchData response data.message:', data.message);
+            } else {
+                console.log('fetchData response:', data);
+            }
+            setUserData(data);
+            // 更新 Formik 的 initialValues
+            console.log('data[0].email', data[0].email);
+            console.log('data[0].username', data[0].username);
+            
+            formik.setValues({
+                ...formik.values,
+                email: data[0].email || '',
+                username: data[0].username || '',
+                phone: '',
+                message:  '',
+                // 添加其他字段的默认值
+            });
+           
+        } catch (error) {
+            // 处理错误
+            console.error('fetchData error:', error);
+        }
+    };
+
+    //------------------------------------------------------->handleAskInfo
+    const handleAskInfo =async (values: FormikValues) => {
+        
+        // Logic for handling sign-up form submission
+        const apiUrl = `/user-ask-info/`;
+      
+        // Split the email address at the "@" symbol
+        //const parts = values.email.split('@');
+
+        const userData = {
+            username: values.username,
+            email: values.email,
+            phone: values.phone,
+            message: values.message,
+            // 添加要发送给Django的数据
+        };
+
+        try {
+            const data = await axios_form_data_post(apiUrl,userData,'multipart/form-data');
+            if (data.error){
+                console.log('GET Response AskInfo failed data.message:', data.message);
+            }else{
+                console.log('GET Response AskInfo OK:', data);
+                navigate("/react/afteraskinfo");
+
+            }
+        } catch (error) {
+            // 处理错误
+            console.error('handleAskInfo error:', error);
+        }
+    };
+
+    const firstusername = userData.length > 0 ? userData[0].username : undefined;
+    const firstEmail = userData.length > 0 ? userData[0].email : undefined;
+    //const firstusername = "zzz";
+    //const firstEmail = "eee";
 
     return (
        <div>
@@ -71,9 +155,10 @@ export const AskInfo = ({ className }: AskInfoProps) => {
                                 placeholder="Username"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                value={formik.values.username}
+                                value={formik.values.username  || firstusername || ''}
                                 className={classNames(styles.Input)}
                             />
+
                         </div>
                         <div  className={classNames(styles.FormRow)}>
                             {formik.touched.username && formik.errors.username ? (
@@ -93,9 +178,10 @@ export const AskInfo = ({ className }: AskInfoProps) => {
                                 placeholder="Email"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
-                                value={formik.values.email}
+                                value={formik.values.email || firstEmail || ''}
                                 className={classNames(styles.Input)}
                             />
+                           
                         </div>
                         <div className={classNames(styles.FormRow)}>
                             {formik.touched.email && formik.errors.email ? (
@@ -134,7 +220,7 @@ export const AskInfo = ({ className }: AskInfoProps) => {
                                 id="message" 
                                 name="message" 
                                 rows={4}
-                                cols={42}
+                                cols={38}
                                 onChange={formik.handleChange}
                                 onBlur={(e) => {
                                     formik.handleBlur(e);

@@ -2,6 +2,8 @@ import classNames from 'classnames';
 import styles from './contact-us.module.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Card,Table,ListGroup} from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
+import { RiMailSendLine } from "react-icons/ri";
 
 export interface ContactUsProps {
     className?: string;
@@ -22,7 +24,7 @@ export const ContactUs = ({ className }: ContactUsProps) => {
             </Card.Body>
             <ListGroup className="list-group-flush">
                 <ListGroup.Item>
-                    Please feel free to contact us if need further information.
+                    Please feel free to contact us if need further information.  <Link to="/react/askinfo"><RiMailSendLine />Send message</Link>  to us.
                 </ListGroup.Item>
 
                 <ListGroup.Item>

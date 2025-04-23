@@ -44,7 +44,7 @@
     "@types/react-modal": "^3.16.3",
     "@types/react-table": "^7.7.18",
     "@vitejs/plugin-react": "^4.1.0",
-    "@wixc3/react-board": "^2.3.0",
+    "@wixc3/react-board": "^3.0.1",
     "sass": "^1.69.4",
     "typescript": "^5.2.2",
     "vite": "^4.5.0"

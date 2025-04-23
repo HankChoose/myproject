@@ -1,0 +1,18 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AboutUS = void 0;
+const jsx_runtime_1 = require("react/jsx-runtime");
+const classnames_1 = __importDefault(require("classnames"));
+const about_us_module_scss_1 = __importDefault(require("./about-us.module.scss"));
+require("bootstrap/dist/css/bootstrap.min.css");
+/**
+ * This component was created using Codux's Default new component template.
+ * To create custom component templates, see https://help.codux.com/kb/en/article/kb16522
+ */
+const AboutUS = ({ className }) => {
+    return (0, jsx_runtime_1.jsxs)("div", { className: (0, classnames_1.default)(about_us_module_scss_1.default.root, className), children: [(0, jsx_runtime_1.jsx)("div", { className: (0, classnames_1.default)(about_us_module_scss_1.default.formRowRight), children: "We are a website dedicated to technical exchange and improvement, aiming to assist developers with common interests in achieving better designs and producing superior products. We encourage enthusiasts to share their development experiences and knowledge to foster a collaborative learning environment." }), (0, jsx_runtime_1.jsx)("div", { className: (0, classnames_1.default)(about_us_module_scss_1.default.formRowRight), children: "Team Members:" }), (0, jsx_runtime_1.jsxs)("div", { className: (0, classnames_1.default)(about_us_module_scss_1.default.card), children: [(0, jsx_runtime_1.jsx)("div", { className: (0, classnames_1.default)(about_us_module_scss_1.default.imagesdiv), children: (0, jsx_runtime_1.jsx)("span", { className: (0, classnames_1.default)(about_us_module_scss_1.default.people03) }) }), (0, jsx_runtime_1.jsx)("div", { className: (0, classnames_1.default)(about_us_module_scss_1.default.FormRowSmall) }), (0, jsx_runtime_1.jsx)("div", { children: "Haiwei Chen" }), (0, jsx_runtime_1.jsx)("div", { children: "Manager" }), (0, jsx_runtime_1.jsx)("div", { children: "Email:zhiyouyuec@gmail.com" }), (0, jsx_runtime_1.jsx)("div", { children: "Phone:+1 587-598-6489" })] }), (0, jsx_runtime_1.jsxs)("div", { className: (0, classnames_1.default)(about_us_module_scss_1.default.card), children: [(0, jsx_runtime_1.jsx)("div", { className: (0, classnames_1.default)(about_us_module_scss_1.default.imagesdiv), children: (0, jsx_runtime_1.jsx)("span", { className: (0, classnames_1.default)(about_us_module_scss_1.default.people02) }) }), (0, jsx_runtime_1.jsx)("div", { className: (0, classnames_1.default)(about_us_module_scss_1.default.FormRowSmall) }), (0, jsx_runtime_1.jsx)("div", { children: "Matt Jones" }), (0, jsx_runtime_1.jsx)("div", { children: "Content Manager" }), (0, jsx_runtime_1.jsx)("div", { children: "Email:zhiyouyuec@gmail.com" }), (0, jsx_runtime_1.jsx)("div", { children: "Phone:+1 587-938-8221" })] }), (0, jsx_runtime_1.jsxs)("div", { className: (0, classnames_1.default)(about_us_module_scss_1.default.card), children: [(0, jsx_runtime_1.jsx)("div", { className: (0, classnames_1.default)(about_us_module_scss_1.default.imagesdiv), children: (0, jsx_runtime_1.jsx)("span", { className: (0, classnames_1.default)(about_us_module_scss_1.default.people01) }) }), (0, jsx_runtime_1.jsx)("div", { className: (0, classnames_1.default)(about_us_module_scss_1.default.FormRowSmall) }), (0, jsx_runtime_1.jsx)("div", { children: "Hank (Haiyin) Chen" }), (0, jsx_runtime_1.jsx)("div", { children: "Developer" }), (0, jsx_runtime_1.jsx)("div", { children: "Email:hankchenv@gmail.com" }), (0, jsx_runtime_1.jsx)("div", { children: "Phone:+1 587-936-1806" })] })] });
+};
+exports.AboutUS = AboutUS;

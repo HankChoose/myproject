@@ -3,7 +3,7 @@
     "target": "es2016",
     "module": "commonjs",
     "outDir": "./office-demo/src",  // 输出目录
-    "rootDir": "./office-demo/src",  // 源代码目录
+    "rootDir": "C:/Users/Administrator/Desktop/WebUI/ProjectCICD/myproject/frontend",  // 源代码目录
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,

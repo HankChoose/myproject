@@ -93,9 +93,9 @@ export const UserApply2 = ({ className }: UserApply2Props) => {
     useEffect(() => {
     // 在组件挂载后，通过引用获取 textarea 的值
         if (textareaRef.current) {
-        const currentText = textareaRef.current.value;
-        setTextInput(currentText);
-        console.log('Current text in textarea:', currentText);
+            const currentText = textareaRef.current.value;
+            setTextInput(currentText);
+            console.log('Current text in textarea:', currentText);
         }
     }, []); // 注意：这里的空数组表示仅在组件挂载时执行
 

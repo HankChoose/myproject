@@ -21,7 +21,7 @@ interface Data {
     username: string;
     email: string;
     image_path_main: string;
-    apply_time: Date; // Change the type to Date
+    //apply_time: Date; // Change the type to Date
     comment: string;
     comment2: string;
     [key: string]: string | Date; // Adjust the index signature if needed
