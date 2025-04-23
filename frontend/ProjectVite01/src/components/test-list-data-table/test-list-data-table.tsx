@@ -89,7 +89,7 @@ export const TestListDataTable = ({ className }: TestListDataTableProps) => {
                     <button className={styles.buttonStyle} onClick={toggleViewMode}>
                      {viewMode === 'list' ? <><BiSolidGrid /> Grid View</> : <><FaListUl /> List View</>}
                     </button>
-                    {viewMode === 'list' ? <TestDataTable data={data1} /> : <TestDataGrid data={data1} />}
+                   
                 </div>
         </div>
 };
