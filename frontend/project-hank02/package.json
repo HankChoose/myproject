@@ -18,6 +18,7 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "project-hank-02": "file:",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.17.0"
