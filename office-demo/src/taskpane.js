@@ -199,7 +199,13 @@ function downloadWordReport() {
             switch (_a.label) {
                 case 0:
                     outputContent = document.getElementById("output").innerText;
-                    return [4 /*yield*/, fetch("/office-demo/api/word?input=".concat(encodeURIComponent(outputContent)))];
+                    return [4 /*yield*/, fetch("/office-demo/api/word", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({ input: outputContent }),
+                        })];
                 case 1:
                     response = _a.sent();
                     if (!response.ok) {

@@ -78,14 +78,26 @@ Office.onReady(() => {
 
     // 获取 div 内容
     const outputContent = document.getElementById("output")!.innerText;
-    
-    // 调用 fetch，传递读取到的内容
+    /*
+    // 调用 fetch，传递读取到的内容，这是get方法
     const response = await fetch(`/office-demo/api/word?input=${encodeURIComponent(outputContent)}`);
     if (!response.ok) {
       console.error("❌ Failed to download Word document.");
       return;
     }
+    */
+    const response = await fetch("/office-demo/api/word", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ input: outputContent }),
+    });
   
+    if (!response.ok) {
+      console.error("❌ Failed to download Word document.");
+      return;
+    }
     const blob = await response.blob();
     const url = URL.createObjectURL(blob);
   
