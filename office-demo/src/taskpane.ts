@@ -4,7 +4,7 @@ Office.onReady(() => {
   });
   
   const callDivorcepathAPI = async (text: string): Promise<string> => {
-    const res = await fetch("/api/divorcepath", {
+    const res = await fetch("/office-demo/api/divorcepath", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ input: text }),
@@ -14,7 +14,7 @@ Office.onReady(() => {
   };
   
   const callAIApi = async (text: string): Promise<string> => {
-    const res = await fetch("/api/ai-summary", {
+    const res = await fetch("/office-demo/api/ai-summary", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ input: text }),
@@ -57,7 +57,7 @@ Office.onReady(() => {
   
   async function sendZapier() {
     const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
-    const result = await fetch("/api/zapier", {
+    const result = await fetch("/office-demo/api/zapier", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: input, timestamp: Date.now() }),
