@@ -72,9 +72,15 @@ Office.onReady(() => {
   
 
   async function downloadWordReport() {
-    const input = (document.getElementById("output") as HTMLTextAreaElement).value;
+    //const input = (document.getElementById("output") as HTMLTextAreaElement).value;
   
-    const response = await fetch(`/office-demo/api/word?input=${encodeURIComponent(input)}`);
+    //const response = await fetch(`/office-demo/api/word?input=${encodeURIComponent(input)}`);
+
+    // 获取 div 内容
+    const outputContent = document.getElementById("output")!.innerText;
+    
+    // 调用 fetch，传递读取到的内容
+    const response = await fetch(`/office-demo/api/word?input=${encodeURIComponent(outputContent)}`);
     if (!response.ok) {
       console.error("❌ Failed to download Word document.");
       return;
@@ -93,7 +99,9 @@ Office.onReady(() => {
   }
 
   async function downloadPDFReport() {
-    const input = (document.getElementById("output") as HTMLTextAreaElement).value;
+    //const input = (document.getElementById("output") as HTMLTextAreaElement).value;
+    
+    const input =document.getElementById("output")!.innerText;
     const res = await fetch("/office-demo/api/pdf", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

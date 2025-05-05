@@ -194,12 +194,12 @@ function sendZapier() {
 }
 function downloadWordReport() {
     return __awaiter(this, void 0, void 0, function () {
-        var input, response, blob, url, a;
+        var outputContent, response, blob, url, a;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    input = document.getElementById("output").value;
-                    return [4 /*yield*/, fetch("/office-demo/api/word?input=".concat(encodeURIComponent(input)))];
+                    outputContent = document.getElementById("output").innerText;
+                    return [4 /*yield*/, fetch("/office-demo/api/word?input=".concat(encodeURIComponent(outputContent)))];
                 case 1:
                     response = _a.sent();
                     if (!response.ok) {
@@ -228,7 +228,7 @@ function downloadPDFReport() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    input = document.getElementById("output").value;
+                    input = document.getElementById("output").innerText;
                     return [4 /*yield*/, fetch("/office-demo/api/pdf", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
