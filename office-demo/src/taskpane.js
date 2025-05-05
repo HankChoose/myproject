@@ -43,7 +43,7 @@ var callDivorcepathAPI = function (text) { return __awaiter(_this, void 0, void 
     var res, data;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch("/api/divorcepath", {
+            case 0: return [4 /*yield*/, fetch("/office-demo/api/divorcepath", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ input: text }),
@@ -61,7 +61,7 @@ var callAIApi = function (text) { return __awaiter(_this, void 0, void 0, functi
     var res, data;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch("/api/ai-summary", {
+            case 0: return [4 /*yield*/, fetch("/office-demo/api/ai-summary", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ input: text }),
@@ -174,7 +174,7 @@ function sendZapier() {
             switch (_a.label) {
                 case 0:
                     input = document.getElementById("inputText").value;
-                    return [4 /*yield*/, fetch("/api/zapier", {
+                    return [4 /*yield*/, fetch("/office-demo/api/zapier", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({ message: input, timestamp: Date.now() }),
