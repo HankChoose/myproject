@@ -192,3 +192,99 @@ function sendZapier() {
         });
     });
 }
+function downloadWordReport() {
+    return __awaiter(this, void 0, void 0, function () {
+        var input, response, blob, url, a;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    input = document.getElementById("inputText").value;
+                    return [4 /*yield*/, fetch("/office-demo/api/export-word?input=".concat(encodeURIComponent(input)))];
+                case 1:
+                    response = _a.sent();
+                    if (!response.ok) {
+                        alert("❌ Failed to download Word document.");
+                        return [2 /*return*/];
+                    }
+                    return [4 /*yield*/, response.blob()];
+                case 2:
+                    blob = _a.sent();
+                    url = URL.createObjectURL(blob);
+                    a = document.createElement("a");
+                    a.href = url;
+                    a.download = "Divorcepath-Report.docx";
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+function downloadPDFReport() {
+    return __awaiter(this, void 0, void 0, function () {
+        var input, res, blob, url, a;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    input = document.getElementById("inputText").value;
+                    return [4 /*yield*/, fetch("/office-demo/api/pdf", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ input: input })
+                        })];
+                case 1:
+                    res = _a.sent();
+                    return [4 /*yield*/, res.blob()];
+                case 2:
+                    blob = _a.sent();
+                    url = window.URL.createObjectURL(blob);
+                    a = document.createElement("a");
+                    a.href = url;
+                    a.download = "divorcepath-report.pdf";
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+// taskpane.ts
+var callPreviewAPI = function (input) { return __awaiter(_this, void 0, void 0, function () {
+    var response, data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, fetch("/api/preview", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ input: input }),
+                })];
+            case 1:
+                response = _a.sent();
+                return [4 /*yield*/, response.json()];
+            case 2:
+                data = _a.sent();
+                return [2 /*return*/, data.html];
+        }
+    });
+}); };
+function generatePreview() {
+    return __awaiter(this, void 0, void 0, function () {
+        var input, previewHtml, outputDiv;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    input = document.getElementById("inputText").value;
+                    return [4 /*yield*/, callPreviewAPI(input)];
+                case 1:
+                    previewHtml = _a.sent();
+                    outputDiv = document.getElementById("output");
+                    if (outputDiv) {
+                        outputDiv.innerHTML = previewHtml;
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
