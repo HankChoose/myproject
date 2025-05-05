@@ -198,7 +198,7 @@ function downloadWordReport() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    input = document.getElementById("inputText").value;
+                    input = document.getElementById("output").value;
                     return [4 /*yield*/, fetch("/office-demo/api/word?input=".concat(encodeURIComponent(input)))];
                 case 1:
                     response = _a.sent();
@@ -228,7 +228,7 @@ function downloadPDFReport() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    input = document.getElementById("inputText").value;
+                    input = document.getElementById("output").value;
                     return [4 /*yield*/, fetch("/office-demo/api/pdf", {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },

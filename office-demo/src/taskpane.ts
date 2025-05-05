@@ -72,7 +72,7 @@ Office.onReady(() => {
   
 
   async function downloadWordReport() {
-    const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
+    const input = (document.getElementById("output") as HTMLTextAreaElement).value;
   
     const response = await fetch(`/office-demo/api/word?input=${encodeURIComponent(input)}`);
     if (!response.ok) {
@@ -93,7 +93,7 @@ Office.onReady(() => {
   }
 
   async function downloadPDFReport() {
-    const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
+    const input = (document.getElementById("output") as HTMLTextAreaElement).value;
     const res = await fetch("/office-demo/api/pdf", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
