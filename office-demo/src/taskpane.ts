@@ -74,7 +74,7 @@ Office.onReady(() => {
   async function downloadWordReport() {
     const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
   
-    const response = await fetch(`/office-demo/api/export-word?input=${encodeURIComponent(input)}`);
+    const response = await fetch(`/office-demo/api/word?input=${encodeURIComponent(input)}`);
     if (!response.ok) {
       console.error("❌ Failed to download Word document.");
       return;
