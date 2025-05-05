@@ -70,3 +70,67 @@ Office.onReady(() => {
     }
   }
   
+
+  async function downloadWordReport() {
+    const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
+  
+    const response = await fetch(`/office-demo/api/export-word?input=${encodeURIComponent(input)}`);
+    if (!response.ok) {
+      alert("❌ Failed to download Word document.");
+      return;
+    }
+  
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+  
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "Divorcepath-Report.docx";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  async function downloadPDFReport() {
+    const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
+    const res = await fetch("/office-demo/api/pdf", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ input })
+    });
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "divorcepath-report.pdf";
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
+
+  // taskpane.ts
+
+const callPreviewAPI = async (input: string): Promise<string> => {
+  const response = await fetch("/api/preview", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ input }),
+  });
+  const data = await response.json();
+  return data.html;
+};
+
+async function generatePreview() {
+  const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
+  const previewHtml = await callPreviewAPI(input);
+
+  // Insert the HTML into the output div
+  const outputDiv = document.getElementById("output");
+  if (outputDiv) {
+    outputDiv.innerHTML = previewHtml;
+  }
+}
+
+  
+  
