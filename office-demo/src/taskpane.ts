@@ -76,7 +76,7 @@ Office.onReady(() => {
   
     const response = await fetch(`/office-demo/api/export-word?input=${encodeURIComponent(input)}`);
     if (!response.ok) {
-      alert("❌ Failed to download Word document.");
+      console.error("❌ Failed to download Word document.");
       return;
     }
   
