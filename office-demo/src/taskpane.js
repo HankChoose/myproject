@@ -203,7 +203,7 @@ function downloadWordReport() {
                 case 1:
                     response = _a.sent();
                     if (!response.ok) {
-                        alert("❌ Failed to download Word document.");
+                        console.error("❌ Failed to download Word document.");
                         return [2 /*return*/];
                     }
                     return [4 /*yield*/, response.blob()];
