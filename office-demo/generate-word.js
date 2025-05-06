@@ -9,8 +9,9 @@ module.exports = async (req, res) => {
     // Step 1: Render HTML to PNG using Puppeteer with Docker-compatible flags
     const browser = await puppeteer.launch({
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath(), // Fallback to Puppeteer default path
     });
+
     const page = await browser.newPage();
     await page.setContent(chartHtml);
     const chartBuffer = await page.screenshot({ type: "png" });
@@ -38,14 +39,16 @@ module.exports = async (req, res) => {
     });
 
     const buffer = await Packer.toBuffer(doc);
+
     res.setHeader(
       "Content-Type",
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     );
     res.setHeader("Content-Disposition", "attachment; filename=divorce-report.docx");
     res.send(buffer);
+
   } catch (err) {
-    console.error("Error generating Word report:", err);
+    console.error("Error generating Word report:", err); // Log error for debugging
     res.status(500).send("Internal Server Error");
   }
 };
