@@ -157,6 +157,7 @@ var callPreviewAPI = function (input) { return __awaiter(_this, void 0, void 0, 
         }
     });
 }); };
+var lastPreviewHtml = ""; // 声明一个全局变量，存放预览 HTM
 function generatePreview() {
     return __awaiter(this, void 0, void 0, function () {
         var input, previewHtml, iframe, iframeDoc;
@@ -168,6 +169,7 @@ function generatePreview() {
                     return [4 /*yield*/, callPreviewAPI(input)];
                 case 1:
                     previewHtml = _b.sent();
+                    lastPreviewHtml = previewHtml; // ✅ 保存预览 HTML 给下载函数使用
                     iframe = document.getElementById("previewFrame");
                     iframeDoc = iframe.contentDocument || ((_a = iframe.contentWindow) === null || _a === void 0 ? void 0 : _a.document);
                     if (iframeDoc) {
@@ -202,7 +204,7 @@ function downloadWordReport() {
         },
         body: JSON.stringify({
             input: input,
-            chartHtml: chartHtml,
+            chartHtml: lastPreviewHtml, // ✅ 关键：发送生成好的 HTML
         }),
     })
         .then(function (response) {

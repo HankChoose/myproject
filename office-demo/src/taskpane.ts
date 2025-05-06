@@ -71,9 +71,13 @@ const callPreviewAPI = async (input: string): Promise<string> => {
   return data.html;
 };
 
+
+let lastPreviewHtml = ""; // 声明一个全局变量，存放预览 HTM
 async function generatePreview() {
   const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
   const previewHtml = await callPreviewAPI(input);
+
+  lastPreviewHtml = previewHtml; // ✅ 保存预览 HTML 给下载函数使用
 
   // 获取 iframe 并设置内容
   const iframe = document.getElementById("previewFrame") as HTMLIFrameElement;
@@ -111,7 +115,7 @@ function downloadWordReport() {
     },
     body: JSON.stringify({
       input,
-      chartHtml,
+      chartHtml: lastPreviewHtml, // ✅ 关键：发送生成好的 HTML
     }),
   })
   .then(response => {
