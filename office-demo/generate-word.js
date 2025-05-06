@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
     // 构建文档内容
     const content = [
       new Paragraph({
-        text: "Divorcepath Legal Report",
+        text: "Market Analysis Report",
         heading: HeadingLevel.HEADING_1,
       }),
       new Paragraph("========================="),
@@ -54,7 +54,7 @@ module.exports = async (req, res) => {
           }),
         ],
       }),
-      new Paragraph("Report powered by Divorcepath API"),
+      new Paragraph("Report powered by Market-analysis API"),
     ];
 
     // 正确创建 Document，仅包含 sections 字段

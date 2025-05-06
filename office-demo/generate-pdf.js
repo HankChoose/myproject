@@ -10,10 +10,23 @@ module.exports = async (req, res) => {
     const browser = await puppeteer.launch({
       args: ["--no-sandbox", "--disable-setuid-sandbox"]
     });
-    
+
     const page = await browser.newPage();
-    await page.setContent(chartHtml);
+
+    // 加载 HTML，等待网络空闲
+    await page.setContent(chartHtml, { waitUntil: "networkidle0" });
+
+    // 等待图表容器出现（根据你的图表 ID 设置）
+    await page.waitForSelector("#marketShareChart, #growthChart", { timeout: 5000 }).catch(() => {
+      console.warn("图表元素未及时出现，继续截图尝试");
+    });
+
+    // 额外等待一秒确保图表绘制完成（可调整）
+    await page.waitForTimeout(1000);
+
+    // 截图 chart 区域（或整个页面）
     const chartBuffer = await page.screenshot({ type: "png" });
+
     await browser.close();
 
     // Step 2: Create PDF with pdf-lib
@@ -23,7 +36,7 @@ module.exports = async (req, res) => {
     const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
     const pngImage = await pdfDoc.embedPng(chartBuffer);
 
-    page1.drawText("Divorcepath Legal Report", {
+    page1.drawText("Market Analysis Report", {
       x: 50,
       y: 800,
       size: 18,
