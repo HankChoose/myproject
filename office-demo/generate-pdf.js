@@ -8,9 +8,9 @@ module.exports = async (req, res) => {
 
     // Step 1: Render chart HTML as PNG with Puppeteer
     const browser = await puppeteer.launch({
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-	  executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+      args: ["--no-sandbox", "--disable-setuid-sandbox"]
     });
+    
     const page = await browser.newPage();
     await page.setContent(chartHtml);
     const chartBuffer = await page.screenshot({ type: "png" });

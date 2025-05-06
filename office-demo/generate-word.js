@@ -3,22 +3,31 @@ const puppeteer = require("puppeteer");
 
 module.exports = async (req, res) => {
   try {
-    const input = req.body.input || "No input provided.";
-    const chartHtml = req.body.chartHtml || "<p>No chart HTML provided.</p>";
+    const input = req.body?.input || "No input provided.";
+    const chartHtml = req.body?.chartHtml;
 
-    // Step 1: Render HTML to PNG using Puppeteer with Docker-compatible flags
+    if (!chartHtml) {
+      console.warn("No chartHtml provided in request.");
+    }
+
+    // Step 1: Render chart HTML to PNG using Puppeteer
     const browser = await puppeteer.launch({
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath(), // Fallback to Puppeteer default path
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath(),
     });
 
     const page = await browser.newPage();
-    await page.setContent(chartHtml);
+    await page.setContent(chartHtml || "<p>No chart provided</p>");
     const chartBuffer = await page.screenshot({ type: "png" });
     await browser.close();
 
-    // Step 2: Create Word document
-    const doc = new Document();
+    // Step 2: Create Word document with metadata
+    const doc = new Document({
+      creator: "Divorcepath",
+      title: "Legal Report",
+      description: "Generated market or legal analysis report",
+    });
+
     const image = Media.addImage(doc, chartBuffer);
 
     doc.addSection({
@@ -40,16 +49,11 @@ module.exports = async (req, res) => {
 
     const buffer = await Packer.toBuffer(doc);
 
-    res.setHeader(
-      "Content-Type",
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-    );
+    res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
     res.setHeader("Content-Disposition", "attachment; filename=divorce-report.docx");
     res.send(buffer);
-
   } catch (err) {
-    console.error("Error generating Word report:", err); // Log error for debugging
-    res.status(500).send("Internal Server Error");
+    console.error("Error generating Word report:", err.stack || err);
+    res.status(500).json({ error: "Failed to generate Word document", details: err.message });
   }
 };
-
