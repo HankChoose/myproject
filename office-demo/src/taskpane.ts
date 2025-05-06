@@ -141,7 +141,7 @@ function downloadWordReport() {
 
   
 
-function downloadPDFReport() {
+async function downloadPDFReport() {
   const inputElement = document.getElementById("inputText") as HTMLTextAreaElement;
   if (!inputElement) {
     console.error("inputText element not found");
@@ -149,18 +149,57 @@ function downloadPDFReport() {
   }
 
   const input = inputElement.value;
-  const chartIframe = document.querySelector("iframe") as HTMLIFrameElement;
-  const chartHtml = chartIframe?.contentDocument?.documentElement.outerHTML || "";
+  const chartIframe = document.querySelector("previewFrame") as HTMLIFrameElement;
 
-  fetch("/office-demo/api/generate-pdf", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ input, chartHtml })
-  })
-    .then(res => res.blob())
-    .then(blob => downloadBlob(blob, "market-analysis-report.pdf"))
-    .catch(err => console.error("Failed to download PDF report:", err));
+  if (!chartIframe) {
+    console.error("Chart chartIFrame not found");
+    alert("图表 chartIFrame 未找到。");
+    return;
+  }
+
+  // 等待 chartIFrame 加载完成
+  const iframeLoaded = await new Promise<boolean>((resolve) => {
+    if (chartIframe.contentDocument?.readyState === "complete") {
+      resolve(true);
+    } else {
+      chartIframe.onload = () => resolve(true);
+      // 加个保险：最多等待5秒
+      setTimeout(() => resolve(false), 5000);
+    }
+  });
+
+  if (!iframeLoaded || !chartIframe.contentDocument) {
+    console.error("Chart iframe did not load properly");
+    alert("图表尚未加载完成，请稍后再试。");
+    return;
+  }
+
+  const chartHtml = chartIframe.contentDocument.documentElement.outerHTML;
+  if (!chartHtml || chartHtml.trim().length < 100) {
+    console.warn("chartHtml seems too short");
+    alert("图表内容为空，可能尚未渲染完成。");
+    return;
+  }
+
+  try {
+    const response = await fetch("/office-demo/api/generate-pdf", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ input, chartHtml }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    const blob = await response.blob();
+    downloadBlob(blob, "market-analysis-report.pdf");
+  } catch (err) {
+    console.error("Failed to download PDF report:", err);
+    alert("生成报告失败，请查看控制台日志。");
+  }
 }
+
 
 function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);

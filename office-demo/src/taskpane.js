@@ -228,23 +228,74 @@ function downloadWordReport() {
     });
 }
 function downloadPDFReport() {
-    var _a;
-    var inputElement = document.getElementById("inputText");
-    if (!inputElement) {
-        console.error("inputText element not found");
-        return;
-    }
-    var input = inputElement.value;
-    var chartIframe = document.querySelector("iframe");
-    var chartHtml = ((_a = chartIframe === null || chartIframe === void 0 ? void 0 : chartIframe.contentDocument) === null || _a === void 0 ? void 0 : _a.documentElement.outerHTML) || "";
-    fetch("/office-demo/api/generate-pdf", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ input: input, chartHtml: chartHtml })
-    })
-        .then(function (res) { return res.blob(); })
-        .then(function (blob) { return downloadBlob(blob, "market-analysis-report.pdf"); })
-        .catch(function (err) { return console.error("Failed to download PDF report:", err); });
+    return __awaiter(this, void 0, void 0, function () {
+        var inputElement, input, chartIframe, iframeLoaded, chartHtml, response, blob, err_1;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    inputElement = document.getElementById("inputText");
+                    if (!inputElement) {
+                        console.error("inputText element not found");
+                        return [2 /*return*/];
+                    }
+                    input = inputElement.value;
+                    chartIframe = document.querySelector("previewFrame");
+                    if (!chartIframe) {
+                        console.error("Chart chartIFrame not found");
+                        alert("图表 chartIFrame 未找到。");
+                        return [2 /*return*/];
+                    }
+                    return [4 /*yield*/, new Promise(function (resolve) {
+                            var _a;
+                            if (((_a = chartIframe.contentDocument) === null || _a === void 0 ? void 0 : _a.readyState) === "complete") {
+                                resolve(true);
+                            }
+                            else {
+                                chartIframe.onload = function () { return resolve(true); };
+                                // 加个保险：最多等待5秒
+                                setTimeout(function () { return resolve(false); }, 5000);
+                            }
+                        })];
+                case 1:
+                    iframeLoaded = _a.sent();
+                    if (!iframeLoaded || !chartIframe.contentDocument) {
+                        console.error("Chart iframe did not load properly");
+                        alert("图表尚未加载完成，请稍后再试。");
+                        return [2 /*return*/];
+                    }
+                    chartHtml = chartIframe.contentDocument.documentElement.outerHTML;
+                    if (!chartHtml || chartHtml.trim().length < 100) {
+                        console.warn("chartHtml seems too short");
+                        alert("图表内容为空，可能尚未渲染完成。");
+                        return [2 /*return*/];
+                    }
+                    _a.label = 2;
+                case 2:
+                    _a.trys.push([2, 5, , 6]);
+                    return [4 /*yield*/, fetch("/office-demo/api/generate-pdf", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ input: input, chartHtml: chartHtml }),
+                        })];
+                case 3:
+                    response = _a.sent();
+                    if (!response.ok) {
+                        throw new Error("Server error: ".concat(response.status));
+                    }
+                    return [4 /*yield*/, response.blob()];
+                case 4:
+                    blob = _a.sent();
+                    downloadBlob(blob, "market-analysis-report.pdf");
+                    return [3 /*break*/, 6];
+                case 5:
+                    err_1 = _a.sent();
+                    console.error("Failed to download PDF report:", err_1);
+                    alert("生成报告失败，请查看控制台日志。");
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
+            }
+        });
+    });
 }
 function downloadBlob(blob, filename) {
     var url = URL.createObjectURL(blob);
