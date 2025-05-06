@@ -149,7 +149,7 @@ async function downloadPDFReport() {
   }
 
   const input = inputElement.value;
-  const chartIframe = document.getElementById("previewFrame") as HTMLIFrameElement;
+  const chartIframe = document.querySelector("#previewFrame") as HTMLIFrameElement;
 
   if (!chartIframe) {
     console.error("Chart chartIFrame not found");
