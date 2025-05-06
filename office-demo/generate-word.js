@@ -1,4 +1,4 @@
-const { Document, Packer, Paragraph, Media, HeadingLevel } = require("docx");
+const { Document, Packer, Paragraph, HeadingLevel, ImageRun } = require("docx");
 const puppeteer = require("puppeteer");
 
 module.exports = async (req, res) => {
@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
     const chartBuffer = await page.screenshot({ type: "png" });
     await browser.close();
 
-    // 构建段落和图片内容
+    // 构建文档内容
     const content = [
       new Paragraph({
         text: "Divorcepath Legal Report",
@@ -43,11 +43,21 @@ module.exports = async (req, res) => {
       new Paragraph("- Recommendations: Consider mediation, income reassessment"),
       new Paragraph(" "),
       new Paragraph("Chart Analysis:"),
-      Media.addImage(new Document({ sections: [] }), chartBuffer), // 用临时空 doc 来插入图片
+      new Paragraph({
+        children: [
+          new ImageRun({
+            data: chartBuffer,
+            transformation: {
+              width: 600,
+              height: 300,
+            },
+          }),
+        ],
+      }),
       new Paragraph("Report powered by Divorcepath API"),
     ];
 
-    // ✅ 正确创建 Document：只保留 sections 字段
+    // 正确创建 Document，仅包含 sections 字段
     const doc = new Document({
       sections: [
         {
@@ -56,10 +66,8 @@ module.exports = async (req, res) => {
       ],
     });
 
-    // 转换为 Word 文档缓冲区
     const buffer = await Packer.toBuffer(doc);
 
-    // 返回 Word 文件
     res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
     res.setHeader("Content-Disposition", "attachment; filename=divorce-report.docx");
     res.send(buffer);
