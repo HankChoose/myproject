@@ -9,6 +9,7 @@
     "docx": "^8.0.4",
     "express": "^4.18.2",
     "office-demo": "file:",
-    "pdf-lib": "^1.17.1"
+    "pdf-lib": "^1.17.1",
+    "puppeteer": "^21.3.8"
   }
 }
