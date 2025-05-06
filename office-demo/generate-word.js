@@ -21,12 +21,8 @@ module.exports = async (req, res) => {
     const chartBuffer = await page.screenshot({ type: "png" });
     await browser.close();
 
-    // Step 2: Create Word document with metadata
-    const doc = new Document({
-      creator: "Divorcepath",
-      title: "Legal Report",
-      description: "Generated market or legal analysis report",
-    });
+    // Step 2: Create Word document without metadata initially
+    const doc = new Document();
 
     const image = Media.addImage(doc, chartBuffer);
 
