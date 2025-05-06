@@ -39,11 +39,22 @@ var _this = this;
 Office.onReady(function () {
     console.log("Office.js is ready");
 });
-var callDivorcepathAPI = function (text) { return __awaiter(_this, void 0, void 0, function () {
+/*
+ const callDivorcepathAPI = async (text: string): Promise<string> => {
+   const res = await fetch("/office-demo/api/divorcepath", {
+     method: "POST",
+     headers: { "Content-Type": "application/json" },
+     body: JSON.stringify({ input: text }),
+   });
+   const data = await res.json();
+   return data.report;
+ };
+ */
+var callMarketReportAPI = function (text) { return __awaiter(_this, void 0, void 0, function () {
     var res, data;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch("/office-demo/api/divorcepath", {
+            case 0: return [4 /*yield*/, fetch("/office-demo/api/market-analysis", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ input: text }),
@@ -57,24 +68,6 @@ var callDivorcepathAPI = function (text) { return __awaiter(_this, void 0, void 
         }
     });
 }); };
-var callAIApi = function (text) { return __awaiter(_this, void 0, void 0, function () {
-    var res, data;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch("/office-demo/api/ai-summary", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ input: text }),
-                })];
-            case 1:
-                res = _a.sent();
-                return [4 /*yield*/, res.json()];
-            case 2:
-                data = _a.sent();
-                return [2 /*return*/, data.summary];
-        }
-    });
-}); };
 function generateWebReport() {
     return __awaiter(this, void 0, void 0, function () {
         var input, report;
@@ -82,7 +75,7 @@ function generateWebReport() {
             switch (_a.label) {
                 case 0:
                     input = document.getElementById("inputText").value;
-                    return [4 /*yield*/, callDivorcepathAPI(input)];
+                    return [4 /*yield*/, callMarketReportAPI(input)];
                 case 1:
                     report = _a.sent();
                     document.getElementById("output").innerText = report;
@@ -99,7 +92,7 @@ function generateWordReport() {
             switch (_a.label) {
                 case 0:
                     input = document.getElementById("inputText").value;
-                    return [4 /*yield*/, callDivorcepathAPI(input)];
+                    return [4 /*yield*/, callMarketReportAPI(input)];
                 case 1:
                     report = _a.sent();
                     return [4 /*yield*/, Word.run(function (context) { return __awaiter(_this, void 0, void 0, function () {
@@ -107,52 +100,6 @@ function generateWordReport() {
                                 switch (_a.label) {
                                     case 0:
                                         context.document.body.insertText(report, Word.InsertLocation.end);
-                                        return [4 /*yield*/, context.sync()];
-                                    case 1:
-                                        _a.sent();
-                                        return [2 /*return*/];
-                                }
-                            });
-                        }); })];
-                case 2:
-                    _a.sent();
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function insertWebAISummary() {
-    return __awaiter(this, void 0, void 0, function () {
-        var input, summary;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    input = document.getElementById("inputText").value;
-                    return [4 /*yield*/, callAIApi(input)];
-                case 1:
-                    summary = _a.sent();
-                    document.getElementById("output").innerText = summary;
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function insertWordAISummary() {
-    return __awaiter(this, void 0, void 0, function () {
-        var input, summary;
-        var _this = this;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    input = document.getElementById("inputText").value;
-                    return [4 /*yield*/, callAIApi(input)];
-                case 1:
-                    summary = _a.sent();
-                    return [4 /*yield*/, Word.run(function (context) { return __awaiter(_this, void 0, void 0, function () {
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        context.document.body.insertText(summary, Word.InsertLocation.end);
                                         return [4 /*yield*/, context.sync()];
                                     case 1:
                                         _a.sent();
@@ -182,86 +129,21 @@ function sendZapier() {
                 case 1:
                     result = _a.sent();
                     if (result.ok) {
-                        alert("✅ Zapier Notification Sent!");
+                        console.error("✅ Zapier Notification Sent!");
                     }
                     else {
-                        alert("❌ Failed to send Zapier notification.");
+                        console.error("❌ Failed to send Zapier notification.");
                     }
                     return [2 /*return*/];
             }
         });
     });
 }
-function downloadWordReport() {
-    return __awaiter(this, void 0, void 0, function () {
-        var outputContent, response, blob, url, a;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    outputContent = document.getElementById("output").innerText;
-                    return [4 /*yield*/, fetch("/office-demo/api/word", {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({ input: outputContent }),
-                        })];
-                case 1:
-                    response = _a.sent();
-                    if (!response.ok) {
-                        console.error("❌ Failed to download Word document.");
-                        return [2 /*return*/];
-                    }
-                    return [4 /*yield*/, response.blob()];
-                case 2:
-                    blob = _a.sent();
-                    url = URL.createObjectURL(blob);
-                    a = document.createElement("a");
-                    a.href = url;
-                    a.download = "Divorcepath-Report.docx";
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function downloadPDFReport() {
-    return __awaiter(this, void 0, void 0, function () {
-        var input, res, blob, url, a;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    input = document.getElementById("output").innerText;
-                    return [4 /*yield*/, fetch("/office-demo/api/pdf", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ input: input })
-                        })];
-                case 1:
-                    res = _a.sent();
-                    return [4 /*yield*/, res.blob()];
-                case 2:
-                    blob = _a.sent();
-                    url = window.URL.createObjectURL(blob);
-                    a = document.createElement("a");
-                    a.href = url;
-                    a.download = "divorcepath-report.pdf";
-                    a.click();
-                    window.URL.revokeObjectURL(url);
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-// taskpane.ts
 var callPreviewAPI = function (input) { return __awaiter(_this, void 0, void 0, function () {
     var response, data;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, fetch("/api/preview", {
+            case 0: return [4 /*yield*/, fetch("/office-demo/api/market-preview", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ input: input }),
@@ -294,3 +176,108 @@ function generatePreview() {
         });
     });
 }
+function downloadWordReport() {
+    var _a;
+    var inputElement = document.getElementById("inputText");
+    if (!inputElement) {
+        console.error("inputText element not found");
+        return;
+    }
+    var input = inputElement.value;
+    var chartIframe = document.querySelector("iframe");
+    var chartHtml = ((_a = chartIframe === null || chartIframe === void 0 ? void 0 : chartIframe.contentDocument) === null || _a === void 0 ? void 0 : _a.documentElement.outerHTML) || "";
+    fetch("/api/generate-word", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ input: input, chartHtml: chartHtml })
+    })
+        .then(function (res) { return res.blob(); })
+        .then(function (blob) { return downloadBlob(blob, "market-analysis-report.docx"); })
+        .catch(function (err) { return console.error("Failed to download Word report:", err); });
+}
+function downloadPDFReport() {
+    var _a;
+    var inputElement = document.getElementById("inputText");
+    if (!inputElement) {
+        console.error("inputText element not found");
+        return;
+    }
+    var input = inputElement.value;
+    var chartIframe = document.querySelector("iframe");
+    var chartHtml = ((_a = chartIframe === null || chartIframe === void 0 ? void 0 : chartIframe.contentDocument) === null || _a === void 0 ? void 0 : _a.documentElement.outerHTML) || "";
+    fetch("/api/generate-pdf", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ input: input, chartHtml: chartHtml })
+    })
+        .then(function (res) { return res.blob(); })
+        .then(function (blob) { return downloadBlob(blob, "market-analysis-report.pdf"); })
+        .catch(function (err) { return console.error("Failed to download PDF report:", err); });
+}
+function downloadBlob(blob, filename) {
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+/*
+async function downloadWordReport() {
+  //const input = (document.getElementById("output") as HTMLTextAreaElement).value;
+
+  //const response = await fetch(`/office-demo/api/word?input=${encodeURIComponent(input)}`);
+
+  // 获取 div 内容
+  const outputContent = document.getElementById("output")!.innerText;
+ 
+  // 调用 fetch，传递读取到的内容，这是get方法
+  const response = await fetch(`/office-demo/api/word?input=${encodeURIComponent(outputContent)}`);
+  if (!response.ok) {
+    console.error("❌ Failed to download Word document.");
+    return;
+  }
+
+  const response = await fetch("/office-demo/api/word", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ input: outputContent }),
+  });
+
+  if (!response.ok) {
+    console.error("❌ Failed to download Word document.");
+    return;
+  }
+  const blob = await response.blob();
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "Divorcepath-Report.docx";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+async function downloadPDFReport() {
+  //const input = (document.getElementById("output") as HTMLTextAreaElement).value;
+  
+  const input =document.getElementById("output")!.innerText;
+  const res = await fetch("/office-demo/api/pdf", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ input })
+  });
+  const blob = await res.blob();
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "divorcepath-report.pdf";
+  a.click();
+  window.URL.revokeObjectURL(url);
+}
+
+*/
