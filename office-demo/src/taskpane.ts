@@ -110,8 +110,8 @@ function downloadWordReport() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      input: "Your input here",
-      chartHtml: "<p>Your chart HTML here</p>",
+      input,
+      chartHtml,
     }),
   })
   .then(response => {
@@ -121,11 +121,20 @@ function downloadWordReport() {
     return response.blob();
   })
   .then(blob => {
-    // Handle blob, e.g., download file
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "divorce-report.docx";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
   })
   .catch(error => {
     console.error('There was a problem with the fetch operation:', error);
   });
+}
+
   
 
 function downloadPDFReport() {

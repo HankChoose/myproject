@@ -197,12 +197,33 @@ function downloadWordReport() {
     var chartHtml = ((_a = chartIframe === null || chartIframe === void 0 ? void 0 : chartIframe.contentDocument) === null || _a === void 0 ? void 0 : _a.documentElement.outerHTML) || "";
     fetch("/office-demo/api/generate-word", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ input: input, chartHtml: chartHtml })
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            input: input,
+            chartHtml: chartHtml,
+        }),
     })
-        .then(function (res) { return res.blob(); })
-        .then(function (blob) { return downloadBlob(blob, "market-analysis-report.docx"); })
-        .catch(function (err) { return console.error("Failed to download Word report:", err); });
+        .then(function (response) {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.blob();
+    })
+        .then(function (blob) {
+        var url = window.URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = "divorce-report.docx";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+    })
+        .catch(function (error) {
+        console.error('There was a problem with the fetch operation:', error);
+    });
 }
 function downloadPDFReport() {
     var _a;

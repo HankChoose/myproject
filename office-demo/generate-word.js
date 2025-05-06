@@ -20,10 +20,10 @@ module.exports = async (req, res) => {
     const chartBuffer = await page.screenshot({ type: "png" });
     await browser.close();
 
-    // Create image to be used inside the document
+    // 使用新 doc 创建图片，不影响主 doc
     const image = Media.addImage(new Document(), chartBuffer);
 
-    // Create doc with required `sections` field
+    // 必须要有 sections
     const doc = new Document({
       sections: [
         {
