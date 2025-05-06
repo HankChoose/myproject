@@ -51,18 +51,22 @@
 </head>
 
 <body>
-	<h1>Divorcepath AI Demo</h1>
+	<h1>Market Competitiveness Analysis Report</h1>
 
-	<label for="inputText">Report Input (editable):</label>
-	<textarea
-		id="inputText">Jane and John divorced after 8 years of marriage. They have 2 children. John earns $80,000/year. Jane earns $40,000/year.</textarea>
+	<label for="inputText">Enter product/business information:</label>
+	<textarea id="inputText">Product Name: Smart Toothbrush
+	Target Market: Urban professionals aged 25–40
+	Main Competitors: Philips, Xiaomi
+	Product Advantages: AI smart tracking, personalized brushing suggestions
+	Expected Price: 399 RMB</textarea>
 
 	<button onclick="generateWebReport()">1️⃣ Generate Report</button>
-	<button onclick="previewHtml()">Preview</button>
-	<button onclick="generatePreview()">1️⃣ Generate Web Report Preview</button>
+	<button onclick="generatePreview()">1️⃣ Generate Preview</button>
 	<button onclick="downloadWordReport()">📥 Download Word Report</button>
 	<button onclick="downloadPDFReport()">📥 Download PDF Report</button>
 	<div id="output" style="margin-top: 20px; color: #333;"></div>
+	<iframe id="previewFrame"></iframe>
+
 </body>
 
 </html>

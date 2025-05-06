@@ -3,6 +3,7 @@ Office.onReady(() => {
     console.log("Office.js is ready");
   });
   
+ /*
   const callDivorcepathAPI = async (text: string): Promise<string> => {
     const res = await fetch("/office-demo/api/divorcepath", {
       method: "POST",
@@ -12,26 +13,28 @@ Office.onReady(() => {
     const data = await res.json();
     return data.report;
   };
-  
-  const callAIApi = async (text: string): Promise<string> => {
-    const res = await fetch("/office-demo/api/ai-summary", {
+  */
+  const callMarketReportAPI = async (text: string): Promise<string> => {
+    const res = await fetch("/office-demo/api/market-analysis", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ input: text }),
     });
     const data = await res.json();
-    return data.summary;
+    return data.report;
   };
+  
   
   async function generateWebReport() {
     const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
-    const report = await callDivorcepathAPI(input);
+    const report = await callMarketReportAPI(input);
     document.getElementById("output")!.innerText = report;
   }
+
   
   async function generateWordReport() {
     const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
-    const report = await callDivorcepathAPI(input);
+    const report = await callMarketReportAPI(input);
   
     await Word.run(async (context) => {
       context.document.body.insertText(report, Word.InsertLocation.end);
@@ -39,21 +42,7 @@ Office.onReady(() => {
     });
   }
   
-  async function insertWebAISummary() {
-    const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
-    const summary = await callAIApi(input);
-    document.getElementById("output")!.innerText = summary;
-  }
-  
-  async function insertWordAISummary() {
-    const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
-    const summary = await callAIApi(input);
-  
-    await Word.run(async (context) => {
-      context.document.body.insertText(summary, Word.InsertLocation.end);
-      await context.sync();
-    });
-  }
+
   
   async function sendZapier() {
     const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
@@ -64,75 +53,16 @@ Office.onReady(() => {
     });
   
     if (result.ok) {
-      alert("✅ Zapier Notification Sent!");
+      console.error("✅ Zapier Notification Sent!");
     } else {
-      alert("❌ Failed to send Zapier notification.");
+      console.error("❌ Failed to send Zapier notification.");
     }
   }
   
 
-  async function downloadWordReport() {
-    //const input = (document.getElementById("output") as HTMLTextAreaElement).value;
-  
-    //const response = await fetch(`/office-demo/api/word?input=${encodeURIComponent(input)}`);
-
-    // 获取 div 内容
-    const outputContent = document.getElementById("output")!.innerText;
-    /*
-    // 调用 fetch，传递读取到的内容，这是get方法
-    const response = await fetch(`/office-demo/api/word?input=${encodeURIComponent(outputContent)}`);
-    if (!response.ok) {
-      console.error("❌ Failed to download Word document.");
-      return;
-    }
-    */
-    const response = await fetch("/office-demo/api/word", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ input: outputContent }),
-    });
-  
-    if (!response.ok) {
-      console.error("❌ Failed to download Word document.");
-      return;
-    }
-    const blob = await response.blob();
-    const url = URL.createObjectURL(blob);
-  
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "Divorcepath-Report.docx";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }
-
-  async function downloadPDFReport() {
-    //const input = (document.getElementById("output") as HTMLTextAreaElement).value;
-    
-    const input =document.getElementById("output")!.innerText;
-    const res = await fetch("/office-demo/api/pdf", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ input })
-    });
-    const blob = await res.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "divorcepath-report.pdf";
-    a.click();
-    window.URL.revokeObjectURL(url);
-  }
-
-
-  // taskpane.ts
 
 const callPreviewAPI = async (input: string): Promise<string> => {
-  const response = await fetch("/api/preview", {
+  const response = await fetch("/office-demo/api/market-preview", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ input }),
@@ -152,5 +82,116 @@ async function generatePreview() {
   }
 }
 
+function downloadWordReport() {
+  const inputElement = document.getElementById("inputText") as HTMLTextAreaElement;
+  if (!inputElement) {
+    console.error("inputText element not found");
+    return;
+  }
+
+  const input = inputElement.value;
+  const chartIframe = document.querySelector("iframe") as HTMLIFrameElement;
+  const chartHtml = chartIframe?.contentDocument?.documentElement.outerHTML || "";
+
+  fetch("/api/generate-word", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ input, chartHtml })
+  })
+    .then(res => res.blob())
+    .then(blob => downloadBlob(blob, "market-analysis-report.docx"))
+    .catch(err => console.error("Failed to download Word report:", err));
+}
+
+function downloadPDFReport() {
+  const inputElement = document.getElementById("inputText") as HTMLTextAreaElement;
+  if (!inputElement) {
+    console.error("inputText element not found");
+    return;
+  }
+
+  const input = inputElement.value;
+  const chartIframe = document.querySelector("iframe") as HTMLIFrameElement;
+  const chartHtml = chartIframe?.contentDocument?.documentElement.outerHTML || "";
+
+  fetch("/api/generate-pdf", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ input, chartHtml })
+  })
+    .then(res => res.blob())
+    .then(blob => downloadBlob(blob, "market-analysis-report.pdf"))
+    .catch(err => console.error("Failed to download PDF report:", err));
+}
+
+function downloadBlob(blob: Blob, filename: string) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+
+/*
+async function downloadWordReport() {
+  //const input = (document.getElementById("output") as HTMLTextAreaElement).value;
+
+  //const response = await fetch(`/office-demo/api/word?input=${encodeURIComponent(input)}`);
+
+  // 获取 div 内容
+  const outputContent = document.getElementById("output")!.innerText;
+ 
+  // 调用 fetch，传递读取到的内容，这是get方法
+  const response = await fetch(`/office-demo/api/word?input=${encodeURIComponent(outputContent)}`);
+  if (!response.ok) {
+    console.error("❌ Failed to download Word document.");
+    return;
+  }
+
+  const response = await fetch("/office-demo/api/word", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ input: outputContent }),
+  });
+
+  if (!response.ok) {
+    console.error("❌ Failed to download Word document.");
+    return;
+  }
+  const blob = await response.blob();
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "Divorcepath-Report.docx";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+async function downloadPDFReport() {
+  //const input = (document.getElementById("output") as HTMLTextAreaElement).value;
+  
+  const input =document.getElementById("output")!.innerText;
+  const res = await fetch("/office-demo/api/pdf", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ input })
+  });
+  const blob = await res.blob();
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "divorcepath-report.pdf";
+  a.click();
+  window.URL.revokeObjectURL(url);
+}
+
+*/
   
   

@@ -8,8 +8,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "src")));
 
 // 模拟 Divorcepath 原始数据 API
-app.post("/api/divorcepath", require("./divorcepath-api"));
-
+//app.post("/api/divorcepath", require("./divorcepath-api"));
+app.post("/api/market-analysis", require("./market-analysis"));
 // 模拟ai-summary"
 app.post("/api/ai-summary", require("./ai-summary"));
 
@@ -20,7 +20,7 @@ app.post("/api/word", require("./generate-word"));
 
 app.post("/api/pdf", require("./generate-pdf"));
 
-app.post("/api/preview", require("./previewHandler"));
+app.post("/api/market-preview", require("./market-preview"));
 
 
 app.listen(PORT, () => {
