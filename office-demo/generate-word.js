@@ -42,6 +42,8 @@ module.exports = async (req, res) => {
 
     const doc = new Document({
       creator: "Market API",  // 文档的创建者
+      title: "Market Competitiveness Report", // 添加标题
+      subject: "Market Analysis for Product", // 添加主题
       sections: [
         {
           children: [
