@@ -1,7 +1,8 @@
 FROM node:18-slim
 
-# 安装 Puppeteer 所需依赖和 Chromium
+# 安装 Puppeteer 和 Chromium 所需依赖 + chromium 浏览器
 RUN apt-get update && apt-get install -y \
+	chromium \
 	wget \
 	ca-certificates \
 	fonts-liberation \
@@ -20,10 +21,9 @@ RUN apt-get update && apt-get install -y \
 	libxrandr2 \
 	xdg-utils \
 	--no-install-recommends && \
-	apt-get clean && \
-	rm -rf /var/lib/apt/lists/*
+	apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# 告诉 Puppeteer 使用系统安装的 Chromium
+# 告诉 Puppeteer 用系统安装的 Chromium
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 WORKDIR /app
