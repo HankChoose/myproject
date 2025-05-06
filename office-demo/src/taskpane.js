@@ -159,17 +159,26 @@ var callPreviewAPI = function (input) { return __awaiter(_this, void 0, void 0, 
 }); };
 function generatePreview() {
     return __awaiter(this, void 0, void 0, function () {
-        var input, previewHtml, outputDiv;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var input, previewHtml, iframe, iframeDoc;
+        var _a;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     input = document.getElementById("inputText").value;
                     return [4 /*yield*/, callPreviewAPI(input)];
                 case 1:
-                    previewHtml = _a.sent();
-                    outputDiv = document.getElementById("output");
-                    if (outputDiv) {
-                        outputDiv.innerHTML = previewHtml;
+                    previewHtml = _b.sent();
+                    iframe = document.getElementById("previewFrame");
+                    iframeDoc = iframe.contentDocument || ((_a = iframe.contentWindow) === null || _a === void 0 ? void 0 : _a.document);
+                    if (iframeDoc) {
+                        iframeDoc.open();
+                        iframeDoc.write(previewHtml); // 插入 HTML
+                        iframeDoc.close(); // 关闭并执行 HTML
+                        // 确保 iframe 加载完后再执行任何操作
+                        iframe.onload = function () {
+                            console.log("Iframe content loaded");
+                            // 你可以在这里做其他操作
+                        };
                     }
                     return [2 /*return*/];
             }
@@ -186,7 +195,7 @@ function downloadWordReport() {
     var input = inputElement.value;
     var chartIframe = document.querySelector("iframe");
     var chartHtml = ((_a = chartIframe === null || chartIframe === void 0 ? void 0 : chartIframe.contentDocument) === null || _a === void 0 ? void 0 : _a.documentElement.outerHTML) || "";
-    fetch("/api/generate-word", {
+    fetch("/office-demo/api/generate-word", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ input: input, chartHtml: chartHtml })
@@ -205,7 +214,7 @@ function downloadPDFReport() {
     var input = inputElement.value;
     var chartIframe = document.querySelector("iframe");
     var chartHtml = ((_a = chartIframe === null || chartIframe === void 0 ? void 0 : chartIframe.contentDocument) === null || _a === void 0 ? void 0 : _a.documentElement.outerHTML) || "";
-    fetch("/api/generate-pdf", {
+    fetch("/office-demo/api/generate-pdf", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ input: input, chartHtml: chartHtml })

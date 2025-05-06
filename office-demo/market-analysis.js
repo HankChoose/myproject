@@ -17,7 +17,7 @@ module.exports = (req, res) => {
   2. Improve customer satisfaction and boost brand presence through social media.
   3. Expand online visibility and combine with offline experiences for better traction.
   
-  Report powered by Divorcepath API.
+  Report powered by market-analysis API.
 	`;
   
 	res.json({ report });

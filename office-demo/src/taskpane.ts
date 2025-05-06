@@ -75,12 +75,23 @@ async function generatePreview() {
   const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
   const previewHtml = await callPreviewAPI(input);
 
-  // Insert the HTML into the output div
-  const outputDiv = document.getElementById("output");
-  if (outputDiv) {
-    outputDiv.innerHTML = previewHtml;
+  // 获取 iframe 并设置内容
+  const iframe = document.getElementById("previewFrame") as HTMLIFrameElement;
+  const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+
+  if (iframeDoc) {
+    iframeDoc.open();
+    iframeDoc.write(previewHtml); // 插入 HTML
+    iframeDoc.close(); // 关闭并执行 HTML
+
+    // 确保 iframe 加载完后再执行任何操作
+    iframe.onload = () => {
+      console.log("Iframe content loaded");
+      // 你可以在这里做其他操作
+    };
   }
 }
+
 
 function downloadWordReport() {
   const inputElement = document.getElementById("inputText") as HTMLTextAreaElement;
@@ -93,7 +104,7 @@ function downloadWordReport() {
   const chartIframe = document.querySelector("iframe") as HTMLIFrameElement;
   const chartHtml = chartIframe?.contentDocument?.documentElement.outerHTML || "";
 
-  fetch("/api/generate-word", {
+  fetch("/office-demo/api/generate-word", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ input, chartHtml })
@@ -114,7 +125,7 @@ function downloadPDFReport() {
   const chartIframe = document.querySelector("iframe") as HTMLIFrameElement;
   const chartHtml = chartIframe?.contentDocument?.documentElement.outerHTML || "";
 
-  fetch("/api/generate-pdf", {
+  fetch("/office-demo/api/generate-pdf", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ input, chartHtml })
