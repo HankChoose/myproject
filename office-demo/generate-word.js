@@ -28,24 +28,24 @@ module.exports = async (req, res) => {
     const chartBuffer = await page.screenshot({ type: "png" });
     await browser.close();
 
-    const doc = new Document({
-      sections: [
-        {
-          children: [
-            new Paragraph("Divorcepath Legal Report"),
-            new Paragraph("========================="),
-            new Paragraph(input),
-            new Paragraph(" "),
-            new Paragraph("- Property: Requires division"),
-            new Paragraph("- Support: Child and spousal support likely"),
-            new Paragraph("- Timeline: Estimated 6–9 months"),
-            new Paragraph("- Recommendations: Consider mediation, income reassessment"),
-            new Paragraph(" "),
-            new Paragraph("Chart Analysis:"),
-            Media.addImage(doc, chartBuffer),
-            new Paragraph("Report powered by Divorcepath API"),
-          ],
-        },
+    // 先创建空文档实例
+    const doc = new Document();
+
+    // 添加 section 和图表
+    doc.addSection({
+      children: [
+        new Paragraph("Divorcepath Legal Report"),
+        new Paragraph("========================="),
+        new Paragraph(input),
+        new Paragraph(" "),
+        new Paragraph("- Property: Requires division"),
+        new Paragraph("- Support: Child and spousal support likely"),
+        new Paragraph("- Timeline: Estimated 6–9 months"),
+        new Paragraph("- Recommendations: Consider mediation, income reassessment"),
+        new Paragraph(" "),
+        new Paragraph("Chart Analysis:"),
+        Media.addImage(doc, chartBuffer),
+        new Paragraph("Report powered by Divorcepath API"),
       ],
     });
 
