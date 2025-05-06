@@ -239,7 +239,7 @@ function downloadPDFReport() {
                         return [2 /*return*/];
                     }
                     input = inputElement.value;
-                    chartIframe = document.querySelector("previewFrame");
+                    chartIframe = document.querySelector("#previewFrame");
                     if (!chartIframe) {
                         console.error("Chart chartIFrame not found");
                         alert("图表 chartIFrame 未找到。");
