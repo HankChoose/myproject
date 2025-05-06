@@ -53,7 +53,11 @@ module.exports = (req, res) => {
         scales: { y: { beginAtZero: true } }
       }
     });
+    
+    // 设置一个小延迟后标记图表完成（确保都渲染）
+    setTimeout(checkAllChartsReady, 500); 
   </script>
+  
 </body>
 </html>
   `;
