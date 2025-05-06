@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
     });
 
     // 加点延迟确保图表渲染完毕
-    await page.waitForTimeout(1000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // 截取图表并转为 PNG 图片
     const chartBuffer = await page.screenshot({ type: "png" });
