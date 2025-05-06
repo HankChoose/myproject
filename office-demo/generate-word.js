@@ -41,6 +41,7 @@ module.exports = async (req, res) => {
     const image = Media.addImage(new Document(), chartBuffer);
 
     const doc = new Document({
+      creator: "Market API",  // 文档的创建者
       sections: [
         {
           children: [
