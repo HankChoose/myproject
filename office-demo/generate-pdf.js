@@ -17,12 +17,12 @@ module.exports = async (req, res) => {
     await page.setContent(chartHtml, { waitUntil: "networkidle0" });
 
     // 等待图表容器出现（根据你的图表 ID 设置）
-    await page.waitForSelector("#marketShareChart, #growthChart", { timeout: 5000 }).catch(() => {
+    await page.waitForSelector("#marketShareChart, #growthChart", { timeout: 500 }).catch(() => {
       console.warn("图表元素未及时出现，继续截图尝试");
     });
 
     // 额外等待一秒确保图表绘制完成（可调整）
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 100));
 
     // 截图 chart 区域（或整个页面）
     const chartBuffer = await page.screenshot({ type: "png" });

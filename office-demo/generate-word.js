@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
       console.warn("Charts not rendered in time.");
     });
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     const chartBuffer = await page.screenshot({ type: "png" });
     await browser.close();
 
