@@ -106,13 +106,27 @@ function downloadWordReport() {
 
   fetch("/office-demo/api/generate-word", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ input, chartHtml })
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      input: "Your input here",
+      chartHtml: "<p>Your chart HTML here</p>",
+    }),
   })
-    .then(res => res.blob())
-    .then(blob => downloadBlob(blob, "market-analysis-report.docx"))
-    .catch(err => console.error("Failed to download Word report:", err));
-}
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
+    }
+    return response.blob();
+  })
+  .then(blob => {
+    // Handle blob, e.g., download file
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
+  
 
 function downloadPDFReport() {
   const inputElement = document.getElementById("inputText") as HTMLTextAreaElement;

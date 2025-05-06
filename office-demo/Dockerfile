@@ -19,7 +19,6 @@ RUN apt-get update && apt-get install -y \
 	libxdamage1 \
 	libxrandr2 \
 	xdg-utils \
-	chromium \
 	--no-install-recommends && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
