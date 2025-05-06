@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
     });
 
     // 额外等待一秒确保图表绘制完成（可调整）
-    await page.waitForTimeout(1000);
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     // 截图 chart 区域（或整个页面）
     const chartBuffer = await page.screenshot({ type: "png" });
