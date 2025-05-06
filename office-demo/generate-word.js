@@ -10,7 +10,6 @@ module.exports = async (req, res) => {
       console.warn("No chartHtml provided in request.");
     }
 
-    // Step 1: Render chart HTML to PNG using Puppeteer
     const browser = await puppeteer.launch({
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
       executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath(),
@@ -21,25 +20,28 @@ module.exports = async (req, res) => {
     const chartBuffer = await page.screenshot({ type: "png" });
     await browser.close();
 
-    // Step 2: Create Word document without metadata initially
-    const doc = new Document();
+    // Create image to be used inside the document
+    const image = Media.addImage(new Document(), chartBuffer);
 
-    const image = Media.addImage(doc, chartBuffer);
-
-    doc.addSection({
-      children: [
-        new Paragraph("Divorcepath Legal Report"),
-        new Paragraph("========================="),
-        new Paragraph(input),
-        new Paragraph(" "),
-        new Paragraph("- Property: Requires division"),
-        new Paragraph("- Support: Child and spousal support likely"),
-        new Paragraph("- Timeline: Estimated 6–9 months"),
-        new Paragraph("- Recommendations: Consider mediation, income reassessment"),
-        new Paragraph(" "),
-        new Paragraph("Chart Analysis:"),
-        image,
-        new Paragraph("Report powered by Divorcepath API"),
+    // Create doc with required `sections` field
+    const doc = new Document({
+      sections: [
+        {
+          children: [
+            new Paragraph("Divorcepath Legal Report"),
+            new Paragraph("========================="),
+            new Paragraph(input),
+            new Paragraph(" "),
+            new Paragraph("- Property: Requires division"),
+            new Paragraph("- Support: Child and spousal support likely"),
+            new Paragraph("- Timeline: Estimated 6–9 months"),
+            new Paragraph("- Recommendations: Consider mediation, income reassessment"),
+            new Paragraph(" "),
+            new Paragraph("Chart Analysis:"),
+            image,
+            new Paragraph("Report powered by Divorcepath API"),
+          ],
+        },
       ],
     });
 
