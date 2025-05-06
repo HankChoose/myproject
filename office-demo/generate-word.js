@@ -12,7 +12,6 @@ module.exports = async (req, res) => {
       return;
     }
 
-    // 启动 Puppeteer 浏览器并渲染 HTML 内容
     const browser = await puppeteer.launch({
       headless: true,
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
@@ -20,30 +19,16 @@ module.exports = async (req, res) => {
     });
 
     const page = await browser.newPage();
-    
-    // 设置页面内容并等待图表加载完成
     await page.setContent(chartHtml, { waitUntil: "networkidle0" });
-
-    // 等待 Chart.js 渲染完成
-    await page.waitForSelector("#marketShareChart, #growthChart", { timeout: 5000 }).catch(() => {
-      console.warn("Chart elements not found in time.");
+    await page.waitForSelector("#marketShareChart, #growthChart").catch(() => {
+      console.warn("Charts not rendered in time.");
     });
 
-    // 加点延迟确保图表渲染完毕
     await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // 截取图表并转为 PNG 图片
     const chartBuffer = await page.screenshot({ type: "png" });
-
     await browser.close();
 
-    // 创建新的 Document 实例
-    const image = Media.addImage(new Document(), chartBuffer);
-
     const doc = new Document({
-      creator: "Market API",  // 文档的创建者
-      title: "Market Competitiveness Report", // 添加标题
-      subject: "Market Analysis for Product", // 添加主题
       sections: [
         {
           children: [
@@ -57,17 +42,15 @@ module.exports = async (req, res) => {
             new Paragraph("- Recommendations: Consider mediation, income reassessment"),
             new Paragraph(" "),
             new Paragraph("Chart Analysis:"),
-            image, // 插入图表
+            Media.addImage(doc, chartBuffer),
             new Paragraph("Report powered by Divorcepath API"),
           ],
         },
       ],
     });
 
-    // 将生成的文档转换为 buffer 格式
     const buffer = await Packer.toBuffer(doc);
 
-    // 设置响应头并返回 Word 文件
     res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
     res.setHeader("Content-Disposition", "attachment; filename=divorce-report.docx");
     res.send(buffer);
