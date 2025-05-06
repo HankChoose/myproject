@@ -1,25 +1,11 @@
-const { Document, Packer, Paragraph, Media } = require("docx");
-const puppeteer = require("puppeteer");
+const { Document, Packer, Paragraph } = require("docx");
 
 module.exports = async (req, res) => {
   try {
     const input = req.body.input || "No input provided.";
-    const chartHtml = req.body.chartHtml || "<p>No chart HTML provided.</p>";
 
-    // Step 1: Render HTML to PNG using Puppeteer with Docker-compatible flags
-    const browser = await puppeteer.launch({
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath(), // Fallback to Puppeteer default path
-    });
-
-    const page = await browser.newPage();
-    await page.setContent(chartHtml);
-    const chartBuffer = await page.screenshot({ type: "png" });
-    await browser.close();
-
-    // Step 2: Create Word document
+    // Step 1: 创建 Word 文档，仅包含输入文本
     const doc = new Document();
-    const image = Media.addImage(doc, chartBuffer);
 
     doc.addSection({
       children: [
@@ -32,8 +18,6 @@ module.exports = async (req, res) => {
         new Paragraph("- Timeline: Estimated 6–9 months"),
         new Paragraph("- Recommendations: Consider mediation, income reassessment"),
         new Paragraph(" "),
-        new Paragraph("Chart Analysis:"),
-        image,
         new Paragraph("Report powered by Divorcepath API"),
       ],
     });
@@ -46,9 +30,8 @@ module.exports = async (req, res) => {
     );
     res.setHeader("Content-Disposition", "attachment; filename=divorce-report.docx");
     res.send(buffer);
-
   } catch (err) {
-    console.error("Error generating Word report:", err); // Log error for debugging
+    console.error("Error generating Word report:", err);
     res.status(500).send("Internal Server Error");
   }
 };
