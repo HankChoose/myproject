@@ -16,9 +16,9 @@ app.post("/api/ai-summary", require("./ai-summary"));
 // 模拟 Zapier webhook
 app.post("/api/zapier", require("./zapier-webhook"));
 
-app.post("/api/word", require("./generate-word"));
+app.post("/api/generate-word", require("./generate-word"));
 
-app.post("/api/pdf", require("./generate-pdf"));
+app.post("/api/generate-pdf", require("./generate-pdf"));
 
 app.post("/api/market-preview", require("./market-preview"));
 
