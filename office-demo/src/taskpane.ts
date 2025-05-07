@@ -16,20 +16,21 @@ Office.onReady(() => {
   */
 
     
-function gatherFormInput(): string {
-  const productName = (document.getElementById("productName") as HTMLInputElement).value.trim();
-  const targetMarket = (document.getElementById("targetMarket") as HTMLSelectElement).value.trim();
-  const mainCompetitors = (document.getElementById("mainCompetitors") as HTMLInputElement).value.trim();
-  const productAdvantages = (document.getElementById("productAdvantages") as HTMLTextAreaElement).value.trim();
-  const expectedPrice = (document.getElementById("expectedPrice") as HTMLInputElement).value.trim();
+  function gatherFormInput(): string {
+    const productName = (document.getElementById("productName") as HTMLInputElement).value.trim();
+    const targetMarket = (document.getElementById("targetMarket") as HTMLSelectElement).value.trim();
+    const mainCompetitors = (document.getElementById("mainCompetitors") as HTMLInputElement).value.trim();
+    const productAdvantages = (document.getElementById("productAdvantages") as HTMLTextAreaElement).value.trim();
+    const expectedPrice = (document.getElementById("expectedPrice") as HTMLInputElement).value.trim();
 
-  return `Product Name: ${productName}
-Target Market: ${targetMarket}
-Main Competitors: ${mainCompetitors}
-Product Advantages: ${productAdvantages}
-Expected Price: ${expectedPrice}`;
-}
- 
+    return `Product Name: ${productName}
+  Target Market: ${targetMarket}
+  Main Competitors: ${mainCompetitors}
+  Product Advantages: ${productAdvantages}
+  Expected Price: ${expectedPrice}`;
+  }
+
+  
   const callMarketReportAPI = async (text: string): Promise<string> => {
     const res = await fetch("/office-demo/api/market-analysis", {
       method: "POST",
@@ -40,7 +41,7 @@ Expected Price: ${expectedPrice}`;
     return data.report;
   };
   
-  
+
   async function generateWebReport() {
     //const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
     const input = gatherFormInput();
@@ -49,39 +50,34 @@ Expected Price: ${expectedPrice}`;
   }
 
   
-  
-  async function sendZapier() {
-    const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
-    const result = await fetch("/office-demo/api/zapier", {
+  function gatherFormInputRecord(): Record<string, string> {
+    return {
+      productName: (document.getElementById("productName") as HTMLInputElement).value.trim(),
+      targetMarket: (document.getElementById("targetMarket") as HTMLSelectElement).value.trim(),
+      mainCompetitors: Array.from(
+        (document.getElementById("mainCompetitors") as HTMLSelectElement).selectedOptions
+      ).map((opt) => opt.value).join(", "),
+      productAdvantages: (document.getElementById("productAdvantage") as HTMLTextAreaElement).value.trim(),
+      expectedPrice: (document.getElementById("expectedPrice") as HTMLInputElement).value.trim(),
+    };
+  }
+ 
+
+  const callPreviewAPI = async (inputData: Record<string, string>): Promise<string> => {
+    const response = await fetch("/office-demo/api/market-preview", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: input, timestamp: Date.now() }),
+      body: JSON.stringify(inputData), // 发送完整结构
     });
-  
-    if (result.ok) {
-      console.error("✅ Zapier Notification Sent!");
-    } else {
-      console.error("❌ Failed to send Zapier notification.");
-    }
-  }
-  
-
-
-const callPreviewAPI = async (input: string): Promise<string> => {
-  const response = await fetch("/office-demo/api/market-preview", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ input }),
-  });
-  const data = await response.json();
-  return data.html;
-};
+    const data = await response.json();
+    return data.html;
+  };
 
 
 let lastPreviewHtml = ""; // 声明一个全局变量，存放预览 HTM
 async function generatePreview() {
-  const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
-  const previewHtml = await callPreviewAPI(input);
+  const inputData = gatherFormInputRecord(); // 获取多个字段
+  const previewHtml = await callPreviewAPI(inputData);
 
   lastPreviewHtml = previewHtml; // ✅ 保存预览 HTML 给下载函数使用
 
@@ -145,7 +141,6 @@ function downloadWordReport() {
   });
 }
 
-  
 
 async function downloadPDFReport() {
   const inputElement = document.getElementById("inputText") as HTMLTextAreaElement;
@@ -206,7 +201,6 @@ async function downloadPDFReport() {
   }
 }
 
-
 function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -216,6 +210,22 @@ function downloadBlob(blob: Blob, filename: string) {
   URL.revokeObjectURL(url);
 }
 
+
+  
+async function sendZapier() {
+  const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
+  const result = await fetch("/office-demo/api/zapier", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: input, timestamp: Date.now() }),
+  });
+
+  if (result.ok) {
+    console.error("✅ Zapier Notification Sent!");
+  } else {
+    console.error("❌ Failed to send Zapier notification.");
+  }
+}
 
 /*
 async function downloadWordReport() {
