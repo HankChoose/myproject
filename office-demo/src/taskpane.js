@@ -56,7 +56,7 @@ function gatherFormInput() {
     var mainCompetitors = document.getElementById("mainCompetitors").value.trim();
     var productAdvantages = document.getElementById("productAdvantages").value.trim();
     var expectedPrice = document.getElementById("expectedPrice").value.trim();
-    return "Product Name: ".concat(productName, "\nTarget Market: ").concat(targetMarket, "\nMain Competitors: ").concat(mainCompetitors, "\nProduct Advantages: ").concat(productAdvantages, "\nExpected Price: ").concat(expectedPrice);
+    return "Product Name: ".concat(productName, "\n  Target Market: ").concat(targetMarket, "\n  Main Competitors: ").concat(mainCompetitors, "\n  Product Advantages: ").concat(productAdvantages, "\n  Expected Price: ").concat(expectedPrice);
 }
 var callMarketReportAPI = function (text) { return __awaiter(_this, void 0, void 0, function () {
     var res, data;
@@ -92,39 +92,23 @@ function generateWebReport() {
         });
     });
 }
-function sendZapier() {
-    return __awaiter(this, void 0, void 0, function () {
-        var input, result;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    input = document.getElementById("inputText").value;
-                    return [4 /*yield*/, fetch("/office-demo/api/zapier", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({ message: input, timestamp: Date.now() }),
-                        })];
-                case 1:
-                    result = _a.sent();
-                    if (result.ok) {
-                        console.error("✅ Zapier Notification Sent!");
-                    }
-                    else {
-                        console.error("❌ Failed to send Zapier notification.");
-                    }
-                    return [2 /*return*/];
-            }
-        });
-    });
+function gatherFormInputRecord() {
+    return {
+        productName: document.getElementById("productName").value.trim(),
+        targetMarket: document.getElementById("targetMarket").value.trim(),
+        mainCompetitors: Array.from(document.getElementById("mainCompetitors").selectedOptions).map(function (opt) { return opt.value; }).join(", "),
+        productAdvantages: document.getElementById("productAdvantage").value.trim(),
+        expectedPrice: document.getElementById("expectedPrice").value.trim(),
+    };
 }
-var callPreviewAPI = function (input) { return __awaiter(_this, void 0, void 0, function () {
+var callPreviewAPI = function (inputData) { return __awaiter(_this, void 0, void 0, function () {
     var response, data;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, fetch("/office-demo/api/market-preview", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ input: input }),
+                    body: JSON.stringify(inputData), // 发送完整结构
                 })];
             case 1:
                 response = _a.sent();
@@ -138,13 +122,13 @@ var callPreviewAPI = function (input) { return __awaiter(_this, void 0, void 0, 
 var lastPreviewHtml = ""; // 声明一个全局变量，存放预览 HTM
 function generatePreview() {
     return __awaiter(this, void 0, void 0, function () {
-        var input, previewHtml, iframe, iframeDoc;
+        var inputData, previewHtml, iframe, iframeDoc;
         var _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    input = document.getElementById("inputText").value;
-                    return [4 /*yield*/, callPreviewAPI(input)];
+                    inputData = gatherFormInputRecord();
+                    return [4 /*yield*/, callPreviewAPI(inputData)];
                 case 1:
                     previewHtml = _b.sent();
                     lastPreviewHtml = previewHtml; // ✅ 保存预览 HTML 给下载函数使用
@@ -282,6 +266,31 @@ function downloadBlob(blob, filename) {
     a.download = filename;
     a.click();
     URL.revokeObjectURL(url);
+}
+function sendZapier() {
+    return __awaiter(this, void 0, void 0, function () {
+        var input, result;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    input = document.getElementById("inputText").value;
+                    return [4 /*yield*/, fetch("/office-demo/api/zapier", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ message: input, timestamp: Date.now() }),
+                        })];
+                case 1:
+                    result = _a.sent();
+                    if (result.ok) {
+                        console.error("✅ Zapier Notification Sent!");
+                    }
+                    else {
+                        console.error("❌ Failed to send Zapier notification.");
+                    }
+                    return [2 /*return*/];
+            }
+        });
+    });
 }
 /*
 async function downloadWordReport() {
