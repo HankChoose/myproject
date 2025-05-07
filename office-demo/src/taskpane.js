@@ -50,6 +50,14 @@ Office.onReady(function () {
    return data.report;
  };
  */
+function gatherFormInput() {
+    var productName = document.getElementById("productName").value.trim();
+    var targetMarket = document.getElementById("targetMarket").value.trim();
+    var mainCompetitors = document.getElementById("mainCompetitors").value.trim();
+    var productAdvantages = document.getElementById("productAdvantages").value.trim();
+    var expectedPrice = document.getElementById("expectedPrice").value.trim();
+    return "Product Name: ".concat(productName, "\nTarget Market: ").concat(targetMarket, "\nMain Competitors: ").concat(mainCompetitors, "\nProduct Advantages: ").concat(productAdvantages, "\nExpected Price: ").concat(expectedPrice);
+}
 var callMarketReportAPI = function (text) { return __awaiter(_this, void 0, void 0, function () {
     var res, data;
     return __generator(this, function (_a) {
@@ -334,11 +342,3 @@ async function downloadPDFReport() {
 }
 
 */
-function gatherFormInput() {
-    var productName = document.getElementById("productName").value.trim();
-    var targetMarket = document.getElementById("targetMarket").value.trim();
-    var mainCompetitors = document.getElementById("mainCompetitors").value.trim();
-    var productAdvantages = document.getElementById("productAdvantages").value.trim();
-    var expectedPrice = document.getElementById("expectedPrice").value.trim();
-    return "Product Name: ".concat(productName, "\nTarget Market: ").concat(targetMarket, "\nMain Competitors: ").concat(mainCompetitors, "\nProduct Advantages: ").concat(productAdvantages, "\nExpected Price: ").concat(expectedPrice);
-}

@@ -14,6 +14,22 @@ Office.onReady(() => {
     return data.report;
   };
   */
+
+    
+function gatherFormInput(): string {
+  const productName = (document.getElementById("productName") as HTMLInputElement).value.trim();
+  const targetMarket = (document.getElementById("targetMarket") as HTMLSelectElement).value.trim();
+  const mainCompetitors = (document.getElementById("mainCompetitors") as HTMLInputElement).value.trim();
+  const productAdvantages = (document.getElementById("productAdvantages") as HTMLTextAreaElement).value.trim();
+  const expectedPrice = (document.getElementById("expectedPrice") as HTMLInputElement).value.trim();
+
+  return `Product Name: ${productName}
+Target Market: ${targetMarket}
+Main Competitors: ${mainCompetitors}
+Product Advantages: ${productAdvantages}
+Expected Price: ${expectedPrice}`;
+}
+ 
   const callMarketReportAPI = async (text: string): Promise<string> => {
     const res = await fetch("/office-demo/api/market-analysis", {
       method: "POST",
@@ -260,18 +276,3 @@ async function downloadPDFReport() {
 }
 
 */
-  
-function gatherFormInput(): string {
-  const productName = (document.getElementById("productName") as HTMLInputElement).value.trim();
-  const targetMarket = (document.getElementById("targetMarket") as HTMLSelectElement).value.trim();
-  const mainCompetitors = (document.getElementById("mainCompetitors") as HTMLInputElement).value.trim();
-  const productAdvantages = (document.getElementById("productAdvantages") as HTMLTextAreaElement).value.trim();
-  const expectedPrice = (document.getElementById("expectedPrice") as HTMLInputElement).value.trim();
-
-  return `Product Name: ${productName}
-Target Market: ${targetMarket}
-Main Competitors: ${mainCompetitors}
-Product Advantages: ${productAdvantages}
-Expected Price: ${expectedPrice}`;
-}
- 
