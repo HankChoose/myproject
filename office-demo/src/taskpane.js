@@ -74,41 +74,11 @@ function generateWebReport() {
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    input = document.getElementById("inputText").value;
+                    input = gatherFormInput();
                     return [4 /*yield*/, callMarketReportAPI(input)];
                 case 1:
                     report = _a.sent();
                     document.getElementById("output").innerText = report;
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function generateWordReport() {
-    return __awaiter(this, void 0, void 0, function () {
-        var input, report;
-        var _this = this;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    input = document.getElementById("inputText").value;
-                    return [4 /*yield*/, callMarketReportAPI(input)];
-                case 1:
-                    report = _a.sent();
-                    return [4 /*yield*/, Word.run(function (context) { return __awaiter(_this, void 0, void 0, function () {
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        context.document.body.insertText(report, Word.InsertLocation.end);
-                                        return [4 /*yield*/, context.sync()];
-                                    case 1:
-                                        _a.sent();
-                                        return [2 /*return*/];
-                                }
-                            });
-                        }); })];
-                case 2:
-                    _a.sent();
                     return [2 /*return*/];
             }
         });
@@ -364,3 +334,11 @@ async function downloadPDFReport() {
 }
 
 */
+function gatherFormInput() {
+    var productName = document.getElementById("productName").value.trim();
+    var targetMarket = document.getElementById("targetMarket").value.trim();
+    var mainCompetitors = document.getElementById("mainCompetitors").value.trim();
+    var productAdvantages = document.getElementById("productAdvantages").value.trim();
+    var expectedPrice = document.getElementById("expectedPrice").value.trim();
+    return "Product Name: ".concat(productName, "\nTarget Market: ").concat(targetMarket, "\nMain Competitors: ").concat(mainCompetitors, "\nProduct Advantages: ").concat(productAdvantages, "\nExpected Price: ").concat(expectedPrice);
+}

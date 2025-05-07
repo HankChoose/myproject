@@ -24,6 +24,22 @@
 			margin-bottom: 20px;
 		}
 
+		label {
+			display: block;
+			margin-top: 12px;
+			font-weight: bold;
+		}
+
+		input,
+		select,
+		textarea {
+			width: 100%;
+			padding: 8px;
+			margin-top: 5px;
+			margin-bottom: 10px;
+			font-size: 14px;
+		}
+
 		button {
 			display: block;
 			width: 100%;
@@ -41,11 +57,11 @@
 			background-color: #005a9e;
 		}
 
-		textarea {
+		iframe {
 			width: 100%;
-			height: 80px;
-			margin-top: 10px;
-			font-size: 14px;
+			height: 400px;
+			margin-top: 20px;
+			border: 1px solid #ccc;
 		}
 	</style>
 </head>
@@ -53,17 +69,36 @@
 <body>
 	<h1>Market Competitiveness Analysis Report</h1>
 
-	<label for="inputText">Enter product/business information:</label>
-	<textarea id="inputText">Product Name: Smart Toothbrush
-	Target Market: Urban professionals aged 25–40
-	Main Competitors: Philips, Xiaomi
-	Product Advantages: AI smart tracking, personalized brushing suggestions
-	Expected Price: 399 RMB</textarea>
+	<label for="productName">Product Name</label>
+	<input type="text" id="productName" value="Smart Toothbrush" />
+
+	<label for="targetMarket">Target Market</label>
+	<select id="targetMarket">
+		<option>Urban professionals aged 25–40</option>
+		<option>Teens in metro areas</option>
+		<option>Seniors in suburban communities</option>
+		<option>Rural families</option>
+	</select>
+
+	<label for="mainCompetitors">Main Competitors</label>
+	<select id="mainCompetitors" multiple>
+		<option>Philips</option>
+		<option>Xiaomi</option>
+		<option>Oral-B</option>
+		<option>Colgate</option>
+	</select>
+
+	<label for="advantages">Product Advantages</label>
+	<textarea id="advantages">AI smart tracking, personalized brushing suggestions</textarea>
+
+	<label for="expectedPrice">Expected Price (RMB)</label>
+	<input type="number" id="expectedPrice" value="399" />
 
 	<button onclick="generateWebReport()">1️⃣ Generate Report</button>
 	<button onclick="generatePreview()">1️⃣ Generate Preview</button>
 	<button onclick="downloadWordReport()">📥 Download Word Report</button>
 	<button onclick="downloadPDFReport()">📥 Download PDF Report</button>
+
 	<div id="output" style="margin-top: 20px; color: #333;"></div>
 	<iframe id="previewFrame"></iframe>
 
