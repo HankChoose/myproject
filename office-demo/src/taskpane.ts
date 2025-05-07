@@ -57,7 +57,7 @@ Office.onReady(() => {
       mainCompetitors: Array.from(
         (document.getElementById("mainCompetitors") as HTMLSelectElement).selectedOptions
       ).map((opt) => opt.value).join(", "),
-      productAdvantages: (document.getElementById("productAdvantage") as HTMLTextAreaElement).value.trim(),
+      productAdvantages: (document.getElementById("productAdvantages") as HTMLTextAreaElement).value.trim(),
       expectedPrice: (document.getElementById("expectedPrice") as HTMLInputElement).value.trim(),
     };
   }
