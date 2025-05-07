@@ -97,7 +97,7 @@ function gatherFormInputRecord() {
         productName: document.getElementById("productName").value.trim(),
         targetMarket: document.getElementById("targetMarket").value.trim(),
         mainCompetitors: Array.from(document.getElementById("mainCompetitors").selectedOptions).map(function (opt) { return opt.value; }).join(", "),
-        productAdvantages: document.getElementById("productAdvantage").value.trim(),
+        productAdvantages: document.getElementById("productAdvantages").value.trim(),
         expectedPrice: document.getElementById("expectedPrice").value.trim(),
     };
 }
