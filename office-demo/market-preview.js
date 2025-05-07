@@ -1,6 +1,11 @@
-// market-preview.js
 module.exports = (req, res) => {
-  const input = req.body.input || "Default summary";
+  const {
+    productName = "N/A",
+    targetMarket = "N/A",
+    mainCompetitors = "N/A",
+    productAdvantages = "N/A",
+    expectedPrice = "N/A"
+  } = req.body.input || {};
 
   const html = `
 <!DOCTYPE html>
@@ -16,7 +21,11 @@ module.exports = (req, res) => {
 </head>
 <body>
   <h1>Market Competitiveness Report Preview</h1>
-  <p><strong>Input Summary:</strong> ${input}</p>
+  <p><strong>Product Name:</strong> ${productName}</p>
+  <p><strong>Target Market:</strong> ${targetMarket}</p>
+  <p><strong>Main Competitors:</strong> ${mainCompetitors}</p>
+  <p><strong>Product Advantages:</strong> ${productAdvantages}</p>
+  <p><strong>Expected Price:</strong> ${expectedPrice}</p>
 
   <h2>Charts</h2>
   <div class="chart-container">
@@ -53,11 +62,10 @@ module.exports = (req, res) => {
         scales: { y: { beginAtZero: true } }
       }
     });
-    
-    // 设置一个小延迟后标记图表完成（确保都渲染）
-    setTimeout(checkAllChartsReady, 500); 
+
+    // setTimeout(checkAllChartsReady, 500); // 注释掉这个未定义函数
   </script>
-  
+
 </body>
 </html>
   `;
