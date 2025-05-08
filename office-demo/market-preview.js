@@ -7,6 +7,10 @@ module.exports = (req, res) => {
     expectedPrice = "N/A"
   } = req.body.input || {};
 
+  // 假设你从请求中得到了市场份额和销售增长数据
+  const marketShareData = [25, 75]; // 这里可以改成动态数据
+  const salesGrowthData = [6, 9, 12]; // 这里也可以改成动态数据
+
   const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -37,16 +41,21 @@ module.exports = (req, res) => {
 
     <script>
     (function() {
+      // Market Share Pie Chart
       const ctx1 = document.getElementById('marketShareChart').getContext('2d');
       new Chart(ctx1, {
         type: 'pie',
         data: {
           labels: ['Your Product', 'Competitors'],
-          datasets: [{ data: [25, 75], backgroundColor: ['#36A2EB', '#FF6384'] }]
+          datasets: [{
+            data: ${JSON.stringify(marketShareData)},
+            backgroundColor: ['#36A2EB', '#FF6384']
+          }]
         },
         options: { plugins: { title: { display: true, text: 'Market Share' } } }
       });
 
+      // Growth Bar Chart
       const ctx2 = document.getElementById('growthChart').getContext('2d');
       new Chart(ctx2, {
         type: 'bar',
@@ -54,7 +63,7 @@ module.exports = (req, res) => {
           labels: ['2022', '2023', '2024'],
           datasets: [{
             label: 'Sales Growth (%)',
-            data: [6, 9, 12],
+            data: ${JSON.stringify(salesGrowthData)},
             backgroundColor: '#4BC0C0'
           }]
         },
@@ -65,7 +74,6 @@ module.exports = (req, res) => {
       });
     })();
   </script>
-
 
 </body>
 </html>
