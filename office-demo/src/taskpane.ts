@@ -74,30 +74,44 @@ Office.onReady(() => {
   };
 
 
-let lastPreviewHtml = ""; // 声明一个全局变量，存放预览 HTM
-async function generatePreview() {
-  const inputData = gatherFormInputRecord(); // 获取多个字段
-  const previewHtml = await callPreviewAPI(inputData);
+  let lastPreviewHtml = ""; // 保存预览 HTML 给下载用
 
-  lastPreviewHtml = previewHtml; // ✅ 保存预览 HTML 给下载函数使用
-
-  // 获取 iframe 并设置内容
-  const iframe = document.getElementById("previewFrame") as HTMLIFrameElement;
-  const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-
-  if (iframeDoc) {
-    iframeDoc.open();
-    iframeDoc.write(previewHtml); // 插入 HTML
-    iframeDoc.close(); // 关闭并执行 HTML
-
-    // 确保 iframe 加载完后再执行任何操作
-    iframe.onload = () => {
-      console.log("Iframe content loaded");
-      // 你可以在这里做其他操作
-    };
+  async function generatePreview() {
+    const inputData = gatherFormInputRecord();
+    const previewHtml = await callPreviewAPI(inputData);
+  
+    lastPreviewHtml = previewHtml;
+  
+    const iframe = document.getElementById("previewFrame") as HTMLIFrameElement;
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+  
+    if (iframeDoc) {
+      // 清空 iframe 内容
+      iframeDoc.open();
+      iframeDoc.write("<!DOCTYPE html><html><head></head><body></body></html>");
+      iframeDoc.close();
+  
+      // 插入 HTML 内容（避免多次声明冲突）
+      const wrapper = iframeDoc.createElement("div");
+      wrapper.innerHTML = previewHtml;
+      iframeDoc.body.appendChild(wrapper);
+  
+      // 手动触发脚本执行（DOM 中 innerHTML 不会执行 script）
+      const scripts = wrapper.querySelectorAll("script");
+      scripts.forEach((oldScript) => {
+        const newScript = iframeDoc.createElement("script");
+        if (oldScript.src) {
+          newScript.src = oldScript.src;
+        } else {
+          newScript.textContent = oldScript.textContent;
+        }
+        iframeDoc.body.appendChild(newScript);
+      });
+  
+      console.log("Iframe content updated");
+    }
   }
-}
-
+  
 
 function downloadWordReport() {
   const inputElement = document.getElementById("inputText") as HTMLTextAreaElement;
