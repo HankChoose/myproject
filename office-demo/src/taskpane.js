@@ -119,10 +119,10 @@ var callPreviewAPI = function (inputData) { return __awaiter(_this, void 0, void
         }
     });
 }); };
-var lastPreviewHtml = ""; // 声明一个全局变量，存放预览 HTM
+var lastPreviewHtml = ""; // 保存预览 HTML 给下载用
 function generatePreview() {
     return __awaiter(this, void 0, void 0, function () {
-        var inputData, previewHtml, iframe, iframeDoc;
+        var inputData, previewHtml, container, newIframe, iframeDoc;
         var _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
@@ -131,18 +131,22 @@ function generatePreview() {
                     return [4 /*yield*/, callPreviewAPI(inputData)];
                 case 1:
                     previewHtml = _b.sent();
-                    lastPreviewHtml = previewHtml; // ✅ 保存预览 HTML 给下载函数使用
-                    iframe = document.getElementById("previewFrame");
-                    iframeDoc = iframe.contentDocument || ((_a = iframe.contentWindow) === null || _a === void 0 ? void 0 : _a.document);
+                    lastPreviewHtml = previewHtml;
+                    container = document.getElementById("iframeContainer");
+                    if (!container) {
+                        console.error("iframeContainer not found.");
+                        return [2 /*return*/];
+                    }
+                    newIframe = document.createElement("iframe");
+                    newIframe.id = "previewFrame";
+                    newIframe.style.width = "100%";
+                    newIframe.style.height = "600px";
+                    container.appendChild(newIframe);
+                    iframeDoc = newIframe.contentDocument || ((_a = newIframe.contentWindow) === null || _a === void 0 ? void 0 : _a.document);
                     if (iframeDoc) {
                         iframeDoc.open();
-                        iframeDoc.write(previewHtml); // 插入 HTML
-                        iframeDoc.close(); // 关闭并执行 HTML
-                        // 确保 iframe 加载完后再执行任何操作
-                        iframe.onload = function () {
-                            console.log("Iframe content loaded");
-                            // 你可以在这里做其他操作
-                        };
+                        iframeDoc.write(previewHtml); // ✅ 直接写入完整 HTML，包括 <script> 会自动执行
+                        iframeDoc.close();
                     }
                     return [2 /*return*/];
             }

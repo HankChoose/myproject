@@ -1,9 +1,10 @@
 {
   "devDependencies": {
     "@types/glob": "^8.1.0",
-    "@types/office-js": "^1.0.492"
+    "@types/office-js": "^1.0.495"
   },
   "dependencies": {
+    "office-js": "^0.1.0",
     "ts-migrate": "^0.1.35"
   }
 }

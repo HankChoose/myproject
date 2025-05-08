@@ -82,33 +82,24 @@ Office.onReady(() => {
   
     lastPreviewHtml = previewHtml;
   
-    const iframe = document.getElementById("previewFrame") as HTMLIFrameElement;
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+    // 替换 iframe，每次用新的，避免 script 冲突
+    const container = document.getElementById("iframeContainer");
+    if (!container) {
+      console.error("iframeContainer not found.");
+      return;
+    }
   
+    const newIframe = document.createElement("iframe");
+    newIframe.id = "previewFrame";
+    newIframe.style.width = "100%";
+    newIframe.style.height = "600px";
+    container.appendChild(newIframe);
+  
+    const iframeDoc = newIframe.contentDocument || newIframe.contentWindow?.document;
     if (iframeDoc) {
-      // 清空 iframe 内容
       iframeDoc.open();
-      iframeDoc.write("<!DOCTYPE html><html><head></head><body></body></html>");
+      iframeDoc.write(previewHtml); // ✅ 直接写入完整 HTML，包括 <script> 会自动执行
       iframeDoc.close();
-  
-      // 插入 HTML 内容（避免多次声明冲突）
-      const wrapper = iframeDoc.createElement("div");
-      wrapper.innerHTML = previewHtml;
-      iframeDoc.body.appendChild(wrapper);
-  
-      // 手动触发脚本执行（DOM 中 innerHTML 不会执行 script）
-      const scripts = wrapper.querySelectorAll("script");
-      scripts.forEach((oldScript) => {
-        const newScript = iframeDoc.createElement("script");
-        if (oldScript.src) {
-          newScript.src = oldScript.src;
-        } else {
-          newScript.textContent = oldScript.textContent;
-        }
-        iframeDoc.body.appendChild(newScript);
-      });
-  
-      console.log("Iframe content updated");
     }
   }
   

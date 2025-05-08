@@ -35,36 +35,37 @@ module.exports = (req, res) => {
     <canvas id="growthChart"></canvas>
   </div>
 
-  <script>
-    const ctx1 = document.getElementById('marketShareChart').getContext('2d');
-    new Chart(ctx1, {
-      type: 'pie',
-      data: {
-        labels: ['Your Product', 'Competitors'],
-        datasets: [{ data: [25, 75], backgroundColor: ['#36A2EB', '#FF6384'] }]
-      },
-      options: { plugins: { title: { display: true, text: 'Market Share' } } }
-    });
+    <script>
+    (function() {
+      const ctx1 = document.getElementById('marketShareChart').getContext('2d');
+      new Chart(ctx1, {
+        type: 'pie',
+        data: {
+          labels: ['Your Product', 'Competitors'],
+          datasets: [{ data: [25, 75], backgroundColor: ['#36A2EB', '#FF6384'] }]
+        },
+        options: { plugins: { title: { display: true, text: 'Market Share' } } }
+      });
 
-    const ctx2 = document.getElementById('growthChart').getContext('2d');
-    new Chart(ctx2, {
-      type: 'bar',
-      data: {
-        labels: ['2022', '2023', '2024'],
-        datasets: [{
-          label: 'Sales Growth (%)',
-          data: [6, 9, 12],
-          backgroundColor: '#4BC0C0'
-        }]
-      },
-      options: {
-        plugins: { title: { display: true, text: 'Growth Trend' } },
-        scales: { y: { beginAtZero: true } }
-      }
-    });
-
-    // setTimeout(checkAllChartsReady, 500); // 注释掉这个未定义函数
+      const ctx2 = document.getElementById('growthChart').getContext('2d');
+      new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: ['2022', '2023', '2024'],
+          datasets: [{
+            label: 'Sales Growth (%)',
+            data: [6, 9, 12],
+            backgroundColor: '#4BC0C0'
+          }]
+        },
+        options: {
+          plugins: { title: { display: true, text: 'Growth Trend' } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+    })();
   </script>
+
 
 </body>
 </html>
