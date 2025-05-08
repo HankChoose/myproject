@@ -144,13 +144,7 @@ Office.onReady(() => {
 
     const htmlContent = '<p>This is the content to be inserted into the download section.</p>';
     // 显示下载按钮
-    const downloadSection = document.getElementById('downloadSection');
-    if (downloadSection) {
-      downloadSection.innerHTML = htmlContent;
-    } else {
-      console.error("Element with ID 'downloadSection' not found.");
-    }
-    
+  
 		const downloadBtn = document.getElementById("downloadBtn");
     if (downloadBtn) {
       downloadBtn.classList.remove("hidden");
