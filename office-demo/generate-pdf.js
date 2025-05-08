@@ -16,14 +16,14 @@ module.exports = async (req, res) => {
     await page.setContent(chartHtml, { waitUntil: "networkidle0" });
 
     // 等待图表元素加载
-    await page.waitForSelector("#marketShareChart, #growthChart", { timeout: 5000 }).catch(() => {
+    await page.waitForSelector("#marketShareChart, #growthChart", { timeout: 10000 }).catch(() => {
       console.warn("图表元素未及时出现，尝试继续执行");
     });
 
     // 等待 Chart.js 图表绘制完成
     await page.waitForFunction(() => {
       return window.Chart && Object.keys(Chart.instances || {}).length > 0;
-    }, { timeout: 5000 }).catch(() => {
+    }, { timeout: 10000 }).catch(() => {
       console.warn("Chart.js 图表可能未完全绘制，继续尝试截图");
     });
 
