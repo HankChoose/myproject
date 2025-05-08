@@ -122,32 +122,33 @@ var callPreviewAPI = function (inputData) { return __awaiter(_this, void 0, void
 var lastPreviewHtml = ""; // 保存预览 HTML 给下载用
 function generatePreview() {
     return __awaiter(this, void 0, void 0, function () {
-        var inputData, previewHtml, container, newIframe, iframeDoc;
-        var _a;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
+        var inputData, previewHtml, iframe;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
                 case 0:
                     inputData = gatherFormInputRecord();
                     return [4 /*yield*/, callPreviewAPI(inputData)];
                 case 1:
-                    previewHtml = _b.sent();
+                    previewHtml = _a.sent();
                     lastPreviewHtml = previewHtml;
-                    container = document.getElementById("iframeContainer");
-                    if (!container) {
-                        console.error("iframeContainer not found.");
+                    iframe = document.getElementById("previewFrame");
+                    ;
+                    if (!iframe) {
+                        console.error("iframe not found.");
                         return [2 /*return*/];
                     }
-                    newIframe = document.createElement("iframe");
-                    newIframe.id = "previewFrame";
-                    newIframe.style.width = "100%";
-                    newIframe.style.height = "600px";
-                    container.appendChild(newIframe);
-                    iframeDoc = newIframe.contentDocument || ((_a = newIframe.contentWindow) === null || _a === void 0 ? void 0 : _a.document);
-                    if (iframeDoc) {
-                        iframeDoc.open();
-                        iframeDoc.write(previewHtml); // ✅ 直接写入完整 HTML，包括 <script> 会自动执行
-                        iframeDoc.close();
-                    }
+                    // 确保 iframe 加载完成后写入内容
+                    iframe.srcdoc = previewHtml; // 直接设置 srcdoc 属性
+                    // 监听 iframe 加载完成
+                    iframe.onload = function () {
+                        var _a;
+                        var iframeDoc = iframe.contentDocument || ((_a = iframe.contentWindow) === null || _a === void 0 ? void 0 : _a.document);
+                        if (iframeDoc) {
+                            iframeDoc.open();
+                            iframeDoc.write(previewHtml); // ✅ 直接写入完整 HTML
+                            iframeDoc.close();
+                        }
+                    };
                     return [2 /*return*/];
             }
         });

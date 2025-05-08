@@ -71,7 +71,7 @@ Office.onReady(() => {
     });
     const data = await response.json();
     return data.html;
-  };
+   };
 
 
   let lastPreviewHtml = ""; // 保存预览 HTML 给下载用
@@ -82,25 +82,25 @@ Office.onReady(() => {
   
     lastPreviewHtml = previewHtml;
   
-    // 替换 iframe，每次用新的，避免 script 冲突
-    const container = document.getElementById("iframeContainer");
-    if (!container) {
-      console.error("iframeContainer not found.");
-      return;
+    // 获取 iframe 元素
+    const iframe = document.getElementById("previewFrame")  as HTMLIFrameElement;;
+    if (!iframe) {
+        console.error("iframe not found.");
+        return;
     }
-  
-    const newIframe = document.createElement("iframe");
-    newIframe.id = "previewFrame";
-    newIframe.style.width = "100%";
-    newIframe.style.height = "600px";
-    container.appendChild(newIframe);
-  
-    const iframeDoc = newIframe.contentDocument || newIframe.contentWindow?.document;
-    if (iframeDoc) {
-      iframeDoc.open();
-      iframeDoc.write(previewHtml); // ✅ 直接写入完整 HTML，包括 <script> 会自动执行
-      iframeDoc.close();
-    }
+
+    // 确保 iframe 加载完成后写入内容
+    iframe.srcdoc = previewHtml; // 直接设置 srcdoc 属性
+
+    // 监听 iframe 加载完成
+    iframe.onload = function () {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+        if (iframeDoc) {
+            iframeDoc.open();
+            iframeDoc.write(previewHtml); // ✅ 直接写入完整 HTML
+            iframeDoc.close();
+        }
+    };
   }
   
 
