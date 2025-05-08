@@ -1,10 +1,11 @@
-const { Document, Packer, Paragraph, HeadingLevel, ImageRun } = require("docx");
-const puppeteer = require("puppeteer");
-
 module.exports = async (req, res) => {
   try {
-    const input = req.body?.input || "No input provided.";
-    const chartHtml = req.body?.chartHtml;
+    const {
+      input = "No input provided.",
+      chartHtml,
+      productName = "N/A",
+      mainCompetitors = [],
+    } = req.body || {};
 
     if (!chartHtml) {
       console.warn("No chartHtml provided in request.");
@@ -19,17 +20,16 @@ module.exports = async (req, res) => {
     });
 
     const page = await browser.newPage();
-    await page.setViewport({ width: 600, height: 1000 }); // 设置更大视窗
+    await page.setViewport({ width: 600, height: 1000 });
     await page.setContent(chartHtml, { waitUntil: "networkidle0" });
     await page.waitForSelector("#marketShareChart, #growthChart").catch(() => {
       console.warn("Charts not rendered in time.");
     });
 
-    await new Promise((resolve) => setTimeout(resolve, 500)); // 等待图表绘制完成
+    await new Promise((resolve) => setTimeout(resolve, 500));
     const chartBuffer = await page.screenshot({ type: "png" });
     await browser.close();
 
-    // 构建文档内容
     const content = [
       new Paragraph({
         text: "Market Analysis Report",
@@ -38,8 +38,8 @@ module.exports = async (req, res) => {
       new Paragraph("========================="),
       new Paragraph(input),
       new Paragraph(" "),
-      new Paragraph(`- Property: ${productName}`),
-      new Paragraph(`- Support: ${mainCompetitors}`),
+      new Paragraph(`- Product Name: ${productName}`),
+      new Paragraph(`- Main Competitors: ${Array.isArray(mainCompetitors) ? mainCompetitors.join(", ") : mainCompetitors}`),
       new Paragraph("- Timeline: Estimated 6–9 months"),
       new Paragraph("- Recommendations: Consider mediation, income reassessment"),
       new Paragraph(" "),
@@ -49,8 +49,8 @@ module.exports = async (req, res) => {
           new ImageRun({
             data: chartBuffer,
             transformation: {
-              width: 500,  // 确保图表的宽度适应页面
-              height: 300, // 根据宽度调整高度
+              width: 500,
+              height: 300,
             },
           }),
         ],
@@ -58,7 +58,6 @@ module.exports = async (req, res) => {
       new Paragraph("Report powered by Market-analysis API"),
     ];
 
-    // 创建文档
     const doc = new Document({
       sections: [
         {
