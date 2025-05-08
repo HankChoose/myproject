@@ -50,7 +50,7 @@ module.exports = async (req, res) => {
             data: chartBuffer,
             transformation: {
               width: 500,  // 确保图表的宽度适应页面
-              height: 250, // 根据宽度调整高度
+              height: 300, // 根据宽度调整高度
             },
           }),
         ],

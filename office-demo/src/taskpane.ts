@@ -14,7 +14,14 @@ Office.onReady(() => {
     return data.report;
   };
   */
-
+  function debounce<T extends (...args: any[]) => void>(func: T, delay: number): T {
+    let timeoutId: number;
+    return function(this: any, ...args: any[]) {
+      clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(() => func.apply(this, args), delay);
+    } as T;
+  }
+  
     
   function gatherFormInput(): string {
     const productName = (document.getElementById("productName") as HTMLInputElement).value.trim();
@@ -49,6 +56,29 @@ Office.onReady(() => {
     document.getElementById("output")!.innerText = report;
   }
 
+  window.onload = () => {
+    const debouncedGenerate = debounce(generateWebReport, 500);
+  
+    // 页面初次加载就生成一次
+    generateWebReport();
+  
+    const inputIds = [
+      "productName",
+      "targetMarket",
+      "mainCompetitors",
+      "productAdvantages",
+      "expectedPrice",
+    ];
+  
+    inputIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener("input", debouncedGenerate);
+        el.addEventListener("change", debouncedGenerate);
+      }
+    });
+  };
+  
   
   function gatherFormInputRecord(): Record<string, string> {
     return {
