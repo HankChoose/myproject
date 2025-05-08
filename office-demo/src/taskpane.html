@@ -23,7 +23,8 @@
 		.container {
 			display: flex;
 			gap: 20px;
-			align-items: flex-start;
+			align-items: stretch;
+			/* 确保左右区域高度一致 */
 		}
 
 		.form-section {
@@ -33,6 +34,10 @@
 			border: 1px solid #ccc;
 			border-radius: 6px;
 			box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+			max-width: 100%;
+			/* 防止输入框超出边框 */
+			box-sizing: border-box;
+			/* 包括内边距和边框在内 */
 		}
 
 		.preview-section {
@@ -44,6 +49,8 @@
 			box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
 			white-space: pre-wrap;
 			color: #333;
+			box-sizing: border-box;
+			/* 包括内边距和边框在内 */
 		}
 
 		h1 {
@@ -65,6 +72,8 @@
 			margin-top: 5px;
 			margin-bottom: 10px;
 			font-size: 14px;
+			box-sizing: border-box;
+			/* 确保输入框不会超出边框 */
 		}
 
 		button {
