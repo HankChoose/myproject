@@ -1,3 +1,6 @@
+const { Document, Packer, Paragraph, HeadingLevel, ImageRun } = require("docx");
+const puppeteer = require("puppeteer");
+
 module.exports = async (req, res) => {
   try {
     const {
