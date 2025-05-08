@@ -5,7 +5,7 @@ module.exports = (req, res) => {
     mainCompetitors = "N/A",
     productAdvantages = "N/A",
     expectedPrice = "N/A"
-  } = req.body.input || {};
+  } = req.body;
 
   // 假设你从请求中得到了市场份额和销售增长数据
   const marketShareData = [25, 75]; // 这里可以改成动态数据
