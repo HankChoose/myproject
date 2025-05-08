@@ -77,7 +77,7 @@ module.exports = async (req, res) => {
     });
 
     // 插入图表图像，按比例缩放
-    const { width, height } = pngImage.scaleToFit(500, 300);
+    const { width, height } = pngImage.scaleToFit(500, 600);
     pdfPage.drawImage(pngImage, {
       x: 50,
       y: 400,
