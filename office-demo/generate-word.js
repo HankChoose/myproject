@@ -16,10 +16,11 @@ module.exports = async (req, res) => {
     // 处理 input 字符串，如果是字符串格式的 JSON 则进行解析
     let parsedInput;
     try {
+      // 确保 input 是一个合法的 JSON 字符串并解析它
       parsedInput = typeof input === "string" ? JSON.parse(input) : input;
     } catch (e) {
       console.error("Error parsing input JSON:", e);
-      parsedInput = input;
+      parsedInput = input; // 如果解析失败，保持原值
     }
 
     // 确保 mainCompetitors 是一个数组
@@ -48,6 +49,12 @@ module.exports = async (req, res) => {
     const chartBuffer = await page.screenshot({ type: "png" });
     await browser.close();
 
+    // 处理解析后的 data，确保使用解析后的数据
+    const finalProductName = parsedInput.productName || "No product name provided";
+    const finalCompetitors = Array.isArray(parsedInput.mainCompetitors) 
+                              ? parsedInput.mainCompetitors.join(", ")
+                              : parsedInput.mainCompetitors || "No competitors provided";
+
     // 创建 Word 文档内容
     const content = [
       new Paragraph({
@@ -57,8 +64,8 @@ module.exports = async (req, res) => {
       new Paragraph("========================="),
       new Paragraph(parsedInput),
       new Paragraph(" "),
-      new Paragraph(`- Product Name: ${productName || "No product name provided"}`),
-      new Paragraph(`- Main Competitors: ${competitors.length > 0 ? competitors.join(", ") : "No competitors provided"}`),
+      new Paragraph(`- Product Name: ${finalProductName}`),
+      new Paragraph(`- Main Competitors: ${finalCompetitors}`),
       new Paragraph("- Timeline: Estimated 6–9 months"),
       new Paragraph("- Recommendations: Consider mediation, income reassessment"),
       new Paragraph(" "),
