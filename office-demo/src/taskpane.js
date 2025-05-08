@@ -50,6 +50,18 @@ Office.onReady(function () {
    return data.report;
  };
  */
+function debounce(func, delay) {
+    var timeoutId;
+    return function () {
+        var _this = this;
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        clearTimeout(timeoutId);
+        timeoutId = window.setTimeout(function () { return func.apply(_this, args); }, delay);
+    };
+}
 function gatherFormInput() {
     var productName = document.getElementById("productName").value.trim();
     var targetMarket = document.getElementById("targetMarket").value.trim();
@@ -92,6 +104,25 @@ function generateWebReport() {
         });
     });
 }
+window.onload = function () {
+    var debouncedGenerate = debounce(generateWebReport, 500);
+    // 页面初次加载就生成一次
+    generateWebReport();
+    var inputIds = [
+        "productName",
+        "targetMarket",
+        "mainCompetitors",
+        "productAdvantages",
+        "expectedPrice",
+    ];
+    inputIds.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) {
+            el.addEventListener("input", debouncedGenerate);
+            el.addEventListener("change", debouncedGenerate);
+        }
+    });
+};
 function gatherFormInputRecord() {
     return {
         productName: document.getElementById("productName").value.trim(),
