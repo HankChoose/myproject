@@ -105,10 +105,10 @@
 	<div class="container">
 		<div class="form-section">
 			<label for="productName">Product Name</label>
-			<input type="text" id="productName" value="Smart Toothbrush" oninput="updateLivePreview()" />
+			<input type="text" id="productName" value="Smart Toothbrush" />
 
 			<label for="targetMarket">Target Market</label>
-			<select id="targetMarket" onchange="updateLivePreview()">
+			<select id="targetMarket">
 				<option>Urban professionals aged 25–40</option>
 				<option>Teens in metro areas</option>
 				<option>Seniors in suburban communities</option>
@@ -124,11 +124,10 @@
 			</select>
 
 			<label for="productAdvantages">Product Advantages</label>
-			<textarea id="productAdvantages"
-				oninput="updateLivePreview()">AI smart tracking, personalized brushing suggestions</textarea>
+			<textarea id="productAdvantages">AI smart tracking, personalized brushing suggestions</textarea>
 
 			<label for="expectedPrice">Expected Price (RMB)</label>
-			<input type="number" id="expectedPrice" value="399" oninput="updateLivePreview()" />
+			<input type="number" id="expectedPrice" value="399" />
 		</div>
 
 		<div class="preview-section" id="output">
