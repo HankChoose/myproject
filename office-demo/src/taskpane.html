@@ -47,6 +47,8 @@
 			white-space: pre-wrap;
 			color: #333;
 			box-sizing: border-box;
+			position: relative;
+			/* 用于定位按钮 */
 		}
 
 		h1 {
@@ -92,6 +94,16 @@
 			background-color: white;
 			color: #0078d4;
 			border: 1px solid #0078d4;
+			padding: 5px 10px;
+			/* 小按钮样式 */
+			font-size: 12px;
+			/* 小字体 */
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			border-radius: 50px;
+			/* 圆形按钮 */
+			cursor: pointer;
 		}
 
 		.download-btn:hover {
@@ -152,25 +164,20 @@
 
 		<div class="preview-section" id="output">
 			<!-- Real-time preview -->
+			<button class="download-btn hidden" id="downloadBtn" onclick="downloadWordReport()">📥</button>
+			<!-- 下载按钮会在此位置显示 -->
 		</div>
 	</div>
 
 	<button onclick="generatePreview()">Generate Report</button>
-	<button class="download-btn hidden" id="downloadBtn" onclick="downloadWordReport()">📥 Download Word Report</button>
 
 	<iframe id="previewFrame"></iframe>
-	<script>
-		Office.onReady(() => {
-			console.log("Office ready");
-		});
 
+	<script>
 		// 限制只能输入数字，移除非数字字符
 		function validatePriceInput(event) {
 			let value = event.target.value;
-			// 移除非数字字符
 			const numericValue = value.replace(/[^0-9]/g, '');
-
-			// 如果结果为空，设置为 1
 			if (numericValue === '') {
 				event.target.value = '1';
 			} else {
