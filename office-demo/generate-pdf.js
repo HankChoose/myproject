@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
       console.warn("Chart.js 图表可能未完全绘制，继续尝试截图");
     });
 
-    // 截图 chart 区域，确保获取的是两个图表中的任何一个
+    // 获取图表高度并设置截图区域
     const chartElement = await page.$("#marketShareChart") || await page.$("#growthChart");
 
     if (!chartElement) {
@@ -36,7 +36,20 @@ module.exports = async (req, res) => {
       return;
     }
 
-    const chartBuffer = await chartElement.screenshot({ type: "png" });
+    // 获取元素的高度（动态）
+    const chartBoundingBox = await chartElement.boundingBox();
+    const chartHeight = chartBoundingBox.height;
+
+    // 截图整个图表区域，确保完整捕获
+    const chartBuffer = await page.screenshot({
+      type: "png",
+      clip: {
+        x: chartBoundingBox.x,
+        y: chartBoundingBox.y,
+        width: chartBoundingBox.width,
+        height: chartHeight // 使用获取的动态高度
+      }
+    });
 
     // Step 2: Create PDF
     const pdfDoc = await PDFDocument.create();
