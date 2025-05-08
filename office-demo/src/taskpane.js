@@ -153,7 +153,7 @@ var callPreviewAPI = function (inputData) { return __awaiter(_this, void 0, void
 var lastPreviewHtml = ""; // 保存预览 HTML 给下载用
 function generatePreview() {
     return __awaiter(this, void 0, void 0, function () {
-        var inputData, previewHtml, iframe;
+        var inputData, previewHtml, iframe, downloadBtn;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -180,6 +180,10 @@ function generatePreview() {
                             iframeDoc.close();
                         }
                     };
+                    downloadBtn = document.getElementById("downloadBtn");
+                    if (downloadBtn) {
+                        downloadBtn.classList.remove("hidden");
+                    }
                     return [2 /*return*/];
             }
         });

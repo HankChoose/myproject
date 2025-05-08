@@ -110,6 +110,10 @@
 			margin-top: 20px;
 			border: 1px solid #ccc;
 		}
+
+		.hidden {
+			display: none;
+		}
 	</style>
 </head>
 
@@ -149,8 +153,8 @@
 		</div>
 	</div>
 
-	<button onclick="generatePreview()">1️⃣ Generate Preview</button>
-	<button class="download-btn" onclick="downloadWordReport()">📥 Download Word Report</button>
+	<button onclick="generatePreview()">Generate Report</button>
+	<button class="download-btn hidden" id="downloadBtn" onclick="downloadWordReport()">📥 Download Word Report</button>
 
 	<iframe id="previewFrame"></iframe>
 

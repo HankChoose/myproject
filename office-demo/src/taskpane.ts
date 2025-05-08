@@ -131,6 +131,11 @@ Office.onReady(() => {
             iframeDoc.close();
         }
     };
+    // 显示下载按钮
+		const downloadBtn = document.getElementById("downloadBtn");
+    if (downloadBtn) {
+      downloadBtn.classList.remove("hidden");
+    }
   }
   
 
