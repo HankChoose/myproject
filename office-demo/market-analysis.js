@@ -12,7 +12,7 @@ module.exports = (req, res) => {
   const recommendations = generateRecommendations(score, expectedPrice, mainCompetitors.length);
 
   const report = `
-Market Competitiveness Report
+User input and basic analysis
 =============================
 
 Product: ${productName}

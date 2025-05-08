@@ -114,11 +114,24 @@
 		.hidden {
 			display: none;
 		}
+
+		.header-title {
+			background-color: pink;
+			/* Pink background */
+			padding: 10px 20px;
+			/* Add some padding around the text */
+			border-radius: 5px;
+			/* Optional: rounded corners for the bar */
+			color: white;
+			/* Text color */
+			font-size: 24px;
+			/* Adjust text size if needed */
+		}
 	</style>
 </head>
 
 <body>
-	<h1>Market Competitiveness Analysis Report</h1>
+	<h1 class="header-title">Market Analysis Report</h1>
 
 	<div class="container">
 		<div class="form-section">
@@ -153,7 +166,7 @@
 		</div>
 	</div>
 
-	<button onclick="generatePreview()">Generate Report</button>
+	<button onclick="generatePreview()">Generate Market Analysis Report</button>
 	<button class="download-btn hidden" id="downloadBtn" onclick="downloadWordReport()">📥 Download Word Report</button>
 
 	<iframe id="previewFrame"></iframe>

@@ -38,7 +38,7 @@ module.exports = (req, res) => {
   </style>
 </head>
 <body>
-  <h1>Market Competitiveness Report Preview</h1>
+  <h1>Market Analysis Report</h1>
   <p><strong>Product Name:</strong> ${productName}</p>
   <p><strong>Target Market:</strong> ${targetMarket}</p>
   <p><strong>Main Competitors:</strong> ${mainCompetitors}</p>
