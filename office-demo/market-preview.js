@@ -7,9 +7,9 @@ module.exports = (req, res) => {
     expectedPrice = "N/A"
   } = req.body;
 
-  // 假设你从请求中得到了市场份额和销售增长数据
-  const marketShareData = [25, 75]; // 这里可以改成动态数据
-  const salesGrowthData = [6, 9, 12]; // 这里也可以改成动态数据
+  // Dynamically generate market share and sales growth data based on product name and competitors
+  const marketShareData = generateMarketShareData(mainCompetitors);
+  const salesGrowthData = generateSalesGrowthData(expectedPrice);
 
   const html = `
 <!DOCTYPE html>
@@ -19,20 +19,20 @@ module.exports = (req, res) => {
   <title>Market Preview</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-     body {
+    body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      width: 600px;  /* ✅ 固定宽度，避免截图被裁剪 */
+      width: 600px;
     }
 
     .chart-container {
-      width: 500px;   /* ✅ 更大图表容器 */
+      width: 500px;
       height: 300px;
       margin-bottom: 40px;
     }
 
     canvas {
-      width: 100% !important;   /* ✅ 避免 canvas 缩放问题 */
+      width: 100% !important;
       height: 100% !important;
     }
   </style>
@@ -53,7 +53,7 @@ module.exports = (req, res) => {
     <canvas id="growthChart"></canvas>
   </div>
 
-    <script>
+  <script>
     (function() {
       // Market Share Pie Chart
       const ctx1 = document.getElementById('marketShareChart').getContext('2d');
@@ -95,3 +95,25 @@ module.exports = (req, res) => {
 
   res.json({ html });
 };
+
+function generateMarketShareData(competitors) {
+  // Example logic to dynamically adjust market share based on competitors
+  if (competitors.includes('Philips')) {
+    return [40, 60]; // 40% market share for the product, 60% for competitors
+  } else if (competitors.includes('Xiaomi')) {
+    return [50, 50]; // 50% market share for the product, 50% for competitors
+  }
+  // Default values if no known competitors are included
+  return [25, 75]; 
+}
+
+function generateSalesGrowthData(price) {
+  // Example logic to dynamically adjust sales growth based on the price
+  if (price < 100) {
+    return [10, 15, 20]; // Lower prices can drive higher sales growth
+  } else if (price < 300) {
+    return [6, 9, 12]; // Moderate price range
+  }
+  // Higher prices may result in lower growth
+  return [3, 5, 7]; 
+}
