@@ -19,8 +19,22 @@ module.exports = (req, res) => {
   <title>Market Preview</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    .chart-container { width: 400px; margin-bottom: 40px; }
+     body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      width: 800px;  /* ✅ 固定宽度，避免截图被裁剪 */
+    }
+
+    .chart-container {
+      width: 700px;   /* ✅ 更大图表容器 */
+      height: 350px;
+      margin-bottom: 40px;
+    }
+
+    canvas {
+      width: 100% !important;   /* ✅ 避免 canvas 缩放问题 */
+      height: 100% !important;
+    }
   </style>
 </head>
 <body>
