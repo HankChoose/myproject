@@ -144,8 +144,8 @@
 			<label for="productAdvantages">Product Advantages</label>
 			<textarea id="productAdvantages">AI smart tracking, personalized brushing suggestions</textarea>
 
-			<label for="expectedPrice">Expected Price (RMB)</label>
-			<input type="number" id="expectedPrice" value="399" />
+			<label for="expectedPrice">Expected Price</label>
+			<input type="number" id="expectedPrice" value="399" oninput="validatePriceInput(event)" />
 		</div>
 
 		<div class="preview-section" id="output">
@@ -159,7 +159,16 @@
 	<iframe id="previewFrame"></iframe>
 
 	<script>
+		Office.onReady(() => {
+			console.log("Office ready");
+		});
 
+		// 限制只能输入数字
+		function validatePriceInput(event) {
+			const value = event.target.value;
+			const numericValue = value.replace(/[^0-9]/g, ''); // 移除非数字字符
+			event.target.value = numericValue;
+		}
 	</script>
 </body>
 

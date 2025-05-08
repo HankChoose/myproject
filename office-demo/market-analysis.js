@@ -19,7 +19,7 @@ Product: ${productName}
 Target Market: ${targetMarket}
 Main Competitors: ${mainCompetitors.join(", ")}
 Advantages: ${productAdvantages}
-Expected Price: RMB ${expectedPrice}
+Expected Price: $${expectedPrice}
 
 Overall Score: ${score}/100
 Rating: ${rating}
@@ -67,12 +67,17 @@ function getRating(score) {
 function generateRecommendations(score, price, competitorCount) {
   const recs = [];
 
-  if (price > 400) {
+  // 确保价格是数字
+  const actualPrice = typeof price === "string" ? parseFloat(price) : price;
+
+  // 根据价格给出建议
+  if (actualPrice > 400) {
     recs.push("Current pricing is higher than average; consider bundling or value-based pricing.");
   } else {
     recs.push("Pricing is competitive; emphasize value proposition in marketing.");
   }
 
+  // 根据评分给出建议
   if (score < 70) {
     recs.push("Improve product quality or reduce price to stay competitive.");
   } else if (score < 85) {
@@ -81,6 +86,7 @@ function generateRecommendations(score, price, competitorCount) {
     recs.push("Expand distribution and invest in scaling operations.");
   }
 
+  // 根据竞争对手数量生成差异化建议
   if (competitorCount > 2) {
     recs.push("Differentiate clearly from competitors with unique features or services.");
   }
