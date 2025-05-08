@@ -57,7 +57,7 @@ Office.onReady(() => {
   }
 
   window.onload = () => {
-    const debouncedGenerate = debounce(generateWebReport, 500);
+    const debouncedGenerate = debounce(generateWebReport, 300);
   
     // 页面初次加载就生成一次
     generateWebReport();

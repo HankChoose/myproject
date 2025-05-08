@@ -105,7 +105,7 @@ function generateWebReport() {
     });
 }
 window.onload = function () {
-    var debouncedGenerate = debounce(generateWebReport, 500);
+    var debouncedGenerate = debounce(generateWebReport, 300);
     // 页面初次加载就生成一次
     generateWebReport();
     var inputIds = [

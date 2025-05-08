@@ -38,8 +38,8 @@ module.exports = async (req, res) => {
       new Paragraph("========================="),
       new Paragraph(input),
       new Paragraph(" "),
-      new Paragraph("- Property: Requires division"),
-      new Paragraph("- Support: Child and spousal support likely"),
+      new Paragraph(`- Property: ${productName}`),
+      new Paragraph(`- Support: ${mainCompetitors}`),
       new Paragraph("- Timeline: Estimated 6–9 months"),
       new Paragraph("- Recommendations: Consider mediation, income reassessment"),
       new Paragraph(" "),
@@ -70,7 +70,7 @@ module.exports = async (req, res) => {
     const buffer = await Packer.toBuffer(doc);
 
     res.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
-    res.setHeader("Content-Disposition", "attachment; filename=divorce-report.docx");
+    res.setHeader("Content-Disposition", "attachment; filename=Market Competitiveness Analysis Report.docx");
     res.send(buffer);
 
   } catch (err) {
