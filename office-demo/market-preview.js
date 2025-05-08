@@ -26,8 +26,8 @@ module.exports = (req, res) => {
     }
 
     .chart-container {
-      width: 700px;   /* ✅ 更大图表容器 */
-      height: 350px;
+      width: 500px;   /* ✅ 更大图表容器 */
+      height: 300px;
       margin-bottom: 40px;
     }
 
