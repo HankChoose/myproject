@@ -19,13 +19,13 @@ module.exports = async (req, res) => {
     });
 
     const page = await browser.newPage();
-    await page.setViewport({ width: 600, height: 1000 }); // ✅ 设置更大视窗
+    await page.setViewport({ width: 600, height: 1000 }); // 设置更大视窗
     await page.setContent(chartHtml, { waitUntil: "networkidle0" });
     await page.waitForSelector("#marketShareChart, #growthChart").catch(() => {
       console.warn("Charts not rendered in time.");
     });
 
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await new Promise((resolve) => setTimeout(resolve, 500)); // 等待图表绘制完成
     const chartBuffer = await page.screenshot({ type: "png" });
     await browser.close();
 
@@ -49,8 +49,8 @@ module.exports = async (req, res) => {
           new ImageRun({
             data: chartBuffer,
             transformation: {
-              width: 600,
-              height: 300,
+              width: 500,  // 确保图表的宽度适应页面
+              height: 250, // 根据宽度调整高度
             },
           }),
         ],
@@ -58,7 +58,7 @@ module.exports = async (req, res) => {
       new Paragraph("Report powered by Market-analysis API"),
     ];
 
-    // 正确创建 Document，仅包含 sections 字段
+    // 创建文档
     const doc = new Document({
       sections: [
         {
