@@ -118,37 +118,24 @@ Office.onReady(() => {
 
   async function generatePreview() {
     const inputData = gatherFormInputRecord();
-    //console.log(inputData); // 调试输出，确认数据格式和内容
     const previewHtml = await callPreviewAPI(inputData);
   
     lastPreviewHtml = previewHtml;
   
-    // 获取 iframe 元素
-    const iframe = document.getElementById("previewFrame")  as HTMLIFrameElement;;
+    const iframe = document.getElementById("previewFrame") as HTMLIFrameElement;
     if (!iframe) {
-        console.error("iframe not found.");
-        return;
+      console.error("iframe not found.");
+      return;
     }
-
-    // 确保 iframe 加载完成后写入内容
-    iframe.srcdoc = previewHtml; // 直接设置 srcdoc 属性
-
-    // 监听 iframe 加载完成
-    iframe.onload = function () {
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-        if (iframeDoc) {
-            iframeDoc.open();
-            iframeDoc.write(previewHtml); // ✅ 直接写入完整 HTML
-            iframeDoc.close();
-        }
-    };
-
-    // 显示下载按钮
-		const downloadBtn = document.getElementById("downloadBtn");
+  
+    iframe.srcdoc = previewHtml; // ✅ 设置预览 HTML
+  
+    const downloadBtn = document.getElementById("downloadBtn");
     if (downloadBtn) {
       downloadBtn.classList.remove("hidden");
     }
   }
+  
   
 
   function downloadWordReport() {

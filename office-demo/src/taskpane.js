@@ -169,23 +169,11 @@ function generatePreview() {
                     previewHtml = _a.sent();
                     lastPreviewHtml = previewHtml;
                     iframe = document.getElementById("previewFrame");
-                    ;
                     if (!iframe) {
                         console.error("iframe not found.");
                         return [2 /*return*/];
                     }
-                    // 确保 iframe 加载完成后写入内容
-                    iframe.srcdoc = previewHtml; // 直接设置 srcdoc 属性
-                    // 监听 iframe 加载完成
-                    iframe.onload = function () {
-                        var _a;
-                        var iframeDoc = iframe.contentDocument || ((_a = iframe.contentWindow) === null || _a === void 0 ? void 0 : _a.document);
-                        if (iframeDoc) {
-                            iframeDoc.open();
-                            iframeDoc.write(previewHtml); // ✅ 直接写入完整 HTML
-                            iframeDoc.close();
-                        }
-                    };
+                    iframe.srcdoc = previewHtml; // ✅ 设置预览 HTML
                     downloadBtn = document.getElementById("downloadBtn");
                     if (downloadBtn) {
                         downloadBtn.classList.remove("hidden");
