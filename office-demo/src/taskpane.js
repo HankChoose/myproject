@@ -159,11 +159,12 @@ var callPreviewAPI = function (inputData) { return __awaiter(_this, void 0, void
 var lastPreviewHtml = ""; // 保存预览 HTML 给下载用
 function generatePreview() {
     return __awaiter(this, void 0, void 0, function () {
-        var inputData, previewHtml, iframe, htmlContent, downloadBtn;
+        var inputData, previewHtml, iframe, downloadBtn;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     inputData = gatherFormInputRecord();
+                    console.log(inputData); // 调试输出，确认数据格式和内容
                     return [4 /*yield*/, callPreviewAPI(inputData)];
                 case 1:
                     previewHtml = _a.sent();
@@ -186,7 +187,6 @@ function generatePreview() {
                             iframeDoc.close();
                         }
                     };
-                    htmlContent = '<p>This is the content to be inserted into the download section.</p>';
                     downloadBtn = document.getElementById("downloadBtn");
                     if (downloadBtn) {
                         downloadBtn.classList.remove("hidden");

@@ -3,6 +3,8 @@ const puppeteer = require("puppeteer");
 
 module.exports = async (req, res) => {
   try {
+
+    console.log("Request Body:", req.body); 
     const {
       input = "No input provided.",
       chartHtml,
@@ -41,8 +43,8 @@ module.exports = async (req, res) => {
       new Paragraph("========================="),
       new Paragraph(input),
       new Paragraph(" "),
-      new Paragraph(`- Product Name: ${productName}`),
-      new Paragraph(`- Main Competitors: ${Array.isArray(mainCompetitors) ? mainCompetitors.join(", ") : mainCompetitors}`),
+      new Paragraph(`- Product Name: ${productName || "No product name provided"}`),
+new Paragraph(`- Main Competitors: ${Array.isArray(mainCompetitors) ? mainCompetitors.join(", ") : "No competitors provided"}`),
       new Paragraph("- Timeline: Estimated 6–9 months"),
       new Paragraph("- Recommendations: Consider mediation, income reassessment"),
       new Paragraph(" "),

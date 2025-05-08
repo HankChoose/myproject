@@ -118,6 +118,7 @@ Office.onReady(() => {
 
   async function generatePreview() {
     const inputData = gatherFormInputRecord();
+    console.log(inputData); // 调试输出，确认数据格式和内容
     const previewHtml = await callPreviewAPI(inputData);
   
     lastPreviewHtml = previewHtml;
@@ -142,9 +143,7 @@ Office.onReady(() => {
         }
     };
 
-    const htmlContent = '<p>This is the content to be inserted into the download section.</p>';
     // 显示下载按钮
-  
 		const downloadBtn = document.getElementById("downloadBtn");
     if (downloadBtn) {
       downloadBtn.classList.remove("hidden");
