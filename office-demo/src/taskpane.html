@@ -24,6 +24,7 @@
 			display: flex;
 			gap: 20px;
 			align-items: stretch;
+			/* 确保左右区域高度一致 */
 		}
 
 		.form-section {
@@ -34,7 +35,9 @@
 			border-radius: 6px;
 			box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
 			max-width: 100%;
+			/* 防止输入框超出边框 */
 			box-sizing: border-box;
+			/* 包括内边距和边框在内 */
 		}
 
 		.preview-section {
@@ -47,8 +50,7 @@
 			white-space: pre-wrap;
 			color: #333;
 			box-sizing: border-box;
-			position: relative;
-			/* 用于定位按钮 */
+			/* 包括内边距和边框在内 */
 		}
 
 		h1 {
@@ -71,6 +73,7 @@
 			margin-bottom: 10px;
 			font-size: 14px;
 			box-sizing: border-box;
+			/* 确保输入框不会超出边框 */
 		}
 
 		button {
@@ -94,16 +97,6 @@
 			background-color: white;
 			color: #0078d4;
 			border: 1px solid #0078d4;
-			padding: 5px 10px;
-			/* 小按钮样式 */
-			font-size: 12px;
-			/* 小字体 */
-			position: absolute;
-			top: 10px;
-			right: 10px;
-			border-radius: 50px;
-			/* 圆形按钮 */
-			cursor: pointer;
 		}
 
 		.download-btn:hover {
@@ -151,33 +144,32 @@
 			<label for="productAdvantages">Product Advantages</label>
 			<textarea id="productAdvantages">AI smart tracking, personalized brushing suggestions</textarea>
 
-			<label for="expectedPrice">Expected Price (Canadian Dollar)</label>
+			<label for="expectedPrice">Expected Price(Canadian Dollar)</label>
 			<input type="number" id="expectedPrice" value="399" oninput="validatePriceInput(event)" />
-
-			<label for="marketShare">Market Share (Your Product, Competitors)</label>
-			<input type="text" id="marketShare" value="40,60" placeholder="Enter two numbers separated by comma" />
-
-			<label for="salesGrowth">Sales Growth (Year 2022, 2023, 2024)</label>
-			<input type="text" id="salesGrowth" value="5,8,10"
-				placeholder="Enter growth percentages separated by comma" />
 		</div>
 
 		<div class="preview-section" id="output">
-			<!-- Real-time preview -->
-			<button class="download-btn hidden" id="downloadBtn" onclick="downloadWordReport()">📥</button>
-			<!-- 下载按钮会在此位置显示 -->
+			<!-- 实时预览 -->
 		</div>
 	</div>
 
 	<button onclick="generatePreview()">Generate Report</button>
+	<button class="download-btn hidden" id="downloadBtn" onclick="downloadWordReport()">📥 Download Word Report</button>
 
 	<iframe id="previewFrame"></iframe>
 
 	<script>
+		Office.onReady(() => {
+			console.log("Office ready");
+		});
+
 		// 限制只能输入数字，移除非数字字符
 		function validatePriceInput(event) {
 			let value = event.target.value;
+			// 移除非数字字符
 			const numericValue = value.replace(/[^0-9]/g, '');
+
+			// 如果结果为空，设置为 1
 			if (numericValue === '') {
 				event.target.value = '1';
 			} else {
