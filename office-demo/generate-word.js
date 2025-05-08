@@ -3,7 +3,7 @@ const puppeteer = require("puppeteer");
 
 module.exports = async (req, res) => {
   try {
-    console.log("Request Body:", req.body); 
+    //console.log("Request Body:", req.body); 
     
     // 解构请求体中的数据
     const {

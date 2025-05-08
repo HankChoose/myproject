@@ -111,10 +111,6 @@
 			border: 1px solid #ccc;
 		}
 
-		.hidden {
-			display: none;
-		}
-
 		.header-title {
 			background-color: rgb(43, 154, 93);
 			/* Pink background */
@@ -127,11 +123,37 @@
 			font-size: 24px;
 			/* Adjust text size if needed */
 		}
+
+		.spinner {
+			display: inline-block;
+			width: 14px;
+			height: 14px;
+			border: 2px solid rgba(0, 120, 212, 0.3);
+			border-top: 2px solid #0078d4;
+			border-radius: 50%;
+			animation: spin 0.8s linear infinite;
+			margin-left: 8px;
+			vertical-align: middle;
+		}
+
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+
+		.hidden {
+			display: none;
+		}
 	</style>
 </head>
 
 <body>
-	<h1 class="header-title">Market Analysis Report</h1>
+	<h1 class="header-title">Market Analysis Report Generator</h1>
 
 	<div class="container">
 		<div class="form-section">
@@ -167,7 +189,11 @@
 	</div>
 
 	<button onclick="generatePreview()">Generate Market Analysis Report</button>
-	<button class="download-btn hidden" id="downloadBtn" onclick="downloadWordReport()">📥 Download Word Report</button>
+	<button class="download-btn hidden" id="downloadBtn" onclick="downloadWordReport()">
+		📥 <span id="downloadText">Download Market Analysis Report</span>
+		<span id="downloadSpinner" class="spinner hidden"></span>
+	</button>
+
 
 	<iframe id="previewFrame"></iframe>
 

@@ -164,7 +164,6 @@ function generatePreview() {
             switch (_a.label) {
                 case 0:
                     inputData = gatherFormInputRecord();
-                    console.log(inputData); // 调试输出，确认数据格式和内容
                     return [4 /*yield*/, callPreviewAPI(inputData)];
                 case 1:
                     previewHtml = _a.sent();
@@ -198,7 +197,14 @@ function generatePreview() {
 }
 function downloadWordReport() {
     var _a;
-    var input = JSON.stringify(gatherFormInputRecord(), null, 2); // 拼成可读字符串
+    var downloadBtn = document.getElementById("downloadBtn");
+    var downloadText = document.getElementById("downloadText");
+    var spinner = document.getElementById("downloadSpinner");
+    // 显示“下载中”并启用 spinner
+    downloadBtn.disabled = true;
+    downloadText.textContent = "Downloading...";
+    spinner.classList.remove("hidden");
+    var input = JSON.stringify(gatherFormInputRecord(), null, 2);
     var chartIframe = document.querySelector("iframe");
     var chartHtml = ((_a = chartIframe === null || chartIframe === void 0 ? void 0 : chartIframe.contentDocument) === null || _a === void 0 ? void 0 : _a.documentElement.outerHTML) || "";
     fetch("/office-demo/api/generate-word", {
@@ -208,12 +214,12 @@ function downloadWordReport() {
         },
         body: JSON.stringify({
             input: input,
-            chartHtml: lastPreviewHtml, // ✅ 关键：发送生成好的 HTML
+            chartHtml: lastPreviewHtml,
         }),
     })
         .then(function (response) {
         if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
+            throw new Error("Network response was not ok " + response.statusText);
         }
         return response.blob();
     })
@@ -228,7 +234,14 @@ function downloadWordReport() {
         window.URL.revokeObjectURL(url);
     })
         .catch(function (error) {
-        console.error('There was a problem with the fetch operation:', error);
+        console.error("There was a problem with the fetch operation:", error);
+        alert("Download failed. Please try again.");
+    })
+        .finally(function () {
+        // 恢复状态
+        downloadText.textContent = "Download Market Analysis Report";
+        downloadBtn.disabled = false;
+        spinner.classList.add("hidden");
     });
 }
 function downloadPDFReport() {

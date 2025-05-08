@@ -118,7 +118,7 @@ Office.onReady(() => {
 
   async function generatePreview() {
     const inputData = gatherFormInputRecord();
-    console.log(inputData); // 调试输出，确认数据格式和内容
+    //console.log(inputData); // 调试输出，确认数据格式和内容
     const previewHtml = await callPreviewAPI(inputData);
   
     lastPreviewHtml = previewHtml;
@@ -151,42 +151,58 @@ Office.onReady(() => {
   }
   
 
-function downloadWordReport() {
-  const input = JSON.stringify(gatherFormInputRecord(), null, 2); // 拼成可读字符串
-  const chartIframe = document.querySelector("iframe") as HTMLIFrameElement;
-  const chartHtml = chartIframe?.contentDocument?.documentElement.outerHTML || "";
-
-  fetch("/office-demo/api/generate-word", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      input,
-      chartHtml: lastPreviewHtml, // ✅ 关键：发送生成好的 HTML
-    }),
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok ' + response.statusText);
-    }
-    return response.blob();
-  })
-  .then(blob => {
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "MarketAnalysisReport.docx";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    window.URL.revokeObjectURL(url);
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-  });
-}
-
+  function downloadWordReport() {
+    const downloadBtn = document.getElementById("downloadBtn") as HTMLButtonElement;
+    const downloadText = document.getElementById("downloadText") as HTMLElement;
+    const spinner = document.getElementById("downloadSpinner") as HTMLElement;
+  
+    // 显示“下载中”并启用 spinner
+    downloadBtn.disabled = true;
+    downloadText.textContent = "Downloading...";
+    spinner.classList.remove("hidden");
+  
+    const input = JSON.stringify(gatherFormInputRecord(), null, 2);
+    const chartIframe = document.querySelector("iframe") as HTMLIFrameElement;
+    const chartHtml = chartIframe?.contentDocument?.documentElement.outerHTML || "";
+  
+    fetch("/office-demo/api/generate-word", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        input,
+        chartHtml: lastPreviewHtml,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok " + response.statusText);
+        }
+        return response.blob();
+      })
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "MarketAnalysisReport.docx";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+        alert("Download failed. Please try again.");
+      })
+      .finally(() => {
+        // 恢复状态
+        downloadText.textContent = "Download Market Analysis Report";
+        downloadBtn.disabled = false;
+        spinner.classList.add("hidden");
+      });
+  }
+  
 
 async function downloadPDFReport() {
   const input = JSON.stringify(gatherFormInputRecord(), null, 2); // 拼成可读字符串
