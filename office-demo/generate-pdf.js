@@ -2,41 +2,47 @@ const puppeteer = require("puppeteer");
 const { PDFDocument, rgb, StandardFonts } = require("pdf-lib");
 
 module.exports = async (req, res) => {
+  let browser;
   try {
     const input = req.body.input || "No input provided.";
     const chartHtml = req.body.chartHtml || "<p>No chart HTML provided.</p>";
 
     // Step 1: Render chart HTML as PNG with Puppeteer
-    const browser = await puppeteer.launch({
+    browser = await puppeteer.launch({
       args: ["--no-sandbox", "--disable-setuid-sandbox"]
     });
 
     const page = await browser.newPage();
-
-    // 加载 HTML，等待网络空闲
     await page.setContent(chartHtml, { waitUntil: "networkidle0" });
 
-    // 等待图表容器出现（根据你的图表 ID 设置）
-    await page.waitForSelector("#marketShareChart, #growthChart", { timeout: 500 }).catch(() => {
-      console.warn("图表元素未及时出现，继续截图尝试");
+    // 等待图表元素加载
+    await page.waitForSelector("#marketShareChart, #growthChart", { timeout: 1000 }).catch(() => {
+      console.warn("图表元素未及时出现，尝试继续执行");
     });
 
-    // 额外等待一秒确保图表绘制完成（可调整）
-    await new Promise(resolve => setTimeout(resolve, 100));
+    // 等待 Chart.js 图表绘制完成
+    await page.waitForFunction(() => {
+      return window.Chart && Object.keys(Chart.instances || {}).length > 0;
+    }, { timeout: 3000 }).catch(() => {
+      console.warn("Chart.js 图表可能未完全绘制，继续尝试截图");
+    });
 
-    // 截图 chart 区域（或整个页面）
-    const chartBuffer = await page.screenshot({ type: "png" });
+    // 截图 chart 区域
+    const chartElement =
+      (await page.$("#marketShareChart")) ||
+      (await page.$("#growthChart")) ||
+      (await page.$("body"));
 
-    await browser.close();
+    const chartBuffer = await chartElement.screenshot({ type: "png" });
 
-    // Step 2: Create PDF with pdf-lib
+    // Step 2: Create PDF
     const pdfDoc = await PDFDocument.create();
-    const page1 = pdfDoc.addPage([595, 842]); // A4
-
+    const pdfPage = pdfDoc.addPage([595, 842]); // A4 尺寸
     const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
     const pngImage = await pdfDoc.embedPng(chartBuffer);
 
-    page1.drawText("Market Analysis Report", {
+    // 标题
+    pdfPage.drawText("Market Analysis Report", {
       x: 50,
       y: 800,
       size: 18,
@@ -44,7 +50,8 @@ module.exports = async (req, res) => {
       color: rgb(0, 0, 0),
     });
 
-    page1.drawText(input, {
+    // 文本内容
+    pdfPage.drawText(input, {
       x: 50,
       y: 770,
       size: 12,
@@ -53,19 +60,23 @@ module.exports = async (req, res) => {
       maxWidth: 500,
     });
 
-    page1.drawImage(pngImage, {
+    // 插入图表图像
+    const { width, height } = pngImage.scaleToFit(500, 300);
+    pdfPage.drawImage(pngImage, {
       x: 50,
       y: 400,
-      width: 500,
-      height: 300,
+      width,
+      height,
     });
 
     const pdfBytes = await pdfDoc.save();
     res.setHeader("Content-Type", "application/pdf");
-    res.setHeader("Content-Disposition", "attachment; filename=divorce-report.pdf");
+    res.setHeader("Content-Disposition", "attachment; filename=market-report.pdf");
     res.send(Buffer.from(pdfBytes));
   } catch (err) {
     console.error("Error generating PDF report:", err);
     res.status(500).send("Internal Server Error");
+  } finally {
+    if (browser) await browser.close(); // 确保资源关闭
   }
 };

@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
     });
 
     const page = await browser.newPage();
-    await page.setViewport({ width: 800, height: 1000 }); // ✅ 设置更大视窗
+    await page.setViewport({ width: 600, height: 1000 }); // ✅ 设置更大视窗
     await page.setContent(chartHtml, { waitUntil: "networkidle0" });
     await page.waitForSelector("#marketShareChart, #growthChart").catch(() => {
       console.warn("Charts not rendered in time.");

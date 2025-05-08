@@ -22,7 +22,7 @@ module.exports = (req, res) => {
      body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      width: 800px;  /* ✅ 固定宽度，避免截图被裁剪 */
+      width: 600px;  /* ✅ 固定宽度，避免截图被裁剪 */
     }
 
     .chart-container {
