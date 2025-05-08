@@ -159,7 +159,7 @@ var callPreviewAPI = function (inputData) { return __awaiter(_this, void 0, void
 var lastPreviewHtml = ""; // 保存预览 HTML 给下载用
 function generatePreview() {
     return __awaiter(this, void 0, void 0, function () {
-        var inputData, previewHtml, iframe, downloadBtn;
+        var inputData, previewHtml, iframe, htmlContent, downloadSection, downloadBtn;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -186,6 +186,14 @@ function generatePreview() {
                             iframeDoc.close();
                         }
                     };
+                    htmlContent = '<p>This is the content to be inserted into the download section.</p>';
+                    downloadSection = document.getElementById('downloadSection');
+                    if (downloadSection) {
+                        downloadSection.innerHTML = htmlContent;
+                    }
+                    else {
+                        console.error("Element with ID 'downloadSection' not found.");
+                    }
                     downloadBtn = document.getElementById("downloadBtn");
                     if (downloadBtn) {
                         downloadBtn.classList.remove("hidden");
