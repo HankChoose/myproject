@@ -105,13 +105,7 @@ Office.onReady(() => {
   
 
 function downloadWordReport() {
-  const inputElement = document.getElementById("inputText") as HTMLTextAreaElement;
-  if (!inputElement) {
-    console.error("inputText element not found");
-    return;
-  }
-
-  const input = inputElement.value;
+  const input = JSON.stringify(gatherFormInputRecord(), null, 2); // 拼成可读字符串
   const chartIframe = document.querySelector("iframe") as HTMLIFrameElement;
   const chartHtml = chartIframe?.contentDocument?.documentElement.outerHTML || "";
 
@@ -148,13 +142,7 @@ function downloadWordReport() {
 
 
 async function downloadPDFReport() {
-  const inputElement = document.getElementById("inputText") as HTMLTextAreaElement;
-  if (!inputElement) {
-    console.error("inputText element not found");
-    return;
-  }
-
-  const input = inputElement.value;
+  const input = JSON.stringify(gatherFormInputRecord(), null, 2); // 拼成可读字符串
   const chartIframe = document.querySelector("#previewFrame") as HTMLIFrameElement;
 
   if (!chartIframe) {

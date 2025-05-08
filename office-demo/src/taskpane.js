@@ -156,12 +156,7 @@ function generatePreview() {
 }
 function downloadWordReport() {
     var _a;
-    var inputElement = document.getElementById("inputText");
-    if (!inputElement) {
-        console.error("inputText element not found");
-        return;
-    }
-    var input = inputElement.value;
+    var input = JSON.stringify(gatherFormInputRecord(), null, 2); // 拼成可读字符串
     var chartIframe = document.querySelector("iframe");
     var chartHtml = ((_a = chartIframe === null || chartIframe === void 0 ? void 0 : chartIframe.contentDocument) === null || _a === void 0 ? void 0 : _a.documentElement.outerHTML) || "";
     fetch("/office-demo/api/generate-word", {
@@ -196,16 +191,11 @@ function downloadWordReport() {
 }
 function downloadPDFReport() {
     return __awaiter(this, void 0, void 0, function () {
-        var inputElement, input, chartIframe, iframeLoaded, chartHtml, response, blob, err_1;
+        var input, chartIframe, iframeLoaded, chartHtml, response, blob, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    inputElement = document.getElementById("inputText");
-                    if (!inputElement) {
-                        console.error("inputText element not found");
-                        return [2 /*return*/];
-                    }
-                    input = inputElement.value;
+                    input = JSON.stringify(gatherFormInputRecord(), null, 2);
                     chartIframe = document.querySelector("#previewFrame");
                     if (!chartIframe) {
                         console.error("Chart chartIFrame not found");
