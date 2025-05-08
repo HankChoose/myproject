@@ -23,36 +23,46 @@ Office.onReady(() => {
   }
   
     
-  function gatherFormInput(): string {
+  function gatherFormInput(): {
+    productName: string;
+    targetMarket: string;
+    mainCompetitors: string[];
+    productAdvantages: string;
+    expectedPrice: number;
+  } {
     const productName = (document.getElementById("productName") as HTMLInputElement).value.trim();
     const targetMarket = (document.getElementById("targetMarket") as HTMLSelectElement).value.trim();
-    const mainCompetitors = (document.getElementById("mainCompetitors") as HTMLInputElement).value.trim();
+    const mainCompetitorsStr = (document.getElementById("mainCompetitors") as HTMLInputElement).value.trim();
     const productAdvantages = (document.getElementById("productAdvantages") as HTMLTextAreaElement).value.trim();
-    const expectedPrice = (document.getElementById("expectedPrice") as HTMLInputElement).value.trim();
-
-    return `Product Name: ${productName}
-  Target Market: ${targetMarket}
-  Main Competitors: ${mainCompetitors}
-  Product Advantages: ${productAdvantages}
-  Expected Price: ${expectedPrice}`;
+    const expectedPriceStr = (document.getElementById("expectedPrice") as HTMLInputElement).value.trim();
+  
+    return {
+      productName,
+      targetMarket,
+      mainCompetitors: mainCompetitorsStr.split(",").map(s => s.trim()).filter(Boolean), // 逗号分隔
+      productAdvantages,
+      expectedPrice: parseFloat(expectedPriceStr) || 0,
+    };
   }
+  
 
   
-  const callMarketReportAPI = async (text: string): Promise<string> => {
+  const callMarketReportAPI = async (formData: ReturnType<typeof gatherFormInput>): Promise<string> => {
     const res = await fetch("/office-demo/api/market-analysis", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ input: text }),
+      body: JSON.stringify(formData),
     });
     const data = await res.json();
     return data.report;
   };
   
+  
 
   async function generateWebReport() {
     //const input = (document.getElementById("inputText") as HTMLTextAreaElement).value;
-    const input = gatherFormInput();
-    const report = await callMarketReportAPI(input);
+    const formData = gatherFormInput();
+    const report = await callMarketReportAPI(formData);
     document.getElementById("output")!.innerText = report;
   }
 

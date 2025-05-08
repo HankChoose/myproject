@@ -65,19 +65,25 @@ function debounce(func, delay) {
 function gatherFormInput() {
     var productName = document.getElementById("productName").value.trim();
     var targetMarket = document.getElementById("targetMarket").value.trim();
-    var mainCompetitors = document.getElementById("mainCompetitors").value.trim();
+    var mainCompetitorsStr = document.getElementById("mainCompetitors").value.trim();
     var productAdvantages = document.getElementById("productAdvantages").value.trim();
-    var expectedPrice = document.getElementById("expectedPrice").value.trim();
-    return "Product Name: ".concat(productName, "\n  Target Market: ").concat(targetMarket, "\n  Main Competitors: ").concat(mainCompetitors, "\n  Product Advantages: ").concat(productAdvantages, "\n  Expected Price: ").concat(expectedPrice);
+    var expectedPriceStr = document.getElementById("expectedPrice").value.trim();
+    return {
+        productName: productName,
+        targetMarket: targetMarket,
+        mainCompetitors: mainCompetitorsStr.split(",").map(function (s) { return s.trim(); }).filter(Boolean), // 逗号分隔
+        productAdvantages: productAdvantages,
+        expectedPrice: parseFloat(expectedPriceStr) || 0,
+    };
 }
-var callMarketReportAPI = function (text) { return __awaiter(_this, void 0, void 0, function () {
+var callMarketReportAPI = function (formData) { return __awaiter(_this, void 0, void 0, function () {
     var res, data;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, fetch("/office-demo/api/market-analysis", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ input: text }),
+                    body: JSON.stringify(formData),
                 })];
             case 1:
                 res = _a.sent();
@@ -90,12 +96,12 @@ var callMarketReportAPI = function (text) { return __awaiter(_this, void 0, void
 }); };
 function generateWebReport() {
     return __awaiter(this, void 0, void 0, function () {
-        var input, report;
+        var formData, report;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    input = gatherFormInput();
-                    return [4 /*yield*/, callMarketReportAPI(input)];
+                    formData = gatherFormInput();
+                    return [4 /*yield*/, callMarketReportAPI(formData)];
                 case 1:
                     report = _a.sent();
                     document.getElementById("output").innerText = report;
