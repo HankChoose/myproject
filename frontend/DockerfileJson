@@ -1,0 +1,20 @@
+# 基础镜像
+FROM node:18-alpine
+
+# 设置工作目录
+WORKDIR /app
+
+# 拷贝依赖描述文件
+COPY ./react_app/package*.json ./
+
+# 安装依赖
+RUN npm install
+
+# 拷贝项目所有文件
+COPY ./react_app/ .
+
+# 构建项目（Vite 或 React）
+RUN npm run build
+
+# 启动应用（可按你需要改成 serve）
+CMD ["npm", "start"]
