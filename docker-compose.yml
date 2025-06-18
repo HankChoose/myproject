@@ -76,17 +76,7 @@ services:
       - frontend
     networks:
       - app-network
-      
-  office-demo:
-    build:
-      context: ./office-demo
-      dockerfile: Dockerfile
-    container_name: office-demo
-    ports:
-      - "3301:3301"
-    networks:
-      - app-network
-
+ 
 
 networks:
   app-network:
