@@ -17,8 +17,7 @@ services:
     build:
       context: ./frontend
     command: echo "frontend build complete"
-    volumes:
-      - ./frontend/dist:/app/frontend
+   
     networks:
       - app-network
 
