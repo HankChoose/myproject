@@ -1,20 +1,23 @@
+# 阶段 1：构建
 FROM node:18-alpine AS frontend-build
 
 WORKDIR /app
 
-# 先复制 package.json 和 lock 文件（顶层的）
-COPY package.json package-lock.json* ./
+# 拷贝 frontend/ 下的 package 文件
+COPY package*.json ./
 
+# 安装依赖
 RUN npm install
 
-# 复制子目录源码到 /app/ProjectVite01
-COPY ProjectVite01 ./ProjectVite01
+# 拷贝完整项目（含 ProjectVite01 子目录）
+COPY . .
 
-# 切换工作目录到项目源码根目录
+# 切换到子目录并构建
 WORKDIR /app/ProjectVite01
 
 RUN npm run build
 
+# 阶段 2：部署构建产物
 FROM nginx:alpine AS frontend-prod
 
 COPY --from=frontend-build /app/ProjectVite01/dist /usr/share/nginx/html
