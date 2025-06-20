@@ -1,4 +1,4 @@
-# 1. 构建阶段
+# 构建阶段
 FROM node:18-alpine AS frontend-build
 
 WORKDIR /app
@@ -13,10 +13,10 @@ COPY . .
 
 RUN npm run build
 
-# 2. 生产镜像
+# 生产镜像
 FROM nginx:alpine AS frontend-prod
 
-# 复制构建好的dist文件夹
+# 复制构建产物到 nginx 静态目录
 COPY --from=frontend-build /app/dist /usr/share/nginx/html
 
 EXPOSE 80

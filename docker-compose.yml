@@ -15,7 +15,7 @@ services:
 
   frontend-build:
     build:
-      context: ./frontend/ProjectVite01   # 构建上下文是这里
+      context: ./frontend/ProjectVite01  # 构建上下文是这里
     command: echo "frontend build complete"
     networks:
       - app-network
@@ -28,7 +28,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/ssl:/etc/nginx/ssl
-      - ./frontend/ProjectVite01/dist:/app/frontend   # 这里指向构建产物dist目录
+      - ./frontend/ProjectVite01/dist:/usr/share/nginx/html  # 这里建议挂载到 nginx 默认静态目录
       - backend_static:/app/static
     depends_on:
       - backend
