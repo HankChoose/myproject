@@ -15,7 +15,7 @@ services:
 
   frontend-build:
     build:
-      context: ./frontend
+    context: ./frontend/ProjectVite01
     command: echo "frontend build complete"
    
     networks:
