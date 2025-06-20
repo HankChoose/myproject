@@ -44,10 +44,7 @@ networks:
 
 volumes:
   backend_static:
-  
-  docker compose build --no-cache
-  
-  docker compose up -d
+
 
 
 
