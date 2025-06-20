@@ -15,7 +15,7 @@ services:
 
   frontend-build:
     build:
-      context: ./frontend/ProjectVite01  # 构建上下文是这里
+      context: ./frontend  # 构建上下文是这里
     command: echo "frontend build complete"
     networks:
       - app-network
