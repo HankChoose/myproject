@@ -1,24 +1,64 @@
-
+version: '3'
 services:
-
+  
   backend:
     build:
       context: ./backend
+      dockerfile: Dockerfile
     container_name: myproject-backend
+    #target: development   name as form Dockerfile
+    #command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - backend_static:/app/django_project/static
       - ./backend:/app
+      - ./backend/django_project/templates:/app/django_project/templates
     ports:
       - "8000:8000"
+    depends_on:
+      - db
+    
+    environment:
+      - DB_HOST=db
+      - DB_NAME=mydb
+      - DB_USER=myuser
+      - DB_PASSWORD=mypw
     networks:
       - app-network
 
-  frontend-build:
+  frontend:
     build:
-      context: ./frontend  # 构建上下文是这里
-    command: echo "frontend build complete"
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: vite-codux
+    container_name: myproject-frontend
+    volumes:
+      - ./frontend/ProjectVite01/src:/app/src
+      - frontend_static:/app/dist
+    ports:
+      - "3000:3000"
     networks:
       - app-network
+    #extra_hosts:
+      #- "myapp.local:192.168.0.10
+  
+  db:
+    image: mysql:latest
+    container_name: myproject-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypw
+      MYSQL_ROOT_PASSWORD: myrootpw
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - app-network
+    #command: ["sh", "-c", "sleep 10 && python manage.py migrate"]
+
 
   nginx:
     image: nginx:latest
@@ -27,18 +67,23 @@ services:
       - 443:443
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      #- ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       - ./nginx/ssl:/etc/nginx/ssl
-      - ./frontend/ProjectVite01/dist:/usr/share/nginx/html  # 这里建议挂载到 nginx 默认静态目录
       - backend_static:/app/static
+      #- /etc/letsencrypt
     depends_on:
       - backend
-      - frontend-build
+      - frontend
     networks:
       - app-network
+ 
 
 networks:
   app-network:
     driver: bridge
-
 volumes:
+  dbdata:
   backend_static:
+  frontend_static:
+
+ 

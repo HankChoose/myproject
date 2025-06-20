@@ -1,28 +1,128 @@
-# 阶段 1：构建
-FROM node:18-alpine AS frontend-build
+# 使用Node.js Docker镜像作为基础镜像
+FROM node:latest  as build-stage
 
+# 设置工作目录
 WORKDIR /app
 
-# 拷贝 package.json 和 lock 文件（注意路径变了）
-COPY ProjectVite01/package*.json ./ProjectVite01/
-
-# 安装依赖
-WORKDIR /app/ProjectVite01
+COPY ./react_app/package*.json /app/
+# 复制项目代码到容器中
+COPY ./react_app/ /app/
+# 安装项目依赖
 RUN npm install
+RUN npm install react-router-dom
+RUN npm install axios
+RUN npm install react-bootstrap bootstrap
+RUN npm install js-cookie
+RUN npm install ws
+RUN npm install websocket
 
-# 回到 /app 复制完整代码
-WORKDIR /app
-COPY . .
-
-# 再回到子目录构建
-WORKDIR /app/ProjectVite01
+# 构建React应用
 RUN npm run build
+# 启动React应用
+CMD ["npm", "start"]
 
-# 阶段 2：部署构建产物
-FROM nginx:alpine AS frontend-prod
 
-COPY --from=frontend-build /app/ProjectVite01/dist /usr/share/nginx/html
+#FROM node:lts-alpine as production-stage
+FROM node:latest  as production-stage
+# 设置工作目录
+WORKDIR /app
 
-EXPOSE 80
+COPY ./react_app/package*.json /app/
+# 复制项目代码到容器中
+COPY ./react_app/ /app/
+# 安装项目依赖
+RUN npm install
+RUN npm install react-router-dom
+RUN npm install axios
+RUN npm install react-bootstrap bootstrap
+RUN npm install js-cookie
+RUN npm install ws
+RUN npm install websocket
+# 启动React应用
+CMD ["npm", "start"]
 
-CMD ["nginx", "-g", "daemon off;"]
+
+FROM node:latest  as wabpack-codux
+# 设置工作目录
+WORKDIR /app
+COPY ./ProjectVite01/package*.json /app/
+# 复制项目代码到容器中
+COPY ./ProjectVite01/ /app/
+# 安装项目依赖
+RUN npm install
+RUN npm install react-router-dom
+RUN npm install axios
+RUN npm install react-bootstrap bootstrap
+RUN npm install js-cookie
+RUN npm install ws
+RUN npm install websocket
+RUN npm install --save-dev typescript ts-loader webpack webpack-cli
+RUN npm install -g webpack@5
+RUN npm install --save-dev webpack@5 webpack-cli@4 webpack-dev-server@4
+RUN npm install style-loader css-loader sass-loader node-sass --save-dev
+RUN npm install redux react-redux
+RUN npm install formik yup
+RUN npm install react-table
+RUN npm install --save-dev @types/react-table
+RUN npm install react-modal
+RUN npm install --save-dev @types/react-modal
+RUN npm install react-dropzone
+RUN npm install react-beautiful-dnd
+RUN npm install image-size
+RUN npm install file-saver
+RUN npm i --save-dev @types/file-saver
+RUN npm install react react-dom react-dnd react-dnd-html5-backend
+
+
+
+# 构建React应用
+RUN npm run build
+# 启动React应用
+CMD ["npm", "start"]
+
+
+
+FROM node:latest  as vite-codux
+# 设置工作目录
+WORKDIR /app
+COPY ./ProjectVite01/package*.json /app/
+# 复制项目代码到容器中
+COPY ./ProjectVite01/ /app/
+# 安装项目依赖
+RUN npm install
+RUN npm update
+RUN npm install react-router-dom
+RUN npm install axios
+RUN npm install react-bootstrap bootstrap
+RUN npm install js-cookie
+RUN npm install ws
+RUN npm install websocket
+RUN npm install vite sass
+#RUN npm update sass
+RUN npm install vite-plugin-sass
+RUN npm install vite-plugin-svgr --save-dev
+RUN npm install --save-dev @types/js-cookie
+RUN npm install --save font-awesome
+RUN npm install bootstrap@4.5.3
+RUN npm install react-icons --save
+RUN npm install @react-icons/all-files --save
+RUN npm install -g npm
+RUN npm install @babel/core @babel/preset-react
+RUN npm install react-refresh --save-dev
+RUN npm install redux react-redux
+RUN npm install formik yup
+RUN npm install react-table
+RUN npm install --save-dev @types/react-table
+RUN npm install react-modal
+RUN npm install --save-dev @types/react-modal
+RUN npm install react-dropzone
+RUN npm install react-beautiful-dnd
+RUN npm install image-size
+RUN npm install file-saver
+RUN npm i --save-dev @types/file-saver
+RUN npm install react react-dom react-dnd react-dnd-html5-backend
+
+# 构建React应用
+RUN npm run build
+# 启动React应用
+CMD ["npm", "start"]
