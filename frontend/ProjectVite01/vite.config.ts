@@ -8,11 +8,8 @@ export default defineConfig({
     host: true,
     port: 3000,
     allowedHosts: ['zhiyouyuec.com'],
-    origin: 'https://zhiyouyuec.com', // 强制匹配 nginx 请求头
-    base: '/react/', // 很关键！用于修正资源路径前缀（尤其是 WebSocket 路径）
-    hmr: {
-      path: '/react/@vite/hmr', // 修正 HMR WS 路径，防止加载失败
-    },
+    origin: 'https://zhiyouyuec.com',
+    // 如果部署在根路径，就不需要设置 base 和 hmr.path
   },
-  base: '/react/', // 重要：构建和开发路径一致
+  base: '/', // ✅ 重要：部署在根路径就写 /
 });
