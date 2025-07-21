@@ -667,6 +667,8 @@ def myterms(request):
 def faqs(request):
     return render(request, 'faqs.html')
 
+def resume(request):
+    return render(request, 'resume.html')
 
 # 在你的应用的 views.py 中
 
