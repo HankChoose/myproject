@@ -6,7 +6,8 @@ import svgr from 'vite-plugin-svgr';
 export default defineConfig({
     plugins: [react(), svgr()],
     server: {
-        host: 'hankchenv.com', // 允许外部访问
-        port: 3000,      // 选择一个可供外部访问的端口
+        host: '0.0.0.0',           // 监听所有 IP
+        port: 3000,
+        allowedHosts: ['hankchenv.com', 'localhost'], // 允许访问的域名
     },
 });
