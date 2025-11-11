@@ -25,7 +25,7 @@ export interface TopBarProps {
 export const TopBar = ({ className }: TopBarProps) => {
     const { isLoggedIn, signIn, signOut } = useAuth();
     useEffect(() => {
-        document.title = 'Zhiyouyuec';
+        document.title = 'hankchenv';
     }, []);
     const navigate = useNavigate();
     const handleLogout = async () => {
@@ -60,13 +60,13 @@ export const TopBar = ({ className }: TopBarProps) => {
     return <div className={classNames(styles.root, className)}>
 
         <div className={classNames(styles.toRow)}>
-            <a href="https://zhiyouyuec.com">
+            <a href="https://hankchenv.com">
                 <div className={classNames(styles.toRow)}>
                     <span className={classNames(styles.logoImage)}></span>
                     <span className={classNames(styles.logoWord)}></span>
                 </div>
             </a>
-            <a href="https://zhiyouyuec.com"><BsHouseFill />Home</a>
+            <a href="https://hankchenv.com"><BsHouseFill />Home</a>
 
         </div>
         

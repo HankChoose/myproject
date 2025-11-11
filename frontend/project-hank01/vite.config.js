@@ -10,7 +10,7 @@ const vite_plugin_svgr_1 = __importDefault(require("vite-plugin-svgr"));
 exports.default = (0, vite_1.defineConfig)({
     plugins: [(0, plugin_react_1.default)(), (0, vite_plugin_svgr_1.default)()],
     server: {
-        host: 'zhiyouyuec.com', // 允许外部访问
+        host: 'hankchenv.com', // 允许外部访问
         port: 3000, // 选择一个可供外部访问的端口
     },
 });

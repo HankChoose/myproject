@@ -52,7 +52,7 @@ DEBUG = False
 APPEND_SLASH = False
 
 ALLOWED_HOSTS = ['*']
-# ALLOWED_HOSTS = ['zhiyouyuec.com']
+# ALLOWED_HOSTS = ['hankchenv.com']
 
 # Set the secure proxy header
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -96,9 +96,9 @@ REST_FRAMEWORK = {
 
 SITE_ID = 1
 
-SITE_NAME = 'zhiyouyuec.com'
+SITE_NAME = 'hankchenv.com'
 
-SITE_DOMAIN = 'zhiyouyuec.com'
+SITE_DOMAIN = 'hankchenv.com'
 
 CORS_ALLOWED_ORIGINS = [
     "*",
@@ -121,19 +121,19 @@ AUTHENTICATION_CLASSES = (
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'zhiyouyuec@gmail.com'  # 你的163账号和授权码
+EMAIL_HOST_USER = 'hankchenv@gmail.com'  # 你的163账号和授权码
 EMAIL_HOST_PASSWORD = 'lawr wxds ovuc gpik'
 EMAIL_USE_TLS = True  # 这里必须是 True，否则发送不成功
-EMAIL_FROM = 'zhiyouyuec@gmail.com'  # 发送人 你的 163账号
+EMAIL_FROM = 'hankchenv@gmail.com'  # 发送人 你的 163账号
 
 # 默认显示的发送人，（邮箱地址必须与发送人一致），不设置的话django默认使用的webmaster@localhost
-DEFAULT_FROM_EMAIL = 'zhiyouyuec@gmail.com'
+DEFAULT_FROM_EMAIL = 'hankchenv@gmail.com'
 
 # 在这里设置您的登录和注册视图，以便它们指向您的React页面
-LOGIN_URL = 'https://zhiyouyuec.com/react/singin'  # 替换为您的登录页面URL
+LOGIN_URL = 'https://hankchenv.com/react/singin'  # 替换为您的登录页面URL
 LOGOUT_URL = 'your-logout-url'  # 替换为您的注销URL
 # 设置登录和注册成功后重定向的页面，默认是 "/accounts/profile/"
-# LOGIN_REDIRECT_URL = 'https://zhiyouyuec.com/react/userprofile'
+# LOGIN_REDIRECT_URL = 'https://hankchenv.com/react/userprofile'
 LOGIN_REDIRECT_URL = 'user_account'
 # ACCOUNT
 # 指定要使用的登录方法(用户名、电子邮件地址两者之一)'username_email'，'email'
@@ -220,7 +220,7 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # 使用数据库存储 
 SESSION_COOKIE_AGE = 1209600  # 设置 session 过期时间，单位是秒 (2周)
 
 CORS_ALLOWED_ORIGINS = [
-    "https://zhiyouyuec.com",
+    "https://hankchenv.com",
 ]
 
 ROOT_URLCONF = 'django_project.urls'

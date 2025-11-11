@@ -13,15 +13,15 @@
   <DisplayName DefaultValue="Market-analysis Add-in" />
   <Description DefaultValue="AI-powered divorce workflow automation demo" />
   
-  <IconUrl DefaultValue="https://zhiyouyuec.com/office-demo/icon.png" />
-  <SupportUrl DefaultValue="https://zhiyouyuec.com/office-demo" />
+  <IconUrl DefaultValue="https://hankchenv.com/office-demo/icon.png" />
+  <SupportUrl DefaultValue="https://hankchenv.com/office-demo" />
 
   <Hosts>
     <Host Name="Document" />
   </Hosts>
 
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://zhiyouyuec.com/office-demo/taskpane.html" />
+    <SourceLocation DefaultValue="https://hankchenv.com/office-demo/taskpane.html" />
   </DefaultSettings>
 
   <Permissions>ReadWriteDocument</Permissions>
@@ -64,15 +64,15 @@
 
     <Resources>
       <bt:Images>
-        <bt:Image id="icon16" DefaultValue="https://zhiyouyuec.com/office-demo/icon16.png" />
-        <bt:Image id="icon32" DefaultValue="https://zhiyouyuec.com/office-demo/icon32.png" />
-        <bt:Image id="icon80" DefaultValue="https://zhiyouyuec.com/office-demo/icon80.png" />
+        <bt:Image id="icon16" DefaultValue="https://hankchenv.com/office-demo/icon16.png" />
+        <bt:Image id="icon32" DefaultValue="https://hankchenv.com/office-demo/icon32.png" />
+        <bt:Image id="icon80" DefaultValue="https://hankchenv.com/office-demo/icon80.png" />
       </bt:Images>
 
       <bt:Urls>
-        <bt:Url id="residTaskPaneUrl" DefaultValue="https://zhiyouyuec.com/office-demo/taskpane.html" />
-        <bt:Url id="residFunctionFile" DefaultValue="https://zhiyouyuec.com/office-demo/taskpane.html" />
-        <bt:Url id="residLearnMoreUrl" DefaultValue="https://zhiyouyuec.com/office-demo" />
+        <bt:Url id="residTaskPaneUrl" DefaultValue="https://hankchenv.com/office-demo/taskpane.html" />
+        <bt:Url id="residFunctionFile" DefaultValue="https://hankchenv.com/office-demo/taskpane.html" />
+        <bt:Url id="residLearnMoreUrl" DefaultValue="https://hankchenv.com/office-demo" />
       </bt:Urls>
 
       <bt:ShortStrings>

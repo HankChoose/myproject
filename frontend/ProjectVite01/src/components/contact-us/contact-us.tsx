@@ -38,7 +38,7 @@ export const ContactUs = ({ className }: ContactUsProps) => {
                         <tbody>
                             <tr>
                                 <td>Email:</td>
-                                <td>zhiyouyuec.@gmail.om</td>
+                                <td>hankchenv.@gmail.om</td>
                             </tr>
                             <tr>
                                 <td>Email:</td>

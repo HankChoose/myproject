@@ -5,12 +5,12 @@ from email.mime.multipart import MIMEMultipart
 # Your email configuration
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'zhiyouyuec@gmail.com'
+EMAIL_HOST_USER = 'hankchenv@gmail.com'
 EMAIL_HOST_PASSWORD = 'lawr wxds ovuc gpik'
 
 # Create a test message
 msg = MIMEMultipart()
-msg['From'] = 'zhiyouyuec@gmail.com'
+msg['From'] = 'hankchenv@gmail.com'
 msg['To'] = 'hankchenv@gmail.com'
 msg['Subject'] = 'Hank:Test Subject'
 body = 'Hank-Test email body.'

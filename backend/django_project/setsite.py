@@ -4,5 +4,5 @@ from django.contrib.sites.models import Site
 site = Site.objects.get(id=1)
 
 # 更新站点名称
-site.name = 'Zhiyouyuec.com'
+site.name = 'hankchenv.com'
 site.save()

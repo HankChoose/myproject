@@ -23,7 +23,7 @@ export const AfterAskInfo = ({ className }: AfterAskInfoProps) => {
                 </Card.Body>
                 
                 <Card.Body>
-                    {aferaskinfo}<a href="https://zhiyouyuec.com">Home</a>
+                    {aferaskinfo}<a href="https://hankchenv.com">Home</a>
                 </Card.Body>
             </Card>
         </div>;

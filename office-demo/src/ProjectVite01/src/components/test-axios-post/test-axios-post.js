@@ -40,7 +40,7 @@ const TestAxiosPost = ({ className }) => {
     };
     const handleSubmit = (e) => __awaiter(void 0, void 0, void 0, function* () {
         e.preventDefault();
-        const apiUrl = 'https://zhiyouyuec.com/user-demand-create/';
+        const apiUrl = 'https://hankchenv.com/user-demand-create/';
         const userData = {
             username: 'hank2',
             email: 'choose_last@163.com',

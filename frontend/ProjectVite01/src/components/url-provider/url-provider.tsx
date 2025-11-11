@@ -15,7 +15,7 @@ interface UrlContextValue {
 const UrlContext = createContext<UrlContextValue | undefined>(undefined);
 
 export const UrlProvider = () => {
-  const [url, setUrl] = useState('https://zhiyouyuec.com');
+  const [url, setUrl] = useState('https://hankchenv.com');
 
   const updateUrl = (newUrl: string) => {
     setUrl(newUrl);

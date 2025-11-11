@@ -5,7 +5,7 @@ const jsx_runtime_1 = require("react/jsx-runtime");
 const react_1 = require("react");
 const UrlContext = (0, react_1.createContext)(undefined);
 const UrlProvider = () => {
-    const [url, setUrl] = (0, react_1.useState)('https://zhiyouyuec.com');
+    const [url, setUrl] = (0, react_1.useState)('https://hankchenv.com');
     const updateUrl = (newUrl) => {
         setUrl(newUrl);
     };
