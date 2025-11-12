@@ -26,6 +26,9 @@ RUN apt-get update && apt-get install -y \
 # 告诉 Puppeteer 用系统安装的 Chromium
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
+# 🚀 关键行：提高 Node 可用内存到 4GB
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
 WORKDIR /app
 
 COPY package*.json ./
