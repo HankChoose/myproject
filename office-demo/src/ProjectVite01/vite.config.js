@@ -1,12 +1,13 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const vite_1 = require("vite");
-const plugin_react_1 = __importDefault(require("@vitejs/plugin-react"));
-const vite_plugin_svgr_1 = __importDefault(require("vite-plugin-svgr"));
+const { defineConfig } = require('vite')
+const react = require('@vitejs/plugin-react')
+const svgr = require('vite-plugin-svgr')
+
 // https://vitejs.dev/config/
-exports.default = (0, vite_1.defineConfig)({
-    plugins: [(0, plugin_react_1.default)(), (0, vite_plugin_svgr_1.default)()],
-});
+module.exports = defineConfig({
+  plugins: [react(), svgr()],
+  server: {
+    host: '0.0.0.0',
+    port: 3000,
+    allowedHosts: ['hankchenv.com', 'www.hankchenv.com'],
+  },
+})
