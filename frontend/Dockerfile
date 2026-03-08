@@ -7,6 +7,7 @@ WORKDIR /app
 COPY ./react_app/package*.json /app/
 # 复制项目代码到容器中
 COPY ./react_app/ /app/
+RUN npm install sass@latest --save-dev
 # 安装项目依赖
 RUN npm install
 RUN npm install react-router-dom
