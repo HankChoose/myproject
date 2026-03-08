@@ -41,7 +41,9 @@ COPY ./encyclopedia/static/* /app/django_project/static/
 #COPY nginx/ssl/privkey.pem /etc/nginx/ssl/privkey.pem
 
 # Run application
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+RUN pip install gunicorn
+CMD ["gunicorn", "django_project.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 #CMD python manage.py runsslserver 0.0.0.0:8000
 
 
