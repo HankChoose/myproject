@@ -6,7 +6,8 @@ from datetime import datetime
 from allauth.account.models import EmailAddress, EmailConfirmation
 from allauth.account.views import ConfirmEmailView, LoginView
 from allauth.account.decorators import login_required
-from allauth.account.utils import send_email_confirmation
+#from allauth.account.utils import send_email_confirmation
+from allauth.account.models import EmailAddress
 from allauth.account.views import EmailVerificationSentView
 
 from django.shortcuts import render, redirect, get_object_or_404
@@ -144,7 +145,8 @@ def resend_verification_email(request):
         return Response({'detail': 'Email address is already verified.'}, status=400)
 
     # 重新发送验证邮件
-    send_email_confirmation(request, email_address)
+    #send_email_confirmation(request, email_address)
+    EmailAddress.objects.add_email(request, user, user.email, confirm=True)
 
     return Response({'detail': 'Verification email has been resent.'})
 
