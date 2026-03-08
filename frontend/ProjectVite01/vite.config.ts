@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     host: true,
     port: 3000,
-    allowedHosts: "all",
+    allowedHosts: ['hankchenv.com'],
     origin: 'https://hankchenv.com', // 强制匹配 nginx 请求头
     base: '/react/', // 很关键！用于修正资源路径前缀（尤其是 WebSocket 路径）
     hmr: {
